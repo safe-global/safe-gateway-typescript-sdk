@@ -36,35 +36,42 @@ export interface paths {
   };
 }
 
+type StringValue = {
+  value: string
+}
+
 export interface definitions {
-  SafeInfoResponse: {
-    address: string;
+  SafeAppInfo: {
+    address: StringValue;
     nonce: number;
     threshold: number;
-    owners: string[];
-    masterCopy: string;
-    modules: string[];
-    fallbackHandler: string;
-    guard: string;
+    owners: StringValue[];
+    implementation: StringValue;
+    modules: StringValue[];
+    fallbackHandler: StringValue;
     version: string;
+    collectiblesTag: string;
+    txQueuedTag: string;
+    txHistoryTag: string;
   };
-  Erc20Info: {
-    name: string;
-    symbol: string;
+  TokenInfo: {
+    type: 'ERC20' | 'ETHER';
+    address: string;
     decimals: number;
-    logoUri: string;
+    symbol: string;
+    name: string;
+    logoUri: string | null;
   };
   SafeBalanceResponse: {
-    tokenAddress: string;
-    token: definitions["Erc20Info"];
-    balance: string;
-    ethValue: string;
-    timestamp: string;
-    fiatBalance: string;
-    fiatConversion: string;
-    fiatCode: string;
+    fiatTotal: string;
+    items: Array<{
+      tokenInfo: definitions["TokenInfo"];
+      balance: string;
+      fiatBalance: string;
+      fiatConversion: string;
+    }>
   };
-  SafeCollectibleResponse: {
+  SafeCollectibleResponse: Array<{
     address: string;
     tokenName: string;
     tokenSymbol: string;
@@ -75,48 +82,22 @@ export interface definitions {
     description: string;
     imageUri: string;
     metadata: { [key: string]: string };
+  }>;
+
+  TransactionInfo: {
   };
-  /**
-   * Filters confirmations queryset
-   * :param obj: MultisigConfirmation instance
-   * :return: Serialized queryset
-   */
-  SafeMultisigConfirmationResponse: {
-    owner: string;
-    submissionDate: string;
-    transactionHash?: string;
-    signature: string;
-    signatureType?: string;
+  TransactionData: {
   };
-  SafeMultisigTransactionResponse: {
-    safe: string;
-    to: string;
-    value: string;
-    data?: string;
-    operation: number;
-    gasToken?: string;
-    safeTxGas: number;
-    baseGas: number;
-    gasPrice: string;
-    refundReceiver?: string;
-    nonce: number;
-    executionDate: string;
-    submissionDate: string;
-    modified: string;
-    blockNumber?: number;
-    transactionHash: string;
-    safeTxHash: string;
-    executor?: string;
-    isExecuted: boolean;
-    isSuccessful?: boolean;
-    ethGasPrice?: string;
-    gasUsed?: number;
-    fee?: number;
-    origin: string;
-    dataDecoded?: string;
-    confirmationsRequired: number;
-    confirmations?: definitions["SafeMultisigConfirmationResponse"];
-    signatures: string;
+  DetailedExecutionInfo: {
+  };
+  TransactionDetails: {
+    executed_at?: number;
+    tx_status: 'SUCCESS' | 'FAILED' | 'CANCELLED' | 'AWAITING_EXECUTION' | 'AWAITINGCONFIRMATIONS';
+    tx_info: definitions["TransactionInfo"];
+    tx_data?: definitions["TransactionData"];
+    detailed_execution_info?: definitions["DetailedExecutionInfo"];
+    tx_hash?: string;
+    safe_app_info?: definitions["SafeAppInfo"];
   };
 }
 
@@ -130,7 +111,7 @@ export interface operations {
     };
     responses: {
       200: {
-        schema: definitions["SafeInfoResponse"];
+        schema: definitions["SafeAppInfo"];
       };
       /** Safe not found */
       404: unknown;
@@ -196,7 +177,7 @@ export interface operations {
     };
     responses: {
       200: {
-        schema: definitions["SafeMultisigTransactionResponse"];
+        schema: definitions["TransactionDetails"];
       };
     };
   };

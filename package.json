@@ -1,0 +1,11 @@
+{
+  "name": "gateway-sdk",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:gnosis/safe-react-gateway-sdk.git",
+  "author": "katspaugh",
+  "license": "MIT",
+  "dependencies": {
+    "unfetch": "^4.2.0"
+  }
+}

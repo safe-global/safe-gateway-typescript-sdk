@@ -1,5 +1,5 @@
 {
-  "name": "gateway-sdk",
+  "name": "@gnosis.pm/safe-react-gateway-sdk",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "git@github.com:gnosis/safe-react-gateway-sdk.git",
@@ -8,6 +8,7 @@
   "dependencies": {
     "unfetch": "^4.2.0"
   },
+  "main": "src/index.ts",
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",

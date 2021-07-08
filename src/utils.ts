@@ -27,11 +27,11 @@ export function callEndpoint<T extends keyof paths>(
   network: string,
   path: T,
   params: paths[T]['get']['parameters'],
-): Promise<paths[T]['get']['responses'][200]['schema']> {
+): Promise<{ data: paths[T]['get']['responses'][200]['schema'] }> {
   const baseUrl = replaceParam(config.baseUrl, 'network', network)
 
   const pathname = Object.keys(params.path).reduce((result: string, key) => {
-    return replaceParam(result, key, params.path[key])
+    return replaceParam(result, key, (params.path as { [key: string]: string })[key])
   }, path)
 
   let search = ''

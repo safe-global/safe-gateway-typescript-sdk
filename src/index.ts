@@ -18,11 +18,11 @@ export function getBalances(
   currency = 'usd',
   query?: operations['safes_balances_list']['parameters']['query'],
 ) {
-  return callEndpoint(network, '/safes/{address}/balances/{currency}/', { path: { address, currency }, query })
+  return callEndpoint(network, '/safes/{address}/balances/{currency}/', { path: { address, currency }, query: query || {} })
 }
 
 export function getCollectibles(address: string, query?: operations['safes_collectibles_list']['parameters']['query']) {
-  return callEndpoint(network, '/safes/{address}/collectibles/', { path: { address }, query })
+  return callEndpoint(network, '/safes/{address}/collectibles/', { path: { address }, query: query || {} })
 }
 
 export function getTransactionDetails(safe_tx_hash: string) {

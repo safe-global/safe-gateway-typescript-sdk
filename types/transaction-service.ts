@@ -4,120 +4,120 @@
  */
 
 export interface paths {
-  "/about/": {
+  '/about/': {
     /** Returns information and configuration of the service */
-    get: operations["about_list"];
-    parameters: {};
-  };
-  "/about/master-copies/": {
-    get: operations["about_master-copies_list"];
-    parameters: {};
-  };
-  "/analytics/multisig-transactions/by-origin/": {
-    get: operations["analytics_multisig-transactions_by-origin_list"];
-    parameters: {};
-  };
-  "/analytics/multisig-transactions/by-safe/": {
-    get: operations["analytics_multisig-transactions_by-safe_list"];
-    parameters: {};
-  };
-  "/contracts/": {
-    get: operations["contracts_list"];
-    parameters: {};
-  };
-  "/contracts/{address}/": {
-    get: operations["contracts_read"];
+    get: operations['about_list']
+    parameters: {}
+  }
+  '/about/master-copies/': {
+    get: operations['about_master-copies_list']
+    parameters: {}
+  }
+  '/analytics/multisig-transactions/by-origin/': {
+    get: operations['analytics_multisig-transactions_by-origin_list']
+    parameters: {}
+  }
+  '/analytics/multisig-transactions/by-safe/': {
+    get: operations['analytics_multisig-transactions_by-safe_list']
+    parameters: {}
+  }
+  '/contracts/': {
+    get: operations['contracts_list']
+    parameters: {}
+  }
+  '/contracts/{address}/': {
+    get: operations['contracts_read']
     parameters: {
       path: {
         /** A unique value identifying this contract. */
-        address: string;
-      };
-    };
-  };
-  "/data-decoder/": {
+        address: string
+      }
+    }
+  }
+  '/data-decoder/': {
     /** Creates a Multisig Transaction with its confirmations and retrieves all the information related. */
-    post: operations["data-decoder_create"];
-    parameters: {};
-  };
-  "/multisig-transactions/{safe_tx_hash}/": {
-    get: operations["multisig-transactions_read"];
+    post: operations['data-decoder_create']
+    parameters: {}
+  }
+  '/multisig-transactions/{safe_tx_hash}/': {
+    get: operations['multisig-transactions_read']
     parameters: {
       path: {
-        safe_tx_hash: string;
-      };
-    };
-  };
-  "/multisig-transactions/{safe_tx_hash}/confirmations/": {
+        safe_tx_hash: string
+      }
+    }
+  }
+  '/multisig-transactions/{safe_tx_hash}/confirmations/': {
     /** Get the list of confirmations for a multisig transaction */
-    get: operations["multisig-transactions_confirmations_list"];
+    get: operations['multisig-transactions_confirmations_list']
     /**
      * Add a confirmation for a transaction. More than one signature can be used. This endpoint does not support
      * the use of delegates to make a transaction trusted.
      */
-    post: operations["multisig-transactions_confirmations_create"];
+    post: operations['multisig-transactions_confirmations_create']
     parameters: {
       path: {
-        safe_tx_hash: string;
-      };
-    };
-  };
-  "/notifications/devices/": {
+        safe_tx_hash: string
+      }
+    }
+  }
+  '/notifications/devices/': {
     /**
      * Creates a new FirebaseDevice. If uuid is not provided a new device will be created.
      * If a uuid for an existing Safe is provided the FirebaseDevice will be updated with all the new data provided.
      * Safes provided on the request are always added and never removed/replaced
      */
-    post: operations["notifications_devices_create"];
-    parameters: {};
-  };
-  "/notifications/devices/{uuid}/": {
+    post: operations['notifications_devices_create']
+    parameters: {}
+  }
+  '/notifications/devices/{uuid}/': {
     /** Remove a FirebaseDevice */
-    delete: operations["notifications_devices_delete"];
+    delete: operations['notifications_devices_delete']
     parameters: {
       path: {
         /** A UUID string identifying this Firebase Device. */
-        uuid: string;
-      };
-    };
-  };
-  "/notifications/devices/{uuid}/safes/{address}/": {
+        uuid: string
+      }
+    }
+  }
+  '/notifications/devices/{uuid}/safes/{address}/': {
     /** Remove a Safe for a FirebaseDevice */
-    delete: operations["notifications_devices_safes_delete"];
+    delete: operations['notifications_devices_safes_delete']
     parameters: {
       path: {
-        address: string;
+        address: string
         /** A UUID string identifying this Firebase Device. */
-        uuid: string;
-      };
-    };
-  };
-  "/owners/{address}/": {
-    get: operations["owners_read"];
+        uuid: string
+      }
+    }
+  }
+  '/owners/{address}/': {
+    get: operations['owners_read']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/owners/{address}/safes/": {
+        address: string
+      }
+    }
+  }
+  '/owners/{address}/safes/': {
     /** Return Safes where the address provided is an owner */
-    get: operations["owners_safes_list"];
+    get: operations['owners_safes_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/': {
     /** Get status of the safe */
-    get: operations["safes_read"];
+    get: operations['safes_read']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/all-transactions/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/all-transactions/': {
     /**
      * Returns a paginated list of transactions for a Safe. The list has different structures depending on the
      * transaction type:
@@ -128,52 +128,52 @@ export interface paths {
      * - Module Transactions for a Safe. `tx_type=MODULE_TRANSACTION`
      * - Incoming Transfers of Ether/ERC20 Tokens/ERC721 Tokens. `tx_type=ETHEREUM_TRANSACTION`
      */
-    get: operations["safes_all-transactions_list"];
+    get: operations['safes_all-transactions_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/balances/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/balances/': {
     /** Get balance for Ether and ERC20 tokens */
-    get: operations["safes_balances_list"];
+    get: operations['safes_balances_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/balances/usd/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/balances/usd/': {
     /** Get balance for Ether and ERC20 tokens with USD fiat conversion */
-    get: operations["safes_balances_usd_list"];
+    get: operations['safes_balances_usd_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/collectibles/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/collectibles/': {
     /** Get collectibles (ERC721 tokens) and information about them */
-    get: operations["safes_collectibles_list"];
+    get: operations['safes_collectibles_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/creation/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/creation/': {
     /** Get status of the safe */
-    get: operations["safes_creation_list"];
+    get: operations['safes_creation_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/delegates/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/delegates/': {
     /** Get the list of delegates for a Safe address */
-    get: operations["safes_delegates_list"];
+    get: operations['safes_delegates_list']
     /**
      * Create a delegate for a Safe address with a custom label. Calls with same delegate but different label or
      * signer will update the label or delegator if different.
@@ -185,611 +185,611 @@ export interface paths {
      *      - TOTP = epoch // 3600 = 1586779140 // 3600 = 440771
      *      - The hash to sign by a Safe owner would be `keccak("0x132512f995866CcE1b0092384A6118EDaF4508Ff440771")`
      */
-    post: operations["safes_delegates_create"];
+    post: operations['safes_delegates_create']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/delegates/{delegate_address}/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/delegates/{delegate_address}/': {
     /**
      * Delete a delegate for a Safe. Signature is built the same way that for adding a delegate.
      * Check `POST /delegates/`
      */
-    delete: operations["safes_delegates_delete"];
+    delete: operations['safes_delegates_delete']
     parameters: {
       path: {
-        address: string;
-        delegate_address: string;
-      };
-    };
-  };
-  "/safes/{address}/incoming-transfers/": {
+        address: string
+        delegate_address: string
+      }
+    }
+  }
+  '/safes/{address}/incoming-transfers/': {
     /** Returns the history of a multisig tx (safe) */
-    get: operations["safes_incoming-transfers_list"];
+    get: operations['safes_incoming-transfers_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/module-transactions/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/module-transactions/': {
     /** Returns the module transaction of a Safe */
-    get: operations["safes_module-transactions_list"];
+    get: operations['safes_module-transactions_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/multisig-transactions/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/multisig-transactions/': {
     /** Returns the history of a multisig tx (safe) */
-    get: operations["safes_multisig-transactions_list"];
+    get: operations['safes_multisig-transactions_list']
     /** Creates a Multisig Transaction with its confirmations and retrieves all the information related. */
-    post: operations["safes_multisig-transactions_create"];
+    post: operations['safes_multisig-transactions_create']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/multisig-transactions/estimations/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/multisig-transactions/estimations/': {
     /** Estimates `safeTxGas` for a Safe Multisig Transaction. */
-    post: operations["safes_multisig-transactions_estimations_create"];
+    post: operations['safes_multisig-transactions_estimations_create']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/transactions/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/transactions/': {
     /** Returns the history of a multisig tx (safe) */
-    get: operations["safes_transactions_list"];
+    get: operations['safes_transactions_list']
     /** Creates a Multisig Transaction with its confirmations and retrieves all the information related. */
-    post: operations["safes_transactions_create"];
+    post: operations['safes_transactions_create']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/safes/{address}/transfers/": {
+        address: string
+      }
+    }
+  }
+  '/safes/{address}/transfers/': {
     /** Returns the history of a multisig tx (safe) */
-    get: operations["safes_transfers_list"];
+    get: operations['safes_transfers_list']
     parameters: {
       path: {
-        address: string;
-      };
-    };
-  };
-  "/tokens/": {
-    get: operations["tokens_list"];
-    parameters: {};
-  };
-  "/tokens/{address}/": {
-    get: operations["tokens_read"];
-    parameters: {
-      path: {
-        /** A unique value identifying this token. */
-        address: string;
-      };
-    };
-  };
-  "/tokens/{address}/price/usd/": {
-    get: operations["tokens_price_usd_list"];
+        address: string
+      }
+    }
+  }
+  '/tokens/': {
+    get: operations['tokens_list']
+    parameters: {}
+  }
+  '/tokens/{address}/': {
+    get: operations['tokens_read']
     parameters: {
       path: {
         /** A unique value identifying this token. */
-        address: string;
-      };
-    };
-  };
-  "/transactions/{safe_tx_hash}/": {
-    get: operations["transactions_read"];
+        address: string
+      }
+    }
+  }
+  '/tokens/{address}/price/usd/': {
+    get: operations['tokens_price_usd_list']
     parameters: {
       path: {
-        safe_tx_hash: string;
-      };
-    };
-  };
+        /** A unique value identifying this token. */
+        address: string
+      }
+    }
+  }
+  '/transactions/{safe_tx_hash}/': {
+    get: operations['transactions_read']
+    parameters: {
+      path: {
+        safe_tx_hash: string
+      }
+    }
+  }
 }
 
 export interface definitions {
   MasterCopyResponse: {
-    address: string;
-    version: string;
-    deployer: string;
-    deployedBlockNumber: number;
-    lastIndexedBlockNumber: number;
-  };
+    address: string
+    version: string
+    deployer: string
+    deployedBlockNumber: number
+    lastIndexedBlockNumber: number
+  }
   AnalyticsMultisigTxsByOriginResponse: {
-    origin: string;
-    transactions: number;
-  };
+    origin: string
+    transactions: number
+  }
   AnalyticsMultisigTxsBySafeResponse: {
-    safe: string;
-    masterCopy: string;
-    transactions: number;
-  };
+    safe: string
+    masterCopy: string
+    transactions: number
+  }
   ContractAbi: {
-    abi: { [key: string]: string }[];
-    description: string;
-    relevance: number;
-  };
+    abi: { [key: string]: string }[]
+    description: string
+    relevance: number
+  }
   Contract: {
-    address: string;
-    name: string;
-    displayName: string;
-    logoUri?: string;
-    contractAbi: definitions["ContractAbi"];
-  };
+    address: string
+    name: string
+    displayName: string
+    logoUri?: string
+    contractAbi: definitions['ContractAbi']
+  }
   DataDecoder: {
-    data: string;
-  };
+    data: string
+  }
   /**
    * Filters confirmations queryset
    * :param obj: MultisigConfirmation instance
    * :return: Serialized queryset
    */
   SafeMultisigConfirmationResponse: {
-    owner: string;
-    submissionDate: string;
-    transactionHash?: string;
-    signature: string;
-    signatureType?: string;
-  };
+    owner: string
+    submissionDate: string
+    transactionHash?: string
+    signature: string
+    signatureType?: string
+  }
   SafeMultisigTransactionResponse: {
-    safe: string;
-    to: string;
-    value: string;
-    data?: string;
-    operation: number;
-    gasToken?: string;
-    safeTxGas: number;
-    baseGas: number;
-    gasPrice: string;
-    refundReceiver?: string;
-    nonce: number;
-    executionDate: string;
-    submissionDate: string;
-    modified: string;
-    blockNumber?: number;
-    transactionHash: string;
-    safeTxHash: string;
-    executor?: string;
-    isExecuted: boolean;
-    isSuccessful?: boolean;
-    ethGasPrice?: string;
-    gasUsed?: number;
-    fee?: number;
-    origin: string;
-    dataDecoded?: string;
-    confirmationsRequired: number;
-    confirmations?: definitions["SafeMultisigConfirmationResponse"];
-    signatures: string;
-  };
+    safe: string
+    to: string
+    value: string
+    data?: string
+    operation: number
+    gasToken?: string
+    safeTxGas: number
+    baseGas: number
+    gasPrice: string
+    refundReceiver?: string
+    nonce: number
+    executionDate: string
+    submissionDate: string
+    modified: string
+    blockNumber?: number
+    transactionHash: string
+    safeTxHash: string
+    executor?: string
+    isExecuted: boolean
+    isSuccessful?: boolean
+    ethGasPrice?: string
+    gasUsed?: number
+    fee?: number
+    origin: string
+    dataDecoded?: string
+    confirmationsRequired: number
+    confirmations?: definitions['SafeMultisigConfirmationResponse']
+    signatures: string
+  }
   SafeMultisigConfirmation: {
-    signature: string;
-  };
+    signature: string
+  }
   FirebaseDevice: {
-    uuid?: string;
-    safes: string[];
-    cloudMessagingToken: string;
-    buildNumber: number;
-    bundle: string;
-    deviceType: "ANDROID" | "IOS" | "WEB";
-    version: string;
-    timestamp?: number;
-    signatures?: string[];
-  };
+    uuid?: string
+    safes: string[]
+    cloudMessagingToken: string
+    buildNumber: number
+    bundle: string
+    deviceType: 'ANDROID' | 'IOS' | 'WEB'
+    version: string
+    timestamp?: number
+    signatures?: string[]
+  }
   FirebaseDeviceSerializerWithOwnersResponse: {
-    uuid?: string;
-    safes: string[];
-    cloudMessagingToken: string;
-    buildNumber: number;
-    bundle: string;
-    deviceType: "ANDROID" | "IOS" | "WEB";
-    version: string;
-    timestamp?: number;
-    signatures?: string[];
-    ownersRegistered: string[];
-    ownersNotRegistered: string[];
-  };
+    uuid?: string
+    safes: string[]
+    cloudMessagingToken: string
+    buildNumber: number
+    bundle: string
+    deviceType: 'ANDROID' | 'IOS' | 'WEB'
+    version: string
+    timestamp?: number
+    signatures?: string[]
+    ownersRegistered: string[]
+    ownersNotRegistered: string[]
+  }
   OwnerResponse: {
-    safes: string[];
-  };
+    safes: string[]
+  }
   SafeInfoResponse: {
-    address: string;
-    nonce: number;
-    threshold: number;
-    owners: string[];
-    masterCopy: string;
-    modules: string[];
-    fallbackHandler: string;
-    guard: string;
-    version: string;
-  };
+    address: string
+    nonce: number
+    threshold: number
+    owners: string[]
+    masterCopy: string
+    modules: string[]
+    fallbackHandler: string
+    guard: string
+    version: string
+  }
   TokenInfoResponse: {
-    type?: string;
-    address: string;
-    name: string;
-    symbol: string;
-    decimals: number;
-    logoUri?: string;
-  };
+    type?: string
+    address: string
+    name: string
+    symbol: string
+    decimals: number
+    logoUri?: string
+  }
   TransferWithTokenInfoResponse: {
-    type?: string;
-    executionDate: string;
-    blockNumber: number;
-    transactionHash: string;
-    to: string;
-    value: string;
-    tokenId: string;
-    tokenAddress?: string;
-    tokenInfo: definitions["TokenInfoResponse"];
-    from: string;
-  };
+    type?: string
+    executionDate: string
+    blockNumber: number
+    transactionHash: string
+    to: string
+    value: string
+    tokenId: string
+    tokenAddress?: string
+    tokenInfo: definitions['TokenInfoResponse']
+    from: string
+  }
   SafeModuleTransactionWithTransfersResponse: {
-    created?: string;
-    executionDate: string;
-    blockNumber?: number;
-    isSuccessful?: boolean;
-    transactionHash?: string;
-    safe: string;
-    module: string;
-    to: string;
-    value: string;
-    data: string;
-    operation: 0 | 1 | 2;
-    dataDecoded?: string;
-    transfers: definitions["TransferWithTokenInfoResponse"][];
-    txType?: string;
-  };
+    created?: string
+    executionDate: string
+    blockNumber?: number
+    isSuccessful?: boolean
+    transactionHash?: string
+    safe: string
+    module: string
+    to: string
+    value: string
+    data: string
+    operation: 0 | 1 | 2
+    dataDecoded?: string
+    transfers: definitions['TransferWithTokenInfoResponse'][]
+    txType?: string
+  }
   SafeMultisigTransactionWithTransfersResponse: {
-    safe: string;
-    to: string;
-    value: string;
-    data?: string;
-    operation: number;
-    gasToken?: string;
-    safeTxGas: number;
-    baseGas: number;
-    gasPrice: string;
-    refundReceiver?: string;
-    nonce: number;
-    executionDate: string;
-    submissionDate: string;
-    modified: string;
-    blockNumber?: number;
-    transactionHash: string;
-    safeTxHash: string;
-    executor?: string;
-    isExecuted: boolean;
-    isSuccessful?: boolean;
-    ethGasPrice?: string;
-    gasUsed?: number;
-    fee?: number;
-    origin: string;
-    dataDecoded?: string;
-    confirmationsRequired: number;
-    confirmations?: definitions["SafeMultisigConfirmationResponse"];
-    signatures: string;
-    transfers: definitions["TransferWithTokenInfoResponse"][];
-    txType?: string;
-  };
+    safe: string
+    to: string
+    value: string
+    data?: string
+    operation: number
+    gasToken?: string
+    safeTxGas: number
+    baseGas: number
+    gasPrice: string
+    refundReceiver?: string
+    nonce: number
+    executionDate: string
+    submissionDate: string
+    modified: string
+    blockNumber?: number
+    transactionHash: string
+    safeTxHash: string
+    executor?: string
+    isExecuted: boolean
+    isSuccessful?: boolean
+    ethGasPrice?: string
+    gasUsed?: number
+    fee?: number
+    origin: string
+    dataDecoded?: string
+    confirmationsRequired: number
+    confirmations?: definitions['SafeMultisigConfirmationResponse']
+    signatures: string
+    transfers: definitions['TransferWithTokenInfoResponse'][]
+    txType?: string
+  }
   EthereumTxWithTransfersResponse: {
-    executionDate: string;
-    to: string;
-    data: string;
-    txHash: string;
-    blockNumber?: number;
-    transfers: definitions["TransferWithTokenInfoResponse"][];
-    txType?: string;
-    from: string;
-  };
+    executionDate: string
+    to: string
+    data: string
+    txHash: string
+    blockNumber?: number
+    transfers: definitions['TransferWithTokenInfoResponse'][]
+    txType?: string
+    from: string
+  }
   AllTransactionsSchema: {
-    txType1: definitions["SafeModuleTransactionWithTransfersResponse"];
-    txType2: definitions["SafeMultisigTransactionWithTransfersResponse"];
-    txType3: definitions["EthereumTxWithTransfersResponse"];
-  };
+    txType1: definitions['SafeModuleTransactionWithTransfersResponse']
+    txType2: definitions['SafeMultisigTransactionWithTransfersResponse']
+    txType3: definitions['EthereumTxWithTransfersResponse']
+  }
   Erc20Info: {
-    name: string;
-    symbol: string;
-    decimals: number;
-    logoUri: string;
-  };
+    name: string
+    symbol: string
+    decimals: number
+    logoUri: string
+  }
   SafeBalanceResponse: {
-    tokenAddress: string;
-    token: definitions["Erc20Info"];
-    balance: string;
-  };
+    tokenAddress: string
+    token: definitions['Erc20Info']
+    balance: string
+  }
   SafeBalanceUsdResponse: {
-    tokenAddress: string;
-    token: definitions["Erc20Info"];
-    balance: string;
-    ethValue: string;
-    timestamp: string;
-    fiatBalance: string;
-    fiatConversion: string;
-    fiatCode: string;
-  };
+    tokenAddress: string
+    token: definitions['Erc20Info']
+    balance: string
+    ethValue: string
+    timestamp: string
+    fiatBalance: string
+    fiatConversion: string
+    fiatCode: string
+  }
   SafeCollectibleResponse: {
-    address: string;
-    tokenName: string;
-    tokenSymbol: string;
-    logoUri: string;
-    id: string;
-    uri: string;
-    name: string;
-    description: string;
-    imageUri: string;
-    metadata: { [key: string]: string };
-  };
+    address: string
+    tokenName: string
+    tokenSymbol: string
+    logoUri: string
+    id: string
+    uri: string
+    name: string
+    description: string
+    imageUri: string
+    metadata: { [key: string]: string }
+  }
   SafeCreationInfoResponse: {
-    created: string;
-    creator: string;
-    transactionHash: string;
-    factoryAddress: string;
-    masterCopy: string;
-    setupData: string;
-    dataDecoded?: string;
-  };
+    created: string
+    creator: string
+    transactionHash: string
+    factoryAddress: string
+    masterCopy: string
+    setupData: string
+    dataDecoded?: string
+  }
   SafeDelegateResponse: {
-    delegate: string;
-    delegator: string;
-    label: string;
-  };
+    delegate: string
+    delegator: string
+    label: string
+  }
   SafeDelegate: {
-    safe: string;
-    delegate: string;
-    signature: string;
-    label: string;
-  };
+    safe: string
+    delegate: string
+    signature: string
+    label: string
+  }
   SafeDelegateDelete: {
-    safe: string;
-    delegate: string;
-    signature: string;
-  };
+    safe: string
+    delegate: string
+    signature: string
+  }
   TransferResponse: {
-    type?: string;
-    executionDate: string;
-    blockNumber: number;
-    transactionHash: string;
-    to: string;
-    value: string;
-    tokenId: string;
-    tokenAddress?: string;
-    from: string;
-  };
+    type?: string
+    executionDate: string
+    blockNumber: number
+    transactionHash: string
+    to: string
+    value: string
+    tokenId: string
+    tokenAddress?: string
+    from: string
+  }
   SafeModuleTransactionResponse: {
-    created?: string;
-    executionDate: string;
-    blockNumber?: number;
-    isSuccessful?: boolean;
-    transactionHash?: string;
-    safe: string;
-    module: string;
-    to: string;
-    value: string;
-    data: string;
-    operation: 0 | 1 | 2;
-    dataDecoded?: string;
-  };
+    created?: string
+    executionDate: string
+    blockNumber?: number
+    isSuccessful?: boolean
+    transactionHash?: string
+    safe: string
+    module: string
+    to: string
+    value: string
+    data: string
+    operation: 0 | 1 | 2
+    dataDecoded?: string
+  }
   SafeMultisigTransaction: {
-    safe: string;
-    to: string;
-    value: number;
-    data?: string;
-    operation: number;
-    gasToken?: string;
-    safeTxGas: number;
-    baseGas: number;
-    gasPrice: number;
-    refundReceiver?: string;
-    nonce: number;
-    contractTransactionHash: string;
-    sender: string;
-    signature?: string;
-    origin?: string;
-  };
+    safe: string
+    to: string
+    value: number
+    data?: string
+    operation: number
+    gasToken?: string
+    safeTxGas: number
+    baseGas: number
+    gasPrice: number
+    refundReceiver?: string
+    nonce: number
+    contractTransactionHash: string
+    sender: string
+    signature?: string
+    origin?: string
+  }
   SafeMultisigTransactionEstimate: {
-    to: string;
-    value: number;
-    data?: string;
-    operation: number;
-  };
+    to: string
+    value: number
+    data?: string
+    operation: number
+  }
   SafeMultisigTransactionEstimateResponse: {
-    safeTxGas: string;
-  };
+    safeTxGas: string
+  }
 }
 
 export interface operations {
   /** Returns information and configuration of the service */
   about_list: {
-    parameters: {};
+    parameters: {}
     responses: {
-      200: unknown;
-    };
-  };
-  "about_master-copies_list": {
-    parameters: {};
-    responses: {
-      200: {
-        schema: definitions["MasterCopyResponse"][];
-      };
-    };
-  };
-  "analytics_multisig-transactions_by-origin_list": {
-    parameters: {
-      query: {
-        safe?: string;
-        to?: string;
-        value__lt?: number;
-        value__gt?: number;
-        value__lte?: number;
-        value__gte?: number;
-        value?: number;
-        operation?: string;
-        failed?: string;
-        safe_tx_gas__lt?: number;
-        safe_tx_gas__gt?: number;
-        safe_tx_gas__lte?: number;
-        safe_tx_gas__gte?: number;
-        safe_tx_gas?: number;
-        base_gas__lt?: number;
-        base_gas__gt?: number;
-        base_gas__lte?: number;
-        base_gas__gte?: number;
-        base_gas?: number;
-        gas_price__lt?: number;
-        gas_price__gt?: number;
-        gas_price__lte?: number;
-        gas_price__gte?: number;
-        gas_price?: number;
-        gas_token?: string;
-        refund_receiver?: string;
-        trusted?: string;
-      };
-    };
+      200: unknown
+    }
+  }
+  'about_master-copies_list': {
+    parameters: {}
     responses: {
       200: {
-        schema: definitions["AnalyticsMultisigTxsByOriginResponse"][];
-      };
-    };
-  };
-  "analytics_multisig-transactions_by-safe_list": {
+        schema: definitions['MasterCopyResponse'][]
+      }
+    }
+  }
+  'analytics_multisig-transactions_by-origin_list': {
     parameters: {
       query: {
-        master_copy?: string;
+        safe?: string
+        to?: string
+        value__lt?: number
+        value__gt?: number
+        value__lte?: number
+        value__gte?: number
+        value?: number
+        operation?: string
+        failed?: string
+        safe_tx_gas__lt?: number
+        safe_tx_gas__gt?: number
+        safe_tx_gas__lte?: number
+        safe_tx_gas__gte?: number
+        safe_tx_gas?: number
+        base_gas__lt?: number
+        base_gas__gt?: number
+        base_gas__lte?: number
+        base_gas__gte?: number
+        base_gas?: number
+        gas_price__lt?: number
+        gas_price__gt?: number
+        gas_price__lte?: number
+        gas_price__gte?: number
+        gas_price?: number
+        gas_token?: string
+        refund_receiver?: string
+        trusted?: string
+      }
+    }
+    responses: {
+      200: {
+        schema: definitions['AnalyticsMultisigTxsByOriginResponse'][]
+      }
+    }
+  }
+  'analytics_multisig-transactions_by-safe_list': {
+    parameters: {
+      query: {
+        master_copy?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
         schema: {
-          count: number;
-          next?: string;
-          previous?: string;
-          results: definitions["AnalyticsMultisigTxsBySafeResponse"][];
-        };
-      };
-    };
-  };
+          count: number
+          next?: string
+          previous?: string
+          results: definitions['AnalyticsMultisigTxsBySafeResponse'][]
+        }
+      }
+    }
+  }
   contracts_list: {
     parameters: {
       query: {
         /** Which field to use when ordering the results. */
-        ordering?: string;
+        ordering?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
         schema: {
-          count: number;
-          next?: string;
-          previous?: string;
-          results: definitions["Contract"][];
-        };
-      };
-    };
-  };
+          count: number
+          next?: string
+          previous?: string
+          results: definitions['Contract'][]
+        }
+      }
+    }
+  }
   contracts_read: {
     parameters: {
       path: {
         /** A unique value identifying this contract. */
-        address: string;
-      };
-    };
+        address: string
+      }
+    }
     responses: {
       200: {
-        schema: definitions["Contract"];
-      };
-    };
-  };
+        schema: definitions['Contract']
+      }
+    }
+  }
   /** Creates a Multisig Transaction with its confirmations and retrieves all the information related. */
-  "data-decoder_create": {
+  'data-decoder_create': {
     parameters: {
       body: {
-        data: definitions["DataDecoder"];
-      };
-    };
+        data: definitions['DataDecoder']
+      }
+    }
     responses: {
       /** Decoded data */
-      200: unknown;
+      200: unknown
       /** Cannot find function selector to decode data */
-      404: unknown;
+      404: unknown
       /** Invalid data */
-      422: unknown;
-    };
-  };
-  "multisig-transactions_read": {
+      422: unknown
+    }
+  }
+  'multisig-transactions_read': {
     parameters: {
       path: {
-        safe_tx_hash: string;
-      };
-    };
+        safe_tx_hash: string
+      }
+    }
     responses: {
       200: {
-        schema: definitions["SafeMultisigTransactionResponse"];
-      };
-    };
-  };
+        schema: definitions['SafeMultisigTransactionResponse']
+      }
+    }
+  }
   /** Get the list of confirmations for a multisig transaction */
-  "multisig-transactions_confirmations_list": {
+  'multisig-transactions_confirmations_list': {
     parameters: {
       path: {
-        safe_tx_hash: string;
-      };
+        safe_tx_hash: string
+      }
       query: {
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
         schema: {
-          count: number;
-          next?: string;
-          previous?: string;
-          results: definitions["SafeMultisigConfirmationResponse"][];
-        };
-      };
+          count: number
+          next?: string
+          previous?: string
+          results: definitions['SafeMultisigConfirmationResponse'][]
+        }
+      }
       /** Invalid data */
-      400: unknown;
-    };
-  };
+      400: unknown
+    }
+  }
   /**
    * Add a confirmation for a transaction. More than one signature can be used. This endpoint does not support
    * the use of delegates to make a transaction trusted.
    */
-  "multisig-transactions_confirmations_create": {
+  'multisig-transactions_confirmations_create': {
     parameters: {
       path: {
-        safe_tx_hash: string;
-      };
+        safe_tx_hash: string
+      }
       body: {
-        data: definitions["SafeMultisigConfirmation"];
-      };
-    };
+        data: definitions['SafeMultisigConfirmation']
+      }
+    }
     responses: {
       /** Created */
-      201: unknown;
+      201: unknown
       /** Malformed data */
-      400: unknown;
+      400: unknown
       /** Error processing data */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /**
    * Creates a new FirebaseDevice. If uuid is not provided a new device will be created.
    * If a uuid for an existing Safe is provided the FirebaseDevice will be updated with all the new data provided.
@@ -798,91 +798,91 @@ export interface operations {
   notifications_devices_create: {
     parameters: {
       body: {
-        data: definitions["FirebaseDevice"];
-      };
-    };
+        data: definitions['FirebaseDevice']
+      }
+    }
     responses: {
       200: {
-        schema: definitions["FirebaseDeviceSerializerWithOwnersResponse"];
-      };
+        schema: definitions['FirebaseDeviceSerializerWithOwnersResponse']
+      }
       /** Invalid data */
-      400: unknown;
-    };
-  };
+      400: unknown
+    }
+  }
   /** Remove a FirebaseDevice */
   notifications_devices_delete: {
     parameters: {
       path: {
         /** A UUID string identifying this Firebase Device. */
-        uuid: string;
-      };
-    };
+        uuid: string
+      }
+    }
     responses: {
-      204: never;
-    };
-  };
+      204: never
+    }
+  }
   /** Remove a Safe for a FirebaseDevice */
   notifications_devices_safes_delete: {
     parameters: {
       path: {
-        address: string;
+        address: string
         /** A UUID string identifying this Firebase Device. */
-        uuid: string;
-      };
-    };
+        uuid: string
+      }
+    }
     responses: {
-      204: never;
-    };
-  };
+      204: never
+    }
+  }
   owners_read: {
     parameters: {
       path: {
-        address: string;
-      };
-    };
+        address: string
+      }
+    }
     responses: {
       200: {
-        schema: definitions["OwnerResponse"];
-      };
+        schema: definitions['OwnerResponse']
+      }
       /** Owner address checksum not valid */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Return Safes where the address provided is an owner */
   owners_safes_list: {
     parameters: {
       path: {
-        address: string;
-      };
-    };
+        address: string
+      }
+    }
     responses: {
       200: {
-        schema: definitions["OwnerResponse"];
-      };
+        schema: definitions['OwnerResponse']
+      }
       /** Owner address checksum not valid */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Get status of the safe */
   safes_read: {
     parameters: {
       path: {
-        address: string;
-      };
-    };
+        address: string
+      }
+    }
     responses: {
       200: {
-        schema: definitions["SafeInfoResponse"];
-      };
+        schema: definitions['SafeInfoResponse']
+      }
       /** Safe not found */
-      404: unknown;
+      404: unknown
       /**
        * code = 1: Checksum address validation failed
        * code = 50: Cannot get Safe info
        */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /**
    * Returns a paginated list of transactions for a Safe. The list has different structures depending on the
    * transaction type:
@@ -893,151 +893,151 @@ export interface operations {
    * - Module Transactions for a Safe. `tx_type=MODULE_TRANSACTION`
    * - Incoming Transfers of Ether/ERC20 Tokens/ERC721 Tokens. `tx_type=ETHEREUM_TRANSACTION`
    */
-  "safes_all-transactions_list": {
+  'safes_all-transactions_list': {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
         /** Which field to use when ordering the results. */
-        ordering?: string;
+        ordering?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
+        offset?: number
         /** If `True` only executed transactions are returned */
-        executed?: boolean;
+        executed?: boolean
         /** If `True` transactions with `nonce >= Safe current nonce` are also returned */
-        queued?: boolean;
+        queued?: boolean
         /** If `True` just trusted transactions are shown (indexed, added by a delegate or with at least one confirmation) */
-        trusted?: boolean;
-      };
-    };
+        trusted?: boolean
+      }
+    }
     responses: {
       /** A list with every element with the structure of one of these transactiontypes */
       200: {
-        schema: definitions["AllTransactionsSchema"];
-      };
+        schema: definitions['AllTransactionsSchema']
+      }
       /** code = 1: Checksum address validation failed */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Get balance for Ether and ERC20 tokens */
   safes_balances_list: {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
         /** If `True` just trusted tokens will be returned */
-        trusted?: boolean;
+        trusted?: boolean
         /** If `True` spam tokens will not be returned */
-        exclude_spam?: boolean;
-      };
-    };
+        exclude_spam?: boolean
+      }
+    }
     responses: {
       200: {
-        schema: definitions["SafeBalanceResponse"][];
-      };
+        schema: definitions['SafeBalanceResponse'][]
+      }
       /** Safe not found */
-      404: unknown;
+      404: unknown
       /** Safe address checksum not valid */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Get balance for Ether and ERC20 tokens with USD fiat conversion */
   safes_balances_usd_list: {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
         /** If `True` just trusted tokens will be returned */
-        trusted?: boolean;
+        trusted?: boolean
         /** If `True` spam tokens will not be returned */
-        exclude_spam?: boolean;
-      };
-    };
+        exclude_spam?: boolean
+      }
+    }
     responses: {
       200: {
-        schema: definitions["SafeBalanceUsdResponse"][];
-      };
+        schema: definitions['SafeBalanceUsdResponse'][]
+      }
       /** Safe not found */
-      404: unknown;
+      404: unknown
       /** Safe address checksum not valid */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Get collectibles (ERC721 tokens) and information about them */
   safes_collectibles_list: {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
         /** If `True` just trusted tokens will be returned */
-        trusted?: boolean;
+        trusted?: boolean
         /** If `True` spam tokens will not be returned */
-        exclude_spam?: boolean;
-      };
-    };
+        exclude_spam?: boolean
+      }
+    }
     responses: {
       200: {
-        schema: definitions["SafeCollectibleResponse"][];
-      };
+        schema: definitions['SafeCollectibleResponse'][]
+      }
       /** Safe not found */
-      404: unknown;
+      404: unknown
       /** Safe address checksum not valid */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Get status of the safe */
   safes_creation_list: {
     parameters: {
       path: {
-        address: string;
-      };
-    };
+        address: string
+      }
+    }
     responses: {
       200: {
-        schema: definitions["SafeCreationInfoResponse"];
-      };
+        schema: definitions['SafeCreationInfoResponse']
+      }
       /** Safe creation not found */
-      404: unknown;
+      404: unknown
       /** Owner address checksum not valid */
-      422: unknown;
+      422: unknown
       /** Problem connecting to Ethereum network */
-      503: unknown;
-    };
-  };
+      503: unknown
+    }
+  }
   /** Get the list of delegates for a Safe address */
   safes_delegates_list: {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
         schema: {
-          count: number;
-          next?: string;
-          previous?: string;
-          results: definitions["SafeDelegateResponse"][];
-        };
-      };
+          count: number
+          next?: string
+          previous?: string
+          results: definitions['SafeDelegateResponse'][]
+        }
+      }
       /** Invalid data */
-      400: unknown;
+      400: unknown
       /** Invalid Ethereum address */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /**
    * Create a delegate for a Safe address with a custom label. Calls with same delegate but different label or
    * signer will update the label or delegator if different.
@@ -1052,21 +1052,21 @@ export interface operations {
   safes_delegates_create: {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       body: {
-        data: definitions["SafeDelegate"];
-      };
-    };
+        data: definitions['SafeDelegate']
+      }
+    }
     responses: {
       /** Accepted */
-      202: unknown;
+      202: unknown
       /** Malformed data */
-      400: unknown;
+      400: unknown
       /** Invalid Ethereum address/Error processing data */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /**
    * Delete a delegate for a Safe. Signature is built the same way that for adding a delegate.
    * Check `POST /delegates/`
@@ -1074,371 +1074,371 @@ export interface operations {
   safes_delegates_delete: {
     parameters: {
       path: {
-        address: string;
-        delegate_address: string;
-      };
+        address: string
+        delegate_address: string
+      }
       body: {
-        data: definitions["SafeDelegateDelete"];
-      };
-    };
+        data: definitions['SafeDelegateDelete']
+      }
+    }
     responses: {
       /** Deleted */
-      204: never;
+      204: never
       /** Malformed data */
-      400: unknown;
+      400: unknown
       /** Delegate not found */
-      404: unknown;
+      404: unknown
       /** Invalid Ethereum address/Error processing data */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Returns the history of a multisig tx (safe) */
-  "safes_incoming-transfers_list": {
+  'safes_incoming-transfers_list': {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
-        _from?: string;
-        block_number?: number;
-        block_number__gt?: number;
-        block_number__lt?: number;
-        execution_date__gte?: string;
-        execution_date__lte?: string;
-        execution_date__gt?: string;
-        execution_date__lt?: string;
-        to?: string;
-        token_address?: string;
-        transaction_hash?: string;
-        value?: number;
-        value__gt?: number;
-        value__lt?: number;
-        erc20?: string;
-        erc721?: string;
-        ether?: string;
+        _from?: string
+        block_number?: number
+        block_number__gt?: number
+        block_number__lt?: number
+        execution_date__gte?: string
+        execution_date__lte?: string
+        execution_date__gt?: string
+        execution_date__lt?: string
+        to?: string
+        token_address?: string
+        transaction_hash?: string
+        value?: number
+        value__gt?: number
+        value__lt?: number
+        erc20?: string
+        erc721?: string
+        ether?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
-        schema: definitions["TransferResponse"][];
-      };
+        schema: definitions['TransferResponse'][]
+      }
       /** Safe address checksum not valid */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Returns the module transaction of a Safe */
-  "safes_module-transactions_list": {
+  'safes_module-transactions_list': {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
-        safe?: string;
-        module?: string;
-        to?: string;
-        operation?: string;
-        failed?: string;
-        block_number?: number;
-        block_number__gt?: number;
-        block_number__lt?: number;
-        transaction_hash?: string;
+        safe?: string
+        module?: string
+        to?: string
+        operation?: string
+        failed?: string
+        block_number?: number
+        block_number__gt?: number
+        block_number__lt?: number
+        transaction_hash?: string
         /** Which field to use when ordering the results. */
-        ordering?: string;
+        ordering?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
         schema: {
-          count: number;
-          next?: string;
-          previous?: string;
-          results: definitions["SafeModuleTransactionResponse"][];
-        };
-      };
+          count: number
+          next?: string
+          previous?: string
+          results: definitions['SafeModuleTransactionResponse'][]
+        }
+      }
       /** Invalid data */
-      400: unknown;
+      400: unknown
       /** Invalid ethereum address */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Returns the history of a multisig tx (safe) */
-  "safes_multisig-transactions_list": {
+  'safes_multisig-transactions_list': {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
-        failed?: string;
-        modified__lt?: string;
-        modified__gt?: string;
-        modified__lte?: string;
-        modified__gte?: string;
-        nonce__lt?: number;
-        nonce__gt?: number;
-        nonce__lte?: number;
-        nonce__gte?: number;
-        nonce?: number;
-        safe_tx_hash?: string;
-        to?: string;
-        value__lt?: number;
-        value__gt?: number;
-        value?: number;
-        executed?: string;
-        has_confirmations?: string;
-        trusted?: string;
-        execution_date__gte?: string;
-        execution_date__lte?: string;
-        submission_date__gte?: string;
-        submission_date__lte?: string;
-        transaction_hash?: string;
+        failed?: string
+        modified__lt?: string
+        modified__gt?: string
+        modified__lte?: string
+        modified__gte?: string
+        nonce__lt?: number
+        nonce__gt?: number
+        nonce__lte?: number
+        nonce__gte?: number
+        nonce?: number
+        safe_tx_hash?: string
+        to?: string
+        value__lt?: number
+        value__gt?: number
+        value?: number
+        executed?: string
+        has_confirmations?: string
+        trusted?: string
+        execution_date__gte?: string
+        execution_date__lte?: string
+        submission_date__gte?: string
+        submission_date__lte?: string
+        transaction_hash?: string
         /** Which field to use when ordering the results. */
-        ordering?: string;
+        ordering?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
         schema: {
-          count: number;
-          next?: string;
-          previous?: string;
-          results: definitions["SafeMultisigTransactionResponse"][];
-        };
-      };
+          count: number
+          next?: string
+          previous?: string
+          results: definitions['SafeMultisigTransactionResponse'][]
+        }
+      }
       /** Invalid data */
-      400: unknown;
+      400: unknown
       /** Invalid ethereum address */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Creates a Multisig Transaction with its confirmations and retrieves all the information related. */
-  "safes_multisig-transactions_create": {
+  'safes_multisig-transactions_create': {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       body: {
-        data: definitions["SafeMultisigTransaction"];
-      };
-    };
+        data: definitions['SafeMultisigTransaction']
+      }
+    }
     responses: {
       /** Created or signature updated */
-      201: unknown;
+      201: unknown
       /** Invalid data */
-      400: unknown;
+      400: unknown
       /** Invalid ethereum address/User is not an owner/Invalid safeTxHash/Invalid signature/Nonce already executed/Sender is not an owner */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Estimates `safeTxGas` for a Safe Multisig Transaction. */
-  "safes_multisig-transactions_estimations_create": {
+  'safes_multisig-transactions_estimations_create': {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       body: {
-        data: definitions["SafeMultisigTransactionEstimate"];
-      };
-    };
+        data: definitions['SafeMultisigTransactionEstimate']
+      }
+    }
     responses: {
       200: {
-        schema: definitions["SafeMultisigTransactionEstimateResponse"];
-      };
+        schema: definitions['SafeMultisigTransactionEstimateResponse']
+      }
       /** Data not valid */
-      400: unknown;
+      400: unknown
       /** Safe not found */
-      404: unknown;
+      404: unknown
       /** Tx not valid */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Returns the history of a multisig tx (safe) */
   safes_transactions_list: {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
-        failed?: string;
-        modified__lt?: string;
-        modified__gt?: string;
-        modified__lte?: string;
-        modified__gte?: string;
-        nonce__lt?: number;
-        nonce__gt?: number;
-        nonce__lte?: number;
-        nonce__gte?: number;
-        nonce?: number;
-        safe_tx_hash?: string;
-        to?: string;
-        value__lt?: number;
-        value__gt?: number;
-        value?: number;
-        executed?: string;
-        has_confirmations?: string;
-        trusted?: string;
-        execution_date__gte?: string;
-        execution_date__lte?: string;
-        submission_date__gte?: string;
-        submission_date__lte?: string;
-        transaction_hash?: string;
+        failed?: string
+        modified__lt?: string
+        modified__gt?: string
+        modified__lte?: string
+        modified__gte?: string
+        nonce__lt?: number
+        nonce__gt?: number
+        nonce__lte?: number
+        nonce__gte?: number
+        nonce?: number
+        safe_tx_hash?: string
+        to?: string
+        value__lt?: number
+        value__gt?: number
+        value?: number
+        executed?: string
+        has_confirmations?: string
+        trusted?: string
+        execution_date__gte?: string
+        execution_date__lte?: string
+        submission_date__gte?: string
+        submission_date__lte?: string
+        transaction_hash?: string
         /** Which field to use when ordering the results. */
-        ordering?: string;
+        ordering?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
         schema: {
-          count: number;
-          next?: string;
-          previous?: string;
-          results: definitions["SafeMultisigTransactionResponse"][];
-        };
-      };
+          count: number
+          next?: string
+          previous?: string
+          results: definitions['SafeMultisigTransactionResponse'][]
+        }
+      }
       /** Invalid data */
-      400: unknown;
+      400: unknown
       /** Invalid ethereum address */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Creates a Multisig Transaction with its confirmations and retrieves all the information related. */
   safes_transactions_create: {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       body: {
-        data: definitions["SafeMultisigTransaction"];
-      };
-    };
+        data: definitions['SafeMultisigTransaction']
+      }
+    }
     responses: {
       /** Created or signature updated */
-      201: unknown;
+      201: unknown
       /** Invalid data */
-      400: unknown;
+      400: unknown
       /** Invalid ethereum address/User is not an owner/Invalid safeTxHash/Invalid signature/Nonce already executed/Sender is not an owner */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   /** Returns the history of a multisig tx (safe) */
   safes_transfers_list: {
     parameters: {
       path: {
-        address: string;
-      };
+        address: string
+      }
       query: {
-        _from?: string;
-        block_number?: number;
-        block_number__gt?: number;
-        block_number__lt?: number;
-        execution_date__gte?: string;
-        execution_date__lte?: string;
-        execution_date__gt?: string;
-        execution_date__lt?: string;
-        to?: string;
-        token_address?: string;
-        transaction_hash?: string;
-        value?: number;
-        value__gt?: number;
-        value__lt?: number;
-        erc20?: string;
-        erc721?: string;
-        ether?: string;
+        _from?: string
+        block_number?: number
+        block_number__gt?: number
+        block_number__lt?: number
+        execution_date__gte?: string
+        execution_date__lte?: string
+        execution_date__gt?: string
+        execution_date__lt?: string
+        to?: string
+        token_address?: string
+        transaction_hash?: string
+        value?: number
+        value__gt?: number
+        value__lt?: number
+        erc20?: string
+        erc721?: string
+        ether?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
-        schema: definitions["TransferResponse"][];
-      };
+        schema: definitions['TransferResponse'][]
+      }
       /** Safe address checksum not valid */
-      422: unknown;
-    };
-  };
+      422: unknown
+    }
+  }
   tokens_list: {
     parameters: {
       query: {
-        name?: string;
-        address?: string;
-        symbol?: string;
-        decimals__lt?: number;
-        decimals__gt?: number;
-        decimals?: number;
+        name?: string
+        address?: string
+        symbol?: string
+        decimals__lt?: number
+        decimals__gt?: number
+        decimals?: number
         /** A search term. */
-        search?: string;
+        search?: string
         /** Which field to use when ordering the results. */
-        ordering?: string;
+        ordering?: string
         /** Number of results to return per page. */
-        limit?: number;
+        limit?: number
         /** The initial index from which to return the results. */
-        offset?: number;
-      };
-    };
+        offset?: number
+      }
+    }
     responses: {
       200: {
         schema: {
-          count: number;
-          next?: string;
-          previous?: string;
-          results: definitions["TokenInfoResponse"][];
-        };
-      };
-    };
-  };
+          count: number
+          next?: string
+          previous?: string
+          results: definitions['TokenInfoResponse'][]
+        }
+      }
+    }
+  }
   tokens_read: {
     parameters: {
       path: {
         /** A unique value identifying this token. */
-        address: string;
-      };
-    };
+        address: string
+      }
+    }
     responses: {
       200: {
-        schema: definitions["TokenInfoResponse"];
-      };
-    };
-  };
+        schema: definitions['TokenInfoResponse']
+      }
+    }
+  }
   tokens_price_usd_list: {
     parameters: {
       path: {
         /** A unique value identifying this token. */
-        address: string;
-      };
-    };
+        address: string
+      }
+    }
     responses: {
-      200: unknown;
-    };
-  };
+      200: unknown
+    }
+  }
   transactions_read: {
     parameters: {
       path: {
-        safe_tx_hash: string;
-      };
-    };
+        safe_tx_hash: string
+      }
+    }
     responses: {
       200: {
-        schema: definitions["SafeMultisigTransactionResponse"];
-      };
-    };
-  };
+        schema: definitions['SafeMultisigTransactionResponse']
+      }
+    }
+  }
 }
 
 export interface external {}

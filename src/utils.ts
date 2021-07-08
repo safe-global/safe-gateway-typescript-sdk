@@ -7,17 +7,16 @@ function replaceParam(str: string, key: string, value: string): string {
 }
 
 function fetchJson(url: string): Promise<any> {
-  return fetch(url)
-    .then(resp => {
-      if (!resp.ok) {
-        throw Error(resp.statusText)
-      }
-      return resp.json()
-    })
+  return fetch(url).then((resp) => {
+    if (!resp.ok) {
+      throw Error(resp.statusText)
+    }
+    return resp.json()
+  })
 }
 
 function stringifyQuery(query: { [key: string]: string | number | boolean | null }): string {
-  const searchParams = new URLSearchParams();
+  const searchParams = new URLSearchParams()
   Object.keys(query).forEach((key) => {
     searchParams.append(key, String(query[key]))
   })
@@ -27,8 +26,8 @@ function stringifyQuery(query: { [key: string]: string | number | boolean | null
 export function callEndpoint<T extends keyof paths>(
   network: string,
   path: T,
-  params: paths[T]["get"]["parameters"],
-): Promise<paths[T]["get"]["responses"][200]["schema"]> {
+  params: paths[T]['get']['parameters'],
+): Promise<paths[T]['get']['responses'][200]['schema']> {
   const baseUrl = replaceParam(config.baseUrl, 'network', network)
 
   const pathname = Object.keys(params.path).reduce((result: string, key) => {

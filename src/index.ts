@@ -1,5 +1,5 @@
 import { callEndpoint } from './utils'
-import { operations } from '../types/gateway'
+import { operations, definitions } from '../types/gateway'
 
 let network = 'rinkeby'
 
@@ -30,3 +30,5 @@ export function getTransactionDetails(safe_tx_hash: string) {
 }
 
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */
+
+export interface GatewayResponses extends definitions {}

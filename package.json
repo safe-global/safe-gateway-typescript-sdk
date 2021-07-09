@@ -39,7 +39,6 @@
     "start": "rimraf dist && webpack --mode production --watch",
     "build": "rimraf dist && webpack --mode production",
     "prettier": "prettier -w",
-    "prepare": "yarn build",
     "test": "jest tests/"
   },
   "husky": {

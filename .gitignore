@@ -5,7 +5,6 @@ yarn-error.log
 .env*
 .eslintcache
 /.idea
-dist
 electron-builder.yml
 /.yalc
 yalc.lock

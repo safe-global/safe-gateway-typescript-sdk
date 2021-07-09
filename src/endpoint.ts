@@ -7,7 +7,7 @@ export function callEndpoint<T extends keyof paths>(
   path: T,
   params: paths[T]['get']['parameters'],
 ): Promise<paths[T]['get']['responses'][200]['schema']> {
-  const baseUrl = insertParam(config.baseUrl, 'network', network)
+  const baseUrl = insertParam(config.baseUrl, 'network', network.toLowerCase())
 
   const pathname = Object.keys(params.path).reduce((result: string, key) => {
     return insertParam(result, key, params.path[key as keyof typeof params.path])

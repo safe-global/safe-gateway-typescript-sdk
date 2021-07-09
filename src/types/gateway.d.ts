@@ -135,7 +135,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['SafeBalanceResponse'][]
+        schema: definitions['SafeBalanceResponse']
       }
       /** Safe not found */
       404: unknown

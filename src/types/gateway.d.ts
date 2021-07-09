@@ -71,7 +71,7 @@ export interface definitions {
       fiatConversion: string
     }>
   }
-  SafeCollectibleResponse: Array<{
+  SafeCollectibleResponse: {
     address: string
     tokenName: string
     tokenSymbol: string
@@ -82,7 +82,7 @@ export interface definitions {
     description: string
     imageUri: string
     metadata: { [key: string]: string }
-  }>
+  }
 
   TransactionInfo: {}
   TransactionData: {}

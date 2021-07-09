@@ -1,6 +1,8 @@
 import { callEndpoint } from './endpoint'
 import { operations, definitions } from './types/gateway'
 
+export type GatewayDefinitions = definitions
+
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 export function getSafeInfo(network: string, address: string) {
@@ -25,5 +27,3 @@ export function getTransactionDetails(network: string, safe_tx_hash: string) {
 }
 
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */
-
-export type GatewayDefinitions = definitions

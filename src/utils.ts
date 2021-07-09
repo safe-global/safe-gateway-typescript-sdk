@@ -1,6 +1,6 @@
 import fetch from 'unfetch'
 
-type Query = { [key: string]: string | number | boolean | null }
+export type Query = { [key: string]: string | number | boolean | null }
 
 export function insertParam(str: string, key: string, value: string): string {
   return str.replace(new RegExp(`\\{${key}\\}`, 'g'), value)

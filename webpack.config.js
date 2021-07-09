@@ -14,7 +14,7 @@ module.exports = {
     library: JSON.stringify(require('./package.json').name),
   },
   resolve: {
-    extensions: ['.ts', '.d.ts'],
+    extensions: ['.ts'],
   },
   devtool: 'source-map',
   module: {

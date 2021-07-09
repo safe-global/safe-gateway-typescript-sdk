@@ -12,5 +12,5 @@ yalc.lock
 # testing
 /coverage/
 tsconfig.tsbuildinfo
-openapi/*
+openapi
 .#*

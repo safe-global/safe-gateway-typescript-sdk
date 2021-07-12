@@ -59,7 +59,7 @@ export interface definitions {
     txHistoryTag: string
   }
   TokenInfo: {
-    type: 'ERC20' | 'ETHER'
+    type: 'ERC20' | 'ETHER' | 'NATIVE_TOKEN'
     address: string
     decimals: number
     symbol: string

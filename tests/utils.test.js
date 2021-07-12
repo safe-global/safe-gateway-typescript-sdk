@@ -22,6 +22,22 @@ describe('utils', () => {
     })
   })
 
+  describe('stringifyQuery', () => {
+    it('should stringify query params', () => {
+      expect(
+        stringifyQuery({ spam: true, page: 11, name: 'token', exclude: null })
+      ).toBe(
+        '?spam=true&page=11&name=token'
+      )
+    })
+
+    it('should return an empty string for empty query', () => {
+      expect(stringifyQuery()).toBe('')
+      expect(stringifyQuery(null)).toBe('')
+      expect(stringifyQuery({})).toBe('')
+    })
+  })
+
   describe('fetchJson', () => {
     it('should fetch a simple url', () => {
       fetch.mockImplementation(() => {

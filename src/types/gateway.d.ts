@@ -1,3 +1,5 @@
+import { TransactionListItem } from './transactions'
+
 export interface paths {
   '/safes/{address}/': {
     /** Get status of the safe */
@@ -30,11 +32,11 @@ export interface paths {
       }
     }
   }
-  '/transactions/{safe_tx_hash}/': {
-    get: operations['transactions_read']
+  '/safes/{safe_address}/transactions/history': {
+    get: operations['history_transactions']
     parameters: {
       path: {
-        safe_tx_hash: string
+        safe_address: string
       }
     }
   }
@@ -42,6 +44,12 @@ export interface paths {
 
 type StringValue = {
   value: string
+}
+
+type Page<T> = {
+  next?: string
+  previous?: string
+  results: Array<T>
 }
 
 export interface definitions {
@@ -58,6 +66,9 @@ export interface definitions {
     txQueuedTag: string
     txHistoryTag: string
   }
+
+  FiatCurrencies: string[]
+
   TokenInfo: {
     type: 'ERC20' | 'ETHER' | 'NATIVE_TOKEN'
     address: string
@@ -75,7 +86,7 @@ export interface definitions {
       fiatConversion: string
     }>
   }
-  FiatCurrencies: string[]
+
   SafeCollectibleResponse: {
     address: string
     tokenName: string
@@ -89,18 +100,7 @@ export interface definitions {
     metadata: { [key: string]: string }
   }
 
-  TransactionInfo: {}
-  TransactionData: {}
-  DetailedExecutionInfo: {}
-  TransactionDetails: {
-    executed_at?: number
-    tx_status: 'SUCCESS' | 'FAILED' | 'CANCELLED' | 'AWAITING_EXECUTION' | 'AWAITINGCONFIRMATIONS'
-    tx_info: definitions['TransactionInfo']
-    tx_data?: definitions['TransactionData']
-    detailed_execution_info?: definitions['DetailedExecutionInfo']
-    tx_hash?: string
-    safe_app_info?: definitions['SafeAppInfo']
-  }
+  TransactionList: Page<TransactionListItem>
 }
 
 export interface operations {
@@ -179,15 +179,19 @@ export interface operations {
       422: unknown
     }
   }
-  transactions_read: {
+  history_transactions: {
     parameters: {
       path: {
-        safe_tx_hash: string
+        safe_address: string
+      }
+      query: {
+        /** Taken from the Page['next'] or Page['previous'] */
+        page_url: string
       }
     }
     responses: {
       200: {
-        schema: definitions['TransactionDetails']
+        schema: definitions['TransactionList']
       }
     }
   }

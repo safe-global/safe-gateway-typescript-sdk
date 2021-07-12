@@ -13,13 +13,16 @@ export function insertParams(template: string, params?: Params): string {
 }
 
 export function stringifyQuery(query?: Params): string {
-  if (!query || !Object.keys(query).length) { return '' }
+  if (!query) { return '' }
 
   const searchParams = new URLSearchParams()
   Object.keys(query).forEach((key) => {
-    searchParams.append(key, String(query[key]))
+    if (query[key] != null) {
+      searchParams.append(key, String(query[key]))
+    }
   })
-  return `?${searchParams}`
+  const searchString = searchParams.toString()
+  return searchString ? `?${searchString}` : ''
 }
 
 export function fetchJson<T>(url: string): Promise<T> {

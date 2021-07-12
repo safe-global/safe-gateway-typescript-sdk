@@ -30,7 +30,8 @@ export function getTransactionHistory(network: string, address: string, pageUrl?
   return callEndpoint(
     network,
     '/safes/{safe_address}/transactions/history',
-    { path: { safe_address: address }, query: { page_url: pageUrl } }
+    { path: { safe_address: address }, query: {} },
+    pageUrl
   )
 }
 

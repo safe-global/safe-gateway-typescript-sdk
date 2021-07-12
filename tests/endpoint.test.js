@@ -40,4 +40,12 @@ describe('callEndpoint', () => {
 
     expect(fetch).toHaveBeenCalledWith('https://safe-client.rinkeby.staging.gnosisdev.com/v1/balances/0x123/usd?exclude_spam=true')
   })
+
+  it('should accept a raw URL', () => {
+    expect(
+      callEndpoint('rinkeby', '/balances/{address}/{currency}', { path: { address: '0x123', currency: 'usd' }, query: { exclude_spam: true } }, '/test-url?raw=true')
+    ).resolves.toEqual({ success: true })
+
+    expect(fetch).toHaveBeenCalledWith('/test-url?raw=true')
+  })
 })

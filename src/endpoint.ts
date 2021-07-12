@@ -13,11 +13,16 @@ export function callEndpoint<T extends keyof paths>(
   network: string,
   path: T,
   parameters: paths[T]['get']['parameters'] = {},
+  rawUrl?: string
 ): Promise<paths[T]['get']['responses'][200]['schema']> {
-  const params = parameters as Params
-  const baseUrl = insertParams(config.baseUrl, { network: network.toLowerCase() })
-  const pathname = insertParams(path, params.path)
-  const search = stringifyQuery(params.query)
+  let url = rawUrl
+  if (!url) {
+    const params = parameters as Params
+    const baseUrl = insertParams(config.baseUrl, { network: network.toLowerCase() })
+    const pathname = insertParams(path, params.path)
+    const search = stringifyQuery(params.query)
+    url = `${baseUrl}${pathname}${search}`
+  }
 
-  return fetchJson(`${baseUrl}${pathname}${search}`)
+  return fetchJson(url)
 }

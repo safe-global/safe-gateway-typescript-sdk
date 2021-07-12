@@ -1,10 +1,10 @@
 import { definitions } from './gateway'
 
-type ParamValue = string | ParamValue[]
+export type ParamValue = string | ParamValue[]
 
-type Operation = 'CALL' | 'DELEGATE'
+export type Operation = 'CALL' | 'DELEGATE'
 
-type InternalTransaction = {
+export type InternalTransaction = {
   operation: Operation
   to: string
   value: string | null
@@ -12,47 +12,47 @@ type InternalTransaction = {
   dataDecoded: DataDecoded | null
 }
 
-type ValueDecodedType = InternalTransaction[]
+export type ValueDecodedType = InternalTransaction[]
 
-type Parameter = {
+export type Parameter = {
   name: string
   type: string
   value: ParamValue
   valueDecoded: ValueDecodedType | null
 }
 
-type DataDecoded = {
+export type DataDecoded = {
   method: string
   parameters: Parameter[] | null
 }
 
-type AddressInfo = {
+export type AddressInfo = {
   name: string
   logoUri: string | null
 }
 
-type TransactionStatus = 'AWAITING_CONFIRMATIONS'
-    | 'AWAITING_EXECUTION'
-    | 'CANCELLED'
-    | 'FAILED'
-    | 'SUCCESS'
+export type TransactionStatus = 'AWAITING_CONFIRMATIONS'
+  | 'AWAITING_EXECUTION'
+  | 'CANCELLED'
+  | 'FAILED'
+  | 'SUCCESS'
 
-type TransferDirection = 'INCOMING' | 'OUTGOING' | 'UNKNOWN'
+export type TransferDirection = 'INCOMING' | 'OUTGOING' | 'UNKNOWN'
 
-type Transfer = {
+export type Transfer = {
   sender: string
   senderInfo: AddressInfo | null
   recipient: string
   recipientInfo: AddressInfo | null
-  direction: definitions['TransferDirection']
+  direction: TransferDirection
 }
 
-type SettingsChange = {
+export type SettingsChange = {
   dataDecoded: DataDecoded,
-  settings_info?: unknown
+  settingsInfo?: unknown
 }
 
-type Custom = {
+export type Custom = {
   to: string
   dataSize: string
   value: string
@@ -62,44 +62,44 @@ type Custom = {
   isCancellation: boolean
 }
 
-type Creation = unknown // TODO
+export type Creation = unknown // TODO
 
-type TransactionInfo = Transfer
+export type TransactionInfo = Transfer
   | SettingsChange
   | Custom
   | Creation
   | unknown
 
-type ExecutionInfo = {
+export type ExecutionInfo = {
   nonce: number
   confirmationsRequired: number
   confirmationsSubmitted: number
   missingSigners: string[] | null
 }
 
-type TransactionSummary = {
+export type TransactionSummary = {
   id: string
   timestamp: number
-  tx_status: TransactionStatus
-  tx_info: TransactionInfo
-  execution_info?: ExecutionInfo
-  safe_app_info?: definitions['SafeAppInfo']
+  txStatus: TransactionStatus
+  txInfo: TransactionInfo
+  executionInfo?: ExecutionInfo
+  safeAppInfo?: definitions['SafeAppInfo']
 }
 
-type Transaction = {
+export type Transaction = {
   transaction: TransactionSummary
-  conflict_type: 'None' | 'HasNext' | 'End'
+  conflictType: 'None' | 'HasNext' | 'End'
 }
 
-type DateLabel = {
+export type DateLabel = {
   timestamp: number
 }
 
-type Label = {
+export type Label = {
   label: string
 }
 
-type ConflictHeader = {
+export type ConflictHeader = {
   nonce: number
 }
 

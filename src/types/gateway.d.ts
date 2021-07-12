@@ -100,7 +100,8 @@ export interface definitions {
     metadata: { [key: string]: string }
   }
 
-  TransactionList: Page<TransactionListItem>
+  TransactionListItem: TransactionListItem,
+  TransactionListPage: Page<TransactionListItem>
 }
 
 export interface operations {
@@ -191,7 +192,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['TransactionList']
+        schema: definitions['TransactionListPage']
       }
     }
   }

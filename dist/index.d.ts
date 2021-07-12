@@ -44,24 +44,4 @@ export declare function getCollectibles(network: string, address: string, query?
         [key: string]: string;
     };
 }[]>;
-export declare function getTransactionDetails(network: string, safe_tx_hash: string): Promise<{
-    executed_at?: number | undefined;
-    tx_status: "SUCCESS" | "FAILED" | "CANCELLED" | "AWAITING_EXECUTION" | "AWAITINGCONFIRMATIONS";
-    tx_info: {};
-    tx_data?: {} | undefined;
-    detailed_execution_info?: {} | undefined;
-    tx_hash?: string | undefined;
-    safe_app_info?: {
-        address: import("./types/gateway").StringValue;
-        nonce: number;
-        threshold: number;
-        owners: import("./types/gateway").StringValue[];
-        implementation: import("./types/gateway").StringValue;
-        modules: import("./types/gateway").StringValue[];
-        fallbackHandler: import("./types/gateway").StringValue;
-        version: string;
-        collectiblesTag: string;
-        txQueuedTag: string;
-        txHistoryTag: string;
-    } | undefined;
-}>;
+export declare function getTransactionHistory(network: string, address: string, pageUrl?: string): Promise<import("./types/gateway").Page<import("./types/transactions").TransactionListItem>>;

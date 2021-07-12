@@ -17,7 +17,7 @@ export declare function getBalances(network: string, address: string, currency?:
     fiatTotal: string;
     items: {
         tokenInfo: {
-            type: "ERC20" | "ETHER";
+            type: "ERC20" | "ETHER" | "NATIVE_TOKEN";
             address: string;
             decimals: number;
             symbol: string;
@@ -29,6 +29,7 @@ export declare function getBalances(network: string, address: string, currency?:
         fiatConversion: string;
     }[];
 }>;
+export declare function getFiatCurrencies(network: string): Promise<string[]>;
 export declare function getCollectibles(network: string, address: string, query?: operations['safes_collectibles_list']['parameters']['query']): Promise<{
     address: string;
     tokenName: string;

@@ -1,5 +1,6 @@
-export declare type Query = {
+export declare type Params = {
     [key: string]: string | number | boolean | null;
 };
-export declare function insertParam(str: string, key: string, value: string): string;
-export declare function fetchJson(url: string, query?: Query): Promise<any>;
+export declare function insertParams(template: string, params?: Params): string;
+export declare function stringifyQuery(query?: Params): string;
+export declare function fetchJson<T>(url: string): Promise<T>;

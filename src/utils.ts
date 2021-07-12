@@ -7,9 +7,9 @@ function replaceParam(str: string, key: string, value: string): string {
 }
 
 export function insertParams(template: string, params?: Params): string {
-  return Object.keys(params).reduce((result: string, key) => {
+  return params ? Object.keys(params).reduce((result: string, key) => {
     return replaceParam(result, key, String(params[key]))
-  }, template)
+  }, template) : template
 }
 
 export function stringifyQuery(query?: Params): string {
@@ -23,7 +23,7 @@ export function stringifyQuery(query?: Params): string {
 }
 
 export function fetchJson<T>(url: string): Promise<T> {
-  return fetch(url).then((resp: Response) => {
+  return fetch(url).then((resp) => {
     if (!resp.ok) {
       throw Error(resp.statusText)
     }

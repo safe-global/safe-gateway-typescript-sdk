@@ -18,6 +18,10 @@ export function getBalances(
   return callEndpoint(network, '/safes/{address}/balances/{currency}/', { path: { address, currency }, query })
 }
 
+export function getFiatCurrencies(network: string) {
+  return callEndpoint(network, '/balances/supported-fiat-codes')
+}
+
 export function getCollectibles(network: string, address: string, query: operations['safes_collectibles_list']['parameters']['query'] = {}) {
   return callEndpoint(network, '/safes/{address}/collectibles/', { path: { address }, query })
 }

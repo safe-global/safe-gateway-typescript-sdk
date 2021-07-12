@@ -1,19 +1,23 @@
 import config from './config'
-import { fetchJson, insertParam, Query } from './utils'
+import { fetchJson, insertParams, stringifyQuery } from './utils'
 import { paths } from './types/gateway'
+
+type Primitive = string | number | boolean | null
+
+interface Params {
+  path: { [key: string]: Primitive }
+  query: { [key: string]: Primitive }
+}
 
 export function callEndpoint<T extends keyof paths>(
   network: string,
   path: T,
-  params: paths[T]['get']['parameters'],
+  parameters: paths[T]['get']['parameters'] = {},
 ): Promise<paths[T]['get']['responses'][200]['schema']> {
-  const baseUrl = insertParam(config.baseUrl, 'network', network.toLowerCase())
+  const params = parameters as Params
+  const baseUrl = insertParams(config.baseUrl, { network: network.toLowerCase() })
+  const pathname = insertParams(path, params.path || {})
+  const search = stringifyQuery(params.query)
 
-  const pathname = Object.keys(params.path).reduce((result: string, key) => {
-    return insertParam(result, key, params.path[key as keyof typeof params.path])
-  }, path as string)
-
-  const query = (params as typeof params & { query?: Query }).query
-
-  return fetchJson(`${baseUrl}${pathname}`, query)
+  return fetchJson(`${baseUrl}${pathname}${search}`)
 }

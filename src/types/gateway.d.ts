@@ -17,6 +17,10 @@ export interface paths {
       }
     }
   }
+  '/balances/supported-fiat-codes': {
+    get: operations['get_supported_fiat']
+    parameters: {}
+  }
   '/safes/{address}/collectibles/': {
     /** Get collectibles (ERC721 tokens) and information about them */
     get: operations['safes_collectibles_list']
@@ -71,6 +75,7 @@ export interface definitions {
       fiatConversion: string
     }>
   }
+  FiatCurrencies: string[]
   SafeCollectibleResponse: {
     address: string
     tokenName: string
@@ -141,6 +146,14 @@ export interface operations {
       404: unknown
       /** Safe address checksum not valid */
       422: unknown
+    }
+  }
+  get_supported_fiat: {
+    parameters: {}
+    responses: {
+      200: {
+        schema: definitions['FiatCurrencies']
+      }
     }
   }
   /** Get collectibles (ERC721 tokens) and information about them */

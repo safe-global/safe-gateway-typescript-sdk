@@ -1,12 +1,20 @@
 import fetch from 'unfetch'
 
-export type Query = { [key: string]: string | number | boolean | null }
+export type Params = { [key: string]: string | number | boolean | null }
 
-export function insertParam(str: string, key: string, value: string): string {
+function replaceParam(str: string, key: string, value: string): string {
   return str.replace(new RegExp(`\\{${key}\\}`, 'g'), value)
 }
 
-function stringifyQuery(query: Query): string {
+export function insertParams(template: string, params?: Params): string {
+  return Object.keys(params).reduce((result: string, key) => {
+    return replaceParam(result, key, String(params[key]))
+  }, template)
+}
+
+export function stringifyQuery(query?: Params): string {
+  if (!query || !Object.keys(query).length) { return '' }
+
   const searchParams = new URLSearchParams()
   Object.keys(query).forEach((key) => {
     searchParams.append(key, String(query[key]))
@@ -14,9 +22,8 @@ function stringifyQuery(query: Query): string {
   return `?${searchParams}`
 }
 
-export function fetchJson(url: string, query?: Query): Promise<any> {
-  const fullUrl = url + (query ? stringifyQuery(query) : '')
-  return fetch(fullUrl).then((resp) => {
+export function fetchJson<T>(url: string): Promise<T> {
+  return fetch(url).then((resp: Response) => {
     if (!resp.ok) {
       throw Error(resp.statusText)
     }

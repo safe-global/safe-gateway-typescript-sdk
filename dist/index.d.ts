@@ -45,3 +45,4 @@ export declare function getCollectibles(network: string, address: string, query?
     };
 }[]>;
 export declare function getTransactionHistory(network: string, address: string, pageUrl?: string): Promise<import("./types/gateway").Page<import("./types/transactions").TransactionListItem>>;
+export declare function getTransactionQueue(network: string, address: string, pageUrl?: string): Promise<import("./types/gateway").Page<import("./types/transactions").TransactionListItem>>;

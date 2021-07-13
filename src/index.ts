@@ -35,4 +35,13 @@ export function getTransactionHistory(network: string, address: string, pageUrl?
   )
 }
 
+export function getTransactionQueue(network: string, address: string, pageUrl?: string) {
+  return callEndpoint(
+    network,
+    '/safes/{safe_address}/transactions/queued',
+    { path: { safe_address: address }, query: {} },
+    pageUrl
+  )
+}
+
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

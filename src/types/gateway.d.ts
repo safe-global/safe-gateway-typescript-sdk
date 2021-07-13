@@ -40,6 +40,14 @@ export interface paths {
       }
     }
   }
+  '/safes/{safe_address}/transactions/queued': {
+    get: operations['queued_transactions']
+    parameters: {
+      path: {
+        safe_address: string
+      }
+    }
+  }
 }
 
 type StringValue = {
@@ -181,6 +189,22 @@ export interface operations {
     }
   }
   history_transactions: {
+    parameters: {
+      path: {
+        safe_address: string
+      }
+      query: {
+        /** Taken from the Page['next'] or Page['previous'] */
+        page_url?: string
+      }
+    }
+    responses: {
+      200: {
+        schema: definitions['TransactionListPage']
+      }
+    }
+  }
+  queued_transactions: {
     parameters: {
       path: {
         safe_address: string

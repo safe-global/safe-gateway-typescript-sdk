@@ -192,7 +192,11 @@ export type TransactionSummary = {
   txStatus: TransactionStatus
   txInfo: TransactionInfo
   executionInfo?: ExecutionInfo
-  safeAppInfo?: definitions['SafeAppInfo']
+  safeAppInfo?: {
+    name: string
+    url: string
+    logoUrl: string
+  }
 }
 
 export type Transaction = {

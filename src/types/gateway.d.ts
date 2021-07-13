@@ -21,7 +21,7 @@ export interface paths {
   }
   '/balances/supported-fiat-codes': {
     get: operations['get_supported_fiat']
-    parameters: {}
+    parameters: null
   }
   '/safes/{address}/collectibles/': {
     /** Get collectibles (ERC721 tokens) and information about them */
@@ -108,7 +108,7 @@ export interface definitions {
     metadata: { [key: string]: string }
   }
 
-  TransactionListItem: TransactionListItem,
+  TransactionListItem: TransactionListItem
   TransactionListPage: Page<TransactionListItem>
 }
 
@@ -158,7 +158,7 @@ export interface operations {
     }
   }
   get_supported_fiat: {
-    parameters: {}
+    parameters: null
     responses: {
       200: {
         schema: definitions['FiatCurrencies']

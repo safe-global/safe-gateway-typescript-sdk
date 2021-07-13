@@ -2,7 +2,10 @@ import { definitions } from './gateway'
 
 export type ParamValue = string | ParamValue[]
 
-export type Operation = 'CALL' | 'DELEGATE'
+export enum Operation {
+  CALL = 'CALL',
+  DELEGATE = 'DELEGATE',
+}
 
 export type InternalTransaction = {
   operation: Operation
@@ -31,44 +34,147 @@ export type AddressInfo = {
   logoUri: string | null
 }
 
-export type TransactionStatus = 'AWAITING_CONFIRMATIONS'
-  | 'AWAITING_EXECUTION'
-  | 'CANCELLED'
-  | 'FAILED'
-  | 'SUCCESS'
+export enum TransactionStatus {
+  AWAITING_CONFIRMATIONS = 'AWAITING_CONFIRMATIONS',
+  AWAITING_EXECUTION = 'AWAITING_EXECUTION',
+  CANCELLED = 'CANCELLED',
+  FAILED = 'FAILED',
+  SUCCESS = 'SUCCESS',
+}
 
-export type TransferDirection = 'INCOMING' | 'OUTGOING' | 'UNKNOWN'
+export enum TransferDirection {
+  INCOMING = 'INCOMING',
+  OUTGOING = 'OUTGOING',
+  UNKNOWN = 'UNKNOWN',
+}
 
-export type Transfer = {
+type Erc20Transfer = {
+  type: 'ERC20'
+  tokenAddress: string
+  tokenName: string | null
+  tokenSymbol: string | null
+  logoUri: string | null
+  decimals: number | null
+  value: string
+}
+
+type Erc721Transfer = {
+  type: 'ERC721'
+  tokenAddress: string
+  tokenId: string
+  tokenName: string | null
+  tokenSymbol: string | null
+  logoUri: string | null
+  decimals: number | null
+  value: string
+}
+
+type NativeTransfer = {
+  type: 'ETHER' | 'NATIVE_TOKEN'
+  value: string
+  tokenSymbol: string | null
+  decimals: number | null
+}
+
+type TransferInfo = Erc20Transfer | Erc721Transfer | NativeTransfer
+
+type Transfer = {
+  type: 'Transfer'
   sender: string
   senderInfo: AddressInfo | null
   recipient: string
   recipientInfo: AddressInfo | null
-  direction: TransferDirection
+  direction?: TransferDirection
+  transferInfo: TransferInfo
 }
+
+type SetFallbackHandler = {
+  type: 'SET_FALLBACK_HANDLER'
+  handler: string
+}
+
+type AddOwner = {
+  type: 'ADD_OWNER'
+  owner: string
+  threshold: number
+}
+
+type RemoveOwner = {
+  type: 'REMOVE_OWNER'
+  owner: string
+  threshold: number
+}
+
+type SwapOwner = {
+  type: 'SWAP_OWNER'
+  oldOwner: string
+  newOwner: string
+}
+
+type ChangeThreshold = {
+  type: 'CHANGE_THRESHOLD'
+  threshold: number
+}
+
+type ChangeImplementation = {
+  type: 'CHANGE_IMPLEMENTATION'
+  implementation: string
+}
+
+type EnableModule = {
+  type: 'ENABLE_MODULE'
+  module: string
+}
+
+type DisableModule = {
+  type: 'DISABLE_MODULE'
+  module: string
+}
+
+export type SettingsInfo =
+  | SetFallbackHandler
+  | AddOwner
+  | RemoveOwner
+  | SwapOwner
+  | ChangeThreshold
+  | ChangeImplementation
+  | EnableModule
+  | DisableModule
 
 export type SettingsChange = {
-  dataDecoded: DataDecoded,
-  settingsInfo?: unknown
+  type: 'SettingsChange'
+  dataDecoded: DataDecoded
+  settingsInfo: SettingsInfo | null
 }
 
-export type Custom = {
+type BaseCustom = {
+  type: 'Custom'
   to: string
   dataSize: string
   value: string
-  methodName: string | null
-  actionCount: number | null
-  toInfo: AddressInfo | null
   isCancellation: boolean
+  toInfo?: AddressInfo
 }
 
-export type Creation = unknown // TODO
+export type Custom = BaseCustom & {
+  methodName: string | null
+  actionCount: number | null
+}
 
-export type TransactionInfo = Transfer
-  | SettingsChange
-  | Custom
-  | Creation
-  | unknown
+export type MultiSend = BaseCustom & {
+  methodName: 'multiSend'
+  actionCount: number
+}
+
+export type Creation = {
+  type: 'Creation'
+  creator: string
+  transactionHash: string
+  implementation: string | null
+  factory: string | null
+}
+
+export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Creation
 
 export type ExecutionInfo = {
   nonce: number

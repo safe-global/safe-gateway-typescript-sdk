@@ -6,14 +6,14 @@ export type GatewayDefinitions = definitions
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
 export function getSafeInfo(network: string, address: string) {
-  return callEndpoint(network, '/safes/{address}/', { path: { address }})
+  return callEndpoint(network, '/safes/{address}/', { path: { address } })
 }
 
 export function getBalances(
   network: string,
   address: string,
   currency = 'usd',
-  query: operations['safes_balances_list']['parameters']['query'] = {}
+  query: operations['safes_balances_list']['parameters']['query'] = {},
 ) {
   return callEndpoint(network, '/safes/{address}/balances/{currency}/', { path: { address, currency }, query })
 }
@@ -22,7 +22,11 @@ export function getFiatCurrencies(network: string) {
   return callEndpoint(network, '/balances/supported-fiat-codes')
 }
 
-export function getCollectibles(network: string, address: string, query: operations['safes_collectibles_list']['parameters']['query'] = {}) {
+export function getCollectibles(
+  network: string,
+  address: string,
+  query: operations['safes_collectibles_list']['parameters']['query'] = {},
+) {
   return callEndpoint(network, '/safes/{address}/collectibles/', { path: { address }, query })
 }
 
@@ -31,7 +35,7 @@ export function getTransactionHistory(network: string, address: string, pageUrl?
     network,
     '/safes/{safe_address}/transactions/history',
     { path: { safe_address: address }, query: {} },
-    pageUrl
+    pageUrl,
   )
 }
 
@@ -40,7 +44,7 @@ export function getTransactionQueue(network: string, address: string, pageUrl?: 
     network,
     '/safes/{safe_address}/transactions/queued',
     { path: { safe_address: address }, query: {} },
-    pageUrl
+    pageUrl,
   )
 }
 

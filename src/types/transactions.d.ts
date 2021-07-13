@@ -51,7 +51,7 @@ export enum TransferDirection {
   UNKNOWN = 'UNKNOWN',
 }
 
-type Erc20Transfer = {
+export type Erc20Transfer = {
   type: 'ERC20'
   tokenAddress: string
   tokenName: string | null
@@ -61,7 +61,7 @@ type Erc20Transfer = {
   value: string
 }
 
-type Erc721Transfer = {
+export type Erc721Transfer = {
   type: 'ERC721'
   tokenAddress: string
   tokenId: string
@@ -72,16 +72,16 @@ type Erc721Transfer = {
   value: string
 }
 
-type NativeTransfer = {
+export type NativeTransfer = {
   type: 'ETHER' | 'NATIVE_TOKEN'
   value: string
   tokenSymbol: string | null
   decimals: number | null
 }
 
-type TransferInfo = Erc20Transfer | Erc721Transfer | NativeTransfer
+export type TransferInfo = Erc20Transfer | Erc721Transfer | NativeTransfer
 
-type Transfer = {
+export type Transfer = {
   type: 'Transfer'
   sender: string
   senderInfo: AddressInfo | null
@@ -91,45 +91,45 @@ type Transfer = {
   transferInfo: TransferInfo
 }
 
-type SetFallbackHandler = {
+export type SetFallbackHandler = {
   type: 'SET_FALLBACK_HANDLER'
   handler: string
 }
 
-type AddOwner = {
+export type AddOwner = {
   type: 'ADD_OWNER'
   owner: string
   threshold: number
 }
 
-type RemoveOwner = {
+export type RemoveOwner = {
   type: 'REMOVE_OWNER'
   owner: string
   threshold: number
 }
 
-type SwapOwner = {
+export type SwapOwner = {
   type: 'SWAP_OWNER'
   oldOwner: string
   newOwner: string
 }
 
-type ChangeThreshold = {
+export type ChangeThreshold = {
   type: 'CHANGE_THRESHOLD'
   threshold: number
 }
 
-type ChangeImplementation = {
+export type ChangeImplementation = {
   type: 'CHANGE_IMPLEMENTATION'
   implementation: string
 }
 
-type EnableModule = {
+export type EnableModule = {
   type: 'ENABLE_MODULE'
   module: string
 }
 
-type DisableModule = {
+export type DisableModule = {
   type: 'DISABLE_MODULE'
   module: string
 }
@@ -150,7 +150,7 @@ export type SettingsChange = {
   settingsInfo: SettingsInfo | null
 }
 
-type BaseCustom = {
+export type BaseCustom = {
   type: 'Custom'
   to: string
   dataSize: string

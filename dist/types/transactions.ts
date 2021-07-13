@@ -1,5 +1,3 @@
-import { definitions } from './gateway'
-
 export type ParamValue = string | ParamValue[]
 
 export enum Operation {

@@ -1,13 +1,23 @@
 import { operations, definitions } from './types/gateway';
 export declare type GatewayDefinitions = definitions;
 export declare function getSafeInfo(network: string, address: string): Promise<{
-    address: import("./types/gateway").StringValue;
+    address: {
+        value: string;
+    };
     nonce: number;
     threshold: number;
-    owners: import("./types/gateway").StringValue[];
-    implementation: import("./types/gateway").StringValue;
-    modules: import("./types/gateway").StringValue[];
-    fallbackHandler: import("./types/gateway").StringValue;
+    owners: {
+        value: string;
+    }[];
+    implementation: {
+        value: string;
+    };
+    modules: {
+        value: string;
+    }[];
+    fallbackHandler: {
+        value: string;
+    };
     version: string;
     collectiblesTag: string;
     txQueuedTag: string;
@@ -44,5 +54,13 @@ export declare function getCollectibles(network: string, address: string, query?
         [key: string]: string;
     };
 }[]>;
-export declare function getTransactionHistory(network: string, address: string, pageUrl?: string): Promise<import("./types/gateway").Page<import("./types/transactions").TransactionListItem>>;
-export declare function getTransactionQueue(network: string, address: string, pageUrl?: string): Promise<import("./types/gateway").Page<import("./types/transactions").TransactionListItem>>;
+export declare function getTransactionHistory(network: string, address: string, pageUrl?: string): Promise<{
+    next?: string | undefined;
+    previous?: string | undefined;
+    results: import("./types/transactions").TransactionListItem[];
+}>;
+export declare function getTransactionQueue(network: string, address: string, pageUrl?: string): Promise<{
+    next?: string | undefined;
+    previous?: string | undefined;
+    results: import("./types/transactions").TransactionListItem[];
+}>;

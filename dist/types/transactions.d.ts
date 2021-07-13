@@ -3,8 +3,8 @@ import { definitions } from './gateway'
 export type ParamValue = string | ParamValue[]
 
 export enum Operation {
-  CALL = 'CALL',
-  DELEGATE = 'DELEGATE',
+  CALL = 0,
+  DELEGATE = 1,
 }
 
 export type InternalTransaction = {

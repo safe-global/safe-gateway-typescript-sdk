@@ -38,6 +38,7 @@
     "types": "yarn tsc",
     "start": "rimraf dist && webpack --mode production --watch",
     "build": "rimraf dist && webpack --mode production",
+    "prepare": "sleep 20; yarn build",
     "prettier": "prettier -w",
     "test": "jest tests/"
   },

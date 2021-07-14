@@ -37,8 +37,7 @@
     "lint:fix": "eslint './src/**/*.ts' --fix",
     "types": "yarn tsc",
     "start": "rimraf dist && webpack --mode production --watch",
-    "build": "rimraf dist && webpack --mode production",
-    "prepare": "sleep 20; yarn build",
+    "build": "./node_modules/.bin/rimraf dist && ./node_modules/.bin/webpack --mode production",
     "prettier": "prettier -w",
     "test": "jest tests/"
   },

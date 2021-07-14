@@ -1,4 +1,3 @@
-import config from './config'
 import { fetchJson, insertParams, stringifyQuery } from './utils'
 import { paths } from './types/gateway'
 
@@ -10,7 +9,7 @@ interface Params {
 }
 
 export function callEndpoint<T extends keyof paths>(
-  network: string,
+  baseUrl: string,
   path: T,
   parameters?: paths[T]['get']['parameters'],
   rawUrl?: string,
@@ -18,7 +17,6 @@ export function callEndpoint<T extends keyof paths>(
   let url = rawUrl
   if (!url) {
     const params = parameters as Params
-    const baseUrl = insertParams(config.baseUrl, { network: network.toLowerCase() })
     const pathname = insertParams(path, params?.path)
     const search = stringifyQuery(params?.query)
     url = `${baseUrl}${pathname}${search}`

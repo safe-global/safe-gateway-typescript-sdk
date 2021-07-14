@@ -5,43 +5,43 @@ export type GatewayDefinitions = definitions
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-export function getSafeInfo(network: string, address: string) {
-  return callEndpoint(network, '/safes/{address}/', { path: { address } })
+export function getSafeInfo(baseUrl: string, address: string) {
+  return callEndpoint(baseUrl, '/safes/{address}/', { path: { address } })
 }
 
 export function getBalances(
-  network: string,
+  baseUrl: string,
   address: string,
   currency = 'usd',
   query: operations['safes_balances_list']['parameters']['query'] = {},
 ) {
-  return callEndpoint(network, '/safes/{address}/balances/{currency}/', { path: { address, currency }, query })
+  return callEndpoint(baseUrl, '/safes/{address}/balances/{currency}/', { path: { address, currency }, query })
 }
 
-export function getFiatCurrencies(network: string) {
-  return callEndpoint(network, '/balances/supported-fiat-codes')
+export function getFiatCurrencies(baseUrl: string) {
+  return callEndpoint(baseUrl, '/balances/supported-fiat-codes')
 }
 
 export function getCollectibles(
-  network: string,
+  baseUrl: string,
   address: string,
   query: operations['safes_collectibles_list']['parameters']['query'] = {},
 ) {
-  return callEndpoint(network, '/safes/{address}/collectibles/', { path: { address }, query })
+  return callEndpoint(baseUrl, '/safes/{address}/collectibles/', { path: { address }, query })
 }
 
-export function getTransactionHistory(network: string, address: string, pageUrl?: string) {
+export function getTransactionHistory(baseUrl: string, address: string, pageUrl?: string) {
   return callEndpoint(
-    network,
+    baseUrl,
     '/safes/{safe_address}/transactions/history',
     { path: { safe_address: address }, query: {} },
     pageUrl,
   )
 }
 
-export function getTransactionQueue(network: string, address: string, pageUrl?: string) {
+export function getTransactionQueue(baseUrl: string, address: string, pageUrl?: string) {
   return callEndpoint(
-    network,
+    baseUrl,
     '/safes/{safe_address}/transactions/queued',
     { path: { safe_address: address }, query: {} },
     pageUrl,

@@ -1,5 +1,6 @@
 import { callEndpoint } from './endpoint'
 import { operations, definitions } from './types/gateway'
+import { MultisigTransactionRequest } from './types/transactions'
 
 export type GatewayDefinitions = definitions
 
@@ -45,6 +46,14 @@ export function getTransactionQueue(baseUrl: string, address: string, pageUrl?: 
     '/safes/{safe_address}/transactions/queued',
     { path: { safe_address: address }, query: {} },
     pageUrl,
+  )
+}
+
+export function postTransaction(baseUrl: string, address: string, body: MultisigTransactionRequest) {
+  return callEndpoint(
+    baseUrl,
+    'transactions/{safe_address}/propose',
+    { path: { safe_address: address }, body },
   )
 }
 

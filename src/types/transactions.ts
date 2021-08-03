@@ -215,3 +215,20 @@ export type ConflictHeader = {
 }
 
 export type TransactionListItem = Transaction | Label | ConflictHeader
+
+export interface MultisigTransactionRequest {
+  to: string;
+  value: string;
+  data: string | null;
+  nonce: string;
+  operation: Operation;
+  safeTxGas: string;
+  baseGas: string;
+  gasPrice: string;
+  gasToken: string;
+  refundReceiver: string | null;
+  safeTxHash: string;
+  sender: string;
+  signature: string;
+  origin: string | null;
+}

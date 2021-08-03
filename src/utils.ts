@@ -29,8 +29,20 @@ export function stringifyQuery(query?: Params): string {
   return searchString ? `?${searchString}` : ''
 }
 
-export function fetchJson<T>(url: string): Promise<T> {
-  return fetch(url).then((resp) => {
+export function fetchJson<T>(url: string, body?: unknown): Promise<T> {
+  let bodyStr: string | undefined | null
+  if (body != null && typeof body !== 'string') {
+    bodyStr = JSON.stringify(body)
+  } else {
+    bodyStr = body as string | null | undefined
+  }
+
+  return fetch(url, {
+    body: bodyStr,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((resp) => {
     if (!resp.ok) {
       throw Error(resp.statusText)
     }

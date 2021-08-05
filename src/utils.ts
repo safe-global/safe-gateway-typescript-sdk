@@ -33,7 +33,7 @@ export function fetchJson<T>(url: string, body?: unknown): Promise<T> {
   let options: {
     method: 'POST',
     headers: Record<string, string>,
-		body: string
+    body: string
   } | undefined
   if (body != null) {
     options = {

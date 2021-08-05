@@ -240,6 +240,10 @@ export interface operations {
       200: {
         schema: unknown
       }
+      /** Safe not found */
+      404: unknown
+      /** Safe address checksum not valid */
+      422: unknown
     }
   }
 }

@@ -1,6 +1,6 @@
 import fetch from 'unfetch'
 
-export type Params = { [key: string]: string | number | boolean | null }
+export type Params = Record<string, string | number | boolean | null>
 
 function replaceParam(str: string, key: string, value: string): string {
   return str.replace(new RegExp(`\\{${key}\\}`, 'g'), value)
@@ -30,19 +30,20 @@ export function stringifyQuery(query?: Params): string {
 }
 
 export function fetchJson<T>(url: string, body?: unknown): Promise<T> {
-  let bodyStr: string | undefined | null
-  if (body != null && typeof body !== 'string') {
-    bodyStr = JSON.stringify(body)
-  } else {
-    bodyStr = body as string | null | undefined
+  let options: {
+    method: 'POST',
+    headers: Record<string, string>,
+		body: string
+  } | undefined
+  if (body != null) {
+    options = {
+      method: 'POST',
+      body: typeof body === 'string' ? body : JSON.stringify(body),
+      headers: { 'Content-Type': 'application/json' }
+    }
   }
 
-  return fetch(url, {
-    body: bodyStr,
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  }).then((resp) => {
+  return fetch(url, options).then((resp) => {
     if (!resp.ok) {
       throw Error(resp.statusText)
     }

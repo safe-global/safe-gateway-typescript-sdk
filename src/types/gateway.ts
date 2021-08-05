@@ -49,7 +49,7 @@ export interface paths {
     }
   }
   '/transactions/{safe_address}/propose': {
-    post: operations['post_transaction']
+    get: operations['post_transaction']
     parameters: {
       path: {
         safe_address: string
@@ -236,12 +236,9 @@ export interface operations {
       body: MultisigTransactionRequest
     }
     responses: {
-      /* Empty response */
-      200: unknown
-      /** Safe not found */
-      404: unknown
-      /** Safe address checksum not valid */
-      422: unknown
+      200: {
+        schema: unknown
+      }
     }
   }
 }

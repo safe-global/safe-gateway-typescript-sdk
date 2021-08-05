@@ -48,7 +48,26 @@ describe('utils', () => {
       })
 
       expect(fetchJson('/test/safe?q=123')).resolves.toEqual({ success: true })
-      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123')
+      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
+    })
+
+    it('should make a post request', () => {
+      fetch.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          json: () => Promise.resolve({ success: true })
+        })
+      })
+
+      expect(fetchJson('/test/safe', '123')).resolves.toEqual({ success: true })
+
+      expect(fetch).toHaveBeenCalledWith('/test/safe', {
+        method: 'POST',
+        body: '123',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
     })
 
     it('should throw if response is not OK', () => {
@@ -60,7 +79,7 @@ describe('utils', () => {
       })
 
       expect(fetchJson('/test/safe?q=123')).rejects.toThrow('Failed')
-      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123')
+      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
     })
   })
 })

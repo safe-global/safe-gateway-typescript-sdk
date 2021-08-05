@@ -48,4 +48,12 @@ export function getTransactionQueue(baseUrl: string, address: string, pageUrl?: 
   )
 }
 
+export function postTransaction(baseUrl: string, address: string, body: operations['post_transaction']['parameters']['body']) {
+  return callEndpoint(
+    baseUrl,
+    '/transactions/{safe_address}/propose',
+    { path: { safe_address: address }, body },
+  )
+}
+
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

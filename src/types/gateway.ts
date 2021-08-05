@@ -1,4 +1,4 @@
-import { TransactionListItem } from './transactions'
+import { TransactionListItem, MultisigTransactionRequest } from './transactions'
 
 export interface paths {
   '/safes/{address}/': {
@@ -42,6 +42,15 @@ export interface paths {
   }
   '/safes/{safe_address}/transactions/queued': {
     get: operations['queued_transactions']
+    parameters: {
+      path: {
+        safe_address: string
+      }
+    }
+  }
+  '/transactions/{safe_address}/propose': {
+    /** This is actually supposed to be POST but it breaks our type paradise */
+    get: operations['post_transaction']
     parameters: {
       path: {
         safe_address: string
@@ -218,6 +227,23 @@ export interface operations {
       200: {
         schema: definitions['TransactionListPage']
       }
+    }
+  }
+  post_transaction: {
+    parameters: {
+      path: {
+        safe_address: string
+      }
+      body: MultisigTransactionRequest
+    }
+    responses: {
+      200: {
+        schema: unknown
+      }
+      /** Safe not found */
+      404: unknown
+      /** Safe address checksum not valid */
+      422: unknown
     }
   }
 }

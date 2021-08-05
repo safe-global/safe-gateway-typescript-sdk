@@ -49,6 +49,7 @@ export interface paths {
     }
   }
   '/transactions/{safe_address}/propose': {
+    /** This is actually supposed to be POST but it breaks our type paradise */
     get: operations['post_transaction']
     parameters: {
       path: {

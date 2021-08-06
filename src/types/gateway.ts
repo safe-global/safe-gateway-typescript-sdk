@@ -1,19 +1,21 @@
 import { TokenType, TransactionListItem, MultisigTransactionRequest } from './transactions'
 
 export interface paths {
-  '/safes/{address}/': {
+  '/chains/{chainId}/safes/{address}/': {
     /** Get status of the safe */
     get: operations['safes_read']
     parameters: {
       path: {
+        chainId: string
         address: string
       }
     }
   }
-  '/safes/{address}/balances/{currency}/': {
+  '/chains/{chainId}/safes/{address}/balances/{currency}/': {
     get: operations['safes_balances_list']
     parameters: {
       path: {
+        chainId: string
         address: string
         currency: string
       }
@@ -23,36 +25,40 @@ export interface paths {
     get: operations['get_supported_fiat']
     parameters: null
   }
-  '/safes/{address}/collectibles/': {
+  '/chains/{chainId}/safes/{address}/collectibles/': {
     /** Get collectibles (ERC721 tokens) and information about them */
     get: operations['safes_collectibles_list']
     parameters: {
       path: {
+        chainId: string
         address: string
       }
     }
   }
-  '/safes/{safe_address}/transactions/history': {
+  '/chains/{chainId}/safes/{safe_address}/transactions/history': {
     get: operations['history_transactions']
     parameters: {
       path: {
+        chainId: string
         safe_address: string
       }
     }
   }
-  '/safes/{safe_address}/transactions/queued': {
+  '/chains/{chainId}/safes/{safe_address}/transactions/queued': {
     get: operations['queued_transactions']
     parameters: {
       path: {
+        chainId: string
         safe_address: string
       }
     }
   }
-  '/transactions/{safe_address}/propose': {
+  '/chains/{chainId}/transactions/{safe_address}/propose': {
     /** This is actually supposed to be POST but it breaks our type paradise */
     get: operations['post_transaction']
     parameters: {
       path: {
+        chainId: string
         safe_address: string
       }
     }
@@ -126,6 +132,7 @@ export interface operations {
   safes_read: {
     parameters: {
       path: {
+        chainId: string
         address: string
       }
     }
@@ -146,6 +153,7 @@ export interface operations {
   safes_balances_list: {
     parameters: {
       path: {
+        chainId: string
         address: string
         currency: string
       }
@@ -178,6 +186,7 @@ export interface operations {
   safes_collectibles_list: {
     parameters: {
       path: {
+        chainId: string
         address: string
       }
       query: {
@@ -200,6 +209,7 @@ export interface operations {
   history_transactions: {
     parameters: {
       path: {
+        chainId: string
         safe_address: string
       }
       query: {
@@ -216,6 +226,7 @@ export interface operations {
   queued_transactions: {
     parameters: {
       path: {
+        chainId: string
         safe_address: string
       }
       query: {
@@ -232,6 +243,7 @@ export interface operations {
   post_transaction: {
     parameters: {
       path: {
+        chainId: string
         safe_address: string
       }
       body: MultisigTransactionRequest

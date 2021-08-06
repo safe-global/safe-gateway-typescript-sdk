@@ -1,4 +1,4 @@
-import { TransactionListItem, MultisigTransactionRequest } from './transactions'
+import { TokenType, TransactionListItem, MultisigTransactionRequest } from './transactions'
 
 export interface paths {
   '/safes/{address}/': {
@@ -87,7 +87,7 @@ export interface definitions {
   FiatCurrencies: string[]
 
   TokenInfo: {
-    type: 'ERC20' | 'NATIVE_COIN'
+    type: TokenType
     address: string
     decimals: number
     symbol: string

@@ -50,14 +50,14 @@ export enum TransferDirection {
   UNKNOWN = 'UNKNOWN',
 }
 
-export enum TransferInfoType {
+export enum TokenType {
   ERC20 = 'ERC20',
   ERC721 = 'ERC721',
   NATIVE_COIN = 'NATIVE_COIN',
 }
 
 export type Erc20Transfer = {
-  type: TransferInfoType.ERC20
+  type: TokenType.ERC20
   tokenAddress: string
   tokenName: string | null
   tokenSymbol: string | null
@@ -67,7 +67,7 @@ export type Erc20Transfer = {
 }
 
 export type Erc721Transfer = {
-  type: TransferInfoType.ERC721
+  type: TokenType.ERC721
   tokenAddress: string
   tokenId: string
   tokenName: string | null
@@ -76,7 +76,7 @@ export type Erc721Transfer = {
 }
 
 export type NativeCoinTransfer = {
-  type: TransferInfoType.NATIVE_COIN
+  type: TokenType.NATIVE_COIN
   value: string
 }
 

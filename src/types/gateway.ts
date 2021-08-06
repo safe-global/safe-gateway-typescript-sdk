@@ -87,7 +87,7 @@ export interface definitions {
   FiatCurrencies: string[]
 
   TokenInfo: {
-    type: 'ERC20' | 'ETHER' | 'NATIVE_TOKEN'
+    type: 'ERC20' | 'NATIVE_COIN'
     address: string
     decimals: number
     symbol: string

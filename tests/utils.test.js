@@ -31,20 +31,20 @@ describe('utils', () => {
   })
 
   describe('fetchData', () => {
-    it('should fetch a simple url', () => {
+    it('should fetch a simple url', async () => {
       fetch.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
           text: () => Promise.resolve('{"success": "true"}'),
-          json: () => Promise.resolve({ success: true }),
+          json: () => Promise.resolve({ success: false }),
         })
       })
 
-      expect(fetchData('/test/safe?q=123')).resolves.toEqual({ success: true })
+      await expect(fetchData('/test/safe?q=123')).resolves.toEqual({ success: true })
       expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
     })
 
-    it('should make a post request', () => {
+    it('should make a post request', async () => {
       fetch.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
@@ -53,7 +53,7 @@ describe('utils', () => {
         })
       })
 
-      expect(fetchData('/test/safe', '123')).resolves.toEqual({ success: true })
+      await expect(fetchData('/test/safe', '123')).resolves.toEqual({ success: true })
 
       expect(fetch).toHaveBeenCalledWith('/test/safe', {
         method: 'POST',
@@ -64,7 +64,7 @@ describe('utils', () => {
       })
     })
 
-    it('should throw if response is not OK', () => {
+    it('should throw if response is not OK', async () => {
       fetch.mockImplementation(() => {
         return Promise.resolve({
           ok: false,
@@ -72,11 +72,11 @@ describe('utils', () => {
         })
       })
 
-      expect(fetchData('/test/safe?q=123')).rejects.toThrow('Failed')
+      await expect(fetchData('/test/safe?q=123')).rejects.toThrow('Failed')
       expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
     })
 
-    it('should fallback to raw text if no JSON in response', () => {
+    it('should fallback to raw text if no JSON in response', async () => {
       fetch.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
@@ -85,7 +85,7 @@ describe('utils', () => {
         })
       })
 
-      expect(fetchData('/propose', 123)).resolves.toEqual('')
+      await expect(fetchData('/propose', 123)).resolves.toEqual('')
     })
   })
 })

@@ -40,7 +40,7 @@
     "prepare": "yarn build",
     "prettier": "prettier -w",
     "test:watch": "jest tests/ --watch",
-    "test": "jest --coverage --json --outputFile='jest.results.json' ./tests"
+    "test": "jest --ci --coverage --json --outputFile='jest.results.json' ./tests"
   },
   "husky": {
     "hooks": {

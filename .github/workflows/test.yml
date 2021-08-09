@@ -11,5 +11,6 @@ jobs:
       - uses: mattallty/jest-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI: true
         with:
           test-command: 'echo done'

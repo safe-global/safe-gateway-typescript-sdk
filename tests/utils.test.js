@@ -1,33 +1,25 @@
 import fetch from 'unfetch'
-import { fetchJson, insertParams, stringifyQuery } from '../src/utils'
+import { fetchData, insertParams, stringifyQuery } from '../src/utils'
 
 jest.mock('unfetch')
 
 describe('utils', () => {
   describe('insertParams', () => {
     it('should insert a param into a string', () => {
-      expect(
-        insertParams('/{network}/safe/{address}', { address: '0x0' })
-      ).toBe(
-        '/{network}/safe/0x0'
-      )
+      expect(insertParams('/{network}/safe/{address}', { address: '0x0' })).toBe('/{network}/safe/0x0')
     })
 
     it('should insert several params into a string', () => {
-      expect(
-        insertParams('/{network}/safe/{address}', { address: '0x0', network: 'rinkeby' })
-      ).toBe(
-        '/rinkeby/safe/0x0'
+      expect(insertParams('/{network}/safe/{address}', { address: '0x0', network: 'rinkeby' })).toBe(
+        '/rinkeby/safe/0x0',
       )
     })
   })
 
   describe('stringifyQuery', () => {
     it('should stringify query params', () => {
-      expect(
-        stringifyQuery({ spam: true, page: 11, name: 'token', exclude: null })
-      ).toBe(
-        '?spam=true&page=11&name=token'
+      expect(stringifyQuery({ spam: true, page: 11, name: 'token', exclude: null })).toBe(
+        '?spam=true&page=11&name=token',
       )
     })
 
@@ -38,17 +30,17 @@ describe('utils', () => {
     })
   })
 
-  describe('fetchJson', () => {
+  describe('fetchData', () => {
     it('should fetch a simple url', () => {
       fetch.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
           text: () => Promise.resolve('{"success": "true"}'),
-          json: () => Promise.resolve({ success: true })
+          json: () => Promise.resolve({ success: true }),
         })
       })
 
-      expect(fetchJson('/test/safe?q=123')).resolves.toEqual({ success: true })
+      expect(fetchData('/test/safe?q=123')).resolves.toEqual({ success: true })
       expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
     })
 
@@ -57,18 +49,18 @@ describe('utils', () => {
         return Promise.resolve({
           ok: true,
           text: () => Promise.resolve('{"success": "true"}'),
-          json: () => Promise.resolve({ success: true })
+          json: () => Promise.resolve({ success: true }),
         })
       })
 
-      expect(fetchJson('/test/safe', '123')).resolves.toEqual({ success: true })
+      expect(fetchData('/test/safe', '123')).resolves.toEqual({ success: true })
 
       expect(fetch).toHaveBeenCalledWith('/test/safe', {
         method: 'POST',
         body: '123',
         headers: {
-          'Content-Type': 'application/json'
-        }
+          'Content-Type': 'application/json',
+        },
       })
     })
 
@@ -76,11 +68,11 @@ describe('utils', () => {
       fetch.mockImplementation(() => {
         return Promise.resolve({
           ok: false,
-          statusText: 'Failed'
+          statusText: 'Failed',
         })
       })
 
-      expect(fetchJson('/test/safe?q=123')).rejects.toThrow('Failed')
+      expect(fetchData('/test/safe?q=123')).rejects.toThrow('Failed')
       expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
     })
 
@@ -89,11 +81,11 @@ describe('utils', () => {
         return Promise.resolve({
           ok: true,
           text: () => Promise.resolve(''),
-          json: () => Promise.reject('Unexpected end of JSON input')
+          json: () => Promise.reject('Unexpected end of JSON input'),
         })
       })
 
-      expect(fetchJson('/propose', 123)).resolves.toEqual('')
+      expect(fetchData('/propose', 123)).resolves.toEqual('')
     })
   })
 })

@@ -1,4 +1,4 @@
-import { fetchJson, insertParams, stringifyQuery } from './utils'
+import { fetchData, insertParams, stringifyQuery } from './utils'
 import { paths } from './types/gateway'
 
 type Primitive = string | number | boolean | null
@@ -25,5 +25,5 @@ export function callEndpoint<T extends keyof paths>(
     body = params?.body
   }
 
-  return fetchJson(url, body)
+  return fetchData(url, body)
 }

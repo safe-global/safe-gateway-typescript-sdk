@@ -29,7 +29,7 @@ export function stringifyQuery(query?: Params): string {
   return searchString ? `?${searchString}` : ''
 }
 
-export async function fetchJson<T>(url: string, body?: unknown): Promise<T> {
+export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
   let options:
     | {
         method: 'POST'

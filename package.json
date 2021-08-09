@@ -1,6 +1,6 @@
 {
   "name": "@gnosis.pm/safe-react-gateway-sdk",
-  "version": "1.1.0",
+  "version": "1.2.1",
   "main": "dist/index.min.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -39,7 +39,8 @@
     "build": "rm -rf dist && webpack --mode production",
     "prepare": "yarn build",
     "prettier": "prettier -w",
-    "test": "jest tests/"
+    "test:watch": "jest tests/ --watch",
+    "test": "jest --ci --coverage --json --outputFile='jest.results.json' ./tests"
   },
   "husky": {
     "hooks": {

@@ -1,5 +1,6 @@
 import { callEndpoint } from './endpoint'
 import { operations, definitions } from './types/gateway'
+export * from './types/transactions'
 
 export type GatewayDefinitions = definitions
 

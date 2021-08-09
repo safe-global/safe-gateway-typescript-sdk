@@ -29,24 +29,33 @@ export function stringifyQuery(query?: Params): string {
   return searchString ? `?${searchString}` : ''
 }
 
-export function fetchJson<T>(url: string, body?: unknown): Promise<T> {
-  let options: {
-    method: 'POST',
-    headers: Record<string, string>,
-    body: string
-  } | undefined
+export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
+  let options:
+    | {
+        method: 'POST'
+        headers: Record<string, string>
+        body: string
+      }
+    | undefined
   if (body != null) {
     options = {
       method: 'POST',
       body: typeof body === 'string' ? body : JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' }
+      headers: { 'Content-Type': 'application/json' },
     }
   }
 
-  return fetch(url, options).then((resp) => {
-    if (!resp.ok) {
-      throw Error(resp.statusText)
-    }
-    return resp.json()
-  })
+  const resp = await fetch(url, options)
+
+  if (!resp.ok) {
+    throw Error(resp.statusText)
+  }
+
+  // If the reponse is empty, don't try to parse it
+  const text = await resp.text()
+  if (!text) {
+    return text as unknown as T
+  }
+
+  return resp.json()
 }

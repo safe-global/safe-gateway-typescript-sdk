@@ -6,4 +6,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: mattallty/jest-github-action
+      - run: npm install
+      - run: npm test
+      - uses: mattallty/jest-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CI: true
+        with:
+          test-command: 'echo done'

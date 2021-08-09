@@ -36,7 +36,7 @@ describe('utils', () => {
         return Promise.resolve({
           ok: true,
           text: () => Promise.resolve('{"success": "true"}'),
-          json: () => Promise.resolve({ success: false }),
+          json: () => Promise.resolve({ success: true }),
         })
       })
 

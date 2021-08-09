@@ -43,6 +43,7 @@ describe('utils', () => {
       fetch.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
+          text: () => Promise.resolve('{"success": "true"}'),
           json: () => Promise.resolve({ success: true })
         })
       })
@@ -55,6 +56,7 @@ describe('utils', () => {
       fetch.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
+          text: () => Promise.resolve('{"success": "true"}'),
           json: () => Promise.resolve({ success: true })
         })
       })
@@ -80,6 +82,18 @@ describe('utils', () => {
 
       expect(fetchJson('/test/safe?q=123')).rejects.toThrow('Failed')
       expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
+    })
+
+    it('should fallback to raw text if no JSON in response', () => {
+      fetch.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve(''),
+          json: () => Promise.reject('Unexpected end of JSON input')
+        })
+      })
+
+      expect(fetchJson('/propose', 123)).resolves.toEqual('')
     })
   })
 })

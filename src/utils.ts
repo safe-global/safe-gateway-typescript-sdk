@@ -51,9 +51,11 @@ export async function fetchJson<T>(url: string, body?: unknown): Promise<T> {
     throw Error(resp.statusText)
   }
 
-  try {
-    return await resp.json()
-  } catch (err) {
-    return (await resp.text()) as unknown as T
+  // If the reponse is empty, don't try to parse it
+  const text = await resp.text()
+  if (!text) {
+    return text as unknown as T
   }
+
+  return resp.json()
 }

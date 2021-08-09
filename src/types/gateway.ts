@@ -1,4 +1,4 @@
-import { TokenType, TransactionListItem, MultisigTransactionRequest } from './transactions'
+import { TokenType, TransactionListItem, MultisigTransactionRequest, TransactionDetails } from './transactions'
 
 export interface paths {
   '/chains/{chainId}/safes/{address}/': {
@@ -50,6 +50,15 @@ export interface paths {
       path: {
         chainId: string
         safe_address: string
+      }
+    }
+  }
+  '/chains/{chainId}/transactions/{transactionId}': {
+    get: operations['get_transactions']
+    parameters: {
+      path: {
+        chainId: string
+        transactionId: string
       }
     }
   }
@@ -125,6 +134,7 @@ export interface definitions {
 
   TransactionListItem: TransactionListItem
   TransactionListPage: Page<TransactionListItem>
+  TransactionDetails: TransactionDetails
 }
 
 export interface operations {
@@ -237,6 +247,19 @@ export interface operations {
     responses: {
       200: {
         schema: definitions['TransactionListPage']
+      }
+    }
+  }
+  get_transactions: {
+    parameters: {
+      path: {
+        chainId: string
+        transactionId: string
+      }
+    }
+    responses: {
+      200: {
+        schema: definitions['TransactionDetails']
       }
     }
   }

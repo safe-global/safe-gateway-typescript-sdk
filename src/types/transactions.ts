@@ -242,3 +242,68 @@ export type MultisigTransactionRequest = {
   signature: string | null
   origin: string | null
 }
+
+/* Transaction details types */
+export type SafeAppInfo = {
+  name: string
+  url: string
+  logoUri: string
+}
+
+export type TransactionData = {
+  hexData: string | null
+  dataDecoded: DataDecoded | null
+  to: AddressEx
+  value: string | null
+  operation: Operation
+  addressInfoIndex: { [key: string]: AddressEx } | null
+}
+
+export type ModuleExecutionDetails = {
+  address: AddressEx
+}
+
+export type MultisigConfirmation = {
+  signer: AddressEx
+  signature: string | null
+  submittedAt: number
+}
+
+export type TokenInfo = {
+  address: string
+  decimals: number
+  symbol: string
+  name: string
+  logoUri: string | null
+}
+
+export type MultisigExecutionDetails = {
+  submittedAt: number
+  nonce: number
+  safeTxGas: number
+  baseGas: number
+  gasPrice: string
+  gasToken: string
+  refundReceiver: AddressEx
+  safeTxHash: string
+  executor: AddressEx | null
+  signers: AddressEx[]
+  confirmationsRequired: number
+  confirmations: MultisigConfirmation[]
+  rejectors: AddressEx[] | null
+  gasTokenInfo: TokenInfo | null
+}
+
+export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDetails
+
+export type TransactionDetails = {
+  executedAt: number | null
+  txStatus: TransactionStatus
+  txInfo: TransactionInfo
+  txData: TransactionData | null
+  detailedExecutionInfo: DetailedExecutionInfo | null
+  txHash: string | null
+  safeAppInfo: SafeAppInfo | null
+}
+
+/* Transaction details types end */

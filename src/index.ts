@@ -53,6 +53,12 @@ export function getTransactionQueue(baseUrl: string, chainId: string, address: s
   )
 }
 
+export function getTransactionDetails(baseUrl: string, chainId: string, transactionId: string) {
+  return callEndpoint(baseUrl, '/chains/{chainId}/transactions/{transactionId}', {
+    path: { chainId, transactionId },
+  })
+}
+
 export function postTransaction(
   baseUrl: string,
   chainId: string,

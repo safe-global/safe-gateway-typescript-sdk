@@ -13,3 +13,4 @@ yalc.lock
 tsconfig.tsbuildinfo
 /openapi
 .#*
+jest.results.json

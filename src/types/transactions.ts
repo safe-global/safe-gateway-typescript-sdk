@@ -260,6 +260,7 @@ export type TransactionData = {
 }
 
 export type ModuleExecutionDetails = {
+  type: 'MODULE'
   address: AddressEx
 }
 
@@ -278,6 +279,7 @@ export type TokenInfo = {
 }
 
 export type MultisigExecutionDetails = {
+  type: 'MULTISIG'
   submittedAt: number
   nonce: number
   safeTxGas: number

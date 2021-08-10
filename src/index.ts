@@ -6,17 +6,21 @@ export type GatewayDefinitions = definitions
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-export function getSafeInfo(baseUrl: string, address: string) {
-  return callEndpoint(baseUrl, '/safes/{address}/', { path: { address } })
+export function getSafeInfo(baseUrl: string, chainId: string, address: string) {
+  return callEndpoint(baseUrl, '/chains/{chainId}/safes/{address}/', { path: { chainId, address } })
 }
 
 export function getBalances(
   baseUrl: string,
+  chainId: string,
   address: string,
   currency = 'usd',
   query: operations['safes_balances_list']['parameters']['query'] = {},
 ) {
-  return callEndpoint(baseUrl, '/safes/{address}/balances/{currency}/', { path: { address, currency }, query })
+  return callEndpoint(baseUrl, '/chains/{chainId}/safes/{address}/balances/{currency}/', {
+    path: { chainId, address, currency },
+    query,
+  })
 }
 
 export function getFiatCurrencies(baseUrl: string) {
@@ -25,36 +29,47 @@ export function getFiatCurrencies(baseUrl: string) {
 
 export function getCollectibles(
   baseUrl: string,
+  chainId: string,
   address: string,
   query: operations['safes_collectibles_list']['parameters']['query'] = {},
 ) {
-  return callEndpoint(baseUrl, '/safes/{address}/collectibles/', { path: { address }, query })
+  return callEndpoint(baseUrl, '/chains/{chainId}/safes/{address}/collectibles/', { path: { chainId, address }, query })
 }
 
-export function getTransactionHistory(baseUrl: string, address: string, pageUrl?: string) {
+export function getTransactionHistory(baseUrl: string, chainId: string, address: string, pageUrl?: string) {
   return callEndpoint(
     baseUrl,
-    '/safes/{safe_address}/transactions/history',
-    { path: { safe_address: address }, query: {} },
+    '/chains/{chainId}/safes/{safe_address}/transactions/history',
+    { path: { chainId, safe_address: address }, query: {} },
     pageUrl,
   )
 }
 
-export function getTransactionQueue(baseUrl: string, address: string, pageUrl?: string) {
+export function getTransactionQueue(baseUrl: string, chainId: string, address: string, pageUrl?: string) {
   return callEndpoint(
     baseUrl,
-    '/safes/{safe_address}/transactions/queued',
-    { path: { safe_address: address }, query: {} },
+    '/chains/{chainId}/safes/{safe_address}/transactions/queued',
+    { path: { chainId, safe_address: address }, query: {} },
     pageUrl,
   )
+}
+
+export function getTransactionDetails(baseUrl: string, chainId: string, transactionId: string) {
+  return callEndpoint(baseUrl, '/chains/{chainId}/transactions/{transactionId}', {
+    path: { chainId, transactionId },
+  })
 }
 
 export function postTransaction(
   baseUrl: string,
+  chainId: string,
   address: string,
   body: operations['post_transaction']['parameters']['body'],
 ) {
-  return callEndpoint(baseUrl, '/transactions/{safe_address}/propose', { path: { safe_address: address }, body })
+  return callEndpoint(baseUrl, '/chains/{chainId}/transactions/{safe_address}/propose', {
+    path: { chainId, safe_address: address },
+    body,
+  })
 }
 
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

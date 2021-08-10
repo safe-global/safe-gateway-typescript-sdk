@@ -27,8 +27,9 @@ export type DataDecoded = {
   parameters: Parameter[] | null
 }
 
-export type AddressInfo = {
-  name: string
+export type AddressEx = {
+  value: string
+  name: string | null
   logoUri: string | null
 }
 
@@ -49,8 +50,14 @@ export enum TransferDirection {
   UNKNOWN = 'UNKNOWN',
 }
 
+export enum TokenType {
+  ERC20 = 'ERC20',
+  ERC721 = 'ERC721',
+  NATIVE_COIN = 'NATIVE_COIN',
+}
+
 export type Erc20Transfer = {
-  type: 'ERC20'
+  type: TokenType.ERC20
   tokenAddress: string
   tokenName: string | null
   tokenSymbol: string | null
@@ -60,56 +67,50 @@ export type Erc20Transfer = {
 }
 
 export type Erc721Transfer = {
-  type: 'ERC721'
+  type: TokenType.ERC721
   tokenAddress: string
   tokenId: string
   tokenName: string | null
   tokenSymbol: string | null
   logoUri: string | null
-  decimals: number | null
+}
+
+export type NativeCoinTransfer = {
+  type: TokenType.NATIVE_COIN
   value: string
 }
 
-export type NativeTransfer = {
-  type: 'ETHER' | 'NATIVE_TOKEN'
-  value: string
-  tokenSymbol: string | null
-  decimals: number | null
-}
+export type TransferInfo = Erc20Transfer | Erc721Transfer | NativeCoinTransfer
 
-export type TransferInfo = Erc20Transfer | Erc721Transfer | NativeTransfer
-
-export type Transfer = {
+export interface Transfer {
   type: 'Transfer'
-  sender: string
-  senderInfo: AddressInfo | null
-  recipient: string
-  recipientInfo: AddressInfo | null
-  direction?: TransferDirection
+  sender: AddressEx
+  recipient: AddressEx
+  direction: TransferDirection
   transferInfo: TransferInfo
 }
 
 export type SetFallbackHandler = {
   type: 'SET_FALLBACK_HANDLER'
-  handler: string
+  handler: AddressEx
 }
 
 export type AddOwner = {
   type: 'ADD_OWNER'
-  owner: string
+  owner: AddressEx
   threshold: number
 }
 
 export type RemoveOwner = {
   type: 'REMOVE_OWNER'
-  owner: string
+  owner: AddressEx
   threshold: number
 }
 
 export type SwapOwner = {
   type: 'SWAP_OWNER'
-  oldOwner: string
-  newOwner: string
+  oldOwner: AddressEx
+  newOwner: AddressEx
 }
 
 export type ChangeThreshold = {
@@ -119,17 +120,17 @@ export type ChangeThreshold = {
 
 export type ChangeImplementation = {
   type: 'CHANGE_IMPLEMENTATION'
-  implementation: string
+  implementation: AddressEx
 }
 
 export type EnableModule = {
   type: 'ENABLE_MODULE'
-  module: string
+  module: AddressEx
 }
 
 export type DisableModule = {
   type: 'DISABLE_MODULE'
-  module: string
+  module: AddressEx
 }
 
 export type SettingsInfo =
@@ -148,41 +149,50 @@ export type SettingsChange = {
   settingsInfo: SettingsInfo | null
 }
 
-export type BaseCustom = {
+export interface Custom {
   type: 'Custom'
-  to: string
+  to: AddressEx
   dataSize: string
   value: string
-  isCancellation: boolean
-  toInfo?: AddressInfo
-}
-
-export type Custom = BaseCustom & {
   methodName: string | null
   actionCount: number | null
+  isCancellation: boolean
 }
 
-export type MultiSend = BaseCustom & {
+export type MultiSend = {
+  type: 'Custom'
+  to: AddressEx
+  dataSize: string
+  value: string
   methodName: 'multiSend'
   actionCount: number
+  isCancellation: boolean
 }
 
 export type Creation = {
   type: 'Creation'
-  creator: string
+  creator: AddressEx
   transactionHash: string
-  implementation: string | null
-  factory: string | null
+  implementation: AddressEx | null
+  factory: AddressEx | null
 }
 
 export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Creation
 
-export type ExecutionInfo = {
+export type ModuleExecutionInfo = {
+  type: 'MODULE'
+  address: AddressEx
+}
+
+export type MultisigExecutionInfo = {
+  type: 'MULTISIG'
   nonce: number
   confirmationsRequired: number
   confirmationsSubmitted: number
-  missingSigners: string[] | null
+  missingSigners: AddressEx[] | null
 }
+
+export type ExecutionInfo = ModuleExecutionInfo | MultisigExecutionInfo
 
 export type TransactionSummary = {
   id: string
@@ -216,7 +226,7 @@ export type ConflictHeader = {
 
 export type TransactionListItem = Transaction | Label | ConflictHeader
 
-export interface MultisigTransactionRequest {
+export type MultisigTransactionRequest = {
   to: string
   value: string
   data: string | null
@@ -232,3 +242,70 @@ export interface MultisigTransactionRequest {
   signature: string | null
   origin: string | null
 }
+
+/* Transaction details types */
+export type SafeAppInfo = {
+  name: string
+  url: string
+  logoUri: string
+}
+
+export type TransactionData = {
+  hexData: string | null
+  dataDecoded: DataDecoded | null
+  to: AddressEx
+  value: string | null
+  operation: Operation
+  addressInfoIndex: { [key: string]: AddressEx } | null
+}
+
+export type ModuleExecutionDetails = {
+  type: 'MODULE'
+  address: AddressEx
+}
+
+export type MultisigConfirmation = {
+  signer: AddressEx
+  signature: string | null
+  submittedAt: number
+}
+
+export type TokenInfo = {
+  address: string
+  decimals: number
+  symbol: string
+  name: string
+  logoUri: string | null
+}
+
+export type MultisigExecutionDetails = {
+  type: 'MULTISIG'
+  submittedAt: number
+  nonce: number
+  safeTxGas: number
+  baseGas: number
+  gasPrice: string
+  gasToken: string
+  refundReceiver: AddressEx
+  safeTxHash: string
+  executor: AddressEx | null
+  signers: AddressEx[]
+  confirmationsRequired: number
+  confirmations: MultisigConfirmation[]
+  rejectors: AddressEx[] | null
+  gasTokenInfo: TokenInfo | null
+}
+
+export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDetails
+
+export type TransactionDetails = {
+  executedAt: number | null
+  txStatus: TransactionStatus
+  txInfo: TransactionInfo
+  txData: TransactionData | null
+  detailedExecutionInfo: DetailedExecutionInfo | null
+  txHash: string | null
+  safeAppInfo: SafeAppInfo | null
+}
+
+/* Transaction details types end */

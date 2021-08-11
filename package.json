@@ -39,8 +39,8 @@
     "build": "rm -rf dist && webpack --mode production",
     "prepare": "yarn build",
     "prettier": "prettier -w",
-    "test:watch": "jest tests/ --watch",
-    "test": "jest --ci --coverage --json --outputFile='jest.results.json' ./tests"
+    "test": "jest --ci --silent --coverage --json --testLocationInResults --runInBand --outputFile='/home/runner/work/_actions/mattallty/jest-github-action/v1/dist/jest.results.json' ./tests",
+    "test:watch": "jest tests/ --watch"
   },
   "husky": {
     "hooks": {

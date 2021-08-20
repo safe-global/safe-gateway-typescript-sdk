@@ -235,7 +235,7 @@ export type MultisigTransactionRequest = {
   refundReceiver: string | null
   safeTxHash: string
   sender: string
-  signature: string | null
+  signature?: string | null
   origin: string | null
 }
 

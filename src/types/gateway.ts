@@ -92,6 +92,7 @@ export interface definitions {
     owners: StringValue[]
     implementation: StringValue
     modules: StringValue[]
+    guard: StringValue
     fallbackHandler: StringValue
     version: string
     collectiblesTag: string

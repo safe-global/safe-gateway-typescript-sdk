@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-const path = require('path');
+const path = require('path')
 const webpack = require('webpack')
-const CopyPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin')
 
-const dist = path.join(__dirname, '/dist');
+const dist = path.join(__dirname, '/dist')
 
 module.exports = {
   entry: './src/index.ts',
@@ -29,6 +29,6 @@ module.exports = {
   },
   plugins: [
     new webpack.EnvironmentPlugin({ REACT_APP_ENV: 'dev' }),
-    new CopyPlugin({ patterns: [{ from: 'src/types', to: path.join(dist, 'types') }] })
+    new CopyPlugin({ patterns: [{ from: 'src/types', to: path.join(dist, 'types') }] }),
   ],
-};
+}

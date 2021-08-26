@@ -69,23 +69,25 @@ describe('utils', () => {
         return Promise.resolve({
           ok: false,
           statusText: 'Failed',
+          json: () => ({ code: 1337, message: 'something went wrong' }),
+        })
+      })
+
+      await expect(fetchData('/test/safe?q=123')).rejects.toThrow('1337: something went wrong')
+      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
+    })
+
+    it('should throw the response text for 50x errors', async () => {
+      fetch.mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: 'Failed',
+          json: () => null,
         })
       })
 
       await expect(fetchData('/test/safe?q=123')).rejects.toThrow('Failed')
       expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
-    })
-
-    it('should fallback to raw text if no JSON in response', async () => {
-      fetch.mockImplementation(() => {
-        return Promise.resolve({
-          ok: true,
-          text: () => Promise.resolve(''),
-          json: () => Promise.reject('Unexpected end of JSON input'),
-        })
-      })
-
-      await expect(fetchData('/propose', 123)).resolves.toEqual('')
     })
   })
 })

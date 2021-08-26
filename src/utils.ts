@@ -51,11 +51,12 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
   }
 
   const resp = await fetch(url, options)
+  const json = await resp.json()
 
   if (!resp.ok) {
     let errTxt = ''
     try {
-      const err = JSON.parse(await resp.text()) as ErrorResponse
+      const err = json as ErrorResponse
       errTxt = `${err.code}: ${err.message}`
     } catch (e) {
       errTxt = resp.statusText
@@ -63,11 +64,5 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
     throw new Error(errTxt)
   }
 
-  try {
-    return await resp.json()
-  } catch (e) {
-    // If the reponse isn't JSON, fall back to plain text
-    const text = await resp.text()
-    return text as unknown as T
-  }
+  return json
 }

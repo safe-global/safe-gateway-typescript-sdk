@@ -1,7 +1,7 @@
-import fetch from 'unfetch'
+import fetch from 'isomorphic-unfetch'
 import { fetchData, insertParams, stringifyQuery } from '../src/utils'
 
-jest.mock('unfetch')
+jest.mock('isomorphic-unfetch')
 
 describe('utils', () => {
   describe('insertParams', () => {

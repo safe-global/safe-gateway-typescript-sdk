@@ -14,7 +14,7 @@ This will create a folder called `openapi` with an OpenAPI JSON and the correspo
 
 ## Adding an endpoint
 
-Endpoints are defined in `src/types/gateway.ts` and `src/index.ts. Each endpoint consists of:
+Endpoints are defined in `src/types/gateway.ts` and `src/index.ts`. Each endpoint consists of:
 
 * a path definition
 * operation definition (params and response types)
@@ -33,8 +33,8 @@ yarn eslint:fix
 
 ## Tests
 
-To run the tests:
+To run the tests locally:
 
 ```
-jest test --watch
+yarn test
 ```

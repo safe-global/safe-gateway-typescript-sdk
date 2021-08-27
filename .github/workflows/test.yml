@@ -7,10 +7,11 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - run: npm install
-      - run: npm test
-      - uses: mattallty/jest-github-action@master
+
+      - name: Run tests
+        uses: mattallty/jest-github-action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          CI: true
         with:
-          test-command: 'echo done'
+          test-command: 'npm run test:ci -- --outputFile=/home/runner/work/_actions/mattallty/jest-github-action/v1/dist/jest.results.json'
+          coverage-comment: false

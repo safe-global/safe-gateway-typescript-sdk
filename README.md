@@ -1,4 +1,5 @@
 # Safe Gateway TypeScript SDK
+![npm](https://img.shields.io/npm/v/@gnosis.pm/safe-react-gateway-sdk?label=%40gnosis.pm%2Fsafe-react-gateway-sdk)
 
 A TypeScript SDK for the [Safe Gateway](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html).
 

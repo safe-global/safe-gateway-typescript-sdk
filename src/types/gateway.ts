@@ -283,7 +283,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: TransactionDetails
+        schema: definitions['TransactionDetails']
       }
       /** Safe not found */
       404: unknown

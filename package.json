@@ -10,12 +10,13 @@
   "author": "katspaugh",
   "license": "MIT",
   "dependencies": {
-    "unfetch": "^4.2.0"
+    "isomorphic-unfetch": "^3.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-typescript": "^7.15.0",
+    "@types/jest": "^27.0.1",
     "@typescript-eslint/eslint-plugin": "^4.29.0",
     "@typescript-eslint/parser": "^4.29.0",
     "babel-jest": "^27.0.6",
@@ -39,8 +40,8 @@
     "build": "rm -rf dist && webpack --mode production",
     "prepare": "yarn build",
     "prettier": "prettier -w",
-    "test:watch": "jest tests/ --watch",
-    "test": "jest --ci --coverage --json --outputFile='jest.results.json' ./tests"
+    "test": "jest --watch",
+    "test:ci": "jest --ci --coverage --json --watchAll=false --testLocationInResults --runInBand --testPathPattern=tests"
   },
   "husky": {
     "hooks": {

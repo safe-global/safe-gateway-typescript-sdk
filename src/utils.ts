@@ -1,6 +1,11 @@
-import fetch from 'unfetch'
+import fetch from 'isomorphic-unfetch'
 
 export type Params = Record<string, string | number | boolean | null>
+
+export type ErrorResponse = {
+  code: number
+  message: string
+}
 
 function replaceParam(str: string, key: string, value: string): string {
   return str.replace(new RegExp(`\\{${key}\\}`, 'g'), value)
@@ -46,16 +51,18 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
   }
 
   const resp = await fetch(url, options)
+  const json = await resp.json()
 
   if (!resp.ok) {
-    throw Error(resp.statusText)
+    let errTxt = ''
+    try {
+      const err = json as ErrorResponse
+      errTxt = `${err.code}: ${err.message}`
+    } catch (e) {
+      errTxt = resp.statusText
+    }
+    throw new Error(errTxt)
   }
 
-  // If the reponse is empty, don't try to parse it
-  const text = await resp.text()
-  if (!text) {
-    return text as unknown as T
-  }
-
-  return resp.json()
+  return json
 }

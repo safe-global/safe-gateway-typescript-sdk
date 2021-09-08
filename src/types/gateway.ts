@@ -64,11 +64,20 @@ export interface paths {
   }
   '/chains/{chainId}/transactions/{safe_address}/propose': {
     /** This is actually supposed to be POST but it breaks our type paradise */
-    get: operations['post_transaction']
+    get: operations['propose_transaction']
     parameters: {
       path: {
         chainId: string
         safe_address: string
+      }
+    }
+  }
+  '/chains/{chainId}/owners/{address}/safes': {
+    get: operations['get_owned_safes']
+    parameters: {
+      path: {
+        chainId: string
+        address: string
       }
     }
   }
@@ -264,7 +273,7 @@ export interface operations {
       }
     }
   }
-  post_transaction: {
+  propose_transaction: {
     parameters: {
       path: {
         chainId: string
@@ -274,12 +283,25 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: unknown
+        schema: definitions['TransactionDetails']
       }
       /** Safe not found */
       404: unknown
       /** Safe address checksum not valid */
       422: unknown
+    }
+  }
+  get_owned_safes: {
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+      }
+    }
+    responses: {
+      200: {
+        schema: string[]
+      }
     }
   }
 }

@@ -27,6 +27,10 @@ export function getFiatCurrencies(baseUrl: string) {
   return callEndpoint(baseUrl, '/balances/supported-fiat-codes')
 }
 
+export function getOwnedSafes(baseUrl: string, chainId: string, address: string) {
+  return callEndpoint(baseUrl, '/chains/{chainId}/owners/{address}/safes', { path: { chainId, address } })
+}
+
 export function getCollectibles(
   baseUrl: string,
   chainId: string,
@@ -60,11 +64,11 @@ export function getTransactionDetails(baseUrl: string, chainId: string, transact
   })
 }
 
-export function postTransaction(
+export function proposeTransaction(
   baseUrl: string,
   chainId: string,
   address: string,
-  body: operations['post_transaction']['parameters']['body'],
+  body: operations['propose_transaction']['parameters']['body'],
 ) {
   return callEndpoint(baseUrl, '/chains/{chainId}/transactions/{safe_address}/propose', {
     path: { chainId, safe_address: address },

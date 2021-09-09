@@ -278,8 +278,8 @@ export type MultisigExecutionDetails = {
   type: 'MULTISIG'
   submittedAt: number
   nonce: number
-  safeTxGas: number
-  baseGas: number
+  safeTxGas: string
+  baseGas: string
   gasPrice: string
   gasToken: string
   refundReceiver: AddressEx

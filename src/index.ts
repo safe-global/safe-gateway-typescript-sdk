@@ -64,6 +64,18 @@ export function getTransactionDetails(baseUrl: string, chainId: string, transact
   })
 }
 
+export function postSafeGasEstimation(
+  baseUrl: string,
+  chainId: string,
+  address: string,
+  body: operations['post_safe_gas_estimation']['parameters']['body'],
+) {
+  return callEndpoint(baseUrl, '/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations', {
+    path: { chainId, safe_address: address },
+    body,
+  })
+}
+
 export function proposeTransaction(
   baseUrl: string,
   chainId: string,

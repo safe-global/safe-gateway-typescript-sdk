@@ -8,7 +8,7 @@ describe('getSafeInfo tests', () => {
 
     expect(data.address.value).toBe(address)
     expect(data.guard).toBe(null)
-    expect(data.nonce).toBe(3)
+    expect(data.nonce).toBe(4)
     expect(data.owners).toEqual([
       {
         value: '0x21D62C6894741DE97944D7844ED44D7782C66ABC',

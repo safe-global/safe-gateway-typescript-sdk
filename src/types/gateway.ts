@@ -336,7 +336,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: string[]
+        schema: { safes: string[] }
       }
     }
   }

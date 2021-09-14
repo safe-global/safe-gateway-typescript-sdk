@@ -9,7 +9,7 @@ describe('postSafeGasEstimation tests', () => {
       data: '0x',
       operation: 0,
     })
-    console.log(result)
+
     expect(result.safeTxGas).toBe('43663')
     expect(result.latestNonce).toBe(1)
   })

@@ -305,3 +305,19 @@ export type TransactionDetails = {
 }
 
 /* Transaction details types end */
+
+/* Transaction estimation types */
+
+export type SafeTransactionEstimationRequest = {
+  to: string
+  value: string
+  data: string
+  operation: Operation
+}
+
+export type SafeTransactionEstimation = {
+  latestNonce: number
+  safeTxGas: string
+}
+
+/* Transaction estimation types end */

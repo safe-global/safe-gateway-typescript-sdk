@@ -1,4 +1,11 @@
-import { TokenType, TransactionListItem, MultisigTransactionRequest, TransactionDetails } from './transactions'
+import {
+  MultisigTransactionRequest,
+  TokenType,
+  TransactionDetails,
+  TransactionListItem,
+  SafeTransactionEstimation,
+  SafeTransactionEstimationRequest,
+} from './transactions'
 
 export interface paths {
   '/chains/{chainId}/safes/{address}/': {
@@ -59,6 +66,16 @@ export interface paths {
       path: {
         chainId: string
         transactionId: string
+      }
+    }
+  }
+  '/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
+    /** This is actually supposed to be POST but it breaks our type paradise */
+    get: operations['post_safe_gas_estimation']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
       }
     }
   }
@@ -142,6 +159,7 @@ export interface definitions {
     metadata: { [key: string]: string }
   }
 
+  SafeTransactionEstimation: SafeTransactionEstimation
   TransactionListItem: TransactionListItem
   TransactionListPage: Page<TransactionListItem>
   TransactionDetails: TransactionDetails
@@ -273,6 +291,24 @@ export interface operations {
       }
     }
   }
+  post_safe_gas_estimation: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+      body: SafeTransactionEstimationRequest
+    }
+    responses: {
+      200: {
+        schema: definitions['SafeTransactionEstimation']
+      }
+      /** Safe not found */
+      404: unknown
+      /** Safe address checksum not valid */
+      422: unknown
+    }
+  }
   propose_transaction: {
     parameters: {
       path: {
@@ -300,7 +336,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: string[]
+        schema: { safes: string[] }
       }
     }
   }

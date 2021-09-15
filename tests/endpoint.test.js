@@ -14,11 +14,11 @@ jest.mock('../src/utils', () => {
 describe('callEndpoint', () => {
   it('should accept just a path', async () => {
     await expect(
-      callEndpoint('https://safe-client.staging.gnosisdev.com/v1', '/chains/100/balances/supported-fiat-codes'),
+      callEndpoint('https://safe-client.staging.gnosisdev.com/v1', '/balances/supported-fiat-codes'),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
-      'https://safe-client.staging.gnosisdev.com/v1/chains/100/balances/supported-fiat-codes',
+      'https://safe-client.staging.gnosisdev.com/v1/balances/supported-fiat-codes',
       undefined,
     )
   })

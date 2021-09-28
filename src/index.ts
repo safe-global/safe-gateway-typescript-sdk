@@ -1,5 +1,13 @@
 import { callEndpoint } from './endpoint'
-import { FiatCurrencies, operations, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo, TransactionListPage } from './types/gateway'
+import {
+  FiatCurrencies,
+  operations,
+  OwnedSafes,
+  SafeBalanceResponse,
+  SafeCollectibleResponse,
+  SafeInfo,
+  TransactionListPage,
+} from './types/gateway'
 import { SafeTransactionEstimation, TransactionDetails } from './types/transactions'
 export * from './types/transactions'
 export * as GatewayDefinitions from './types/gateway'
@@ -58,7 +66,12 @@ export function getCollectibles(
 /**
  * Get a list of past Safe transactions
  */
-export function getTransactionHistory(baseUrl: string, chainId: string, address: string, pageUrl?: string): Promise<TransactionListPage> {
+export function getTransactionHistory(
+  baseUrl: string,
+  chainId: string,
+  address: string,
+  pageUrl?: string,
+): Promise<TransactionListPage> {
   return callEndpoint(
     baseUrl,
     '/chains/{chainId}/safes/{safe_address}/transactions/history',
@@ -70,7 +83,12 @@ export function getTransactionHistory(baseUrl: string, chainId: string, address:
 /**
  * Get the list of pending transactions
  */
-export function getTransactionQueue(baseUrl: string, chainId: string, address: string, pageUrl?: string): Promise<TransactionListPage> {
+export function getTransactionQueue(
+  baseUrl: string,
+  chainId: string,
+  address: string,
+  pageUrl?: string,
+): Promise<TransactionListPage> {
   return callEndpoint(
     baseUrl,
     '/chains/{chainId}/safes/{safe_address}/transactions/queued',
@@ -82,7 +100,11 @@ export function getTransactionQueue(baseUrl: string, chainId: string, address: s
 /**
  * Get the details of an individual transaction by its id
  */
-export function getTransactionDetails(baseUrl: string, chainId: string, transactionId: string): Promise<TransactionDetails> {
+export function getTransactionDetails(
+  baseUrl: string,
+  chainId: string,
+  transactionId: string,
+): Promise<TransactionDetails> {
   return callEndpoint(baseUrl, '/chains/{chainId}/transactions/{transactionId}', {
     path: { chainId, transactionId },
   })

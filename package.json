@@ -40,7 +40,7 @@
     "build": "rm -rf dist && webpack --mode production",
     "prepare": "yarn build",
     "prettier": "prettier -w",
-    "test": "jest --watch",
+    "test": "jest --watch --coverage .",
     "test:ci": "jest --ci --coverage --json --watchAll=false --testLocationInResults --runInBand --testPathPattern=tests"
   },
   "husky": {

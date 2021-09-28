@@ -1,26 +1,22 @@
 # Safe Gateway TypeScript SDK
 [![npm](https://img.shields.io/npm/v/@gnosis.pm/safe-react-gateway-sdk?label=%40gnosis.pm%2Fsafe-react-gateway-sdk)](https://www.npmjs.com/package/@gnosis.pm/safe-react-gateway-sdk)
 
-A TypeScript SDK for the [Safe Gateway](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html).
+A TypeScript SDK for the [Safe Gateway](https://github.com/gnosis/safe-client-gateway)
 
-## Generating types
 
-To generate transaction-service types (which help a bit when typing the gateway), run the following command:
-
-```
-./scripts/make-transaction-service-types.sh
-```
-
-This will create a folder called `openapi` with an OpenAPI JSON and the corresponding TypeScript definitions.
+## Links
+* [Gateway API docs](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html)
+* [SDK typedoc](https://gnosis.github.io/safe-react-gateway-sdk/modules.html)
 
 ## Adding an endpoint
+Endpoint types are defined in `src/types/gateway.ts`.
 
-Endpoints are defined in `src/types/gateway.ts` and `src/index.ts`. Each endpoint consists of:
+Each endpoint consists of:
 
-- a path definition
-- operation definition (params and response types)
+- a function defined in `src/index.ts` (e.g. `getBalances`)
+- a path definition (e.g. `'/chains/{chainId}/safes/{address}/balances/{currency}/'`)
+- operation definition (e.g. `safes_balances_list`)
 - response definition
-- a function that fetches the endpoint
 
 To add a new endpoint, follow the pattern set by the existing endpoints.
 
@@ -34,8 +30,10 @@ yarn eslint:fix
 
 ## Tests
 
-To run the tests locally:
+To run the unit and e2e tests locally:
 
 ```
 yarn test
 ```
+
+N.B.: the e2e tests make actual API calls on staging.

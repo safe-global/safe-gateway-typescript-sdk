@@ -110,60 +110,58 @@ type Page<T> = {
   results: Array<T>
 }
 
-export interface definitions {
-  SafeAppInfo: {
-    address: StringValue
-    nonce: number
-    threshold: number
-    owners: StringValue[]
-    implementation: StringValue
-    modules: StringValue[]
-    guard: StringValue
-    fallbackHandler: StringValue
-    version: string
-    collectiblesTag: string
-    txQueuedTag: string
-    txHistoryTag: string
-  }
-
-  FiatCurrencies: string[]
-
-  TokenInfo: {
-    type: TokenType
-    address: string
-    decimals: number
-    symbol: string
-    name: string
-    logoUri: string | null
-  }
-  SafeBalanceResponse: {
-    fiatTotal: string
-    items: Array<{
-      tokenInfo: definitions['TokenInfo']
-      balance: string
-      fiatBalance: string
-      fiatConversion: string
-    }>
-  }
-
-  SafeCollectibleResponse: {
-    address: string
-    tokenName: string
-    tokenSymbol: string
-    logoUri: string
-    id: string
-    uri: string
-    name: string
-    description: string
-    imageUri: string
-    metadata: { [key: string]: string }
-  }
-
-  SafeTransactionEstimation: SafeTransactionEstimation
-  TransactionListItem: TransactionListItem
-  TransactionListPage: Page<TransactionListItem>
-  TransactionDetails: TransactionDetails
+export type SafeInfo = {
+  address: StringValue
+  nonce: number
+  threshold: number
+  owners: StringValue[]
+  implementation: StringValue
+  modules: StringValue[]
+  guard: StringValue
+  fallbackHandler: StringValue
+  version: string
+  collectiblesTag: string
+  txQueuedTag: string
+  txHistoryTag: string
 }
+
+export type FiatCurrencies = string[]
+
+export type OwnedSafes = { safes: string[] }
+
+export type TokenInfo = {
+  type: TokenType
+  address: string
+  decimals: number
+  symbol: string
+  name: string
+  logoUri: string | null
+}
+
+export type SafeBalanceResponse = {
+  fiatTotal: string
+  items: Array<{
+    tokenInfo: TokenInfo
+    balance: string
+    fiatBalance: string
+    fiatConversion: string
+  }>
+}
+
+export type SafeCollectibleResponse = {
+  address: string
+  tokenName: string
+  tokenSymbol: string
+  logoUri: string
+  id: string
+  uri: string
+  name: string
+  description: string
+  imageUri: string
+  metadata: { [key: string]: string }
+}
+
+export type TransactionListPage = Page<TransactionListItem>
 
 export interface operations {
   /** Get status of the safe */
@@ -176,7 +174,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['SafeAppInfo']
+        schema: SafeInfo
       }
       /** Safe not found */
       404: unknown
@@ -204,7 +202,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['SafeBalanceResponse']
+        schema: SafeBalanceResponse
       }
       /** Safe not found */
       404: unknown
@@ -216,7 +214,7 @@ export interface operations {
     parameters: null
     responses: {
       200: {
-        schema: definitions['FiatCurrencies']
+        schema: FiatCurrencies
       }
     }
   }
@@ -236,7 +234,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['SafeCollectibleResponse'][]
+        schema: SafeCollectibleResponse[]
       }
       /** Safe not found */
       404: unknown
@@ -257,7 +255,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['TransactionListPage']
+        schema: TransactionListPage
       }
     }
   }
@@ -274,7 +272,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['TransactionListPage']
+        schema: TransactionListPage
       }
     }
   }
@@ -287,7 +285,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['TransactionDetails']
+        schema: TransactionDetails
       }
     }
   }
@@ -301,7 +299,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['SafeTransactionEstimation']
+        schema: SafeTransactionEstimation
       }
       /** Safe not found */
       404: unknown
@@ -319,7 +317,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: definitions['TransactionDetails']
+        schema: TransactionDetails
       }
       /** Safe not found */
       404: unknown
@@ -336,7 +334,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: { safes: string[] }
+        schema: OwnedSafes
       }
     }
   }

@@ -3,10 +3,9 @@
 
 A TypeScript SDK for the [Safe Gateway](https://github.com/gnosis/safe-client-gateway)
 
-
 ## Links
 * [Gateway API docs](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html)
-* [SDK typedoc](https://gnosis.github.io/safe-react-gateway-sdk/modules.html)
+* [SDK typedoc](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances)
 
 ## Adding an endpoint
 Endpoint types are defined in `src/types/gateway.ts`.

@@ -7,6 +7,7 @@ describe('getSafeInfo tests', () => {
     const data = await getSafeInfo(config.baseUrl, '4', address)
 
     expect(data.address.value).toBe(address)
+    expect(data.chainId).toBe('4')
     expect(data.guard).toBe(null)
     // Nonce should match any positive integer number over 0
     expect(data.nonce).toBeGreaterThanOrEqual(0)

@@ -112,6 +112,7 @@ type Page<T> = {
 
 export type SafeInfo = {
   address: StringValue
+  chainId: string
   nonce: number
   threshold: number
   owners: StringValue[]

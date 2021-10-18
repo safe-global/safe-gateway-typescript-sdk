@@ -222,6 +222,14 @@ export type ConflictHeader = {
 
 export type TransactionListItem = Transaction | Label | ConflictHeader
 
+type Page<T> = {
+  next?: string
+  previous?: string
+  results: Array<T>
+}
+
+export type TransactionListPage = Page<TransactionListItem>
+
 export type MultisigTransactionRequest = {
   to: string
   value: string

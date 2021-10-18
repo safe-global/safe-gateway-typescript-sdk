@@ -1,16 +1,9 @@
 import { callEndpoint } from './endpoint'
-import {
-  FiatCurrencies,
-  operations,
-  OwnedSafes,
-  SafeBalanceResponse,
-  SafeCollectibleResponse,
-  SafeInfo,
-  TransactionListPage,
-} from './types/gateway'
-import { SafeTransactionEstimation, TransactionDetails } from './types/transactions'
+import { operations } from './types/api'
+import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
+import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
 export * from './types/transactions'
-export * as GatewayDefinitions from './types/gateway'
+export * from './types/common'
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 

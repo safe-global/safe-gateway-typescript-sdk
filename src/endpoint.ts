@@ -1,5 +1,5 @@
 import { fetchData, insertParams, stringifyQuery } from './utils'
-import { paths } from './types/gateway'
+import { paths } from './types/api'
 
 type Primitive = string | number | boolean | null
 

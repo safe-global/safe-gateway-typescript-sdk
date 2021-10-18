@@ -1,10 +1,10 @@
+import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './common'
 import {
   MultisigTransactionRequest,
-  TokenType,
   TransactionDetails,
-  TransactionListItem,
   SafeTransactionEstimation,
   SafeTransactionEstimationRequest,
+  TransactionListPage,
 } from './transactions'
 
 export interface paths {
@@ -99,70 +99,6 @@ export interface paths {
     }
   }
 }
-
-type StringValue = {
-  value: string
-}
-
-type Page<T> = {
-  next?: string
-  previous?: string
-  results: Array<T>
-}
-
-export type SafeInfo = {
-  address: StringValue
-  chainId: string
-  nonce: number
-  threshold: number
-  owners: StringValue[]
-  implementation: StringValue
-  modules: StringValue[]
-  guard: StringValue
-  fallbackHandler: StringValue
-  version: string
-  collectiblesTag: string
-  txQueuedTag: string
-  txHistoryTag: string
-}
-
-export type FiatCurrencies = string[]
-
-export type OwnedSafes = { safes: string[] }
-
-export type TokenInfo = {
-  type: TokenType
-  address: string
-  decimals: number
-  symbol: string
-  name: string
-  logoUri: string | null
-}
-
-export type SafeBalanceResponse = {
-  fiatTotal: string
-  items: Array<{
-    tokenInfo: TokenInfo
-    balance: string
-    fiatBalance: string
-    fiatConversion: string
-  }>
-}
-
-export type SafeCollectibleResponse = {
-  address: string
-  tokenName: string
-  tokenSymbol: string
-  logoUri: string
-  id: string
-  uri: string
-  name: string
-  description: string
-  imageUri: string
-  metadata: { [key: string]: string }
-}
-
-export type TransactionListPage = Page<TransactionListItem>
 
 export interface operations {
   /** Get status of the safe */

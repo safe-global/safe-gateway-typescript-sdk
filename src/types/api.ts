@@ -1,4 +1,12 @@
-import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './common'
+import { ChainConfig } from '..'
+import {
+  FiatCurrencies,
+  OwnedSafes,
+  SafeBalanceResponse,
+  SafeCollectibleResponse,
+  SafeInfo,
+  ChainsConfigResponse,
+} from './common'
 import {
   MultisigTransactionRequest,
   TransactionDetails,
@@ -95,6 +103,24 @@ export interface paths {
       path: {
         chainId: string
         address: string
+      }
+    }
+  }
+  '/chains/': {
+    get: operations['chains_list']
+    parameters: {
+      query: {
+        ordering?: string
+        limit?: number
+        offset?: number
+      }
+    }
+  }
+  '/chains/{chainId}/': {
+    get: operations['chains_read']
+    parameters: {
+      path: {
+        chainId: string
       }
     }
   }
@@ -272,6 +298,37 @@ export interface operations {
     responses: {
       200: {
         schema: OwnedSafes
+      }
+    }
+  }
+  chains_list: {
+    parameters: {
+      query?: {
+        /** Which field to use when ordering the results. */
+        ordering?: string
+        /** Number of results to return per page. */
+        limit?: number
+        /** The initial index from which to return the results. */
+        offset?: number
+      }
+    }
+    responses: {
+      200: {
+        schema: ChainsConfigResponse
+      }
+    }
+  }
+  chains_read: {
+    parameters: {
+      path: {
+        /** A unique value identifying this chain. */
+        // FIXME: chainId: number or string
+        chainId: number
+      }
+    }
+    responses: {
+      200: {
+        schema: ChainConfig
       }
     }
   }

@@ -136,7 +136,7 @@ export function proposeTransaction(
 }
 
 /**
- * Returns all defined chain config
+ * Returns all defined chain configs
  */
 export function getChainsConfig(
   baseUrl: string,

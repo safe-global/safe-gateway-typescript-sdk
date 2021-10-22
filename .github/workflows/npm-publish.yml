@@ -1,0 +1,42 @@
+name: NPM Package
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - run: npm install
+
+      - name: Extract version
+        run: |
+          OLD_VERSION=$(npm show @gnosis.pm/safe-react-gateway-sdk version)
+          NEW_VERSION=$(node -p 'require("./package.json").version')
+          if [ $NEW_VERSION != $OLD_VERSION ]; then
+            echo $NEW_VERSION > version.txt
+            echo "New version $NEW_VERSION detected"
+          else
+            echo "Version $OLD_VERSION hasn't changed, skipping the release"
+          fi
+
+      - name: Create a git tag
+        run: |
+          if [ -f version.txt ]; then
+            echo "Creating a git tag"
+            git tag $(cat version.txt)
+            git push --tags
+          fi
+
+      - name: Publish to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          if [ -f version.txt ]; then
+            echo "Publishing to NPM"
+            npm publish
+          fi

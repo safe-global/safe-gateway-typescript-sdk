@@ -1,16 +1,10 @@
 import { callEndpoint } from './endpoint'
 import { operations } from './types/api'
 import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
-import {
-  FiatCurrencies,
-  OwnedSafes,
-  SafeBalanceResponse,
-  SafeCollectibleResponse,
-  SafeInfo,
-  ChainsConfigResponse,
-  ChainConfig,
-} from './types/common'
+import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
+import { ChainListResponse, ChainConfig } from './types/chains'
 export * from './types/transactions'
+export * from './types/chains'
 export * from './types/common'
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
@@ -147,7 +141,7 @@ export function proposeTransaction(
 export function getChainsConfig(
   baseUrl: string,
   query?: operations['chains_list']['parameters']['query'],
-): Promise<ChainsConfigResponse> {
+): Promise<ChainListResponse> {
   return callEndpoint(baseUrl, '/chains/', {
     query,
   })
@@ -158,7 +152,7 @@ export function getChainsConfig(
  */
 export function getChainConfig(baseUrl: string, chainId: string): Promise<ChainConfig> {
   return callEndpoint(baseUrl, '/chains/{chainId}/', {
-    path: { chainId: +chainId },
+    path: { chainId: chainId },
   })
 }
 

@@ -1,12 +1,4 @@
-import { ChainConfig } from '..'
-import {
-  FiatCurrencies,
-  OwnedSafes,
-  SafeBalanceResponse,
-  SafeCollectibleResponse,
-  SafeInfo,
-  ChainsConfigResponse,
-} from './common'
+import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './common'
 import {
   MultisigTransactionRequest,
   TransactionDetails,
@@ -14,6 +6,7 @@ import {
   SafeTransactionEstimationRequest,
   TransactionListPage,
 } from './transactions'
+import { ChainListResponse, ChainConfig } from './chains'
 
 export interface paths {
   '/chains/{chainId}/safes/{address}/': {
@@ -314,7 +307,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: ChainsConfigResponse
+        schema: ChainListResponse
       }
     }
   }
@@ -322,8 +315,7 @@ export interface operations {
     parameters: {
       path: {
         /** A unique value identifying this chain. */
-        // FIXME: chainId: number or string
-        chainId: number
+        chainId: string
       }
     }
     responses: {

@@ -11,8 +11,6 @@ describe('getChainsConfig & getChainConfig tests', () => {
       const chainConfig = await getChainsConfig(config.baseUrl)
 
       expect(chainConfig.results).toBe
-      // FIXME: it seems that count prop is not present in the response
-      // expect(chainConfig.count).toBe(chainConfig.results.length)
       expect(chainConfig.results).toBeDefined()
 
       // mainnet config should be present
@@ -47,9 +45,10 @@ describe('getChainsConfig & getChainConfig tests', () => {
       expect(currency.decimals).toBe(18)
       expect(currency.logoUri).toBeDefined()
 
-      expect(mainnetConfig.ensRegistryAddress).toBeDefined()
-      // FIXME: it seems that recommendedMasterCopyVersion prop is not present in the response
-      // expect(mainnetConfig.recommendedMasterCopyVersion).toBeDefined()
+      // gas price should be defined and contains an Oracle type
+      expect(mainnetConfig.gasPrice).toBeDefined()
+      const containsOracleGasPriceType = mainnetConfig.gasPrice.some(({ type }) => type === 'ORACLE')
+      expect(containsOracleGasPriceType).toBe(true)
     })
 
     it('Returns Rinkeby config', async () => {
@@ -68,10 +67,6 @@ describe('getChainsConfig & getChainConfig tests', () => {
       expect(currency.symbol).toBe('ETH')
       expect(currency.decimals).toBe(18)
       expect(currency.logoUri).toBeDefined()
-
-      expect(rinkebyConfig.ensRegistryAddress).toBeDefined()
-      // FIXME: it seems that recommendedMasterCopyVersion prop is not present in the response
-      // expect(rinkebyConfig.recommendedMasterCopyVersion).toBeDefined()
     })
 
     it('Returns Polygon config', async () => {
@@ -90,10 +85,6 @@ describe('getChainsConfig & getChainConfig tests', () => {
       expect(currency.symbol).toBe('MATIC')
       expect(currency.decimals).toBe(18)
       expect(currency.logoUri).toBeDefined()
-
-      // FIXME: it seems that ensRegistryAddress and recommendedMasterCopyVersion prop is not present in the response
-      // expect(polygonConfig.ensRegistryAddress).toBeDefined()
-      // expect(polygonConfig.recommendedMasterCopyVersion).toBeDefined()
     })
   })
 })

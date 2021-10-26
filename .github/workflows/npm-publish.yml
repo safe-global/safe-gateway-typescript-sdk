@@ -34,7 +34,7 @@ jobs:
 
       - name: Publish to NPM
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
         run: |
           if [ -f version.txt ]; then
             echo "Publishing to NPM"

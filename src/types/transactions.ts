@@ -303,6 +303,7 @@ export type MultisigExecutionDetails = {
 export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDetails
 
 export type TransactionDetails = {
+  txId: string
   executedAt: number | null
   txStatus: TransactionStatus
   txInfo: TransactionInfo

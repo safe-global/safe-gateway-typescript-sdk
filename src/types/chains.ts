@@ -81,7 +81,7 @@ export enum WALLETS {
 }
 
 // https://gnosis.github.io/safe-client-gateway/docs/routes/chains/models/struct.ChainInfo.html
-export type ChainConfig = {
+export type ChainInfo = {
   transactionService: string
   chainId: ETHEREUM_NETWORK
   chainName: string
@@ -101,5 +101,5 @@ export type ChainConfig = {
 export type ChainListResponse = {
   next: string | null
   previous: string | null
-  results: ChainConfig[]
+  results: ChainInfo[]
 }

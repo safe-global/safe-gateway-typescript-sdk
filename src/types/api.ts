@@ -6,7 +6,7 @@ import {
   SafeTransactionEstimationRequest,
   TransactionListPage,
 } from './transactions'
-import { ChainListResponse, ChainConfig } from './chains'
+import { ChainListResponse, ChainInfo } from './chains'
 
 export interface paths {
   '/chains/{chainId}/safes/{address}/': {
@@ -320,7 +320,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: ChainConfig
+        schema: ChainInfo
       }
     }
   }

@@ -1,18 +1,27 @@
-export type BaseRpcUri = {
-  authentication?: string
-  value?: string
+import { ETHEREUM_NETWORK, SHORT_NAME } from './networks'
+
+export enum RPC_AUTHENTICATION {
+  API_KEY_PATH = 'API_KEY_PATH',
+  NO_AUTHENTICATION = 'NO_AUTHENTICATION',
+  UNKNOWN = 'UNKNOWN',
+}
+
+export type RpcUri = {
+  authentication: RPC_AUTHENTICATION
+  value: string
 }
 
 export type BlockExplorerUriTemplate = {
   address: string
   txHash: string
+  api: string
 }
 
-export type Currency = {
+export type NativeCurrency = {
   name: string
   symbol: string
   decimals: number
-  logoUri?: string
+  logoUri: string
 }
 
 export type Theme = {
@@ -20,35 +29,73 @@ export type Theme = {
   backgroundColor: string
 }
 
+export enum GAS_PRICE_TYPE {
+  ORACLE = 'ORACLE',
+  FIXED = 'FIXED',
+  UNKNOWN = 'UNKNOWN',
+}
+
 export type GasPriceOracle = {
-  type: 'ORACLE'
+  type: GAS_PRICE_TYPE.ORACLE
   uri: string
   gasParameter: string
   gweiFactor: string
 }
 
 export type GasPriceFixed = {
-  type: 'FIXED'
+  type: GAS_PRICE_TYPE.FIXED
   weiValue: string
 }
 
-export type GasPrices = (GasPriceOracle | GasPriceFixed)[]
+export type GasPriceUnknown = {
+  type: GAS_PRICE_TYPE.UNKNOWN
+}
+
+export type GasPrice = (GasPriceOracle | GasPriceFixed | GasPriceUnknown)[]
+
+export enum FEATURES {
+  ERC721 = 'ERC721',
+  ERC1155 = 'ERC1155',
+  SAFE_APPS = 'SAFE_APPS',
+  CONTRACT_INTERACTION = 'CONTRACT_INTERACTION',
+  DOMAIN_LOOKUP = 'DOMAIN_LOOKUP',
+  SPENDING_LIMIT = 'SPENDING_LIMIT',
+}
+
+export enum WALLETS {
+  METAMASK = 'metamask',
+  WALLET_CONNECT = 'walletConnect',
+  TREZOR = 'trezor',
+  LEDGER = 'ledger',
+  TRUST = 'trust',
+  FORTMATIC = 'fortmatic',
+  PORTIS = 'portis',
+  AUTHEREUM = 'authereum',
+  TORUS = 'torus',
+  COINBASE = 'coinbase',
+  WALLET_LINK = 'walletLink',
+  OPERA = 'opera',
+  OPERA_TOUCH = 'operaTouch',
+  LATTICE = 'lattice',
+  KEYSTONE = 'keystone',
+}
 
 export type ChainConfig = {
-  chainId: string
+  transactionService: string
+  chainId: ETHEREUM_NETWORK
   chainName: string
-  shortName: string
-  description?: string
+  shortName: SHORT_NAME
   l2: boolean
-  rpcUri?: BaseRpcUri
-  safeAppsRpcUri?: BaseRpcUri
-  blockExplorerUriTemplate?: BlockExplorerUriTemplate
-  nativeCurrency?: Currency
-  transactionService?: string
-  vpcTransactionService: string
-  theme?: Theme
-  gasPrice?: GasPrices
-  ensRegistryAddress?: string
+  description: string
+  rpcUri: RpcUri
+  safeAppsRpcUri?: RpcUri
+  blockExplorerUriTemplate: BlockExplorerUriTemplate
+  nativeCurrency: NativeCurrency
+  theme: Theme
+  ensRegistryAddress: string
+  gasPrice: GasPrice
+  disabledWallets: WALLETS[]
+  features: FEATURES[]
 }
 
 export type ChainListResponse = {

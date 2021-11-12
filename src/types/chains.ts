@@ -99,7 +99,7 @@ export type ChainConfig = {
 }
 
 export type ChainListResponse = {
-  next?: string
-  previous?: string
+  next: string | null
+  previous: string | null
   results: ChainConfig[]
 }

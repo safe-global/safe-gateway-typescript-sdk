@@ -2,7 +2,7 @@ import { callEndpoint } from './endpoint'
 import { operations } from './types/api'
 import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
 import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
-import { ChainListResponse, ChainConfig } from './types/chains'
+import { ChainListResponse, ChainInfo } from './types/chains'
 export * from './types/transactions'
 export * from './types/chains'
 export * from './types/common'
@@ -150,7 +150,7 @@ export function getChainsConfig(
 /**
  * Returns a chain config
  */
-export function getChainConfig(baseUrl: string, chainId: string): Promise<ChainConfig> {
+export function getChainConfig(baseUrl: string, chainId: string): Promise<ChainInfo> {
   return callEndpoint(baseUrl, '/chains/{chainId}/', {
     path: { chainId: chainId },
   })

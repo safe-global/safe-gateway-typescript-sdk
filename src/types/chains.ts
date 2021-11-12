@@ -1,18 +1,25 @@
-export type BaseRpcUri = {
-  authentication?: string
-  value?: string
+export enum RPC_AUTHENTICATION {
+  API_KEY_PATH = 'API_KEY_PATH',
+  NO_AUTHENTICATION = 'NO_AUTHENTICATION',
+  UNKNOWN = 'UNKNOWN',
+}
+
+export type RpcUri = {
+  authentication: RPC_AUTHENTICATION
+  value: string
 }
 
 export type BlockExplorerUriTemplate = {
   address: string
   txHash: string
+  api: string
 }
 
-export type Currency = {
+export type NativeCurrency = {
   name: string
   symbol: string
   decimals: number
-  logoUri?: string
+  logoUri: string
 }
 
 export type Theme = {
@@ -20,39 +27,60 @@ export type Theme = {
   backgroundColor: string
 }
 
+export enum GAS_PRICE_TYPE {
+  ORACLE = 'ORACLE',
+  FIXED = 'FIXED',
+  UNKNOWN = 'UNKNOWN',
+}
+
 export type GasPriceOracle = {
-  type: 'ORACLE'
+  type: GAS_PRICE_TYPE.ORACLE
   uri: string
   gasParameter: string
   gweiFactor: string
 }
 
 export type GasPriceFixed = {
-  type: 'FIXED'
+  type: GAS_PRICE_TYPE.FIXED
   weiValue: string
 }
 
-export type GasPrices = (GasPriceOracle | GasPriceFixed)[]
+export type GasPriceUnknown = {
+  type: GAS_PRICE_TYPE.UNKNOWN
+}
 
-export type ChainConfig = {
-  chainId: string
+export type GasPrice = (GasPriceOracle | GasPriceFixed | GasPriceUnknown)[]
+
+export enum FEATURES {
+  ERC721 = 'ERC721',
+  ERC1155 = 'ERC1155',
+  SAFE_APPS = 'SAFE_APPS',
+  CONTRACT_INTERACTION = 'CONTRACT_INTERACTION',
+  DOMAIN_LOOKUP = 'DOMAIN_LOOKUP',
+  SPENDING_LIMIT = 'SPENDING_LIMIT',
+}
+
+// Remain agnostic as possible and reference what is returned in the CGW, i.e.
+// https://gnosis.github.io/safe-client-gateway/docs/routes/chains/models/struct.ChainInfo.html
+export type ChainInfo = {
+  transactionService: string
+  chainId: string // Restricted by what is returned by the CGW
   chainName: string
   shortName: string
-  description?: string
   l2: boolean
-  rpcUri?: BaseRpcUri
-  safeAppsRpcUri?: BaseRpcUri
-  blockExplorerUriTemplate?: BlockExplorerUriTemplate
-  nativeCurrency?: Currency
-  transactionService?: string
-  vpcTransactionService: string
-  theme?: Theme
-  gasPrice?: GasPrices
+  description: string
+  rpcUri: RpcUri
+  blockExplorerUriTemplate: BlockExplorerUriTemplate
+  nativeCurrency: NativeCurrency
+  theme: Theme
   ensRegistryAddress?: string
+  gasPrice: GasPrice
+  disabledWallets: string[]
+  features: FEATURES[]
 }
 
 export type ChainListResponse = {
-  next?: string
-  previous?: string
-  results: ChainConfig[]
+  next: string | null
+  previous: string | null
+  results: ChainInfo[]
 }

@@ -80,6 +80,7 @@ export enum WALLETS {
   KEYSTONE = 'keystone',
 }
 
+// https://gnosis.github.io/safe-client-gateway/docs/routes/chains/models/struct.ChainInfo.html
 export type ChainConfig = {
   transactionService: string
   chainId: ETHEREUM_NETWORK
@@ -88,11 +89,10 @@ export type ChainConfig = {
   l2: boolean
   description: string
   rpcUri: RpcUri
-  safeAppsRpcUri?: RpcUri
   blockExplorerUriTemplate: BlockExplorerUriTemplate
   nativeCurrency: NativeCurrency
   theme: Theme
-  ensRegistryAddress: string
+  ensRegistryAddress?: string
   gasPrice: GasPrice
   disabledWallets: WALLETS[]
   features: FEATURES[]

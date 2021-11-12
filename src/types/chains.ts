@@ -51,10 +51,20 @@ export type GasPriceUnknown = {
 
 export type GasPrice = (GasPriceOracle | GasPriceFixed | GasPriceUnknown)[]
 
+export enum FEATURES {
+  ERC721 = 'ERC721',
+  ERC1155 = 'ERC1155',
+  SAFE_APPS = 'SAFE_APPS',
+  CONTRACT_INTERACTION = 'CONTRACT_INTERACTION',
+  DOMAIN_LOOKUP = 'DOMAIN_LOOKUP',
+  SPENDING_LIMIT = 'SPENDING_LIMIT',
+}
+
+// Remain agnostic as possible and reference what is returned in the CGW, i.e.
 // https://gnosis.github.io/safe-client-gateway/docs/routes/chains/models/struct.ChainInfo.html
 export type ChainInfo = {
   transactionService: string
-  chainId: string
+  chainId: string // Restricted by what is returned by the CGW
   chainName: string
   shortName: string
   l2: boolean
@@ -66,7 +76,7 @@ export type ChainInfo = {
   ensRegistryAddress?: string
   gasPrice: GasPrice
   disabledWallets: string[]
-  features: string[]
+  features: FEATURES[]
 }
 
 export type ChainListResponse = {

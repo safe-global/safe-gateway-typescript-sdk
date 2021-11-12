@@ -1,5 +1,3 @@
-import { ETHEREUM_NETWORK, SHORT_NAME } from './networks'
-
 export enum RPC_AUTHENTICATION {
   API_KEY_PATH = 'API_KEY_PATH',
   NO_AUTHENTICATION = 'NO_AUTHENTICATION',
@@ -53,39 +51,12 @@ export type GasPriceUnknown = {
 
 export type GasPrice = (GasPriceOracle | GasPriceFixed | GasPriceUnknown)[]
 
-export enum FEATURES {
-  ERC721 = 'ERC721',
-  ERC1155 = 'ERC1155',
-  SAFE_APPS = 'SAFE_APPS',
-  CONTRACT_INTERACTION = 'CONTRACT_INTERACTION',
-  DOMAIN_LOOKUP = 'DOMAIN_LOOKUP',
-  SPENDING_LIMIT = 'SPENDING_LIMIT',
-}
-
-export enum WALLETS {
-  METAMASK = 'metamask',
-  WALLET_CONNECT = 'walletConnect',
-  TREZOR = 'trezor',
-  LEDGER = 'ledger',
-  TRUST = 'trust',
-  FORTMATIC = 'fortmatic',
-  PORTIS = 'portis',
-  AUTHEREUM = 'authereum',
-  TORUS = 'torus',
-  COINBASE = 'coinbase',
-  WALLET_LINK = 'walletLink',
-  OPERA = 'opera',
-  OPERA_TOUCH = 'operaTouch',
-  LATTICE = 'lattice',
-  KEYSTONE = 'keystone',
-}
-
 // https://gnosis.github.io/safe-client-gateway/docs/routes/chains/models/struct.ChainInfo.html
 export type ChainInfo = {
   transactionService: string
-  chainId: ETHEREUM_NETWORK
+  chainId: string
   chainName: string
-  shortName: SHORT_NAME
+  shortName: string
   l2: boolean
   description: string
   rpcUri: RpcUri
@@ -94,8 +65,8 @@ export type ChainInfo = {
   theme: Theme
   ensRegistryAddress?: string
   gasPrice: GasPrice
-  disabledWallets: WALLETS[]
-  features: FEATURES[]
+  disabledWallets: string[]
+  features: string[]
 }
 
 export type ChainListResponse = {

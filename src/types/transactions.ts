@@ -206,6 +206,7 @@ export type TransactionSummary = {
 export type Transaction = {
   transaction: TransactionSummary
   conflictType: 'None' | 'HasNext' | 'End'
+  type: 'TRANSACTION'
 }
 
 export type DateLabel = {

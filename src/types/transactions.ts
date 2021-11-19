@@ -206,18 +206,22 @@ export type TransactionSummary = {
 export type Transaction = {
   transaction: TransactionSummary
   conflictType: 'None' | 'HasNext' | 'End'
+  type: 'TRANSACTION'
 }
 
 export type DateLabel = {
   timestamp: number
+  type: 'DATE_LABEL'
 }
 
 export type Label = {
   label: string
+  type: 'LABEL'
 }
 
 export type ConflictHeader = {
   nonce: number
+  type: 'CONFLICT_HEADER'
 }
 
 export type TransactionListItem = Transaction | Label | ConflictHeader

@@ -58,6 +58,7 @@ export enum FEATURES {
   CONTRACT_INTERACTION = 'CONTRACT_INTERACTION',
   DOMAIN_LOOKUP = 'DOMAIN_LOOKUP',
   SPENDING_LIMIT = 'SPENDING_LIMIT',
+  SAFE_TX_GAS_OPTIONAL = 'SAFE_TX_GAS_OPTIONAL',
 }
 
 // Remain agnostic as possible and reference what is returned in the CGW, i.e.

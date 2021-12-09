@@ -1,4 +1,4 @@
-name: NPM Package
+name: Release
 
 on:
   push:
@@ -14,8 +14,6 @@ jobs:
         with:
           fetch-depth: 0
 
-      - run: npm install
-
       - name: Extract version
         id: version
         run: |
@@ -30,17 +28,14 @@ jobs:
             exit 1
           fi
 
-      - name: Publish to NPM
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-
       - name: Create a git tag
+        if: success()
         run: git tag $NEW_VERSION && git push --tags
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
 
       - name: GitHub release
+        if: success()
         uses: actions/create-release@v1
         id: create_release
         with:

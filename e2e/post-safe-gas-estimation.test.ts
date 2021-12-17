@@ -10,7 +10,7 @@ describe('postSafeGasEstimation tests', () => {
       operation: 0,
     })
 
-    expect(result.safeTxGas).toBe('43663')
+    expect(result.safeTxGas).toBe('45006')
     // Nonce should match any positive integer number over 0
     expect(result.latestNonce).toBeGreaterThanOrEqual(0)
   })

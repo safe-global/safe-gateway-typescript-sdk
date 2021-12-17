@@ -7,6 +7,7 @@ import {
   TransactionListPage,
 } from './transactions'
 import { ChainListResponse, ChainInfo } from './chains'
+import { SafeAppsResponse } from './safe-apps'
 
 export interface paths {
   '/chains/{chainId}/safes/{address}/': {
@@ -111,6 +112,14 @@ export interface paths {
   }
   '/chains/{chainId}/': {
     get: operations['chains_read']
+    parameters: {
+      path: {
+        chainId: string
+      }
+    }
+  }
+  '/chains/{chainId}/safe-apps': {
+    get: operations['safe_apps_read']
     parameters: {
       path: {
         chainId: string
@@ -321,6 +330,19 @@ export interface operations {
     responses: {
       200: {
         schema: ChainInfo
+      }
+    }
+  }
+  safe_apps_read: {
+    parameters: {
+      path: {
+        /** A unique value identifying this chain. */
+        chainId: string
+      }
+    }
+    responses: {
+      200: {
+        schema: SafeAppsResponse
       }
     }
   }

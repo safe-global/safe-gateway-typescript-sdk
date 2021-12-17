@@ -1,7 +1,7 @@
 import { getOwnedSafes } from '../src'
 import config from './config'
 
-describe('getOwnedSages tests', () => {
+describe('getOwnedSafes tests', () => {
   it('should get owned safes on rinkeby', async () => {
     const data = await getOwnedSafes(config.baseUrl, '4', '0x661E1CF4aAAf6a95C89EA8c81D120E6c62adDFf9')
 
@@ -18,6 +18,6 @@ describe('getOwnedSages tests', () => {
 
   it('should throw for bad addresses', async () => {
     const req = getOwnedSafes(config.baseUrl, '4', '0x661E1CF4aAAf6a95C89EA8c81D120E6c62adDfF9')
-    await expect(req).rejects.toThrow('1: Checksum address validation failed')
+    await expect(req).rejects.toThrow(/Checksum address validation failed/)
   })
 })

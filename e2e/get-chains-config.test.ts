@@ -33,7 +33,7 @@ describe('getChainsConfig & getChainConfig tests', () => {
 
       expect(mainnetConfig).toBeDefined()
       expect(mainnetConfig.chainId).toBe(mainnetChainId)
-      expect(mainnetConfig.chainName).toBe('Mainnet')
+      expect(mainnetConfig.chainName).toBe('Ethereum')
       expect(mainnetConfig.shortName).toBe('eth')
       expect(mainnetConfig.l2).toBe(false)
 

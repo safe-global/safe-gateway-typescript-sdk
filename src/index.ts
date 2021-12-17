@@ -3,6 +3,8 @@ import { operations } from './types/api'
 import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
 import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
 import { ChainListResponse, ChainInfo } from './types/chains'
+import { SafeAppsResponse } from './types/safe-apps'
+export * from './types/safe-apps'
 export * from './types/transactions'
 export * from './types/chains'
 export * from './types/common'
@@ -152,6 +154,15 @@ export function getChainsConfig(
  */
 export function getChainConfig(baseUrl: string, chainId: string): Promise<ChainInfo> {
   return callEndpoint(baseUrl, '/chains/{chainId}/', {
+    path: { chainId: chainId },
+  })
+}
+
+/**
+ * Returns Safe Apps List
+ */
+export function getSafeApps(baseUrl: string, chainId: string): Promise<SafeAppsResponse> {
+  return callEndpoint(baseUrl, '/chains/{chainId}/safe-apps', {
     path: { chainId: chainId },
   })
 }

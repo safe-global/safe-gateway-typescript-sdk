@@ -1,4 +1,6 @@
 import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './common'
+import { MasterCopyReponse } from './master-copies'
+import { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import {
   MultisigTransactionRequest,
   TransactionDetails,
@@ -120,6 +122,22 @@ export interface paths {
   }
   '/chains/{chainId}/safe-apps': {
     get: operations['safe_apps_read']
+    parameters: {
+      path: {
+        chainId: string
+      }
+    }
+  }
+  '/chains/{chainId}/about/master-copies': {
+    get: operations['master_copies']
+    parameters: {
+      path: {
+        chainId: string
+      }
+    }
+  }
+  '/chains/{chainId}/data-decoder': {
+    get: operations['data_decoder']
     parameters: {
       path: {
         chainId: string
@@ -343,6 +361,33 @@ export interface operations {
     responses: {
       200: {
         schema: SafeAppsResponse
+      }
+    }
+  }
+  master_copies: {
+    parameters: {
+      path: {
+        /** A unique value identifying this chain. */
+        chainId: string
+      }
+    }
+    responses: {
+      200: {
+        schema: MasterCopyReponse
+      }
+    }
+  }
+  data_decoder: {
+    parameters: {
+      path: {
+        /** A unique value identifying this chain. */
+        chainId: string
+      }
+      body: DecodedDataRequest
+    }
+    responses: {
+      200: {
+        schema: DecodedDataResponse
       }
     }
   }

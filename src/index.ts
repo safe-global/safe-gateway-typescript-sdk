@@ -2,8 +2,10 @@ import { callEndpoint } from './endpoint'
 import { operations } from './types/api'
 import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
 import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
+import { MasterCopyReponse } from './types/master-copies'
 import { ChainListResponse, ChainInfo } from './types/chains'
 import { SafeAppsResponse } from './types/safe-apps'
+import { DecodedDataResponse } from './types/decoded-data'
 export * from './types/safe-apps'
 export * from './types/transactions'
 export * from './types/chains'
@@ -167,4 +169,26 @@ export function getSafeApps(baseUrl: string, chainId: string): Promise<SafeAppsR
   })
 }
 
+/**
+ * Returns List of Master Copies
+ */
+export function getMasterCopies(baseUrl: string, chainId: string): Promise<MasterCopyReponse> {
+  return callEndpoint(baseUrl, '/chains/{chainId}/about/master-copies', {
+    path: { chainId: chainId },
+  })
+}
+
+/**
+ * Returns decoded data
+ */
+export function getDecodedData(
+  baseUrl: string,
+  chainId: string,
+  body: operations['decoded_data']['parameters']['body'],
+): Promise<DecodedDataResponse> {
+  return callEndpoint(baseUrl, '/chains/{chainId}/data-decoder', {
+    path: { chainId },
+    body,
+  })
+}
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

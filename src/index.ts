@@ -10,6 +10,8 @@ export * from './types/safe-apps'
 export * from './types/transactions'
 export * from './types/chains'
 export * from './types/common'
+export * from './types/master-copies'
+export * from './types/decoded-data'
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 

@@ -175,13 +175,11 @@ export function getMasterCopies(baseUrl: string, chainId: string): Promise<Maste
 /**
  * Returns decoded data
  */
-export function getDecodedData(
-  baseUrl: string,
-  chainId: string,
-  body: DecodedDataRequest,
-): Promise<DecodedDataResponse> {
+export function getDecodedData(baseUrl: string, chainId: string, encodedData: string): Promise<DecodedDataResponse> {
   return callEndpoint(`${baseUrl}/chains/${chainId}/data-decoder`, {
-    body,
+    body: {
+      data: encodedData,
+    },
   })
 }
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

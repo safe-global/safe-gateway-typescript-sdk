@@ -1,3 +1,7 @@
+export type DecodedDataRequest = {
+  data: string
+}
+
 export type DecodedDataBasicParameter = {
   name: string
   type: string

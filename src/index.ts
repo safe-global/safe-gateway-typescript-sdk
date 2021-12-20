@@ -1,15 +1,10 @@
 import { callEndpoint } from './endpoint'
-import {
-  MultisigTransactionRequest,
-  SafeTransactionEstimation,
-  SafeTransactionEstimationRequest,
-  TransactionDetails,
-  TransactionListPage,
-} from './types/transactions'
+import { operations } from './types/api'
+import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
 import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
-import { MasterCopyReponse } from './types/master-copies'
 import { ChainListResponse, ChainInfo } from './types/chains'
 import { SafeAppsResponse } from './types/safe-apps'
+import { MasterCopyReponse } from './types/master-copies'
 import { DecodedDataResponse } from './types/decoded-data'
 export * from './types/safe-apps'
 export * from './types/transactions'
@@ -22,7 +17,7 @@ export * from './types/common'
  * Get basic information about a Safe. E.g. owners, modules, version etc
  */
 export function getSafeInfo(baseUrl: string, chainId: string, address: string): Promise<SafeInfo> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/safes/${address}/`)
+  return callEndpoint(baseUrl, '/chains/{chainId}/safes/{address}/', { path: { chainId, address } })
 }
 
 /**
@@ -33,12 +28,10 @@ export function getBalances(
   chainId: string,
   address: string,
   currency = 'usd',
-  query: {
-    trusted?: boolean // Return trusted tokens
-    exclude_spam?: boolean // Return spam tokens
-  } = {},
+  query: operations['safes_balances_list']['parameters']['query'] = {},
 ): Promise<SafeBalanceResponse> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/safes/${address}/balances/${currency}/`, {
+  return callEndpoint(baseUrl, '/chains/{chainId}/safes/{address}/balances/{currency}/', {
+    path: { chainId, address, currency },
     query,
   })
 }
@@ -47,14 +40,14 @@ export function getBalances(
  * Get a list of supported fiat currencies (e.g. USD, EUR etc)
  */
 export function getFiatCurrencies(baseUrl: string): Promise<FiatCurrencies> {
-  return callEndpoint(`${baseUrl}/balances/supported-fiat-codes`)
+  return callEndpoint(baseUrl, '/balances/supported-fiat-codes')
 }
 
 /**
  * Get the addresses of all Safes belonging to an owner
  */
 export function getOwnedSafes(baseUrl: string, chainId: string, address: string): Promise<OwnedSafes> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/owners/${address}/safes`)
+  return callEndpoint(baseUrl, '/chains/{chainId}/owners/{address}/safes', { path: { chainId, address } })
 }
 
 /**
@@ -64,12 +57,9 @@ export function getCollectibles(
   baseUrl: string,
   chainId: string,
   address: string,
-  query: {
-    trusted?: boolean // Return trusted tokens
-    exclude_spam?: boolean // Return spam tokens
-  } = {},
+  query: operations['safes_collectibles_list']['parameters']['query'] = {},
 ): Promise<SafeCollectibleResponse[]> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/safes/${address}/collectibles/`, { query })
+  return callEndpoint(baseUrl, '/chains/{chainId}/safes/{address}/collectibles/', { path: { chainId, address }, query })
 }
 
 /**
@@ -78,10 +68,15 @@ export function getCollectibles(
 export function getTransactionHistory(
   baseUrl: string,
   chainId: string,
-  safeAddress: string,
+  address: string,
   pageUrl?: string,
 ): Promise<TransactionListPage> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/safes/${safeAddress}/transactions/history`, undefined, pageUrl)
+  return callEndpoint(
+    baseUrl,
+    '/chains/{chainId}/safes/{safe_address}/transactions/history',
+    { path: { chainId, safe_address: address }, query: {} },
+    pageUrl,
+  )
 }
 
 /**
@@ -90,10 +85,15 @@ export function getTransactionHistory(
 export function getTransactionQueue(
   baseUrl: string,
   chainId: string,
-  safeAddress: string,
+  address: string,
   pageUrl?: string,
 ): Promise<TransactionListPage> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/safes/${safeAddress}/transactions/queued`, undefined, pageUrl)
+  return callEndpoint(
+    baseUrl,
+    '/chains/{chainId}/safes/{safe_address}/transactions/queued',
+    { path: { chainId, safe_address: address }, query: {} },
+    pageUrl,
+  )
 }
 
 /**
@@ -104,7 +104,9 @@ export function getTransactionDetails(
   chainId: string,
   transactionId: string,
 ): Promise<TransactionDetails> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/transactions/${transactionId}`)
+  return callEndpoint(baseUrl, '/chains/{chainId}/transactions/{transactionId}', {
+    path: { chainId, transactionId },
+  })
 }
 
 /**
@@ -113,10 +115,11 @@ export function getTransactionDetails(
 export function postSafeGasEstimation(
   baseUrl: string,
   chainId: string,
-  safeAddress: string,
-  body: SafeTransactionEstimationRequest,
+  address: string,
+  body: operations['post_safe_gas_estimation']['parameters']['body'],
 ): Promise<SafeTransactionEstimation> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/safes/${safeAddress}/multisig-transactions/estimations`, {
+  return callEndpoint(baseUrl, '/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations', {
+    path: { chainId, safe_address: address },
     body,
   })
 }
@@ -127,10 +130,11 @@ export function postSafeGasEstimation(
 export function proposeTransaction(
   baseUrl: string,
   chainId: string,
-  safeAddress: string,
-  body: MultisigTransactionRequest,
+  address: string,
+  body: operations['propose_transaction']['parameters']['body'],
 ): Promise<TransactionDetails> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/transactions/${safeAddress}/propose`, {
+  return callEndpoint(baseUrl, '/chains/{chainId}/transactions/{safe_address}/propose', {
+    path: { chainId, safe_address: address },
     body,
   })
 }
@@ -140,13 +144,9 @@ export function proposeTransaction(
  */
 export function getChainsConfig(
   baseUrl: string,
-  query?: {
-    ordering?: string
-    limit?: number
-    offset?: number
-  },
+  query?: operations['chains_list']['parameters']['query'],
 ): Promise<ChainListResponse> {
-  return callEndpoint(`${baseUrl}/chains/`, {
+  return callEndpoint(baseUrl, '/chains/', {
     query,
   })
 }
@@ -155,31 +155,40 @@ export function getChainsConfig(
  * Returns a chain config
  */
 export function getChainConfig(baseUrl: string, chainId: string): Promise<ChainInfo> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/`)
+  return callEndpoint(baseUrl, '/chains/{chainId}/', {
+    path: { chainId: chainId },
+  })
 }
 
 /**
  * Returns Safe Apps List
  */
 export function getSafeApps(baseUrl: string, chainId: string): Promise<SafeAppsResponse> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/safe-apps`)
+  return callEndpoint(baseUrl, '/chains/{chainId}/safe-apps', {
+    path: { chainId: chainId },
+  })
 }
 
 /**
- * Returns List of Master Copies
+ * Returns list of Master Copies
  */
 export function getMasterCopies(baseUrl: string, chainId: string): Promise<MasterCopyReponse> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/about/master-copies`)
+  return callEndpoint(baseUrl, '/chains/{chainId}/about/master-copies', {
+    path: { chainId: chainId },
+  })
 }
 
 /**
  * Returns decoded data
  */
-export function getDecodedData(baseUrl: string, chainId: string, encodedData: string): Promise<DecodedDataResponse> {
-  return callEndpoint(`${baseUrl}/chains/${chainId}/data-decoder`, {
-    body: {
-      data: encodedData,
-    },
+export function getDecodedData(
+  baseUrl: string,
+  chainId: string,
+  encodedData: operations['data_decoder']['parameters']['body']['data'],
+): Promise<DecodedDataResponse> {
+  return callEndpoint(baseUrl, '/chains/{chainId}/data-decoder', {
+    path: { chainId: chainId },
+    body: { data: encodedData },
   })
 }
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

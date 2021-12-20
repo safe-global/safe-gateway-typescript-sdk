@@ -6,6 +6,4 @@ export enum MasterCopyDeployer {
 export type MasterCopyReponse = {
   address: string
   version: string
-  deployer: MasterCopyDeployer
-  deployerRepoUrl: string
 }[]

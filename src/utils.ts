@@ -7,18 +7,6 @@ export type ErrorResponse = {
   message: string
 }
 
-function replaceParam(str: string, key: string, value: string): string {
-  return str.replace(new RegExp(`\\{${key}\\}`, 'g'), value)
-}
-
-export function insertParams(template: string, params?: Params): string {
-  return params
-    ? Object.keys(params).reduce((result: string, key) => {
-        return replaceParam(result, key, String(params[key]))
-      }, template)
-    : template
-}
-
 export function stringifyQuery(query?: Params): string {
   if (!query) {
     return ''

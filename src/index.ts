@@ -10,7 +10,7 @@ import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleRespons
 import { MasterCopyReponse } from './types/master-copies'
 import { ChainListResponse, ChainInfo } from './types/chains'
 import { SafeAppsResponse } from './types/safe-apps'
-import { DecodedDataRequest, DecodedDataResponse } from './types/decoded-data'
+import { DecodedDataResponse } from './types/decoded-data'
 export * from './types/safe-apps'
 export * from './types/transactions'
 export * from './types/chains'

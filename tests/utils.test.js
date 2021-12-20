@@ -1,9 +1,21 @@
 import fetch from 'isomorphic-unfetch'
-import { fetchData, stringifyQuery } from '../src/utils'
+import { fetchData, insertParams, stringifyQuery } from '../src/utils'
 
 jest.mock('isomorphic-unfetch')
 
 describe('utils', () => {
+  describe('insertParams', () => {
+    it('should insert a param into a string', () => {
+      expect(insertParams('/{network}/safe/{address}', { address: '0x0' })).toBe('/{network}/safe/0x0')
+    })
+
+    it('should insert several params into a string', () => {
+      expect(insertParams('/{network}/safe/{address}', { address: '0x0', network: 'rinkeby' })).toBe(
+        '/rinkeby/safe/0x0',
+      )
+    })
+  })
+
   describe('stringifyQuery', () => {
     it('should stringify query params', () => {
       expect(stringifyQuery({ spam: true, page: 11, name: 'token', exclude: null })).toBe(

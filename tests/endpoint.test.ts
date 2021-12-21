@@ -38,10 +38,14 @@ describe('callEndpoint', () => {
 
   it('should accept several path params', async () => {
     await expect(
-      callEndpoint('https://safe-client.staging.gnosisdev.com', '/v1/chains/{chainId}/safes/{address}/balances/{currency}', {
-        path: { chainId: '4', address: '0x123', currency: 'usd' },
-        query: {},
-      }),
+      callEndpoint(
+        'https://safe-client.staging.gnosisdev.com',
+        '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
+        {
+          path: { chainId: '4', address: '0x123', currency: 'usd' },
+          query: {},
+        },
+      ),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
@@ -52,10 +56,14 @@ describe('callEndpoint', () => {
 
   it('should accept query params', async () => {
     await expect(
-      callEndpoint('https://safe-client.staging.gnosisdev.com', '/v1/chains/{chainId}/safes/{address}/balances/{currency}', {
-        path: { chainId: '4', address: '0x123', currency: 'usd' },
-        query: { exclude_spam: true },
-      }),
+      callEndpoint(
+        'https://safe-client.staging.gnosisdev.com',
+        '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
+        {
+          path: { chainId: '4', address: '0x123', currency: 'usd' },
+          query: { exclude_spam: true },
+        },
+      ),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
@@ -83,15 +91,19 @@ describe('callEndpoint', () => {
     }
 
     await expect(
-      callEndpoint('https://safe-client.staging.gnosisdev.com', '/v1/chains/{chainId}/transactions/{safe_address}/propose', {
-        path: { chainId: '4', safe_address: '0x123' },
-        body
-      }),
+      callEndpoint(
+        'https://safe-client.staging.gnosisdev.com',
+        '/v1/chains/{chainId}/transactions/{safe_address}/propose',
+        {
+          path: { chainId: '4', safe_address: '0x123' },
+          body,
+        },
+      ),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
       'https://safe-client.staging.gnosisdev.com/v1/chains/4/transactions/0x123/propose',
-      body
+      body,
     )
   })
 

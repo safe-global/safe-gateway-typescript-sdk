@@ -1,13 +1,16 @@
 # Safe Gateway TypeScript SDK
+
 [![npm](https://img.shields.io/npm/v/@gnosis.pm/safe-react-gateway-sdk?label=%40gnosis.pm%2Fsafe-react-gateway-sdk)](https://www.npmjs.com/package/@gnosis.pm/safe-react-gateway-sdk)
 
 A TypeScript SDK for the [Safe Gateway](https://github.com/gnosis/safe-client-gateway)
 
 ## Links
-* [Gateway API docs](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html)
-* [SDK typedoc](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances)
+
+- [Gateway API docs](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html)
+- [SDK typedoc](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances)
 
 ## Adding an endpoint
+
 Endpoint types are defined in `src/types/gateway.ts`.
 
 Each endpoint consists of:

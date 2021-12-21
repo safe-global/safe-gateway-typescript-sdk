@@ -47,13 +47,13 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "prettier && lint-staged --allow-empty"
+      "pre-commit": "lint-staged --allow-empty"
     }
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix",
-      "prettier --write"
+      "prettier --w ."
     ]
   }
 }

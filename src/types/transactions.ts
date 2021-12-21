@@ -328,12 +328,8 @@ export type SafeTransactionEstimationRequest = {
   operation: Operation
 }
 
+// CGW v2 response
 export type SafeTransactionEstimation = {
-  latestNonce: number
-  safeTxGas: string
-}
-
-export type SafeTransactionEstimationV2 = {
   currentNonce: number
   recommendedNonce: number
   safeTxGas: string

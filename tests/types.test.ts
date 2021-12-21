@@ -20,7 +20,7 @@ describe('Types are exported from index correctly', () => {
   })
 
   it('Dynamic enum export check', () => {
-    /* eslint-disable-line @typescript-eslint/no-unused-vars */
+    /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
     const { default: _ = null, ...rest } = require('../src/index')
     const exportedNames = Object.keys(rest)
 
@@ -33,7 +33,7 @@ describe('Types are exported from index correctly', () => {
       .readdirSync(typesDir)
       .filter((file) => file !== 'api.ts')
       .flatMap((file) => {
-        /* eslint-disable-line @typescript-eslint/no-unused-vars */
+        /* eslint-disable-next-line @typescript-eslint/no-unused-vars */
         const { default: _ = null, ...rest } = require(`../src/types/${file}`)
         return Object.keys(rest)
       })

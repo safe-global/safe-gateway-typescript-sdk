@@ -1,6 +1,5 @@
 name: typedoc
 
-
 on:
   push:
     branches:

@@ -1,11 +1,6 @@
 import { callEndpoint } from './endpoint'
 import { operations } from './types/api'
-import {
-  SafeTransactionEstimation,
-  SafeTransactionEstimationV2,
-  TransactionDetails,
-  TransactionListPage,
-} from './types/transactions'
+import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
 import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
 import { ChainListResponse, ChainInfo } from './types/chains'
 import { SafeAppsResponse } from './types/safe-apps'
@@ -120,7 +115,7 @@ export function getTransactionDetails(
 }
 
 /**
- * Request a gas estimate for a created transaction
+ * Request a gas estimate & recommmended tx nonce for a created transaction
  */
 export function postSafeGasEstimation(
   baseUrl: string,
@@ -128,21 +123,6 @@ export function postSafeGasEstimation(
   address: string,
   body: operations['post_safe_gas_estimation']['parameters']['body'],
 ): Promise<SafeTransactionEstimation> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations', {
-    path: { chainId, safe_address: address },
-    body,
-  })
-}
-
-/**
- * Request a gas estimate & recommmended tx nonce for a created transaction
- */
-export function postSafeGasEstimationV2(
-  baseUrl: string,
-  chainId: string,
-  address: string,
-  body: operations['post_safe_gas_estimation_v2']['parameters']['body'],
-): Promise<SafeTransactionEstimationV2> {
   return callEndpoint(baseUrl, '/v2/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations', {
     path: { chainId, safe_address: address },
     body,

@@ -5,7 +5,6 @@ import {
   SafeTransactionEstimation,
   SafeTransactionEstimationRequest,
   TransactionListPage,
-  SafeTransactionEstimationV2,
 } from './transactions'
 import { ChainListResponse, ChainInfo } from './chains'
 import { SafeAppsResponse } from './safe-apps'
@@ -74,7 +73,7 @@ export interface paths {
       }
     }
   }
-  '/v1/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
+  '/v2/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
     /** This is actually supposed to be POST but it breaks our type paradise */
     get: operations['post_safe_gas_estimation']
     parameters: {
@@ -83,11 +82,6 @@ export interface paths {
         safe_address: string
       }
     }
-  }
-  '/v2/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
-    /** This is actually supposed to be POST but it breaks our type paradise */
-    get: operations['post_safe_gas_estimation_v2']
-    parameters: paths['/v1/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations']['parameters']
   }
   '/v1/chains/{chainId}/transactions/{safe_address}/propose': {
     /** This is actually supposed to be POST but it breaks our type paradise */
@@ -294,14 +288,6 @@ export interface operations {
       404: unknown
       /** Safe address checksum not valid */
       422: unknown
-    }
-  }
-  post_safe_gas_estimation_v2: {
-    parameters: operations['post_safe_gas_estimation']['parameters']
-    responses: Omit<operations['post_safe_gas_estimation']['responses'], 200> & {
-      200: {
-        schema: SafeTransactionEstimationV2
-      }
     }
   }
   propose_transaction: {

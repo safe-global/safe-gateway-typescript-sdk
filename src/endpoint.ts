@@ -15,14 +15,10 @@ export function callEndpoint<T extends keyof paths>(
   parameters?: paths[T]['get']['parameters'],
   rawUrl?: string,
 ): Promise<paths[T]['get']['responses'][200]['schema']> {
-  if (rawUrl) {
-    return fetchData(rawUrl)
-  }
-
   const params = parameters as Params
   const pathname = insertParams(path, params?.path)
   const search = stringifyQuery(params?.query)
   const url = `${baseUrl}${pathname}${search}`
 
-  return fetchData(url, params?.body)
+  return fetchData(rawUrl || url, params?.body)
 }

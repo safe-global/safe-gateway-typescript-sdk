@@ -87,6 +87,6 @@ describe('callEndpoint', () => {
       ),
     ).resolves.toEqual({ success: true })
 
-    expect(fetchData).toHaveBeenCalledWith('/test-url?raw=true')
+    expect(fetchData).toHaveBeenCalledWith('/test-url?raw=true', undefined)
   })
 })

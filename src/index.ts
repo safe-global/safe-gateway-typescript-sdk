@@ -19,7 +19,7 @@ export * from './types/decoded-data'
  * Get basic information about a Safe. E.g. owners, modules, version etc
  */
 export function getSafeInfo(baseUrl: string, chainId: string, address: string): Promise<SafeInfo> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/', { path: { chainId, address } })
+  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}', { path: { chainId, address } })
 }
 
 /**
@@ -32,7 +32,7 @@ export function getBalances(
   currency = 'usd',
   query: operations['safes_balances_list']['parameters']['query'] = {},
 ): Promise<SafeBalanceResponse> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/balances/{currency}/', {
+  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/balances/{currency}', {
     path: { chainId, address, currency },
     query,
   })
@@ -61,7 +61,7 @@ export function getCollectibles(
   address: string,
   query: operations['safes_collectibles_list']['parameters']['query'] = {},
 ): Promise<SafeCollectibleResponse[]> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/collectibles/', {
+  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/collectibles', {
     path: { chainId, address },
     query,
   })
@@ -151,7 +151,7 @@ export function getChainsConfig(
   baseUrl: string,
   query?: operations['chains_list']['parameters']['query'],
 ): Promise<ChainListResponse> {
-  return callEndpoint(baseUrl, '/v1/chains/', {
+  return callEndpoint(baseUrl, '/v1/chains', {
     query,
   })
 }
@@ -160,7 +160,7 @@ export function getChainsConfig(
  * Returns a chain config
  */
 export function getChainConfig(baseUrl: string, chainId: string): Promise<ChainInfo> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/', {
+  return callEndpoint(baseUrl, '/v1/chains/{chainId}', {
     path: { chainId: chainId },
   })
 }

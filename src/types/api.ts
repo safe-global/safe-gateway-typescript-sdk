@@ -12,7 +12,7 @@ import { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import { MasterCopyReponse } from './master-copies'
 
 export interface paths {
-  '/v1/chains/{chainId}/safes/{address}/': {
+  '/v1/chains/{chainId}/safes/{address}': {
     /** Get status of the safe */
     get: operations['safes_read']
     parameters: {
@@ -22,7 +22,7 @@ export interface paths {
       }
     }
   }
-  '/v1/chains/{chainId}/safes/{address}/balances/{currency}/': {
+  '/v1/chains/{chainId}/safes/{address}/balances/{currency}': {
     get: operations['safes_balances_list']
     parameters: {
       path: {
@@ -36,7 +36,7 @@ export interface paths {
     get: operations['get_supported_fiat']
     parameters: null
   }
-  '/v1/chains/{chainId}/safes/{address}/collectibles/': {
+  '/v1/chains/{chainId}/safes/{address}/collectibles': {
     /** Get collectibles (ERC721 tokens) and information about them */
     get: operations['safes_collectibles_list']
     parameters: {
@@ -102,7 +102,7 @@ export interface paths {
       }
     }
   }
-  '/v1/chains/': {
+  '/v1/chains': {
     get: operations['chains_list']
     parameters: {
       query: {
@@ -112,7 +112,7 @@ export interface paths {
       }
     }
   }
-  '/v1/chains/{chainId}/': {
+  '/v1/chains/{chainId}': {
     get: operations['chains_read']
     parameters: {
       path: {

@@ -3,6 +3,8 @@ import { fetchData, insertParams, stringifyQuery } from '../src/utils'
 
 jest.mock('isomorphic-unfetch')
 
+const fetchMock = fetch as typeof fetch & jest.Mock
+
 describe('utils', () => {
   describe('insertParams', () => {
     it('should insert a param into a string', () => {
@@ -32,7 +34,7 @@ describe('utils', () => {
 
   describe('fetchData', () => {
     it('should fetch a simple url', async () => {
-      fetch.mockImplementation(() => {
+      fetchMock.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
           text: () => Promise.resolve('{"success": "true"}'),
@@ -45,7 +47,7 @@ describe('utils', () => {
     })
 
     it('should make a post request', async () => {
-      fetch.mockImplementation(() => {
+      fetchMock.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
           text: () => Promise.resolve('{"success": "true"}'),
@@ -65,7 +67,7 @@ describe('utils', () => {
     })
 
     it('should throw if response is not OK', async () => {
-      fetch.mockImplementation(() => {
+      fetchMock.mockImplementation(() => {
         return Promise.resolve({
           ok: false,
           statusText: 'Failed',
@@ -78,7 +80,7 @@ describe('utils', () => {
     })
 
     it('should throw the response text for 50x errors', async () => {
-      fetch.mockImplementation(() => {
+      fetchMock.mockImplementation(() => {
         return Promise.resolve({
           ok: false,
           statusText: 'Failed',

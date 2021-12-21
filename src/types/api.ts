@@ -5,6 +5,7 @@ import {
   SafeTransactionEstimation,
   SafeTransactionEstimationRequest,
   TransactionListPage,
+  SafeTransactionEstimationV2,
 } from './transactions'
 import { ChainListResponse, ChainInfo } from './chains'
 import { SafeAppsResponse } from './safe-apps'
@@ -12,7 +13,7 @@ import { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import { MasterCopyReponse } from './master-copies'
 
 export interface paths {
-  '/chains/{chainId}/safes/{address}/': {
+  '/v1/chains/{chainId}/safes/{address}/': {
     /** Get status of the safe */
     get: operations['safes_read']
     parameters: {
@@ -22,7 +23,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/safes/{address}/balances/{currency}/': {
+  '/v1/chains/{chainId}/safes/{address}/balances/{currency}/': {
     get: operations['safes_balances_list']
     parameters: {
       path: {
@@ -32,11 +33,11 @@ export interface paths {
       }
     }
   }
-  '/balances/supported-fiat-codes': {
+  '/v1/balances/supported-fiat-codes': {
     get: operations['get_supported_fiat']
     parameters: null
   }
-  '/chains/{chainId}/safes/{address}/collectibles/': {
+  '/v1/chains/{chainId}/safes/{address}/collectibles/': {
     /** Get collectibles (ERC721 tokens) and information about them */
     get: operations['safes_collectibles_list']
     parameters: {
@@ -46,7 +47,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/safes/{safe_address}/transactions/history': {
+  '/v1/chains/{chainId}/safes/{safe_address}/transactions/history': {
     get: operations['history_transactions']
     parameters: {
       path: {
@@ -55,7 +56,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/safes/{safe_address}/transactions/queued': {
+  '/v1/chains/{chainId}/safes/{safe_address}/transactions/queued': {
     get: operations['queued_transactions']
     parameters: {
       path: {
@@ -64,7 +65,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/transactions/{transactionId}': {
+  '/v1/chains/{chainId}/transactions/{transactionId}': {
     get: operations['get_transactions']
     parameters: {
       path: {
@@ -73,7 +74,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
+  '/v1/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
     /** This is actually supposed to be POST but it breaks our type paradise */
     get: operations['post_safe_gas_estimation']
     parameters: {
@@ -83,7 +84,12 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/transactions/{safe_address}/propose': {
+  '/v2/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
+    /** This is actually supposed to be POST but it breaks our type paradise */
+    get: operations['post_safe_gas_estimation_v2']
+    parameters: paths['/v1/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations']['parameters']
+  }
+  '/v1/chains/{chainId}/transactions/{safe_address}/propose': {
     /** This is actually supposed to be POST but it breaks our type paradise */
     get: operations['propose_transaction']
     parameters: {
@@ -93,7 +99,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/owners/{address}/safes': {
+  '/v1/chains/{chainId}/owners/{address}/safes': {
     get: operations['get_owned_safes']
     parameters: {
       path: {
@@ -102,7 +108,7 @@ export interface paths {
       }
     }
   }
-  '/chains/': {
+  '/v1/chains/': {
     get: operations['chains_list']
     parameters: {
       query: {
@@ -112,7 +118,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/': {
+  '/v1/chains/{chainId}/': {
     get: operations['chains_read']
     parameters: {
       path: {
@@ -120,7 +126,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/safe-apps': {
+  '/v1/chains/{chainId}/safe-apps': {
     get: operations['safe_apps_read']
     parameters: {
       path: {
@@ -128,7 +134,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/about/master-copies': {
+  '/v1/chains/{chainId}/about/master-copies': {
     get: operations['master_copies']
     parameters: {
       path: {
@@ -136,7 +142,7 @@ export interface paths {
       }
     }
   }
-  '/chains/{chainId}/data-decoder': {
+  '/v1/chains/{chainId}/data-decoder': {
     get: operations['data_decoder']
     parameters: {
       path: {
@@ -288,6 +294,14 @@ export interface operations {
       404: unknown
       /** Safe address checksum not valid */
       422: unknown
+    }
+  }
+  post_safe_gas_estimation_v2: {
+    parameters: operations['post_safe_gas_estimation']['parameters']
+    responses: Omit<operations['post_safe_gas_estimation']['responses'], 200> & {
+      200: {
+        schema: SafeTransactionEstimationV2
+      }
     }
   }
   propose_transaction: {

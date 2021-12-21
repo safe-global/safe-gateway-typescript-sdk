@@ -40,14 +40,14 @@
     "start": "rm -rf dist && webpack --mode production --watch",
     "build": "rm -rf dist && webpack --mode production",
     "prepublishOnly": "yarn types && yarn lint && yarn test:check && yarn build",
-    "prettier": "prettier -w",
+    "prettier": "prettier -w .",
     "test": "jest --watch --coverage .",
     "test:check": "jest --testPathPattern=tests",
     "test:ci": "jest --ci --coverage --json --watchAll=false --testLocationInResults --runInBand --testPathPattern=tests"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged --allow-empty"
+      "pre-commit": "prettier && lint-staged --allow-empty"
     }
   },
   "lint-staged": {

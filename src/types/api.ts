@@ -357,6 +357,9 @@ export interface operations {
         /** A unique value identifying this chain. */
         chainId: string
       }
+      query?: {
+        clientUrl?: string
+      }
     }
     responses: {
       200: {

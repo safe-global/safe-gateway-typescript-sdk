@@ -1,9 +1,14 @@
+enum SafeAppAccessPolicies {
+  NoRestrictions = 'NO_RESTRICTIONS',
+  DomainAllowlist = 'DOMAIN_ALLOWLIST',
+}
+
 export type SafeAppNoRestrictionsPolicy = {
-  type: 'NO_RESTRICTIONS'
+  type: SafeAppAccessPolicies.NoRestrictions
 }
 
 export type SafeAppDomainAllowlistPolicy = {
-  type: 'DOMAIN_ALLOWLIST'
+  type: SafeAppAccessPolicies.DomainAllowlist
   value: string[]
 }
 

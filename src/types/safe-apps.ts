@@ -1,3 +1,19 @@
+export enum SafeAppAccessPolicyTypes {
+  NoRestrictions = 'NO_RESTRICTIONS',
+  DomainAllowlist = 'DOMAIN_ALLOWLIST',
+}
+
+export type SafeAppNoRestrictionsPolicy = {
+  type: SafeAppAccessPolicyTypes.NoRestrictions
+}
+
+export type SafeAppDomainAllowlistPolicy = {
+  type: SafeAppAccessPolicyTypes.DomainAllowlist
+  value: string[]
+}
+
+export type SafeAppsAccessControlPolicies = SafeAppNoRestrictionsPolicy | SafeAppDomainAllowlistPolicy
+
 export type SafeAppProvider = {
   url: string
   name: string
@@ -11,6 +27,7 @@ export type SafeAppData = {
   description: string
   chainIds: string[]
   provider?: SafeAppProvider
+  accessControl: SafeAppsAccessControlPolicies
 }
 
 export type SafeAppsResponse = [SafeAppData]

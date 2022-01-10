@@ -168,9 +168,14 @@ export function getChainConfig(baseUrl: string, chainId: string): Promise<ChainI
 /**
  * Returns Safe Apps List
  */
-export function getSafeApps(baseUrl: string, chainId: string): Promise<SafeAppsResponse> {
+export function getSafeApps(
+  baseUrl: string,
+  chainId: string,
+  query: operations['safe_apps_read']['parameters']['query'] = {},
+): Promise<SafeAppsResponse> {
   return callEndpoint(baseUrl, '/v1/chains/{chainId}/safe-apps', {
     path: { chainId: chainId },
+    query,
   })
 }
 

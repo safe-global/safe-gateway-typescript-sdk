@@ -358,7 +358,7 @@ export interface operations {
         chainId: string
       }
       query?: {
-        clientUrl?: string
+        client_url?: string
       }
     }
     responses: {

@@ -30,4 +30,4 @@ export type SafeAppData = {
   accessControl: SafeAppsAccessControlPolicies
 }
 
-export type SafeAppsResponse = [SafeAppData]
+export type SafeAppsResponse = SafeAppData[]

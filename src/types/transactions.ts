@@ -265,6 +265,7 @@ export type TransactionData = {
   value: string | null
   operation: Operation
   addressInfoIndex: { [key: string]: AddressEx } | null
+  trustedDelegateCallTarget: boolean
 }
 
 export type ModuleExecutionDetails = {

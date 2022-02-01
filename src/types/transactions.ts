@@ -279,6 +279,7 @@ export type MultisigConfirmation = {
 }
 
 export type TokenInfo = {
+  type: TokenType
   address: string
   decimals: number
   symbol: string

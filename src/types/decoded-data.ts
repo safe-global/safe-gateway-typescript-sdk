@@ -2,11 +2,14 @@ export type DecodedDataRequest = {
   data: string
 }
 
+type ParamValue = string | ParamValue[]
+
 export type DecodedDataBasicParameter = {
   name: string
   type: string
-  value: string
+  value: ParamValue
 }
+
 export type DecodedDataParameterValue = {
   operation: 0 | 1
   to: string

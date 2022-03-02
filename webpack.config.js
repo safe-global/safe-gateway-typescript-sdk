@@ -13,6 +13,7 @@ module.exports = {
     path: dist,
     libraryTarget: 'umd',
     library: JSON.stringify(require('./package.json').name),
+    globalObject: 'this',
   },
   resolve: {
     extensions: ['.ts'],

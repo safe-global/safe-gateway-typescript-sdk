@@ -1,4 +1,8 @@
-import { AddressEx, TokenInfo } from './transactions'
+export type AddressEx = {
+  value: string
+  name: string | null
+  logoUri: string | null
+}
 
 export type SafeInfo = {
   address: AddressEx
@@ -19,6 +23,21 @@ export type SafeInfo = {
 export type FiatCurrencies = string[]
 
 export type OwnedSafes = { safes: string[] }
+
+export enum TokenType {
+  ERC20 = 'ERC20',
+  ERC721 = 'ERC721',
+  NATIVE_TOKEN = 'NATIVE_TOKEN',
+}
+
+export type TokenInfo = {
+  type: TokenType
+  address: string
+  decimals: number
+  symbol: string
+  name: string
+  logoUri: string | null
+}
 
 export type SafeBalanceResponse = {
   fiatTotal: string

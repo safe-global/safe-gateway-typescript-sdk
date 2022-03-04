@@ -1,3 +1,5 @@
+import { AddressEx, TokenInfo } from './common'
+
 export type ParamValue = string | ParamValue[]
 
 export enum Operation {
@@ -27,12 +29,6 @@ export type DataDecoded = {
   parameters: Parameter[] | null
 }
 
-export type AddressEx = {
-  value: string
-  name: string | null
-  logoUri: string | null
-}
-
 export enum TransactionStatus {
   AWAITING_CONFIRMATIONS = 'AWAITING_CONFIRMATIONS',
   AWAITING_EXECUTION = 'AWAITING_EXECUTION',
@@ -49,14 +45,14 @@ export enum TransferDirection {
   UNKNOWN = 'UNKNOWN',
 }
 
-export enum TokenType {
+export enum TransactionTokenType {
   ERC20 = 'ERC20',
   ERC721 = 'ERC721',
   NATIVE_COIN = 'NATIVE_COIN',
 }
 
 export type Erc20Transfer = {
-  type: TokenType.ERC20
+  type: TransactionTokenType.ERC20
   tokenAddress: string
   tokenName: string | null
   tokenSymbol: string | null
@@ -66,7 +62,7 @@ export type Erc20Transfer = {
 }
 
 export type Erc721Transfer = {
-  type: TokenType.ERC721
+  type: TransactionTokenType.ERC721
   tokenAddress: string
   tokenId: string
   tokenName: string | null
@@ -75,7 +71,7 @@ export type Erc721Transfer = {
 }
 
 export type NativeCoinTransfer = {
-  type: TokenType.NATIVE_COIN
+  type: TransactionTokenType.NATIVE_COIN
   value: string
 }
 
@@ -276,15 +272,6 @@ export type MultisigConfirmation = {
   signer: AddressEx
   signature: string | null
   submittedAt: number
-}
-
-export type TokenInfo = {
-  type: TokenType
-  address: string
-  decimals: number
-  symbol: string
-  name: string
-  logoUri: string | null
 }
 
 export type MultisigExecutionDetails = {

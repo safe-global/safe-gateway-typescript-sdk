@@ -1,7 +1,7 @@
-import fetch from 'isomorphic-unfetch'
+import fetch from 'cross-fetch'
 import { fetchData, insertParams, stringifyQuery } from '../src/utils'
 
-jest.mock('isomorphic-unfetch')
+jest.mock('cross-fetch')
 
 const fetchMock = fetch as typeof fetch & jest.Mock
 

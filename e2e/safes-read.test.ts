@@ -12,18 +12,9 @@ describe('getSafeInfo tests', () => {
     // Nonce should match any positive integer number over 0
     expect(data.nonce).toBeGreaterThanOrEqual(0)
     expect(data.owners).toEqual([
-      {
-        value: '0x21D62C6894741DE97944D7844ED44D7782C66ABC',
-      },
-      {
-        value: '0x661E1CF4aAAf6a95C89EA8c81D120E6c62adDFf9',
-      },
-      {
-        value: '0x8814db983b821D65647C565fBf7c1092fC32437D',
-      },
-      {
-        value: '0x474e5Ded6b5D078163BFB8F6dBa355C3aA5478C8',
-      },
+      { value: '0x21D62C6894741DE97944D7844ED44D7782C66ABC' },
+      { value: '0x661E1CF4aAAf6a95C89EA8c81D120E6c62adDFf9' },
+      { value: '0x8814db983b821D65647C565fBf7c1092fC32437D' },
     ])
     expect(data.threshold).toBe(1)
     expect(data.version).toBe('1.1.1')

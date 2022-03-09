@@ -128,6 +128,15 @@ export type DisableModule = {
   module: AddressEx
 }
 
+export type SetGuard = {
+  type: 'SET_GUARD'
+  guard: AddressEx
+}
+
+export type DeleteGuard = {
+  type: 'DELETE_GUARD'
+}
+
 export type SettingsInfo =
   | SetFallbackHandler
   | AddOwner
@@ -137,6 +146,8 @@ export type SettingsInfo =
   | ChangeImplementation
   | EnableModule
   | DisableModule
+  | SetGuard
+  | DeleteGuard
 
 export type SettingsChange = {
   type: 'SettingsChange'

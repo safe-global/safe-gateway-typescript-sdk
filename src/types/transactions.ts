@@ -146,6 +146,8 @@ export type SettingsInfo =
   | ChangeImplementation
   | EnableModule
   | DisableModule
+  | SetGuard
+  | DeleteGuard
 
 export type SettingsChange = {
   type: 'SettingsChange'

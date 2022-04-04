@@ -220,8 +220,16 @@ export type DateLabel = {
   type: 'DATE_LABEL'
 }
 
+/**
+ * @see https://gnosis.github.io/safe-client-gateway/docs/routes/transactions/models/summary/enum.Label.html
+ */
+export enum LabelValue {
+  Queued = 'Queued',
+  Next = 'Next',
+}
+
 export type Label = {
-  label: string
+  label: LabelValue
   type: 'LABEL'
 }
 

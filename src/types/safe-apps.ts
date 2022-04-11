@@ -28,6 +28,7 @@ export type SafeAppData = {
   chainIds: string[]
   provider?: SafeAppProvider
   accessControl: SafeAppsAccessControlPolicies
+  tags: string[]
 }
 
 export type SafeAppsResponse = SafeAppData[]

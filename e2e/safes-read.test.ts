@@ -1,10 +1,14 @@
-import { getSafeInfo } from '../src'
+import { getSafeInfo, setBaseUrl } from '../src'
 import config from './config'
 
 describe('getSafeInfo tests', () => {
+  beforeAll(() => {
+    setBaseUrl(config.baseUrl)
+  })
+
   it('should get safe info on rinkeby', async () => {
     const address = '0x9B5dc27B104356516B05b02F6166a54F6D74e40B'
-    const data = await getSafeInfo(config.baseUrl, '4', address)
+    const data = await getSafeInfo('4', address)
 
     expect(data.address.value).toBe(address)
     expect(data.chainId).toBe('4')

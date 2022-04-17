@@ -1,4 +1,4 @@
-import { getChainsConfig, getChainConfig } from '../src'
+import { getChainsConfig, getChainConfig, setBaseUrl } from '../src'
 import config from './config'
 
 const mainnetChainId = '1'
@@ -6,9 +6,13 @@ const rinkebyChainId = '4'
 const polygonChainId = '137'
 
 describe('getChainsConfig & getChainConfig tests', () => {
+  beforeAll(() => {
+    setBaseUrl(config.baseUrl)
+  })
+
   describe('getChainsConfig tests', () => {
     it('Returns all chains config', async () => {
-      const chainConfig = await getChainsConfig(config.baseUrl)
+      const chainConfig = await getChainsConfig()
 
       expect(chainConfig.results).toBe
       expect(chainConfig.results).toBeDefined()
@@ -29,7 +33,7 @@ describe('getChainsConfig & getChainConfig tests', () => {
 
   describe('getChainConfig/{chainId} tests', () => {
     it('Returns Mainnet config', async () => {
-      const mainnetConfig = await getChainConfig(config.baseUrl, mainnetChainId)
+      const mainnetConfig = await getChainConfig(mainnetChainId)
 
       expect(mainnetConfig).toBeDefined()
       expect(mainnetConfig.chainId).toBe(mainnetChainId)
@@ -52,7 +56,7 @@ describe('getChainsConfig & getChainConfig tests', () => {
     })
 
     it('Returns Rinkeby config', async () => {
-      const rinkebyConfig = await getChainConfig(config.baseUrl, rinkebyChainId)
+      const rinkebyConfig = await getChainConfig(rinkebyChainId)
 
       expect(rinkebyConfig).toBeDefined()
       expect(rinkebyConfig.chainId).toBe(rinkebyChainId)
@@ -70,7 +74,7 @@ describe('getChainsConfig & getChainConfig tests', () => {
     })
 
     it('Returns Polygon config', async () => {
-      const polygonConfig = await getChainConfig(config.baseUrl, polygonChainId)
+      const polygonConfig = await getChainConfig(polygonChainId)
 
       expect(polygonConfig).toBeDefined()
       expect(polygonConfig.chainId).toBe(polygonChainId)

@@ -1,11 +1,15 @@
-import { getSafeApps } from '../src'
+import { getSafeApps, setBaseUrl } from '../src'
 import config from './config'
 
 const rinkebyChainId = '4'
 
 describe('getSafeApps tests', () => {
+  beforeAll(() => {
+    setBaseUrl(config.baseUrl)
+  })
+
   it('Returns Safe Apps List', async () => {
-    const safeAppsList = await getSafeApps(config.baseUrl, rinkebyChainId)
+    const safeAppsList = await getSafeApps(rinkebyChainId)
 
     expect(safeAppsList).toBeDefined()
     expect(Array.isArray(safeAppsList)).toBe(true)

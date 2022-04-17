@@ -1,9 +1,13 @@
-import { getMasterCopies } from '../src'
+import { getMasterCopies, setBaseUrl } from '../src'
 import config from './config'
 
 describe('get mastercopy tests', () => {
+  beforeAll(() => {
+    setBaseUrl(config.baseUrl)
+  })
+
   it('should get master copy response', async () => {
-    const masterCopies = await getMasterCopies(config.baseUrl, '4')
+    const masterCopies = await getMasterCopies('4')
 
     expect(Array.isArray(masterCopies)).toBe(true)
 

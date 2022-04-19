@@ -2,12 +2,40 @@
 
 [![npm](https://img.shields.io/npm/v/@gnosis.pm/safe-react-gateway-sdk?label=%40gnosis.pm%2Fsafe-react-gateway-sdk)](https://www.npmjs.com/package/@gnosis.pm/safe-react-gateway-sdk)
 
-A TypeScript SDK for the [Safe Gateway](https://github.com/gnosis/safe-client-gateway)
+A TypeScript SDK for the [Safe Client Gateway](https://github.com/gnosis/safe-client-gateway)
 
-## Links
+📖 [API reference](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances)
 
-- [Gateway API docs](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html)
-- [SDK typedoc](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances)
+## Using the SDK
+
+Install:
+
+```
+yarn add @gnosis.pm/safe-react-gateway-sdk
+```
+
+Import:
+
+```
+import { getChainsConfig, type ChainListResponse } from '@gnosis.pm/safe-react-gateway-sdk'
+```
+
+Use:
+```
+const chains = await getChainsConfig()
+```
+
+The SDK needs no initialization unless you want to override the base URL, which defaults to https://safe-client.gnosis.io.
+You can set an alternative base URL like so:
+
+```
+import { setBaseUrl } from '@gnosis.pm/safe-react-gateway-sdk'
+
+// Switch the SDK to dev mode
+setBaseUrl('https://safe-client.staging.gnosisdev.com')
+```
+
+The full SDK reference can be found [here](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances).
 
 ## Adding an endpoint
 
@@ -39,3 +67,8 @@ yarn test
 ```
 
 N.B.: the e2e tests make actual API calls on staging.
+
+
+## Gateway API docs
+
+The TypeScript types in this SDK are based on [Rust types](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html) from the Gateway API.

@@ -10,25 +10,26 @@ A TypeScript SDK for the [Safe Client Gateway](https://github.com/gnosis/safe-cl
 
 Install:
 
-```
+```shell
 yarn add @gnosis.pm/safe-react-gateway-sdk
 ```
 
 Import:
 
-```
+```ts
 import { getChainsConfig, type ChainListResponse } from '@gnosis.pm/safe-react-gateway-sdk'
 ```
 
 Use:
-```
+
+```ts
 const chains = await getChainsConfig()
 ```
 
 The SDK needs no initialization unless you want to override the base URL, which defaults to https://safe-client.gnosis.io.
 You can set an alternative base URL like so:
 
-```
+```ts
 import { setBaseUrl } from '@gnosis.pm/safe-react-gateway-sdk'
 
 // Switch the SDK to dev mode
@@ -54,7 +55,7 @@ To add a new endpoint, follow the pattern set by the existing endpoints.
 
 This command will run before every commit:
 
-```
+```shell
 yarn eslint:fix
 ```
 
@@ -62,7 +63,7 @@ yarn eslint:fix
 
 To run the unit and e2e tests locally:
 
-```
+```shell
 yarn test
 ```
 

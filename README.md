@@ -6,6 +6,11 @@ A TypeScript SDK for the [Safe Client Gateway](https://github.com/gnosis/safe-cl
 
 📖 [API reference](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances)
 
+## Usage policy
+
+NB: Safe Client Gateway isn't meant for public use.
+Please _do not_ use this SDK if you're building, e.g., a Safe App.
+
 ## Using the SDK
 
 Install:

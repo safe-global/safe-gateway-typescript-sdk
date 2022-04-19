@@ -1,10 +1,14 @@
-import { proposeTransaction } from '../src'
+import { proposeTransaction, setBaseUrl } from '../src'
 import config from './config'
 
 describe('proposeTransaction tests', () => {
+  beforeAll(() => {
+    setBaseUrl(config.baseUrl)
+  })
+
   // Skipping this test, see https://github.com/gnosis/safe-client-gateway/issues/745
   it('should propose a transaction and fail', async () => {
-    const req = proposeTransaction(config.baseUrl, '4', '0x4f9BD57BCC68Bf7770429F137922B3afD23d83E7', {
+    const req = proposeTransaction('4', '0x4f9BD57BCC68Bf7770429F137922B3afD23d83E7', {
       to: '0x49d4450977E2c95362C13D3a31a09311E0Ea26A6',
       value: '0',
       data: '0xe8dde2320000000000000000000000000000000000000000000000000000000000000000',

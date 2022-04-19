@@ -1,10 +1,13 @@
-import { getDecodedData } from '../src'
+import { getDecodedData, setBaseUrl } from '../src'
 import config from './config'
 
 describe('getDecodedData tests', () => {
+  beforeAll(() => {
+    setBaseUrl(config.baseUrl)
+  })
+
   it('should post getDecodedData', async () => {
     const result = await getDecodedData(
-      config.baseUrl,
       '4',
       '0x095ea7b3000000000000000000000000ae9844f89d98c150f5e61bfc676d68b4921559900000000000000000000000000000000000000000000000000001c6bf52634000',
     )

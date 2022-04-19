@@ -1,10 +1,14 @@
-import { getCollectibles } from '../src'
+import { getCollectibles, setBaseUrl } from '../src'
 import config from './config'
 
 describe('getCollectibles tests', () => {
+  beforeAll(() => {
+    setBaseUrl(config.baseUrl)
+  })
+
   it('should fetch collectibles', async () => {
     const address = '0xb3b83bf204C458B461de9B0CD2739DB152b4fa5A'
-    const data = await getCollectibles(config.baseUrl, '4', address)
+    const data = await getCollectibles('4', address)
 
     expect(data.length).toBeGreaterThanOrEqual(1)
     expect(typeof data[1].address).toBe('string')

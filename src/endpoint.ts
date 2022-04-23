@@ -9,14 +9,21 @@ interface Params {
   body?: unknown
 }
 
-export function callEndpoint<T extends keyof paths>(
-  baseUrl: string,
-  path: T,
-  parameters?: paths[T]['get']['parameters'],
-  rawUrl?: string,
-): Promise<paths[T]['get']['responses'][200]['schema']> {
+export function callEndpoint<T extends keyof paths>({
+  baseUrl,
+  path,
+  parameters,
+  rawUrl,
+  signal,
+}: {
+  baseUrl: string
+  path: T
+  parameters?: paths[T]['get']['parameters']
+  rawUrl?: string
+  signal?: AbortSignal
+}): Promise<paths[T]['get']['responses'][200]['schema']> {
   if (rawUrl) {
-    return fetchData(rawUrl)
+    return fetchData(rawUrl, undefined, signal)
   }
 
   const params = parameters as Params
@@ -24,5 +31,5 @@ export function callEndpoint<T extends keyof paths>(
   const search = stringifyQuery(params?.query)
   const url = `${baseUrl}${pathname}${search}`
 
-  return fetchData(url, params?.body)
+  return fetchData(url, params?.body, signal)
 }

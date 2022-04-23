@@ -46,6 +46,24 @@ describe('utils', () => {
       expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
     })
 
+    it('should attach an abort signal', async () => {
+      fetchMock.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve('{"success": "true"}'),
+          json: () => Promise.resolve({ success: true }),
+        })
+      })
+
+      const { signal } = new AbortController()
+
+      await expect(fetchData('/test/safe', undefined, signal)).resolves.toEqual({ success: true })
+
+      expect(fetch).toHaveBeenCalledWith('/test/safe', {
+        signal,
+      })
+    })
+
     it('should make a post request', async () => {
       fetchMock.mockImplementation(() => {
         return Promise.resolve({

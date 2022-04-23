@@ -14,60 +14,68 @@ jest.mock('../src/utils', () => {
 describe('callEndpoint', () => {
   it('should accept just a path', async () => {
     await expect(
-      callEndpoint('https://safe-client.staging.gnosisdev.com', '/v1/balances/supported-fiat-codes'),
+      callEndpoint({ baseUrl: 'https://safe-client.staging.gnosisdev.com', path: '/v1/balances/supported-fiat-codes' }),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
       'https://safe-client.staging.gnosisdev.com/v1/balances/supported-fiat-codes',
+      undefined,
       undefined,
     )
   })
 
   it('should accept a path param', async () => {
     await expect(
-      callEndpoint('https://safe-client.staging.gnosisdev.com', '/v1/chains/{chainId}/safes/{address}', {
-        path: { chainId: '4', address: '0x123' },
+      callEndpoint({
+        baseUrl: 'https://safe-client.staging.gnosisdev.com',
+        path: '/v1/chains/{chainId}/safes/{address}',
+        parameters: {
+          path: { chainId: '4', address: '0x123' },
+        },
       }),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
       'https://safe-client.staging.gnosisdev.com/v1/chains/4/safes/0x123',
       undefined,
+      undefined,
     )
   })
 
   it('should accept several path params', async () => {
     await expect(
-      callEndpoint(
-        'https://safe-client.staging.gnosisdev.com',
-        '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
-        {
+      callEndpoint({
+        baseUrl: 'https://safe-client.staging.gnosisdev.com',
+        path: '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
+        parameters: {
           path: { chainId: '4', address: '0x123', currency: 'usd' },
           query: {},
         },
-      ),
+      }),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
       'https://safe-client.staging.gnosisdev.com/v1/chains/4/safes/0x123/balances/usd',
+      undefined,
       undefined,
     )
   })
 
   it('should accept query params', async () => {
     await expect(
-      callEndpoint(
-        'https://safe-client.staging.gnosisdev.com',
-        '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
-        {
+      callEndpoint({
+        baseUrl: 'https://safe-client.staging.gnosisdev.com',
+        path: '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
+        parameters: {
           path: { chainId: '4', address: '0x123', currency: 'usd' },
           query: { exclude_spam: true },
         },
-      ),
+      }),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
       'https://safe-client.staging.gnosisdev.com/v1/chains/4/safes/0x123/balances/usd?exclude_spam=true',
+      undefined,
       undefined,
     )
   })
@@ -91,32 +99,52 @@ describe('callEndpoint', () => {
     }
 
     await expect(
-      callEndpoint(
-        'https://safe-client.staging.gnosisdev.com',
-        '/v1/chains/{chainId}/transactions/{safe_address}/propose',
-        {
+      callEndpoint({
+        baseUrl: 'https://safe-client.staging.gnosisdev.com',
+        path: '/v1/chains/{chainId}/transactions/{safe_address}/propose',
+        parameters: {
           path: { chainId: '4', safe_address: '0x123' },
           body,
         },
-      ),
+      }),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
       'https://safe-client.staging.gnosisdev.com/v1/chains/4/transactions/0x123/propose',
       body,
+      undefined,
     )
   })
 
   it('should accept a raw URL', async () => {
     await expect(
-      callEndpoint(
-        'https://safe-client.staging.gnosisdev.com',
-        '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
-        { path: { chainId: '4', address: '0x123', currency: 'usd' }, query: { exclude_spam: true } },
-        '/test-url?raw=true',
-      ),
+      callEndpoint({
+        baseUrl: 'https://safe-client.staging.gnosisdev.com',
+        path: '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
+        parameters: { path: { chainId: '4', address: '0x123', currency: 'usd' }, query: { exclude_spam: true } },
+        rawUrl: '/test-url?raw=true',
+      }),
     ).resolves.toEqual({ success: true })
 
-    expect(fetchData).toHaveBeenCalledWith('/test-url?raw=true')
+    expect(fetchData).toHaveBeenCalledWith('/test-url?raw=true', undefined, undefined)
+  })
+
+  it('should accept an AbortSignal', async () => {
+    const { signal } = new AbortController()
+
+    await expect(
+      callEndpoint({
+        baseUrl: 'https://safe-client.staging.gnosisdev.com',
+        path: '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
+        parameters: { path: { chainId: '4', address: '0x123', currency: 'usd' }, query: { exclude_spam: true } },
+        signal,
+      }),
+    ).resolves.toEqual({ success: true })
+
+    expect(fetchData).toHaveBeenCalledWith(
+      'https://safe-client.staging.gnosisdev.com/v1/chains/4/safes/0x123/balances/usd?exclude_spam=true',
+      undefined,
+      signal,
+    )
   })
 })

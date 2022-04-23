@@ -34,19 +34,23 @@ export function stringifyQuery(query?: Params): string {
   return searchString ? `?${searchString}` : ''
 }
 
-export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
-  let options:
-    | {
-        method: 'POST'
-        headers: Record<string, string>
-        body: string
-      }
-    | undefined
+export async function fetchData<T>(url: string, body?: unknown, signal?: AbortSignal): Promise<T> {
+  let options: RequestInit | undefined = undefined
+
+  // Post request
   if (body != null) {
     options = {
       method: 'POST',
       body: typeof body === 'string' ? body : JSON.stringify(body),
       headers: { 'Content-Type': 'application/json' },
+    }
+  }
+
+  // Abort signal
+  if (signal) {
+    options = {
+      ...(options || {}),
+      signal,
     }
   }
 

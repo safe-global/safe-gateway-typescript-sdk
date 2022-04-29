@@ -51,6 +51,19 @@ export enum TransactionTokenType {
   NATIVE_COIN = 'NATIVE_COIN',
 }
 
+export enum SettingsInfoType {
+  SET_FALLBACK_HANDLER = 'SET_FALLBACK_HANDLER',
+  ADD_OWNER = 'ADD_OWNER',
+  REMOVE_OWNER = 'REMOVE_OWNER',
+  SWAP_OWNER = 'SWAP_OWNER',
+  CHANGE_THRESHOLD = 'CHANGE_THRESHOLD',
+  CHANGE_IMPLEMENTATION = 'CHANGE_IMPLEMENTATION',
+  ENABLE_MODULE = 'ENABLE_MODULE',
+  DISABLE_MODULE = 'DISABLE_MODULE',
+  SET_GUARD = 'SET_GUARD',
+  DELETE_GUARD = 'DELETE_GUARD',
+}
+
 export type Erc20Transfer = {
   type: TransactionTokenType.ERC20
   tokenAddress: string
@@ -86,55 +99,55 @@ export interface Transfer {
 }
 
 export type SetFallbackHandler = {
-  type: 'SET_FALLBACK_HANDLER'
+  type: SettingsInfoType.SET_FALLBACK_HANDLER
   handler: AddressEx
 }
 
 export type AddOwner = {
-  type: 'ADD_OWNER'
+  type: SettingsInfoType.ADD_OWNER
   owner: AddressEx
   threshold: number
 }
 
 export type RemoveOwner = {
-  type: 'REMOVE_OWNER'
+  type: SettingsInfoType.REMOVE_OWNER
   owner: AddressEx
   threshold: number
 }
 
 export type SwapOwner = {
-  type: 'SWAP_OWNER'
+  type: SettingsInfoType.SWAP_OWNER
   oldOwner: AddressEx
   newOwner: AddressEx
 }
 
 export type ChangeThreshold = {
-  type: 'CHANGE_THRESHOLD'
+  type: SettingsInfoType.CHANGE_THRESHOLD
   threshold: number
 }
 
 export type ChangeImplementation = {
-  type: 'CHANGE_IMPLEMENTATION'
+  type: SettingsInfoType.CHANGE_IMPLEMENTATION
   implementation: AddressEx
 }
 
 export type EnableModule = {
-  type: 'ENABLE_MODULE'
+  type: SettingsInfoType.ENABLE_MODULE
   module: AddressEx
 }
 
 export type DisableModule = {
-  type: 'DISABLE_MODULE'
+  type: SettingsInfoType.DISABLE_MODULE
   module: AddressEx
 }
 
 export type SetGuard = {
-  type: 'SET_GUARD'
+  type: SettingsInfoType.SET_GUARD
   guard: AddressEx
 }
 
 export type DeleteGuard = {
-  type: 'DELETE_GUARD'
+  type: SettingsInfoType.DELETE_GUARD
 }
 
 export type SettingsInfo =

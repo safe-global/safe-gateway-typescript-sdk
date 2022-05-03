@@ -1,3 +1,5 @@
+import { Page } from './transactions'
+
 export enum RPC_AUTHENTICATION {
   API_KEY_PATH = 'API_KEY_PATH',
   NO_AUTHENTICATION = 'NO_AUTHENTICATION',
@@ -82,8 +84,4 @@ export type ChainInfo = {
   features: FEATURES[]
 }
 
-export type ChainListResponse = {
-  next: string | null
-  previous: string | null
-  results: ChainInfo[]
-}
+export type ChainListResponse = Page<ChainInfo>

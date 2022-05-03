@@ -5,11 +5,20 @@ import {
   SafeTransactionEstimation,
   SafeTransactionEstimationRequest,
   TransactionListPage,
+  Page,
 } from './transactions'
 import { ChainListResponse, ChainInfo } from './chains'
 import { SafeAppsResponse } from './safe-apps'
 import { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import { MasterCopyReponse } from './master-copies'
+import {
+  AddDelegateRequest,
+  Delegate,
+  DelegateResponse,
+  DelegatesRequest,
+  DeleteDelegateRequest,
+  DeleteSafeDelegateRequest,
+} from './delegates'
 
 export interface paths {
   '/v1/chains/{chainId}/safes/{address}': {
@@ -142,6 +151,46 @@ export interface paths {
       path: {
         chainId: string
       }
+    }
+  }
+  '/v1/chains/{chainId}/delegates':
+    | {
+        get: operations['get_delegates']
+        parameters: {
+          path: {
+            chainId: string
+          }
+          query: DelegatesRequest
+        }
+      }
+    | {
+        get: operations['add_delegate']
+        parameters: {
+          path: {
+            chainId: string
+          }
+          body: AddDelegateRequest
+        }
+      }
+  '/v1/chains/{chainId}/delegates/{delegateAddress}': {
+    get: operations['delete_delegate']
+    parameters: {
+      path: {
+        chainId: string
+        delegateAddress: string
+      }
+      body: DeleteDelegateRequest
+    }
+  }
+  '/v1/chains/{chainId}/safes/{address}/delegates/{delegateAddress}': {
+    get: operations['delete_safe_delegate']
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+        delegateAddress: string
+      }
+      body: DeleteSafeDelegateRequest
     }
   }
 }
@@ -391,6 +440,63 @@ export interface operations {
     responses: {
       200: {
         schema: DecodedDataResponse
+      }
+    }
+  }
+  get_delegates: {
+    parameters: {
+      path: {
+        chainId: string
+      }
+      query: DelegatesRequest
+    }
+    responses: {
+      200: {
+        schema: DelegateResponse
+      }
+    }
+  }
+  add_delegate: {
+    parameters: {
+      path: {
+        chainId: string
+      }
+      body: DelegatesRequest
+    }
+    responses: {
+      200: {
+        schema: void
+      }
+    }
+  }
+  delete_delegate: {
+    parameters: {
+      path: {
+        chainId: string
+        delegateAddress: string
+      }
+      body: DeleteDelegateRequest
+    }
+    responses: {
+      200: {
+        // TODO: Determine return type
+        schema: unknown
+      }
+    }
+  }
+  delete_safe_delegate: {
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+        delegateAddress: string
+      }
+      body: DeleteSafeDelegateRequest
+    }
+    responses: {
+      200: {
+        // TODO: Determine return type
+        schema: unknown
       }
     }
   }

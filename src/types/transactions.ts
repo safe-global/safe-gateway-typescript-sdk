@@ -253,7 +253,7 @@ export type ConflictHeader = {
 
 export type TransactionListItem = Transaction | Label | ConflictHeader
 
-type Page<T> = {
+export type Page<T> = {
   next?: string
   previous?: string
   results: Array<T>

@@ -49,11 +49,17 @@ export function getIncomingTransfers(
   chainId: string,
   address: string,
   query?: operations['incoming_transfers']['parameters']['query'],
+  pageUrl?: string,
 ): Promise<SafeIncomingTransfersResponse> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/incoming-transfers/', {
-    path: { chainId, address },
-    query,
-  })
+  return callEndpoint(
+    baseUrl,
+    '/v1/chains/{chainId}/safes/{address}/incoming-transfers/',
+    {
+      path: { chainId, address },
+      query,
+    },
+    pageUrl,
+  )
 }
 
 /**
@@ -63,11 +69,17 @@ export function getModuleTransactions(
   chainId: string,
   address: string,
   query?: operations['module_transactions']['parameters']['query'],
+  pageUrl?: string,
 ): Promise<SafeModuleTransactionsResponse> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/module-transactions/', {
-    path: { chainId, address },
-    query,
-  })
+  return callEndpoint(
+    baseUrl,
+    '/v1/chains/{chainId}/safes/{address}/module-transactions/',
+    {
+      path: { chainId, address },
+      query,
+    },
+    pageUrl,
+  )
 }
 
 /**
@@ -77,11 +89,17 @@ export function getMultisigTransactions(
   chainId: string,
   address: string,
   query?: operations['multisig_transactions']['parameters']['query'],
+  pageUrl?: string,
 ): Promise<SafeMultisigTransactionsResponse> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/multisig-transactions/', {
-    path: { chainId, address },
-    query,
-  })
+  return callEndpoint(
+    baseUrl,
+    '/v1/chains/{chainId}/safes/{address}/multisig-transactions/',
+    {
+      path: { chainId, address },
+      query,
+    },
+    pageUrl,
+  )
 }
 
 /**

@@ -1,3 +1,5 @@
+import { IncomingTransfer, ModuleTransaction, MultisigTransaction, Page } from '..'
+
 export type AddressEx = {
   value: string
   name: string | null
@@ -48,6 +50,12 @@ export type SafeBalanceResponse = {
     fiatConversion: string
   }>
 }
+
+export type SafeIncomingTransfersResponse = Page<IncomingTransfer>
+
+export type SafeModuleTransactionsResponse = Page<ModuleTransaction>
+
+export type SafeMultisigTransactionsResponse = Page<MultisigTransaction>
 
 export type SafeCollectibleResponse = {
   address: string

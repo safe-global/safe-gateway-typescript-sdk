@@ -244,7 +244,7 @@ export interface operations {
         execution_date__lte?: string
         to?: string
         token_address?: string
-        value?: number
+        value?: string
       }
     }
     responses: {
@@ -290,8 +290,8 @@ export interface operations {
         execution_date__gte?: string
         execution_date__lte?: string
         to?: string
-        value?: number
-        nonce?: number
+        value?: string
+        nonce?: string
       }
     }
     responses: {

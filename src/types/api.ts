@@ -292,6 +292,7 @@ export interface operations {
         to?: string
         value?: string
         nonce?: string
+        executed?: string
       }
     }
     responses: {

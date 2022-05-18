@@ -266,6 +266,7 @@ export interface operations {
       }
       query?: {
         module?: string
+        to?: string
       }
     }
     responses: {

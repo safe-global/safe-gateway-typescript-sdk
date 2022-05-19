@@ -1,4 +1,13 @@
-import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './common'
+import {
+  FiatCurrencies,
+  OwnedSafes,
+  SafeBalanceResponse,
+  SafeCollectibleResponse,
+  SafeIncomingTransfersResponse,
+  SafeInfo,
+  SafeModuleTransactionsResponse,
+  SafeMultisigTransactionsResponse,
+} from './common'
 import {
   MultisigTransactionRequest,
   TransactionDetails,
@@ -24,6 +33,36 @@ export interface paths {
   }
   '/v1/chains/{chainId}/safes/{address}/balances/{currency}': {
     get: operations['safes_balances_list']
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+        currency: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{address}/incoming-transfers/': {
+    get: operations['incoming_transfers']
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+        currency: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{address}/module-transactions/': {
+    get: operations['module_transactions']
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+        currency: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{address}/multisig-transactions/': {
+    get: operations['multisig_transactions']
     parameters: {
       path: {
         chainId: string
@@ -186,6 +225,79 @@ export interface operations {
     responses: {
       200: {
         schema: SafeBalanceResponse
+      }
+      /** Safe not found */
+      404: unknown
+      /** Safe address checksum not valid */
+      422: unknown
+    }
+  }
+  /** Get filterable incoming transfers */
+  incoming_transfers: {
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+      }
+      query?: {
+        execution_date__gte?: string
+        execution_date__lte?: string
+        to?: string
+        token_address?: string
+        value?: string
+      }
+    }
+    responses: {
+      200: {
+        schema: SafeIncomingTransfersResponse
+      }
+      /** Safe not found */
+      404: unknown
+      /** Safe address checksum not valid */
+      422: unknown
+    }
+  }
+  /** Get filterable module transactions */
+  module_transactions: {
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+      }
+      query?: {
+        module?: string
+        to?: string
+      }
+    }
+    responses: {
+      200: {
+        schema: SafeModuleTransactionsResponse
+      }
+      /** Safe not found */
+      404: unknown
+      /** Safe address checksum not valid */
+      422: unknown
+    }
+  }
+  /** Get filterable multisig transactions */
+  multisig_transactions: {
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+      }
+      query?: {
+        execution_date__gte?: string
+        execution_date__lte?: string
+        to?: string
+        value?: string
+        nonce?: string
+        executed?: string
+      }
+    }
+    responses: {
+      200: {
+        schema: SafeMultisigTransactionsResponse
       }
       /** Safe not found */
       404: unknown

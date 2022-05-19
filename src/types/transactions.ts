@@ -228,6 +228,28 @@ export type Transaction = {
   type: 'TRANSACTION'
 }
 
+// WIP types:
+
+export type IncomingTransfer = Omit<Transaction, 'transaction'> & {
+  transaction: Omit<TransactionSummary, 'txInfo' | 'executionInfo'> & {
+    txInfo: Omit<Transfer, 'direction'> & { direction: TransferDirection.INCOMING }
+  }
+}
+
+export type ModuleTransaction = Omit<Transaction, 'transaction'> & {
+  transaction: Omit<TransactionSummary, 'txInfo' | 'executionInfo'> & {
+    txInfo: Transfer
+    executionInfo?: ModuleExecutionInfo
+  }
+}
+
+export type MultisigTransaction = Omit<Transaction, 'transaction'> & {
+  transaction: Omit<TransactionSummary, 'txInfo' | 'executionInfo'> & {
+    txInfo: Omit<Transfer, 'direction'> & { direction: TransferDirection.OUTGOING }
+    executionInfo?: MultisigExecutionInfo
+  }
+}
+
 export type DateLabel = {
   timestamp: number
   type: 'DATE_LABEL'
@@ -253,7 +275,7 @@ export type ConflictHeader = {
 
 export type TransactionListItem = Transaction | Label | ConflictHeader
 
-type Page<T> = {
+export type Page<T> = {
   next?: string
   previous?: string
   results: Array<T>

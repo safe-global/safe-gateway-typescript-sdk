@@ -1,7 +1,16 @@
 import { callEndpoint } from './endpoint'
 import { operations } from './types/api'
 import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
-import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
+import {
+  FiatCurrencies,
+  OwnedSafes,
+  SafeBalanceResponse,
+  SafeCollectibleResponse,
+  SafeIncomingTransfersResponse,
+  SafeInfo,
+  SafeModuleTransactionsResponse,
+  SafeMultisigTransactionsResponse,
+} from './types/common'
 import { ChainListResponse, ChainInfo } from './types/chains'
 import { SafeAppsResponse } from './types/safe-apps'
 import { MasterCopyReponse } from './types/master-copies'
@@ -31,6 +40,66 @@ export const setBaseUrl = (url: string): void => {
  */
 export function getSafeInfo(chainId: string, address: string): Promise<SafeInfo> {
   return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}', { path: { chainId, address } })
+}
+
+/**
+ * Get filterable list of incoming transactions
+ */
+export function getIncomingTransfers(
+  chainId: string,
+  address: string,
+  query?: operations['incoming_transfers']['parameters']['query'],
+  pageUrl?: string,
+): Promise<SafeIncomingTransfersResponse> {
+  return callEndpoint(
+    baseUrl,
+    '/v1/chains/{chainId}/safes/{address}/incoming-transfers/',
+    {
+      path: { chainId, address },
+      query,
+    },
+    pageUrl,
+  )
+}
+
+/**
+ * Get filterable list of module transactions
+ */
+export function getModuleTransactions(
+  chainId: string,
+  address: string,
+  query?: operations['module_transactions']['parameters']['query'],
+  pageUrl?: string,
+): Promise<SafeModuleTransactionsResponse> {
+  return callEndpoint(
+    baseUrl,
+    '/v1/chains/{chainId}/safes/{address}/module-transactions/',
+    {
+      path: { chainId, address },
+      query,
+    },
+    pageUrl,
+  )
+}
+
+/**
+ * Get filterable list of multisig transactions
+ */
+export function getMultisigTransactions(
+  chainId: string,
+  address: string,
+  query?: operations['multisig_transactions']['parameters']['query'],
+  pageUrl?: string,
+): Promise<SafeMultisigTransactionsResponse> {
+  return callEndpoint(
+    baseUrl,
+    '/v1/chains/{chainId}/safes/{address}/multisig-transactions/',
+    {
+      path: { chainId, address },
+      query,
+    },
+    pageUrl,
+  )
 }
 
 /**

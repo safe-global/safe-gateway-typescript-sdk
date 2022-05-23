@@ -2,9 +2,9 @@
 
 [![npm](https://img.shields.io/npm/v/@gnosis.pm/safe-react-gateway-sdk?label=%40gnosis.pm%2Fsafe-react-gateway-sdk)](https://www.npmjs.com/package/@gnosis.pm/safe-react-gateway-sdk)
 
-A TypeScript SDK for the [Safe Client Gateway](https://github.com/gnosis/safe-client-gateway)
+A TypeScript SDK for the [Safe Client Gateway](https://github.com/safe-global/safe-client-gateway)
 
-📖 [API reference](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances)
+📖 [API reference](https://safe-global.github.io/safe-react-gateway-sdk/modules.html#getBalances)
 
 ## Usage policy
 
@@ -41,7 +41,7 @@ import { setBaseUrl } from '@gnosis.pm/safe-react-gateway-sdk'
 setBaseUrl('https://safe-client.staging.gnosisdev.com')
 ```
 
-The full SDK reference can be found [here](https://gnosis.github.io/safe-react-gateway-sdk/modules.html#getBalances).
+The full SDK reference can be found [here](https://safe-global.github.io/safe-react-gateway-sdk/modules.html#getBalances).
 
 ## Adding an endpoint
 
@@ -77,4 +77,4 @@ N.B.: the e2e tests make actual API calls on staging.
 
 ## Gateway API docs
 
-The TypeScript types in this SDK are based on [Rust types](https://gnosis.github.io/safe-client-gateway/docs/routes/index.html) from the Gateway API.
+The TypeScript types in this SDK are based on [Rust types](https://safe-global.github.io/safe-client-gateway/docs/routes/index.html) from the Gateway API.

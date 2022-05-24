@@ -64,7 +64,7 @@ export enum FEATURES {
 }
 
 // Remain agnostic as possible and reference what is returned in the CGW, i.e.
-// https://gnosis.github.io/safe-client-gateway/docs/routes/chains/models/struct.ChainInfo.html
+// https://safe.global/safe-client-gateway/docs/routes/chains/models/struct.ChainInfo.html
 export type ChainInfo = {
   transactionService: string
   chainId: string // Restricted by what is returned by the CGW

@@ -234,7 +234,7 @@ export type DateLabel = {
 }
 
 /**
- * @see https://gnosis.github.io/safe-client-gateway/docs/routes/transactions/models/summary/enum.Label.html
+ * @see https://safe.global/safe-client-gateway/docs/routes/transactions/models/summary/enum.Label.html
  */
 export enum LabelValue {
   Queued = 'Queued',

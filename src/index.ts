@@ -1,4 +1,4 @@
-import { callEndpoint } from './endpoint'
+import { callEndpoint, deleteEndpoint } from './endpoint'
 import { operations } from './types/api'
 import { Page, SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
 import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeInfo } from './types/common'
@@ -234,7 +234,7 @@ export function deleteDelegate(
   delegateAddress: string,
   body: DeleteDelegateRequest,
 ): Promise<unknown> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/delegates/{delegateAddress}', {
+  return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/delegates/{delegateAddress}', {
     path: { chainId, delegateAddress },
     body,
   })
@@ -249,7 +249,7 @@ export function deleteSafeDelegate(
   delegateAddress: string,
   body: DeleteSafeDelegateRequest,
 ): Promise<unknown> {
-  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/delegates/{delegateAddress}', {
+  return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{address}/delegates/{delegateAddress}', {
     path: { chainId, address, delegateAddress },
     body,
   })

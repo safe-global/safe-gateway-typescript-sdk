@@ -188,6 +188,10 @@ export type MultiSend = {
   isCancellation: boolean
 }
 
+export type Cancellation = Custom & {
+  isCancellation: true
+}
+
 export type Creation = {
   type: 'Creation'
   creator: AddressEx
@@ -273,7 +277,7 @@ export type ConflictHeader = {
   type: 'CONFLICT_HEADER'
 }
 
-export type TransactionListItem = Transaction | Label | ConflictHeader
+export type TransactionListItem = Transaction | DateLabel | Label | ConflictHeader
 
 export type Page<T> = {
   next?: string

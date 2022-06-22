@@ -200,7 +200,7 @@ export type Creation = {
   factory: AddressEx | null
 }
 
-export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Creation
+export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation
 
 export type ModuleExecutionInfo = {
   type: 'MODULE'

@@ -61,6 +61,7 @@ export enum FEATURES {
   SPENDING_LIMIT = 'SPENDING_LIMIT',
   EIP1559 = 'EIP1559',
   SAFE_TX_GAS_OPTIONAL = 'SAFE_TX_GAS_OPTIONAL',
+  TX_SIMULATION = 'TX_SIMULATION',
 }
 
 // Remain agnostic as possible and reference what is returned in the CGW, i.e.

@@ -14,7 +14,7 @@ export type SafeInfo = {
   owners: AddressEx[]
   implementation: AddressEx
   modules: AddressEx[]
-  guard: AddressEx
+  guard: AddressEx | null
   fallbackHandler: AddressEx
   version: string
   collectiblesTag: string

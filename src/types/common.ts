@@ -2,8 +2,8 @@ import { IncomingTransfer, ModuleTransaction, MultisigTransaction, Page } from '
 
 export type AddressEx = {
   value: string
-  name: string | null
-  logoUri: string | null
+  name?: string
+  logoUri?: string
 }
 
 export type SafeInfo = {
@@ -13,7 +13,7 @@ export type SafeInfo = {
   threshold: number
   owners: AddressEx[]
   implementation: AddressEx
-  modules: AddressEx[]
+  modules: AddressEx[] | null
   guard: AddressEx | null
   fallbackHandler: AddressEx
   version: string

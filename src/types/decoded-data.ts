@@ -15,10 +15,10 @@ export type DecodedDataParameterValue = {
   to: string
   value: string
   data: string
-  dataDecoded: {
+  dataDecoded?: {
     method: string
     parameters: DecodedDataBasicParameter[]
-  } | null
+  }
 }
 
 export type DecodedDataParameter = {

@@ -32,13 +32,16 @@ export enum TokenType {
   NATIVE_TOKEN = 'NATIVE_TOKEN',
 }
 
+/**
+ * @see https://github.com/safe-global/safe-client-gateway/blob/main/src/common/models/backend/balances.rs
+ */
 export type TokenInfo = {
   type: TokenType
   address: string
   decimals: number
   symbol: string
   name: string
-  logoUri: string | null
+  logoUri: string
 }
 
 export type SafeBalanceResponse = {

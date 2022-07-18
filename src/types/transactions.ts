@@ -10,9 +10,9 @@ export enum Operation {
 export type InternalTransaction = {
   operation: Operation
   to: string
-  value: string | null
-  data: string | null
-  dataDecoded: DataDecoded | null
+  value?: string
+  data?: string
+  dataDecoded?: DataDecoded
 }
 
 export type ValueDecodedType = InternalTransaction[]
@@ -21,12 +21,12 @@ export type Parameter = {
   name: string
   type: string
   value: ParamValue
-  valueDecoded: ValueDecodedType | null
+  valueDecoded?: ValueDecodedType
 }
 
 export type DataDecoded = {
   method: string
-  parameters: Parameter[] | null
+  parameters?: Parameter[]
 }
 
 export enum TransactionStatus {
@@ -67,10 +67,10 @@ export enum SettingsInfoType {
 export type Erc20Transfer = {
   type: TransactionTokenType.ERC20
   tokenAddress: string
-  tokenName: string | null
-  tokenSymbol: string | null
-  logoUri: string | null
-  decimals: number | null
+  tokenName?: string
+  tokenSymbol?: string
+  logoUri?: string
+  decimals?: number
   value: string
 }
 
@@ -78,9 +78,9 @@ export type Erc721Transfer = {
   type: TransactionTokenType.ERC721
   tokenAddress: string
   tokenId: string
-  tokenName: string | null
-  tokenSymbol: string | null
-  logoUri: string | null
+  tokenName?: string
+  tokenSymbol?: string
+  logoUri?: string
 }
 
 export type NativeCoinTransfer = {
@@ -165,7 +165,7 @@ export type SettingsInfo =
 export type SettingsChange = {
   type: 'SettingsChange'
   dataDecoded: DataDecoded
-  settingsInfo: SettingsInfo | null
+  settingsInfo?: SettingsInfo
 }
 
 export interface Custom {
@@ -173,8 +173,8 @@ export interface Custom {
   to: AddressEx
   dataSize: string
   value: string
-  methodName: string | null
-  actionCount: number | null
+  methodName?: string
+  actionCount?: number
   isCancellation: boolean
 }
 
@@ -196,8 +196,8 @@ export type Creation = {
   type: 'Creation'
   creator: AddressEx
   transactionHash: string
-  implementation: AddressEx | null
-  factory: AddressEx | null
+  implementation?: AddressEx
+  factory?: AddressEx
 }
 
 export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation
@@ -212,7 +212,7 @@ export type MultisigExecutionInfo = {
   nonce: number
   confirmationsRequired: number
   confirmationsSubmitted: number
-  missingSigners: AddressEx[] | null
+  missingSigners?: AddressEx[]
 }
 
 export type ExecutionInfo = ModuleExecutionInfo | MultisigExecutionInfo
@@ -290,18 +290,18 @@ export type TransactionListPage = Page<TransactionListItem>
 export type MultisigTransactionRequest = {
   to: string
   value: string
-  data: string | null
+  data?: string
   nonce: string
   operation: Operation
   safeTxGas: string
   baseGas: string
   gasPrice: string
   gasToken: string
-  refundReceiver: string | null
+  refundReceiver?: string
   safeTxHash: string
   sender: string
-  signature?: string | null
-  origin: string | null
+  signature?: string
+  origin?: string
 }
 
 /* Transaction details types */
@@ -312,12 +312,12 @@ export type SafeAppInfo = {
 }
 
 export type TransactionData = {
-  hexData: string | null
-  dataDecoded: DataDecoded | null
+  hexData?: string
+  dataDecoded?: DataDecoded
   to: AddressEx
-  value: string | null
+  value?: string
   operation: Operation
-  addressInfoIndex: { [key: string]: AddressEx } | null
+  addressInfoIndex?: { [key: string]: AddressEx }
   trustedDelegateCallTarget: boolean
 }
 
@@ -328,7 +328,7 @@ export type ModuleExecutionDetails = {
 
 export type MultisigConfirmation = {
   signer: AddressEx
-  signature: string | null
+  signature?: string
   submittedAt: number
 }
 
@@ -342,25 +342,25 @@ export type MultisigExecutionDetails = {
   gasToken: string
   refundReceiver: AddressEx
   safeTxHash: string
-  executor: AddressEx | null
+  executor?: AddressEx
   signers: AddressEx[]
   confirmationsRequired: number
   confirmations: MultisigConfirmation[]
-  rejectors: AddressEx[] | null
-  gasTokenInfo: TokenInfo | null
+  rejectors?: AddressEx[]
+  gasTokenInfo?: TokenInfo
 }
 
 export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDetails
 
 export type TransactionDetails = {
   txId: string
-  executedAt: number | null
+  executedAt?: number
   txStatus: TransactionStatus
   txInfo: TransactionInfo
-  txData: TransactionData | null
-  detailedExecutionInfo: DetailedExecutionInfo | null
-  txHash: string | null
-  safeAppInfo: SafeAppInfo | null
+  txData?: TransactionData
+  detailedExecutionInfo?: DetailedExecutionInfo
+  txHash?: string
+  safeAppInfo?: SafeAppInfo
 }
 
 /* Transaction details types end */

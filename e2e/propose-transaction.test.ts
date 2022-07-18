@@ -21,7 +21,6 @@ describe('proposeTransaction tests', () => {
       refundReceiver: '0x0000000000000000000000000000000000000000',
       safeTxHash: '0x98798b6d9400b25397e85eb79c444a06f93d153555c1d7fd026176f02055a824',
       sender: '0x474e5Ded6b5D078163BFB8F6dBa355C3aA5478C8',
-      origin: null,
     })
     await expect(req).rejects.toThrow(
       '1337: {"nonFieldErrors":["Contract-transaction-hash=0xdf2c4db07ee705e94135d92f835cc241b1d4c20e10d481a4e445265851448cb3 does not match provided contract-tx-hash=0x98798b6d9400b25397e85eb79c444a06f93d153555c1d7fd026176f02055a824"]}',

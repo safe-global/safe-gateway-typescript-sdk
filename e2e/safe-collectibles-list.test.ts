@@ -12,8 +12,8 @@ describe('getCollectibles tests', () => {
 
     expect(data.length).toBeGreaterThanOrEqual(1)
     expect(typeof data[1].address).toBe('string')
-    expect(typeof data[0].description).toBe('string')
-    expect(typeof data[0].name).toBe('string')
+    expect(data[0].description).toBeDefined()
+    expect(data[0].name).toBeDefined()
     expect(data[0].metadata).toBeDefined()
     expect(data[0].tokenName.length).toBeGreaterThan(0)
     expect(data[0].tokenSymbol.length).toBeGreaterThan(0)

@@ -6,7 +6,7 @@ describe('getSafeInfo tests', () => {
     setBaseUrl(config.baseUrl)
   })
 
-  it('should get safe info on rinkeby', async () => {
+  it('should get a 1.1.1 Safe on Rinkeby', async () => {
     const address = '0x9B5dc27B104356516B05b02F6166a54F6D74e40B'
     const data = await getSafeInfo('4', address)
 
@@ -22,5 +22,14 @@ describe('getSafeInfo tests', () => {
     ])
     expect(data.threshold).toBe(1)
     expect(data.version).toBe('1.1.1')
+    expect(data.implementationVersionState).toBe('OUTDATED')
+  })
+
+  it('should get a 1.3.0 Safe on Rinkeby', async () => {
+    const address = '0xb3b83bf204C458B461de9B0CD2739DB152b4fa5A'
+    const data = await getSafeInfo('4', address)
+
+    expect(data.version).toBe('1.3.0')
+    expect(data.implementationVersionState).toBe('UP_TO_DATE')
   })
 })

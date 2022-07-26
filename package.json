@@ -1,6 +1,6 @@
 {
   "name": "@gnosis.pm/safe-react-gateway-sdk",
-  "version": "3.2.2",
+  "version": "3.2.3",
   "main": "dist/index.min.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -34,7 +34,7 @@
     "webpack-cli": "^4.7.2"
   },
   "scripts": {
-    "lint": "eslint './src/**/*.ts'",
+    "lint": "tsc && eslint './src/**/*.ts'",
     "lint:fix": "yarn lint --fix",
     "types": "yarn tsc",
     "start": "rm -rf dist && webpack --mode production --watch",

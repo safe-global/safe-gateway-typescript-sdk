@@ -4,7 +4,6 @@ import {
   SafeBalanceResponse,
   SafeCollectibleResponse,
   SafeIncomingTransfersResponse,
-  SafeInfo,
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
 } from './common'
@@ -15,6 +14,7 @@ import {
   SafeTransactionEstimationRequest,
   TransactionListPage,
 } from './transactions'
+import { SafeInfo } from './safe-info'
 import { ChainListResponse, ChainInfo } from './chains'
 import { SafeAppsResponse } from './safe-apps'
 import { DecodedDataRequest, DecodedDataResponse } from './decoded-data'

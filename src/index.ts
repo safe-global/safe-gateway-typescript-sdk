@@ -7,15 +7,17 @@ import {
   SafeBalanceResponse,
   SafeCollectibleResponse,
   SafeIncomingTransfersResponse,
-  SafeInfo,
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
 } from './types/common'
+import { SafeInfo } from './types/safe-info'
 import { ChainListResponse, ChainInfo } from './types/chains'
 import { SafeAppsResponse } from './types/safe-apps'
 import { MasterCopyReponse } from './types/master-copies'
 import { DecodedDataResponse } from './types/decoded-data'
 import { DEFAULT_BASE_URL } from './config'
+
+export * from './types/safe-info'
 export * from './types/safe-apps'
 export * from './types/transactions'
 export * from './types/chains'

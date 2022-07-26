@@ -6,22 +6,6 @@ export type AddressEx = {
   logoUri?: string
 }
 
-export type SafeInfo = {
-  address: AddressEx
-  chainId: string
-  nonce: number
-  threshold: number
-  owners: AddressEx[]
-  implementation: AddressEx
-  modules: AddressEx[] | null
-  guard: AddressEx | null
-  fallbackHandler: AddressEx
-  version: string
-  collectiblesTag: string
-  txQueuedTag: string
-  txHistoryTag: string
-}
-
 export type FiatCurrencies = string[]
 
 export type OwnedSafes = { safes: string[] }

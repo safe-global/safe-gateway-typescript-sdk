@@ -74,7 +74,6 @@ yarn test
 
 N.B.: the e2e tests make actual API calls on staging.
 
-
 ## Gateway API docs
 
 The TypeScript types in this SDK are based on [Rust types](https://safe-global.github.io/safe-client-gateway/docs/routes/index.html) from the Gateway API.

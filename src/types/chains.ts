@@ -1,4 +1,4 @@
-import { Page } from './transactions'
+import { Page } from './common'
 
 export enum RPC_AUTHENTICATION {
   API_KEY_PATH = 'API_KEY_PATH',

@@ -1,4 +1,4 @@
-import { AddressEx, TokenInfo } from './common'
+import { AddressEx, Page, TokenInfo } from './common'
 
 export type ParamValue = string | ParamValue[]
 
@@ -279,12 +279,6 @@ export type ConflictHeader = {
 
 export type TransactionListItem = Transaction | DateLabel | Label | ConflictHeader
 
-export type Page<T> = {
-  next?: string
-  previous?: string
-  results: Array<T>
-}
-
 export type TransactionListPage = Page<TransactionListItem>
 
 export type MultisigTransactionRequest = {
@@ -382,3 +376,9 @@ export type SafeTransactionEstimation = {
 }
 
 /* Transaction estimation types end */
+
+export type SafeIncomingTransfersResponse = Page<IncomingTransfer>
+
+export type SafeModuleTransactionsResponse = Page<ModuleTransaction>
+
+export type SafeMultisigTransactionsResponse = Page<MultisigTransaction>

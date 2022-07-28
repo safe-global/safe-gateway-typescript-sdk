@@ -1,14 +1,19 @@
 import { callEndpoint } from './endpoint'
 import { operations } from './types/api'
-import { SafeTransactionEstimation, TransactionDetails, TransactionListPage } from './types/transactions'
+import {
+  SafeTransactionEstimation,
+  TransactionDetails,
+  TransactionListPage,
+  SafeIncomingTransfersResponse,
+  SafeModuleTransactionsResponse,
+  SafeMultisigTransactionsResponse,
+} from './types/transactions'
 import {
   FiatCurrencies,
   OwnedSafes,
   SafeBalanceResponse,
   SafeCollectibleResponse,
-  SafeIncomingTransfersResponse,
-  SafeModuleTransactionsResponse,
-  SafeMultisigTransactionsResponse,
+  SafeCollectiblesPage,
 } from './types/common'
 import { SafeInfo } from './types/safe-info'
 import { ChainListResponse, ChainInfo } from './types/chains'
@@ -145,6 +150,23 @@ export function getCollectibles(
     path: { chainId, address },
     query,
   })
+}
+
+/**
+ * Get NFTs stored in a Safe
+ */
+export function getCollectiblesPage(
+  chainId: string,
+  address: string,
+  query: operations['safes_collectibles_list_paginated']['parameters']['query'] = {},
+  pageUrl?: string,
+): Promise<SafeCollectiblesPage> {
+  return callEndpoint(
+    baseUrl,
+    '/v2/chains/{chainId}/safes/{address}/collectibles',
+    { path: { chainId, address }, query },
+    pageUrl,
+  )
 }
 
 /**

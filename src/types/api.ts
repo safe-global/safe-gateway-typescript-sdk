@@ -3,9 +3,7 @@ import {
   OwnedSafes,
   SafeBalanceResponse,
   SafeCollectibleResponse,
-  SafeIncomingTransfersResponse,
-  SafeModuleTransactionsResponse,
-  SafeMultisigTransactionsResponse,
+  SafeCollectiblesPage,
 } from './common'
 import {
   MultisigTransactionRequest,
@@ -13,6 +11,9 @@ import {
   SafeTransactionEstimation,
   SafeTransactionEstimationRequest,
   TransactionListPage,
+  SafeIncomingTransfersResponse,
+  SafeModuleTransactionsResponse,
+  SafeMultisigTransactionsResponse,
 } from './transactions'
 import { SafeInfo } from './safe-info'
 import { ChainListResponse, ChainInfo } from './chains'
@@ -78,6 +79,16 @@ export interface paths {
   '/v1/chains/{chainId}/safes/{address}/collectibles': {
     /** Get collectibles (ERC721 tokens) and information about them */
     get: operations['safes_collectibles_list']
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+      }
+    }
+  }
+  '/v2/chains/{chainId}/safes/{address}/collectibles': {
+    /** Get collectibles (ERC721 tokens) and information about them */
+    get: operations['safes_collectibles_list_paginated']
     parameters: {
       path: {
         chainId: string
@@ -330,6 +341,29 @@ export interface operations {
     responses: {
       200: {
         schema: SafeCollectibleResponse[]
+      }
+      /** Safe not found */
+      404: unknown
+      /** Safe address checksum not valid */
+      422: unknown
+    }
+  }
+  safes_collectibles_list_paginated: {
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+      }
+      query: {
+        /** If `True` just trusted tokens will be returned */
+        trusted?: boolean
+        /** If `True` spam tokens will not be returned */
+        exclude_spam?: boolean
+      }
+    }
+    responses: {
+      200: {
+        schema: SafeCollectiblesPage
       }
       /** Safe not found */
       404: unknown

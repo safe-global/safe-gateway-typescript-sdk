@@ -1,5 +1,3 @@
-import { IncomingTransfer, ModuleTransaction, MultisigTransaction, Page } from '..'
-
 export type AddressEx = {
   value: string
   name?: string
@@ -38,11 +36,11 @@ export type SafeBalanceResponse = {
   }>
 }
 
-export type SafeIncomingTransfersResponse = Page<IncomingTransfer>
-
-export type SafeModuleTransactionsResponse = Page<ModuleTransaction>
-
-export type SafeMultisigTransactionsResponse = Page<MultisigTransaction>
+export type Page<T> = {
+  next?: string
+  previous?: string
+  results: Array<T>
+}
 
 export type SafeCollectibleResponse = {
   address: string
@@ -56,3 +54,5 @@ export type SafeCollectibleResponse = {
   imageUri: string
   metadata: { [key: string]: string }
 }
+
+export type SafeCollectiblesPage = Page<SafeCollectibleResponse>

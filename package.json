@@ -1,6 +1,6 @@
 {
   "name": "@gnosis.pm/safe-react-gateway-sdk",
-  "version": "3.2.3",
+  "version": "3.2.4",
   "main": "dist/index.min.js",
   "types": "dist/index.d.ts",
   "files": [
@@ -40,7 +40,7 @@
     "start": "rm -rf dist && webpack --mode production --watch",
     "build": "rm -rf dist && webpack --mode production",
     "prepublishOnly": "yarn types && yarn lint && yarn test:check && yarn build",
-    "prettier": "prettier -w .",
+    "prettier": "prettier -w './**/*.ts'",
     "test": "jest --watch --coverage .",
     "test:check": "jest --testPathPattern=tests",
     "test:ci": "jest --ci --coverage --json --watchAll=false --testLocationInResults --runInBand --testPathPattern=tests"

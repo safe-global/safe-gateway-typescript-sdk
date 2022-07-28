@@ -25,7 +25,9 @@ describe('getCollectibles tests', () => {
     const json = await getCollectiblesPage('1', address)
     const data = json.results
 
-    expect(json.next).toBe('https://safe-client.staging.gnosisdev.com/v2/chains/1/safes/0xA77DE01e157f9f57C7c4A326eeE9C4874D0598b6/collectibles?cursor=limit%3D10%26offset%3D10')
+    expect(json.next).toBe(
+      'https://safe-client.staging.gnosisdev.com/v2/chains/1/safes/0xA77DE01e157f9f57C7c4A326eeE9C4874D0598b6/collectibles?cursor=limit%3D10%26offset%3D10',
+    )
     expect(json.previous).toBe(null)
     expect(data.length).toBeGreaterThan(1)
     expect(typeof data[1].address).toBe('string')

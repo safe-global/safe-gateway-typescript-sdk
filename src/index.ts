@@ -8,7 +8,13 @@ import {
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
 } from './types/transactions'
-import { FiatCurrencies, OwnedSafes, SafeBalanceResponse, SafeCollectibleResponse, SafeCollectiblesPage } from './types/common'
+import {
+  FiatCurrencies,
+  OwnedSafes,
+  SafeBalanceResponse,
+  SafeCollectibleResponse,
+  SafeCollectiblesPage,
+} from './types/common'
 import { SafeInfo } from './types/safe-info'
 import { ChainListResponse, ChainInfo } from './types/chains'
 import { SafeAppsResponse } from './types/safe-apps'
@@ -149,7 +155,7 @@ export function getCollectibles(
 /**
  * Get NFTs stored in a Safe
  */
- export function getCollectiblesPage(
+export function getCollectiblesPage(
   chainId: string,
   address: string,
   query: operations['safes_collectibles_list_paginated']['parameters']['query'] = {},

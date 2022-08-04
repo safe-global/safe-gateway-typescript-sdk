@@ -35,8 +35,6 @@ export enum TransactionStatus {
   CANCELLED = 'CANCELLED',
   FAILED = 'FAILED',
   SUCCESS = 'SUCCESS',
-  PENDING = 'PENDING',
-  WILL_BE_REPLACED = 'WILL_BE_REPLACED',
 }
 
 export enum TransferDirection {

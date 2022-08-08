@@ -1,6 +1,6 @@
 {
   "name": "@gnosis.pm/safe-react-gateway-sdk",
-  "version": "3.3.4",
+  "version": "3.3.5",
   "main": "dist/index.min.js",
   "types": "dist/index.d.ts",
   "files": [

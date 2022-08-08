@@ -345,6 +345,7 @@ export type MultisigExecutionDetails = {
 export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDetails
 
 export type TransactionDetails = {
+  safeAddress: string
   txId: string
   executedAt?: number
   txStatus: TransactionStatus

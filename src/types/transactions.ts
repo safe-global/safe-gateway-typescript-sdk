@@ -88,7 +88,7 @@ export type NativeCoinTransfer = {
 
 export type TransferInfo = Erc20Transfer | Erc721Transfer | NativeCoinTransfer
 
-export interface Transfer {
+export type Transfer = {
   type: 'Transfer'
   sender: AddressEx
   recipient: AddressEx
@@ -166,7 +166,7 @@ export type SettingsChange = {
   settingsInfo?: SettingsInfo
 }
 
-export interface Custom {
+export type Custom = {
   type: 'Custom'
   to: AddressEx
   dataSize: string

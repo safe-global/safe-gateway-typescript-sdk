@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>SafeAppProvider | @gnosis.pm/safe-react-gateway-sdk</title><meta name="description" content="Documentation for @gnosis.pm/safe-react-gateway-sdk"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>Custom | @gnosis.pm/safe-react-gateway-sdk</title><meta name="description" content="Documentation for @gnosis.pm/safe-react-gateway-sdk"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="../assets/style.css"/><link rel="stylesheet" href="../assets/highlight.css"/><script async src="../assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base="..">
 <div class="field"><label for="tsd-search-field" class="tsd-widget search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
@@ -11,18 +11,28 @@
 <div class="tsd-page-title">
 <ul class="tsd-breadcrumb">
 <li><a href="../modules.html">@gnosis.pm/safe-react-gateway-sdk</a></li>
-<li><a href="SafeAppProvider.html">SafeAppProvider</a></li></ul>
-<h1>Type alias SafeAppProvider</h1></div>
-<div class="tsd-signature">Safe<wbr/>App<wbr/>Provider<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
+<li><a href="Custom.html">Custom</a></li></ul>
+<h1>Type alias Custom</h1></div>
+<div class="tsd-signature">Custom<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>actionCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>dataSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>isCancellation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>methodName<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>to<span class="tsd-signature-symbol">: </span><a href="AddressEx.html" class="tsd-signature-type" data-tsd-kind="Type alias">AddressEx</a><span class="tsd-signature-symbol">; </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Custom&quot;</span><span class="tsd-signature-symbol">; </span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 <div class="tsd-type-declaration">
 <h4>Type declaration</h4>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
-<h5>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5></li>
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> action<wbr/>Count<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span></h5></li>
 <li class="tsd-parameter">
-<h5>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5></li></ul></div><aside class="tsd-sources">
+<h5>data<wbr/>Size<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5></li>
+<li class="tsd-parameter">
+<h5>is<wbr/>Cancellation<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></h5></li>
+<li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> method<wbr/>Name<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5></li>
+<li class="tsd-parameter">
+<h5>to<span class="tsd-signature-symbol">: </span><a href="AddressEx.html" class="tsd-signature-type" data-tsd-kind="Type alias">AddressEx</a></h5></li>
+<li class="tsd-parameter">
+<h5>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">&quot;Custom&quot;</span></h5></li>
+<li class="tsd-parameter">
+<h5>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h5></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/safe-global/safe-react-gateway-sdk/blob/c2bad9e/src/types/safe-apps.ts#L17">types/safe-apps.ts:17</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/safe-global/safe-react-gateway-sdk/blob/c2bad9e/src/types/transactions.ts#L169">types/transactions.ts:169</a></li></ul></aside></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -68,7 +78,7 @@
 <li class="tsd-kind-type-alias"><a href="ChangeThreshold.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Change<wbr/>Threshold</a></li>
 <li class="tsd-kind-type-alias"><a href="ConflictHeader.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Conflict<wbr/>Header</a></li>
 <li class="tsd-kind-type-alias"><a href="Creation.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Creation</a></li>
-<li class="tsd-kind-type-alias"><a href="Custom.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Custom</a></li>
+<li class="current tsd-kind-type-alias"><a href="Custom.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Custom</a></li>
 <li class="tsd-kind-type-alias"><a href="DataDecoded.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Data<wbr/>Decoded</a></li>
 <li class="tsd-kind-type-alias"><a href="DateLabel.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Date<wbr/>Label</a></li>
 <li class="tsd-kind-type-alias"><a href="DecodedDataBasicParameter.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Decoded<wbr/>Data<wbr/>Basic<wbr/>Parameter</a></li>
@@ -113,7 +123,7 @@
 <li class="tsd-kind-type-alias"><a href="SafeAppDomainAllowlistPolicy.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Safe<wbr/>App<wbr/>Domain<wbr/>Allowlist<wbr/>Policy</a></li>
 <li class="tsd-kind-type-alias"><a href="SafeAppInfo.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Safe<wbr/>App<wbr/>Info</a></li>
 <li class="tsd-kind-type-alias"><a href="SafeAppNoRestrictionsPolicy.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Safe<wbr/>App<wbr/>No<wbr/>Restrictions<wbr/>Policy</a></li>
-<li class="current tsd-kind-type-alias"><a href="SafeAppProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Safe<wbr/>App<wbr/>Provider</a></li>
+<li class="tsd-kind-type-alias"><a href="SafeAppProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Safe<wbr/>App<wbr/>Provider</a></li>
 <li class="tsd-kind-type-alias"><a href="SafeAppsAccessControlPolicies.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Safe<wbr/>Apps<wbr/>Access<wbr/>Control<wbr/>Policies</a></li>
 <li class="tsd-kind-type-alias"><a href="SafeAppsResponse.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Safe<wbr/>Apps<wbr/>Response</a></li>
 <li class="tsd-kind-type-alias"><a href="SafeBalanceResponse.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Safe<wbr/>Balance<wbr/>Response</a></li>

@@ -505,6 +505,7 @@ export interface operations {
       }
       query?: {
         client_url?: string
+        url?: string
       }
     }
     responses: {

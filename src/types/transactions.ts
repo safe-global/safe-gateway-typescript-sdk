@@ -256,7 +256,7 @@ export type TransactionSummary = {
 
 export type Transaction = {
   transaction: TransactionSummary
-  conflictType: 'None' | 'HasNext' | 'End'
+  conflictType: ConflictType
   type: TransactionListItemType.TRANSACTION
 }
 

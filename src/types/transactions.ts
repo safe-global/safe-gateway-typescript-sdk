@@ -43,6 +43,7 @@ export enum TransferDirection {
   UNKNOWN = 'UNKNOWN',
 }
 
+// https://safe.global/safe-client-gateway/docs/routes/transactions/models/enum.TransferInfo.html
 export enum TransactionTokenType {
   ERC20 = 'ERC20',
   ERC721 = 'ERC721',
@@ -60,6 +61,35 @@ export enum SettingsInfoType {
   DISABLE_MODULE = 'DISABLE_MODULE',
   SET_GUARD = 'SET_GUARD',
   DELETE_GUARD = 'DELETE_GUARD',
+}
+
+// https://safe.global/safe-client-gateway/docs/routes/transactions/models/enum.TransactionInfo.html
+export enum TransactionInfoType {
+  TRANSFER = 'Transfer',
+  SETTINGS_CHANGE = 'SettingsChange',
+  CUSTOM = 'Custom',
+  CREATION = 'Creation',
+}
+
+// https://safe.global/safe-client-gateway/docs/routes/transactions/models/summary/enum.ConflictType.html
+export enum ConflictType {
+  NONE = 'None',
+  HAS_NEXT = 'HasNext',
+  END = 'End',
+}
+
+// https://safe.global/safe-client-gateway/docs/routes/transactions/models/summary/enum.TransactionListItem.html
+export enum TransactionListItemType {
+  TRANSACTION = 'TRANSACTION',
+  LABEL = 'LABEL',
+  CONFLICT_HEADER = 'CONFLICT_HEADER',
+  DATE_LABEL = 'DATE_LABEL',
+}
+
+// https://safe.global/safe-client-gateway/docs/routes/transactions/models/details/enum.DetailedExecutionInfo.html
+export enum DetailedExecutionInfoType {
+  MULTISIG = 'MULTISIG',
+  MODULE = 'MODULE',
 }
 
 export type Erc20Transfer = {
@@ -89,7 +119,7 @@ export type NativeCoinTransfer = {
 export type TransferInfo = Erc20Transfer | Erc721Transfer | NativeCoinTransfer
 
 export type Transfer = {
-  type: 'Transfer'
+  type: TransactionInfoType.TRANSFER
   sender: AddressEx
   recipient: AddressEx
   direction: TransferDirection
@@ -161,13 +191,13 @@ export type SettingsInfo =
   | DeleteGuard
 
 export type SettingsChange = {
-  type: 'SettingsChange'
+  type: TransactionInfoType.SETTINGS_CHANGE
   dataDecoded: DataDecoded
   settingsInfo?: SettingsInfo
 }
 
 export type Custom = {
-  type: 'Custom'
+  type: TransactionInfoType.CUSTOM
   to: AddressEx
   dataSize: string
   value: string
@@ -177,7 +207,7 @@ export type Custom = {
 }
 
 export type MultiSend = {
-  type: 'Custom'
+  type: TransactionInfoType.CUSTOM
   to: AddressEx
   dataSize: string
   value: string
@@ -191,7 +221,7 @@ export type Cancellation = Custom & {
 }
 
 export type Creation = {
-  type: 'Creation'
+  type: TransactionInfoType.CREATION
   creator: AddressEx
   transactionHash: string
   implementation?: AddressEx
@@ -201,12 +231,12 @@ export type Creation = {
 export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation
 
 export type ModuleExecutionInfo = {
-  type: 'MODULE'
+  type: DetailedExecutionInfoType.MODULE
   address: AddressEx
 }
 
 export type MultisigExecutionInfo = {
-  type: 'MULTISIG'
+  type: DetailedExecutionInfoType.MULTISIG
   nonce: number
   confirmationsRequired: number
   confirmationsSubmitted: number
@@ -227,7 +257,7 @@ export type TransactionSummary = {
 export type Transaction = {
   transaction: TransactionSummary
   conflictType: 'None' | 'HasNext' | 'End'
-  type: 'TRANSACTION'
+  type: TransactionListItemType.TRANSACTION
 }
 
 // WIP types:
@@ -254,7 +284,7 @@ export type MultisigTransaction = Omit<Transaction, 'transaction'> & {
 
 export type DateLabel = {
   timestamp: number
-  type: 'DATE_LABEL'
+  type: TransactionListItemType.DATE_LABEL
 }
 
 /**
@@ -267,12 +297,12 @@ export enum LabelValue {
 
 export type Label = {
   label: LabelValue
-  type: 'LABEL'
+  type: TransactionListItemType.LABEL
 }
 
 export type ConflictHeader = {
   nonce: number
-  type: 'CONFLICT_HEADER'
+  type: TransactionListItemType.CONFLICT_HEADER
 }
 
 export type TransactionListItem = Transaction | DateLabel | Label | ConflictHeader
@@ -314,7 +344,7 @@ export type TransactionData = {
 }
 
 export type ModuleExecutionDetails = {
-  type: 'MODULE'
+  type: DetailedExecutionInfoType.MODULE
   address: AddressEx
 }
 
@@ -325,7 +355,7 @@ export type MultisigConfirmation = {
 }
 
 export type MultisigExecutionDetails = {
-  type: 'MULTISIG'
+  type: DetailedExecutionInfoType.MULTISIG
   submittedAt: number
   nonce: number
   safeTxGas: string

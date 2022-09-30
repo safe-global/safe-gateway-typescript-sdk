@@ -1,4 +1,4 @@
-import { AddressEx, Page, TokenInfo } from './common'
+import type { AddressEx, Page, TokenInfo } from './common'
 
 export type ParamValue = string | ParamValue[]
 

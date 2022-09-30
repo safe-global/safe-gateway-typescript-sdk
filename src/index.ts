@@ -1,6 +1,6 @@
 import { callEndpoint } from './endpoint'
-import { operations } from './types/api'
-import {
+import type { operations } from './types/api'
+import type {
   SafeTransactionEstimation,
   TransactionDetails,
   TransactionListPage,
@@ -8,18 +8,18 @@ import {
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
 } from './types/transactions'
-import {
+import type {
   FiatCurrencies,
   OwnedSafes,
   SafeBalanceResponse,
   SafeCollectibleResponse,
   SafeCollectiblesPage,
 } from './types/common'
-import { SafeInfo } from './types/safe-info'
-import { ChainListResponse, ChainInfo } from './types/chains'
-import { SafeAppsResponse } from './types/safe-apps'
-import { MasterCopyReponse } from './types/master-copies'
-import { DecodedDataResponse } from './types/decoded-data'
+import type { SafeInfo } from './types/safe-info'
+import type { ChainListResponse, ChainInfo } from './types/chains'
+import type { SafeAppsResponse } from './types/safe-apps'
+import type { MasterCopyReponse } from './types/master-copies'
+import type { DecodedDataResponse } from './types/decoded-data'
 import { DEFAULT_BASE_URL } from './config'
 
 export * from './types/safe-info'

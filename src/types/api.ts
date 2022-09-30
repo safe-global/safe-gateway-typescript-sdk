@@ -1,11 +1,11 @@
-import {
+import type {
   FiatCurrencies,
   OwnedSafes,
   SafeBalanceResponse,
   SafeCollectibleResponse,
   SafeCollectiblesPage,
 } from './common'
-import {
+import type {
   MultisigTransactionRequest,
   TransactionDetails,
   SafeTransactionEstimation,
@@ -15,11 +15,11 @@ import {
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
 } from './transactions'
-import { SafeInfo } from './safe-info'
-import { ChainListResponse, ChainInfo } from './chains'
-import { SafeAppsResponse } from './safe-apps'
-import { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
-import { MasterCopyReponse } from './master-copies'
+import type { SafeInfo } from './safe-info'
+import type { ChainListResponse, ChainInfo } from './chains'
+import type { SafeAppsResponse } from './safe-apps'
+import type { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
+import type { MasterCopyReponse } from './master-copies'
 
 export interface paths {
   '/v1/chains/{chainId}/safes/{address}': {

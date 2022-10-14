@@ -188,11 +188,16 @@ export function getTransactionHistory(
 /**
  * Get the list of pending transactions
  */
-export function getTransactionQueue(chainId: string, address: string, pageUrl?: string): Promise<TransactionListPage> {
+export function getTransactionQueue(
+  chainId: string,
+  address: string,
+  pageUrl?: string,
+  trusted?: boolean,
+): Promise<TransactionListPage> {
   return callEndpoint(
     baseUrl,
     '/v1/chains/{chainId}/safes/{safe_address}/transactions/queued',
-    { path: { chainId, safe_address: address }, query: {} },
+    { path: { chainId, safe_address: address }, query: { trusted } },
     pageUrl,
   )
 }

@@ -31,14 +31,13 @@ Use:
 const chains = await getChainsConfig()
 ```
 
-The SDK needs no initialization unless you want to override the base URL, which defaults to https://safe-client.gnosis.io.
-You can set an alternative base URL like so:
+The SDK needs no initialization unless you want to override the base URL. You can set an alternative base URL like so:
 
 ```ts
 import { setBaseUrl } from '@gnosis.pm/safe-react-gateway-sdk'
 
 // Switch the SDK to dev mode
-setBaseUrl('https://safe-client.staging.gnosisdev.com')
+setBaseUrl('https://safe-client.staging.5afe.dev')
 ```
 
 The full SDK reference can be found [here](https://safe-global.github.io/safe-react-gateway-sdk/modules.html#getBalances).

@@ -34,7 +34,7 @@ export * from './types/decoded-data'
 let baseUrl: string = DEFAULT_BASE_URL
 
 /**
- * Set the base CGW URL, e.g. `https://safe-client.gnosis.io`
+ * Set the base CGW URL
  */
 export const setBaseUrl = (url: string): void => {
   baseUrl = url

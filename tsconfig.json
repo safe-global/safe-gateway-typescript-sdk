@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "module": "esnext",
-    "target": "es5",
+    "target": "es6",
     "lib": ["es2019", "dom"],
     "sourceMap": true,
     "skipLibCheck": true,

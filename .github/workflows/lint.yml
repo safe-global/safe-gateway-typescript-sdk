@@ -5,5 +5,16 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
+      - name: Cancel previous runs
+        uses: styfle/cancel-workflow-action@0.8.0
+        with:
+          access_token: ${{ github.token }}
+
       - uses: actions/checkout@v2
-      - uses: gnosis/safe-react-eslint-plus-action@v3.5.0
+
+      - name: Yarn install
+        run: yarn install --immutable
+
+      - uses: Maggi64/eslint-plus-action@master
+        with:
+          npmInstall: false

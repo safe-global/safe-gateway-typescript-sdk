@@ -1,4 +1,4 @@
-import {
+import type {
   SafeAppData,
   MultisigTransactionRequest,
   BlockExplorerUriTemplate,
@@ -28,9 +28,9 @@ describe('Types are exported from index correctly', () => {
     const path = require('path')
 
     const typesDir = path.join(__dirname, '..', 'src', 'types')
+    const files: string[] = fs.readdirSync(typesDir)
 
-    const exportedTypeNames = fs
-      .readdirSync(typesDir)
+    const exportedTypeNames = files
       .filter((file) => file !== 'api.ts')
       .flatMap((file) => {
         /* eslint-disable-next-line @typescript-eslint/no-unused-vars */

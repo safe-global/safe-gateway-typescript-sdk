@@ -76,18 +76,18 @@ describe('callEndpoint', () => {
     const body = {
       to: '0x123',
       value: 'test',
-      data: null,
+      data: '0x',
       nonce: '1',
       operation: 1,
       safeTxGas: '',
       baseGas: '100',
       gasPrice: '1',
       gasToken: '',
-      refundReceiver: null,
+      refundReceiver: '',
       safeTxHash: '0x123',
       sender: '0x123',
-      signature: null,
-      origin: null,
+      signature: '',
+      origin: '',
     }
 
     await expect(

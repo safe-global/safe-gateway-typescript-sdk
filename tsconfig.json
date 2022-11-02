@@ -2,8 +2,8 @@
   "compilerOptions": {
     "outDir": "./dist/",
     "module": "esnext",
-    "target": "es5",
-    "lib": ["es2015", "dom"],
+    "target": "es6",
+    "lib": ["es2019", "dom"],
     "sourceMap": true,
     "skipLibCheck": true,
     "declaration": true,
@@ -17,5 +17,6 @@
     "isolatedModules": true,
     "importsNotUsedAsValues": "error",
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": ["dist", "node_modules"]
 }

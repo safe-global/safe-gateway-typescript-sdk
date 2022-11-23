@@ -370,6 +370,7 @@ export type MultisigExecutionDetails = {
   confirmations: MultisigConfirmation[]
   rejectors?: AddressEx[]
   gasTokenInfo?: TokenInfo
+  trusted: boolean
 }
 
 export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDetails

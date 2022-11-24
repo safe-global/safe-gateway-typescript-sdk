@@ -20,6 +20,7 @@ import type { ChainListResponse, ChainInfo } from './chains'
 import type { SafeAppsResponse } from './safe-apps'
 import type { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import type { MasterCopyReponse } from './master-copies'
+import type { ConfirmSafeMessageRequest, ProposeSafeMessageRequest } from './safe-messages'
 
 export interface paths {
   '/v1/chains/{chainId}/safes/{address}': {
@@ -191,6 +192,28 @@ export interface paths {
     parameters: {
       path: {
         chainId: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{safe_address}/messages': {
+    get:
+      | operations['get_safe_messages']
+      /** This is actually supposed to be POST but it breaks our type paradise */
+      | operations['propose_safe_message']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/messages/{message_hash}/signatures': {
+    /** This is actually supposed to be POST but it breaks our type paradise */
+    get: operations['confirm_safe_message']
+    parameters: {
+      path: {
+        chainId: string
+        message_hash: string
       }
     }
   }
@@ -539,6 +562,51 @@ export interface operations {
     responses: {
       200: {
         schema: DecodedDataResponse
+      }
+    }
+  }
+  get_safe_messages: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+      query: {
+        /** Taken from the Page['next'] or Page['previous'] */
+        page_url?: string
+      }
+    }
+    responses: {
+      200: {
+        schema: SignedMessageListPage
+      }
+    }
+  }
+  propose_safe_message: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+      body: ProposeSafeMessageRequest
+    }
+    responses: {
+      200: {
+        schema: void
+      }
+    }
+  }
+  confirm_safe_message: {
+    parameters: {
+      path: {
+        chainId: string
+        message_hash: string
+      }
+      body: ConfirmSafeMessageRequest
+    }
+    responses: {
+      200: {
+        schema: void
       }
     }
   }

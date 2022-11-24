@@ -18,7 +18,7 @@ export enum SafeMessageStatus {
 interface TypedDataDomain {
   name?: string
   version?: string
-  chainId?: any // BigNumberish
+  chainId?: unknown // BigNumberish
   verifyingContract?: string
   salt?: ArrayLike<number> | string // BytesLike
 }
@@ -35,7 +35,7 @@ type TypedMessageTypes = {
 export type EIP712TypedData = {
   domain: TypedDataDomain
   types: TypedMessageTypes
-  message: Record<string, any>
+  message: Record<string, unknown>
 }
 
 export type SafeMessage = {
@@ -62,7 +62,7 @@ export type SafeMessageListItem = SafeMessageDateLabel | SafeMessage
 export type SafeMessageListPage = Page<SafeMessageListItem>
 
 export type ProposeSafeMessageRequest = {
-  message: string | Record<string, any>
+  message: SafeMessage['message']
   safeAppId: number
   signature: string
 }

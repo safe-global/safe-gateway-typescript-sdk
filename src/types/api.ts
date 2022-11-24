@@ -22,7 +22,47 @@ import type { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import type { MasterCopyReponse } from './master-copies'
 import type { ConfirmSafeMessageRequest, ProposeSafeMessageRequest } from './safe-messages'
 
-export interface paths {
+type Primitive = string | number | boolean | null
+
+interface GetParams {
+  path?: { [key: string]: Primitive }
+  query?: { [key: string]: Primitive }
+}
+
+interface PostParams extends GetParams {
+  body: string | Record<string, unknown>
+}
+
+interface Responses {
+  200: { schema: unknown }
+  [key: number]: { schema: unknown } | unknown
+}
+
+interface Endpoint {
+  parameters: {
+    path: Record<string, Primitive>
+  } | null
+}
+
+export interface GetEndpoint extends Endpoint {
+  get: {
+    parameters: GetParams | null
+    responses: Responses
+  }
+}
+
+export interface PostEndpoint extends Endpoint {
+  post: {
+    parameters: PostParams | null
+    responses: Responses
+  }
+}
+
+interface PathRegistry {
+  [key: string]: GetEndpoint | PostEndpoint | (GetEndpoint & PostEndpoint)
+}
+
+export interface paths extends PathRegistry {
   '/v1/chains/{chainId}/safes/{address}': {
     /** Get status of the safe */
     get: operations['safes_read']
@@ -155,13 +195,7 @@ export interface paths {
   }
   '/v1/chains': {
     get: operations['chains_list']
-    parameters: {
-      query: {
-        ordering?: string
-        limit?: number
-        offset?: number
-      }
-    }
+    parameters: null
   }
   '/v1/chains/{chainId}': {
     get: operations['chains_read']
@@ -188,7 +222,7 @@ export interface paths {
     }
   }
   '/v1/chains/{chainId}/data-decoder': {
-    get: operations['data_decoder']
+    post: operations['data_decoder']
     parameters: {
       path: {
         chainId: string
@@ -196,10 +230,8 @@ export interface paths {
     }
   }
   '/v1/chains/{chainId}/safes/{safe_address}/messages': {
-    get:
-      | operations['get_safe_messages']
-      /** This is actually supposed to be POST but it breaks our type paradise */
-      | operations['propose_safe_message']
+    get: operations['get_safe_messages']
+    post: operations['propose_safe_message']
     parameters: {
       path: {
         chainId: string
@@ -208,8 +240,7 @@ export interface paths {
     }
   }
   '/v1/chains/{chainId}/messages/{message_hash}/signatures': {
-    /** This is actually supposed to be POST but it breaks our type paradise */
-    get: operations['confirm_safe_message']
+    post: operations['confirm_safe_message']
     parameters: {
       path: {
         chainId: string

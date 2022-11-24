@@ -295,7 +295,7 @@ export function getDecodedData(
 }
 
 /**
- * Returns a list of `SafeMessage`s
+ * Returns list of `SafeMessage`s
  */
 export function getSafeMessages(chainId: string, address: string, pageUrl?: string): Promise<SafeMessageListPage> {
   return callEndpoint(

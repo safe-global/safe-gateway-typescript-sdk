@@ -20,6 +20,7 @@ import type { ChainListResponse, ChainInfo } from './types/chains'
 import type { SafeAppsResponse } from './types/safe-apps'
 import type { MasterCopyReponse } from './types/master-copies'
 import type { DecodedDataResponse } from './types/decoded-data'
+import type { SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
 
 export * from './types/safe-info'
@@ -29,6 +30,7 @@ export * from './types/chains'
 export * from './types/common'
 export * from './types/master-copies'
 export * from './types/decoded-data'
+export * from './types/safe-messages'
 
 // Can be set externally to a different CGW host
 let baseUrl: string = DEFAULT_BASE_URL
@@ -291,4 +293,45 @@ export function getDecodedData(
     body: { data: encodedData },
   })
 }
+
+/**
+ * Returns list of `SafeMessage`s
+ */
+export function getSafeMessages(chainId: string, address: string, pageUrl?: string): Promise<SafeMessageListPage> {
+  return callEndpoint(
+    baseUrl,
+    '/v1/chains/{chainId}/safes/{safe_address}/messages',
+    { path: { chainId, safe_address: address }, query: {} },
+    pageUrl,
+  )
+}
+
+/**
+ * Propose a new `SafeMessage` for other owners to sign
+ */
+export function proposeSafeMessage(
+  chainId: string,
+  address: string,
+  body: operations['propose_safe_message']['parameters']['body'],
+): Promise<void> {
+  return callEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/messages', {
+    path: { chainId, safe_address: address },
+    body,
+  })
+}
+
+/**
+ * Add a confirmation to a `SafeMessage`
+ */
+export function confirmSafeMessage(
+  chainId: string,
+  messageHash: string,
+  body: operations['confirm_safe_message']['parameters']['body'],
+): Promise<void> {
+  return callEndpoint(baseUrl, '/v1/chains/{chainId}/messages/{message_hash}/signatures', {
+    path: { chainId, message_hash: messageHash },
+    body,
+  })
+}
+
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

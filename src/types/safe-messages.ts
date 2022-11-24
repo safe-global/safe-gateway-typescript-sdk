@@ -19,8 +19,8 @@ export type SafeMessage = {
   type: SafeMessageListItemType.MESSAGE
   messageHash: string
   status: SafeMessageStatus
-  logoUri?: string
-  name?: string
+  logoUri: string | null
+  name: string | null
   message: string | Record<string, any>
   creationTimestamp: number
   modifiedTimestamp: number

@@ -1,15 +1,23 @@
 import { fetchData, insertParams, stringifyQuery } from './utils'
-import type { GetEndpoint, paths, PostEndpoint } from './types/api'
+import type { GetEndpoint, paths, PostEndpoint, Primitive } from './types/api'
+
+function makeUrl(
+  baseUrl: string,
+  path: string,
+  pathParams?: Record<string, Primitive>,
+  query?: Record<string, Primitive>,
+): string {
+  const pathname = insertParams(path, pathParams)
+  const search = stringifyQuery(query)
+  return `${baseUrl}${pathname}${search}`
+}
 
 export function postEndpoint<T extends keyof paths>(
   baseUrl: string,
   path: T,
   params?: paths[T] extends PostEndpoint ? paths[T]['post']['parameters'] : never,
 ): Promise<paths[T] extends PostEndpoint ? paths[T]['post']['responses'][200]['schema'] : never> {
-  const pathname = insertParams(path as string, params?.path)
-  const search = stringifyQuery(params?.query)
-  const url = `${baseUrl}${pathname}${search}`
-
+  const url = makeUrl(baseUrl, path as string, params?.path, params?.query)
   return fetchData(url, params?.body)
 }
 
@@ -22,10 +30,6 @@ export function getEndpoint<T extends keyof paths>(
   if (rawUrl) {
     return fetchData(rawUrl)
   }
-
-  const pathname = insertParams(path as string, params?.path)
-  const search = stringifyQuery(params?.query)
-  const url = `${baseUrl}${pathname}${search}`
-
+  const url = makeUrl(baseUrl, path as string, params?.path, params?.query)
   return fetchData(url)
 }

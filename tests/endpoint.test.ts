@@ -1,5 +1,5 @@
 import { fetchData } from '../src/utils'
-import { callEndpoint } from '../src/endpoint'
+import { getEndpoint, postEndpoint } from '../src/endpoint'
 
 jest.mock('../src/utils', () => {
   const originalModule = jest.requireActual('../src/utils')
@@ -11,34 +11,32 @@ jest.mock('../src/utils', () => {
   }
 })
 
-describe('callEndpoint', () => {
+describe('getEndpoint', () => {
   it('should accept just a path', async () => {
     await expect(
-      callEndpoint('https://test.test', '/v1/balances/supported-fiat-codes'),
+      getEndpoint('https://test.test', '/v1/balances/supported-fiat-codes'),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test/v1/balances/supported-fiat-codes',
-      undefined,
+      'https://test.test/v1/balances/supported-fiat-codes'
     )
   })
 
   it('should accept a path param', async () => {
     await expect(
-      callEndpoint('https://test.test', '/v1/chains/{chainId}/safes/{address}', {
+      getEndpoint('https://test.test', '/v1/chains/{chainId}/safes/{address}', {
         path: { chainId: '4', address: '0x123' },
       }),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test/v1/chains/4/safes/0x123',
-      undefined,
+      'https://test.test/v1/chains/4/safes/0x123'
     )
   })
 
   it('should accept several path params', async () => {
     await expect(
-      callEndpoint(
+      getEndpoint(
         'https://test.test',
         '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
         {
@@ -49,14 +47,13 @@ describe('callEndpoint', () => {
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test/v1/chains/4/safes/0x123/balances/usd',
-      undefined,
+      'https://test.test/v1/chains/4/safes/0x123/balances/usd'
     )
   })
 
   it('should accept query params', async () => {
     await expect(
-      callEndpoint(
+      getEndpoint(
         'https://test.test',
         '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
         {
@@ -67,8 +64,7 @@ describe('callEndpoint', () => {
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test/v1/chains/4/safes/0x123/balances/usd?exclude_spam=true',
-      undefined,
+      'https://test.test/v1/chains/4/safes/0x123/balances/usd?exclude_spam=true'
     )
   })
 
@@ -91,7 +87,7 @@ describe('callEndpoint', () => {
     }
 
     await expect(
-      callEndpoint(
+      postEndpoint(
         'https://test.test',
         '/v1/chains/{chainId}/transactions/{safe_address}/propose',
         {
@@ -109,7 +105,7 @@ describe('callEndpoint', () => {
 
   it('should accept a raw URL', async () => {
     await expect(
-      callEndpoint(
+      getEndpoint(
         'https://test.test',
         '/v1/chains/{chainId}/safes/{address}/balances/{currency}',
         { path: { chainId: '4', address: '0x123', currency: 'usd' }, query: { exclude_spam: true } },
@@ -118,5 +114,19 @@ describe('callEndpoint', () => {
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith('/test-url?raw=true')
+  })
+
+  it('should call a data decoder POST endpoint', async () => {
+    await expect(
+      postEndpoint('https://test.test', '/v1/chains/{chainId}/data-decoder', {
+        path: { chainId: '4' },
+        body: { data: '0x123' },
+      }),
+    ).resolves.toEqual({ success: true })
+
+    expect(fetchData).toHaveBeenCalledWith(
+      'https://test.test/v1/chains/4/data-decoder',
+      { data: '0x123' },
+    )
   })
 })

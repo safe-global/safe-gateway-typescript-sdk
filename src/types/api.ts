@@ -20,9 +20,9 @@ import type { ChainListResponse, ChainInfo } from './chains'
 import type { SafeAppsResponse } from './safe-apps'
 import type { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import type { MasterCopyReponse } from './master-copies'
-import type { ConfirmSafeMessageRequest, ProposeSafeMessageRequest } from './safe-messages'
+import type { ConfirmSafeMessageRequest, ProposeSafeMessageRequest, SafeMessageListPage } from './safe-messages'
 
-type Primitive = string | number | boolean | null
+export type Primitive = string | number | boolean | null
 
 interface GetParams {
   path?: { [key: string]: Primitive }
@@ -165,8 +165,7 @@ export interface paths extends PathRegistry {
     }
   }
   '/v2/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
-    /** This is actually supposed to be POST but it breaks our type paradise */
-    get: operations['post_safe_gas_estimation']
+    post: operations['post_safe_gas_estimation']
     parameters: {
       path: {
         chainId: string
@@ -175,8 +174,7 @@ export interface paths extends PathRegistry {
     }
   }
   '/v1/chains/{chainId}/transactions/{safe_address}/propose': {
-    /** This is actually supposed to be POST but it breaks our type paradise */
-    get: operations['propose_transaction']
+    post: operations['propose_transaction']
     parameters: {
       path: {
         chainId: string
@@ -609,7 +607,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: SignedMessageListPage
+        schema: SafeMessageListPage
       }
     }
   }

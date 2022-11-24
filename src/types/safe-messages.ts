@@ -15,13 +15,36 @@ export enum SafeMessageStatus {
   CONFIRMED = 'CONFIRMED',
 }
 
+interface TypedDataDomain {
+  name?: string
+  version?: string
+  chainId?: any // BigNumberish
+  verifyingContract?: string
+  salt?: ArrayLike<number> | string // BytesLike
+}
+
+interface TypedDataTypes {
+  name: string
+  type: string
+}
+
+type TypedMessageTypes = {
+  [key: string]: TypedDataTypes[]
+}
+
+export type EIP712TypedData = {
+  domain: TypedDataDomain
+  types: TypedMessageTypes
+  message: Record<string, any>
+}
+
 export type SafeMessage = {
   type: SafeMessageListItemType.MESSAGE
   messageHash: string
   status: SafeMessageStatus
   logoUri: string | null
   name: string | null
-  message: string | Record<string, any>
+  message: string | EIP712TypedData
   creationTimestamp: number
   modifiedTimestamp: number
   confirmationsSubmitted: number

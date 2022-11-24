@@ -30,6 +30,7 @@ export * from './types/chains'
 export * from './types/common'
 export * from './types/master-copies'
 export * from './types/decoded-data'
+export * from './types/safe-messages'
 
 // Can be set externally to a different CGW host
 let baseUrl: string = DEFAULT_BASE_URL

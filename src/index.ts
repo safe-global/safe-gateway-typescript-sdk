@@ -20,7 +20,7 @@ import type { ChainListResponse, ChainInfo } from './types/chains'
 import type { SafeAppsResponse } from './types/safe-apps'
 import type { MasterCopyReponse } from './types/master-copies'
 import type { DecodedDataResponse } from './types/decoded-data'
-import type { SafeMessageListPage } from './types/safe-messages'
+import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
 
 export * from './types/safe-info'
@@ -304,6 +304,15 @@ export function getSafeMessages(chainId: string, address: string, pageUrl?: stri
     { path: { chainId, safe_address: address }, query: {} },
     pageUrl,
   )
+}
+
+/**
+ * Returns a `SafeMessage`
+ */
+export function getSafeMessage(chainId: string, messageHash: string): Promise<Omit<SafeMessage, 'type'>> {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/messages/{message_hash}', {
+    path: { chainId, message_hash: messageHash },
+  })
 }
 
 /**

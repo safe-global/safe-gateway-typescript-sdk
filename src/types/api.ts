@@ -20,7 +20,12 @@ import type { ChainListResponse, ChainInfo } from './chains'
 import type { SafeAppsResponse } from './safe-apps'
 import type { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import type { MasterCopyReponse } from './master-copies'
-import type { ConfirmSafeMessageRequest, ProposeSafeMessageRequest, SafeMessageListPage } from './safe-messages'
+import type {
+  ConfirmSafeMessageRequest,
+  ProposeSafeMessageRequest,
+  SafeMessage,
+  SafeMessageListPage,
+} from './safe-messages'
 
 export type Primitive = string | number | boolean | null
 
@@ -234,6 +239,15 @@ export interface paths extends PathRegistry {
       path: {
         chainId: string
         safe_address: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/messages/{message_hash}': {
+    get: operations['get_safe_message']
+    parameters: {
+      path: {
+        chainId: string
+        message_hash: string
       }
     }
   }
@@ -608,6 +622,19 @@ export interface operations {
     responses: {
       200: {
         schema: SafeMessageListPage
+      }
+    }
+  }
+  get_safe_message: {
+    parameters: {
+      path: {
+        chainId: string
+        message_hash: string
+      }
+    }
+    responses: {
+      200: {
+        schema: SafeMessage
       }
     }
   }

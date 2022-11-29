@@ -309,7 +309,7 @@ export function getSafeMessages(chainId: string, address: string, pageUrl?: stri
 /**
  * Returns a `SafeMessage`
  */
-export function getSafeMessage(chainId: string, messageHash: string): Promise<SafeMessage> {
+export function getSafeMessage(chainId: string, messageHash: string): Promise<Omit<SafeMessage, 'type'>> {
   return getEndpoint(baseUrl, '/v1/chains/{chainId}/messages/{message_hash}', {
     path: { chainId, message_hash: messageHash },
   })

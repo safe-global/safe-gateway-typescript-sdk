@@ -20,4 +20,5 @@ export type SafeInfo = {
   collectiblesTag: string
   txQueuedTag: string
   txHistoryTag: string
+  messagesTag: string
 }

@@ -51,7 +51,13 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
   }
 
   const resp = await fetch(url, options)
-  const json = await resp.json()
+  let json
+
+  try {
+    json = await resp.json()
+  } catch {
+    // ignore
+  }
 
   if (!resp.ok) {
     let errTxt = ''

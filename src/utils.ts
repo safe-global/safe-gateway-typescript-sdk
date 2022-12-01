@@ -7,6 +7,11 @@ export type ErrorResponse = {
   message: string
 }
 
+const isErrorResponse = (data: unknown): data is ErrorResponse => {
+  const isObject = typeof data === 'object' && data !== null
+  return isObject && 'code' in data && 'message' in data
+}
+
 function replaceParam(str: string, key: string, value: string): string {
   return str.replace(new RegExp(`\\{${key}\\}`, 'g'), value)
 }
@@ -56,14 +61,18 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
   try {
     json = await resp.json()
   } catch {
-    // ignore
+    if (resp.headers && resp.headers.get('content-length') === '0') {
+      throw new Error('Invalid response content')
+    }
   }
 
   if (!resp.ok) {
     let errTxt = ''
     try {
-      const err = json as ErrorResponse
-      errTxt = `${err.code}: ${err.message}`
+      if (!isErrorResponse(json)) {
+        throw
+      }
+      errTxt = `${json.code}: ${json.message}`
     } catch (e) {
       errTxt = resp.statusText
     }

@@ -62,7 +62,7 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
     json = await resp.json()
   } catch {
     if (resp.headers && resp.headers.get('content-length') === '0') {
-      throw new Error('Invalid response content')
+      throw new Error('Empty response. ' + resp.statusText)
     }
   }
 

@@ -67,15 +67,7 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
   }
 
   if (!resp.ok) {
-    let errTxt = ''
-    try {
-      if (!isErrorResponse(json)) {
-        throw
-      }
-      errTxt = `${json.code}: ${json.message}`
-    } catch (e) {
-      errTxt = resp.statusText
-    }
+    const errTxt = isErrorResponse(json) ? `${json.code}: ${json.message}` : resp.statusText
     throw new Error(errTxt)
   }
 

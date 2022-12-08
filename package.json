@@ -1,12 +1,12 @@
 {
-  "name": "@gnosis.pm/safe-react-gateway-sdk",
-  "version": "3.5.2",
+  "name": "@safe-global/safe-gateway-typescript-sdk",
+  "version": "3.5.3",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
-  "repository": "git@github.com:gnosis/safe-react-gateway-sdk.git",
+  "repository": "git@github.com:safe-global/safe-gateway-typescript-sdk.git",
   "author": "katspaugh",
   "license": "MIT",
   "dependencies": {

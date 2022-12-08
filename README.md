@@ -1,6 +1,6 @@
 # Safe Gateway TypeScript SDK
 
-[![npm](https://img.shields.io/npm/v/@gnosis.pm/safe-react-gateway-sdk?label=%40gnosis.pm%2Fsafe-react-gateway-sdk)](https://www.npmjs.com/package/@gnosis.pm/safe-react-gateway-sdk)
+[![npm](https://img.shields.io/npm/v/@safe-global/safe-gateway-typescript-sdk?label=%40safe-global%2Fsafe-gateway-typescript-sdk)](https://www.npmjs.com/package/@safe-global/safe-gateway-typescript-sdk)
 
 A TypeScript SDK for the [Safe Client Gateway](https://github.com/safe-global/safe-client-gateway)
 
@@ -16,13 +16,13 @@ Please _do not_ use this SDK if you're building, e.g., a Safe App.
 Install:
 
 ```shell
-yarn add @gnosis.pm/safe-react-gateway-sdk
+yarn add @safe-global/safe-gateway-typescript-sdk
 ```
 
 Import:
 
 ```ts
-import { getChainsConfig, type ChainListResponse } from '@gnosis.pm/safe-react-gateway-sdk'
+import { getChainsConfig, type ChainListResponse } from '@safe-global/safe-gateway-typescript-sdk'
 ```
 
 Use:
@@ -34,7 +34,7 @@ const chains = await getChainsConfig()
 The SDK needs no initialization unless you want to override the base URL. You can set an alternative base URL like so:
 
 ```ts
-import { setBaseUrl } from '@gnosis.pm/safe-react-gateway-sdk'
+import { setBaseUrl } from '@safe-global/safe-gateway-typescript-sdk'
 
 // Switch the SDK to dev mode
 setBaseUrl('https://safe-client.staging.5afe.dev')

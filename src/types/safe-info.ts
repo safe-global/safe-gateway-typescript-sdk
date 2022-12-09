@@ -3,6 +3,7 @@ import type { AddressEx } from './common'
 export enum ImplementationVersionState {
   UP_TO_DATE = 'UP_TO_DATE',
   OUTDATED = 'OUTDATED',
+  UNKNOWN = 'UNKNOWN',
 }
 
 export type SafeInfo = {
@@ -16,7 +17,7 @@ export type SafeInfo = {
   modules: AddressEx[] | null
   guard: AddressEx | null
   fallbackHandler: AddressEx
-  version: string
+  version: string | null
   collectiblesTag: string
   txQueuedTag: string
   txHistoryTag: string

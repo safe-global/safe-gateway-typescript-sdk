@@ -16,7 +16,7 @@ export type SafeInfo = {
   implementationVersionState: ImplementationVersionState
   modules: AddressEx[] | null
   guard: AddressEx | null
-  fallbackHandler: AddressEx
+  fallbackHandler: AddressEx | null
   version: string | null
   collectiblesTag: string
   txQueuedTag: string

@@ -62,7 +62,7 @@ export enum FEATURES {
   EIP1559 = 'EIP1559',
   SAFE_TX_GAS_OPTIONAL = 'SAFE_TX_GAS_OPTIONAL',
   TX_SIMULATION = 'TX_SIMULATION',
-  EIP1271 = "EIP1271",
+  EIP1271 = 'EIP1271',
 }
 
 // Remain agnostic as possible and reference what is returned in the CGW, i.e.

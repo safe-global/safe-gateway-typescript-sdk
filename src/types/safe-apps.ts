@@ -19,6 +19,10 @@ export type SafeAppProvider = {
   name: string
 }
 
+export enum SafeAppFeatures {
+  BATCHED_TRANSACTIONS = 'BATCHED_TRANSACTIONS',
+}
+
 export type SafeAppData = {
   id: number
   url: string
@@ -29,6 +33,7 @@ export type SafeAppData = {
   provider?: SafeAppProvider
   accessControl: SafeAppsAccessControlPolicies
   tags: string[]
+  features: SafeAppFeatures[]
 }
 
 export type SafeAppsResponse = SafeAppData[]

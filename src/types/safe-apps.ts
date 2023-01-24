@@ -23,6 +23,17 @@ export enum SafeAppFeatures {
   BATCHED_TRANSACTIONS = 'BATCHED_TRANSACTIONS',
 }
 
+export enum SafeAppSocialPlatforms {
+  TWITTER = 'TWITTER',
+  GITHUB = 'GITHUB',
+  DISCORD = 'DISCORD',
+}
+
+export type SafeAppSocialProfile = {
+  platform: SafeAppSocialPlatforms
+  url: string
+}
+
 export type SafeAppData = {
   id: number
   url: string
@@ -34,6 +45,8 @@ export type SafeAppData = {
   accessControl: SafeAppsAccessControlPolicies
   tags: string[]
   features: SafeAppFeatures[]
+  socialProfiles: SafeAppSocialProfile[]
+  developerWebsite?: string
 }
 
 export type SafeAppsResponse = SafeAppData[]

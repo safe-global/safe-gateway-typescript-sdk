@@ -21,7 +21,7 @@ jobs:
           NEW_VERSION=v$(node -p 'require("./package.json").version')
           if [ $NEW_VERSION != $OLD_VERSION ]; then
             echo "New version $NEW_VERSION detected"
-            echo "::set-output name=version::$NEW_VERSION"
+            echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
             git log "$OLD_VERSION"..HEAD --pretty=format:"* %s" > CHANGELOG.md
           else
             echo "Version $OLD_VERSION hasn't changed, skipping the release"

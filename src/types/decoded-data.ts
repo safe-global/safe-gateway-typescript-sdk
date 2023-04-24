@@ -14,7 +14,7 @@ export type DecodedDataParameterValue = {
   operation: 0 | 1
   to: string
   value: string
-  data?: string
+  data: string | null
   dataDecoded?: {
     method: string
     parameters: DecodedDataBasicParameter[]

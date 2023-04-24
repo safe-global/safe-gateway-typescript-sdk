@@ -11,7 +11,7 @@ export type InternalTransaction = {
   operation: Operation
   to: string
   value?: string
-  data?: string
+  data: string | null
   dataDecoded?: DataDecoded
 }
 

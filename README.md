@@ -4,7 +4,7 @@
 
 A TypeScript SDK for the [Safe Client Gateway](https://github.com/safe-global/safe-client-gateway)
 
-📖 [API reference](https://safe.global/safe-gateway-typescript-sdk/modules.html)
+📖 [API reference](https://safe-global.github.io/safe-gateway-typescript-sdk/modules.html)
 
 ## Usage policy
 
@@ -40,7 +40,7 @@ import { setBaseUrl } from '@safe-global/safe-gateway-typescript-sdk'
 setBaseUrl('https://safe-client.staging.5afe.dev')
 ```
 
-The full SDK reference can be found [here](https://safe.global/safe-gateway-typescript-sdk/modules.html).
+The full SDK reference can be found [here](https://safe-global.github.io/safe-gateway-typescript-sdk/modules.html).
 
 ## Adding an endpoint
 

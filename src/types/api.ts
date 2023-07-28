@@ -26,6 +26,7 @@ import type {
   SafeMessage,
   SafeMessageListPage,
 } from './safe-messages'
+import type { DelegateResponse, DelegatesRequest } from './delegates'
 
 export type Primitive = string | number | boolean | null
 
@@ -258,6 +259,15 @@ export interface paths extends PathRegistry {
         chainId: string
         message_hash: string
       }
+    }
+  }
+  '/v1/chains/{chainId}/delegates': {
+    get: operations['get_delegates']
+    parameters: {
+      path: {
+        chainId: string
+      }
+      query: DelegatesRequest
     }
   }
 }
@@ -663,6 +673,19 @@ export interface operations {
     responses: {
       200: {
         schema: void
+      }
+    }
+  }
+  get_delegates: {
+    parameters: {
+      path: {
+        chainId: string
+      }
+      query: DelegatesRequest
+    }
+    responses: {
+      200: {
+        schema: DelegateResponse
       }
     }
   }

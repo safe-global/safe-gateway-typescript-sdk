@@ -22,6 +22,7 @@ import type { MasterCopyReponse } from './types/master-copies'
 import type { DecodedDataResponse } from './types/decoded-data'
 import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
+import type { DelegateResponse, DelegatesRequest } from './types/delegates'
 
 export * from './types/safe-info'
 export * from './types/safe-apps'
@@ -340,6 +341,16 @@ export function confirmSafeMessage(
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/messages/{message_hash}/signatures', {
     path: { chainId, message_hash: messageHash },
     body,
+  })
+}
+
+/**
+ * Returns a list of delegates
+ */
+export function getDelegates(chainId: string, query: DelegatesRequest = {}): Promise<DelegateResponse> {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/delegates', {
+    path: { chainId },
+    query,
   })
 }
 

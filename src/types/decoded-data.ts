@@ -1,5 +1,6 @@
 export type DecodedDataRequest = {
   data: string
+  to?: string
 }
 
 type ParamValue = string | ParamValue[]

@@ -288,10 +288,11 @@ export function getMasterCopies(chainId: string): Promise<MasterCopyReponse> {
 export function getDecodedData(
   chainId: string,
   encodedData: operations['data_decoder']['parameters']['body']['data'],
+  to: operations['data_decoder']['parameters']['body']['to'],
 ): Promise<DecodedDataResponse> {
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/data-decoder', {
     path: { chainId: chainId },
-    body: { data: encodedData },
+    body: { data: encodedData, to },
   })
 }
 

@@ -32,7 +32,7 @@ export type Theme = {
 export enum GAS_PRICE_TYPE {
   ORACLE = 'ORACLE',
   FIXED = 'FIXED',
-  FIXED_EIP1559 = "FIXED_EIP1559",
+  FIXED_1559 = 'FIXED1559',
   UNKNOWN = 'UNKNOWN',
 }
 
@@ -49,8 +49,8 @@ export type GasPriceFixed = {
 }
 
 export type GasPriceFixedEIP1559 = {
-  type: GAS_PRICE_TYPE.FIXED_EIP1559,
-  maxFeePerGas: string,
+  type: GAS_PRICE_TYPE.FIXED_1559
+  maxFeePerGas: string
   maxPriorityFeePerGas: string
 }
 

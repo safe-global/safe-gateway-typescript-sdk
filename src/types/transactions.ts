@@ -124,6 +124,7 @@ export type Transfer = {
   recipient: AddressEx
   direction: TransferDirection
   transferInfo: TransferInfo
+  humanDescription?: string
 }
 
 export type SetFallbackHandler = {
@@ -194,6 +195,7 @@ export type SettingsChange = {
   type: TransactionInfoType.SETTINGS_CHANGE
   dataDecoded: DataDecoded
   settingsInfo?: SettingsInfo
+  humanDescription?: string
 }
 
 export type Custom = {
@@ -204,6 +206,7 @@ export type Custom = {
   methodName?: string
   actionCount?: number
   isCancellation: boolean
+  humanDescription?: string
 }
 
 export type MultiSend = {
@@ -214,6 +217,7 @@ export type MultiSend = {
   methodName: 'multiSend'
   actionCount: number
   isCancellation: boolean
+  humanDescription?: string
 }
 
 export type Cancellation = Custom & {
@@ -226,6 +230,7 @@ export type Creation = {
   transactionHash: string
   implementation?: AddressEx
   factory?: AddressEx
+  humanDescription?: string
 }
 
 export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation

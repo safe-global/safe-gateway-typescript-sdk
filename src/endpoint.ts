@@ -1,5 +1,5 @@
 import { fetchData, insertParams, stringifyQuery } from './utils'
-import type { GetEndpoint, paths, PostEndpoint, Primitive } from './types/api'
+import type { DeleteEndpoint, GetEndpoint, paths, PostEndpoint, Primitive } from './types/api'
 
 function makeUrl(
   baseUrl: string,
@@ -31,5 +31,14 @@ export function getEndpoint<T extends keyof paths>(
     return fetchData(rawUrl)
   }
   const url = makeUrl(baseUrl, path as string, params?.path, params?.query)
+  return fetchData(url)
+}
+
+export function deleteEndpoint<T extends keyof paths>(
+  baseUrl: string,
+  path: T,
+  params?: paths[T] extends DeleteEndpoint ? paths[T]['delete']['parameters'] : never,
+): Promise<paths[T] extends DeleteEndpoint ? paths[T]['delete']['responses'][200]['schema'] : never> {
+  const url = makeUrl(baseUrl, path as string, params?.path)
   return fetchData(url)
 }

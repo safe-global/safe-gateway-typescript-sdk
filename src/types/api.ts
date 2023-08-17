@@ -27,11 +27,15 @@ import type {
   SafeMessageListPage,
 } from './safe-messages'
 import type { DelegateResponse, DelegatesRequest } from './delegates'
+import type { RegisterNotificationsRequest } from './notifications'
 
 export type Primitive = string | number | boolean | null
 
-interface GetParams {
+interface DeleteParams {
   path?: { [key: string]: Primitive }
+}
+
+interface GetParams extends DeleteParams {
   query?: { [key: string]: Primitive }
 }
 
@@ -64,8 +68,15 @@ export interface PostEndpoint extends Endpoint {
   }
 }
 
+export interface DeleteEndpoint extends Endpoint {
+  delete: {
+    parameters: DeleteParams | null
+    responses: Responses
+  }
+}
+
 interface PathRegistry {
-  [key: string]: GetEndpoint | PostEndpoint | (GetEndpoint & PostEndpoint)
+  [key: string]: DeleteEndpoint | GetEndpoint | PostEndpoint | (GetEndpoint & PostEndpoint)
 }
 
 export interface paths extends PathRegistry {
@@ -268,6 +279,29 @@ export interface paths extends PathRegistry {
         chainId: string
       }
       query: DelegatesRequest
+    }
+  }
+  '/v1/register/notifications': {
+    post: operations['register_notifications']
+    parameters: null
+  }
+  '/v1/chains/{chainId}/notifications/devices/{uuid}/safes/{safe_address}': {
+    delete: operations['unregister_safe_notifications']
+    parameters: {
+      path: {
+        uuid: string
+        chainId: string
+        safe_address: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/notifications/devices/{uuid}': {
+    delete: operations['unregister_device_notifications']
+    parameters: {
+      path: {
+        uuid: string
+        chainId: string
+      }
     }
   }
 }
@@ -686,6 +720,43 @@ export interface operations {
     responses: {
       200: {
         schema: DelegateResponse
+      }
+    }
+  }
+  register_notifications: {
+    parameters: {
+      body: RegisterNotificationsRequest
+    }
+    responses: {
+      200: {
+        schema: void
+      }
+    }
+  }
+  unregister_safe_notifications: {
+    parameters: {
+      path: {
+        uuid: string
+        chainId: string
+        safe_address: string
+      }
+    }
+    responses: {
+      200: {
+        schema: void
+      }
+    }
+  }
+  unregister_device_notifications: {
+    parameters: {
+      path: {
+        uuid: string
+        chainId: string
+      }
+    }
+    responses: {
+      200: {
+        schema: void
       }
     }
   }

@@ -11,12 +11,12 @@ type SafeRegistration = {
 }
 
 export type RegisterNotificationsRequest = {
-  uuid: string
+  uuid?: string
   cloudMessagingToken: string
   buildNumber: string
   bundle: string
   deviceType: DeviceType
   version: string
-  timestamp: string
+  timestamp?: string
   safeRegistrations: Array<SafeRegistration>
 }

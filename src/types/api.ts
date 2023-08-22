@@ -282,11 +282,11 @@ export interface paths extends PathRegistry {
     }
   }
   '/v1/register/notifications': {
-    post: operations['register_notifications']
+    post: operations['register_device']
     parameters: null
   }
   '/v1/chains/{chainId}/notifications/devices/{uuid}/safes/{safe_address}': {
-    delete: operations['unregister_safe_notifications']
+    delete: operations['unregister_safe']
     parameters: {
       path: {
         uuid: string
@@ -296,7 +296,7 @@ export interface paths extends PathRegistry {
     }
   }
   '/v1/chains/{chainId}/notifications/devices/{uuid}': {
-    delete: operations['unregister_device_notifications']
+    delete: operations['unregister_device']
     parameters: {
       path: {
         uuid: string
@@ -723,7 +723,7 @@ export interface operations {
       }
     }
   }
-  register_notifications: {
+  register_device: {
     parameters: {
       body: RegisterNotificationsRequest
     }
@@ -733,7 +733,7 @@ export interface operations {
       }
     }
   }
-  unregister_safe_notifications: {
+  unregister_safe: {
     parameters: {
       path: {
         uuid: string
@@ -747,7 +747,7 @@ export interface operations {
       }
     }
   }
-  unregister_device_notifications: {
+  unregister_device: {
     parameters: {
       path: {
         uuid: string

@@ -1,4 +1,4 @@
-import { fetchData, insertParams, stringifyQuery } from './utils'
+import { deleteData, fetchData, insertParams, stringifyQuery } from './utils'
 import type { DeleteEndpoint, GetEndpoint, paths, PostEndpoint, Primitive } from './types/api'
 
 function makeUrl(
@@ -40,5 +40,5 @@ export function deleteEndpoint<T extends keyof paths>(
   params?: paths[T] extends DeleteEndpoint ? paths[T]['delete']['parameters'] : never,
 ): Promise<paths[T] extends DeleteEndpoint ? paths[T]['delete']['responses'][200]['schema'] : never> {
   const url = makeUrl(baseUrl, path as string, params?.path)
-  return fetchData(url)
+  return deleteData(url)
 }

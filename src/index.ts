@@ -358,7 +358,7 @@ export function getDelegates(chainId: string, query: DelegatesRequest = {}): Pro
 /**
  * Registers a device/Safe for notifications
  */
-export function registerNotifications(body: operations['register_notifications']['parameters']['body']): Promise<void> {
+export function registerDevice(body: operations['register_device']['parameters']['body']): Promise<void> {
   return postEndpoint(baseUrl, '/v1/register/notifications', {
     body,
   })
@@ -367,7 +367,7 @@ export function registerNotifications(body: operations['register_notifications']
 /**
  * Unregisters a Safe from notifications
  */
-export function unregisterSafeNotifications(chainId: string, address: string, uuid: string): Promise<void> {
+export function unregisterSafe(chainId: string, address: string, uuid: string): Promise<void> {
   return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/notifications/devices/{uuid}/safes/{safe_address}', {
     path: { chainId, safe_address: address, uuid },
   })
@@ -376,7 +376,7 @@ export function unregisterSafeNotifications(chainId: string, address: string, uu
 /**
  * Unregisters a device from notifications
  */
-export function unregisterDeviceNotifications(chainId: string, uuid: string): Promise<void> {
+export function unregisterDevice(chainId: string, uuid: string): Promise<void> {
   return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/notifications/devices/{uuid}', {
     path: { chainId, uuid },
   })

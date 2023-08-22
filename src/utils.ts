@@ -39,6 +39,25 @@ export function stringifyQuery(query?: Params): string {
   return searchString ? `?${searchString}` : ''
 }
 
+async function parseResponse<T>(resp: Response): Promise<T> {
+  let json
+
+  try {
+    json = await resp.json()
+  } catch {
+    if (resp.headers && resp.headers.get('content-length') !== '0') {
+      throw new Error(`Invalid response content: ${resp.statusText}`)
+    }
+  }
+
+  if (!resp.ok) {
+    const errTxt = isErrorResponse(json) ? `${json.code}: ${json.message}` : resp.statusText
+    throw new Error(errTxt)
+  }
+
+  return json
+}
+
 export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
   let options:
     | {
@@ -56,20 +75,16 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
   }
 
   const resp = await fetch(url, options)
-  let json
 
-  try {
-    json = await resp.json()
-  } catch {
-    if (resp.headers && resp.headers.get('content-length') !== '0') {
-      throw new Error(`Invalid response content: ${resp.statusText}`)
-    }
+  return parseResponse<T>(resp)
+}
+
+export async function deleteData<T>(url: string): Promise<T> {
+  const options = {
+    method: 'DELETE',
   }
 
-  if (!resp.ok) {
-    const errTxt = isErrorResponse(json) ? `${json.code}: ${json.message}` : resp.statusText
-    throw new Error(errTxt)
-  }
+  const resp = await fetch(url, options)
 
-  return json
+  return parseResponse<T>(resp)
 }

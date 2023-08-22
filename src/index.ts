@@ -1,4 +1,4 @@
-import { getEndpoint, postEndpoint } from './endpoint'
+import { deleteEndpoint, getEndpoint, postEndpoint } from './endpoint'
 import type { operations } from './types/api'
 import type {
   SafeTransactionEstimation,
@@ -352,6 +352,33 @@ export function getDelegates(chainId: string, query: DelegatesRequest = {}): Pro
   return getEndpoint(baseUrl, '/v1/chains/{chainId}/delegates', {
     path: { chainId },
     query,
+  })
+}
+
+/**
+ * Registers a device/Safe for notifications
+ */
+export function registerDevice(body: operations['register_device']['parameters']['body']): Promise<void> {
+  return postEndpoint(baseUrl, '/v1/register/notifications', {
+    body,
+  })
+}
+
+/**
+ * Unregisters a Safe from notifications
+ */
+export function unregisterSafe(chainId: string, address: string, uuid: string): Promise<void> {
+  return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/notifications/devices/{uuid}/safes/{safe_address}', {
+    path: { chainId, safe_address: address, uuid },
+  })
+}
+
+/**
+ * Unregisters a device from notifications
+ */
+export function unregisterDevice(chainId: string, uuid: string): Promise<void> {
+  return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/notifications/devices/{uuid}', {
+    path: { chainId, uuid },
   })
 }
 

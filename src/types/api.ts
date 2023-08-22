@@ -31,11 +31,11 @@ import type { RegisterNotificationsRequest } from './notifications'
 
 export type Primitive = string | number | boolean | null
 
-interface DeleteParams {
+interface Params {
   path?: { [key: string]: Primitive }
 }
 
-interface GetParams extends DeleteParams {
+interface GetParams extends Params {
   query?: { [key: string]: Primitive }
 }
 
@@ -70,13 +70,13 @@ export interface PostEndpoint extends Endpoint {
 
 export interface DeleteEndpoint extends Endpoint {
   delete: {
-    parameters: DeleteParams | null
+    parameters: Params | null
     responses: Responses
   }
 }
 
 interface PathRegistry {
-  [key: string]: DeleteEndpoint | GetEndpoint | PostEndpoint | (GetEndpoint & PostEndpoint)
+  [key: string]: GetEndpoint | PostEndpoint | (GetEndpoint & PostEndpoint) | DeleteEndpoint
 }
 
 export interface paths extends PathRegistry {

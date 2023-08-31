@@ -1,5 +1,3 @@
-import fetch from 'cross-fetch'
-
 export type Params = Record<string, string | number | boolean | null>
 
 export type ErrorResponse = {

@@ -14,7 +14,7 @@
 <h2>@safe-global/safe-gateway-typescript-sdk</h2></div>
 <div class="tsd-panel tsd-typography"><a id="md:safe-gateway-typescript-sdk" class="tsd-anchor"></a><h1><a href="#md:safe-gateway-typescript-sdk">Safe Gateway TypeScript SDK</a></h1><p><a href="https://www.npmjs.com/package/@safe-global/safe-gateway-typescript-sdk"><img src="https://img.shields.io/npm/v/@safe-global/safe-gateway-typescript-sdk?label=%40safe-global%2Fsafe-gateway-typescript-sdk" alt="npm"></a></p>
 <p>A TypeScript SDK for the <a href="https://github.com/safe-global/safe-client-gateway">Safe Client Gateway</a></p>
-<p>📖 <a href="https://safe-global.github.io/safe-gateway-typescript-sdk/modules.html">API reference</a></p>
+<p>📖 <a href="https://safe-global.github.io/safe-gateway-typescript-sdk/modules.html">Type reference</a>   |   <img src="https://github.com/safe-global/safe-gateway-typescript-sdk/assets/381895/ebfa2525-ff65-4597-af2a-17a440ccfb33" height="20" alt="Swagger" valign="text-top" /> <a href="https://safe-client.safe.global">CGW Swagger</a></p>
 <a id="md:usage-policy" class="tsd-anchor"></a><h2><a href="#md:usage-policy">Usage policy</a></h2><p>NB: Safe Client Gateway isn&#39;t meant for public use.
 Please <em>do not</em> use this SDK if you&#39;re building, e.g., a Safe App.</p>
 <a id="md:using-the-sdk" class="tsd-anchor"></a><h2><a href="#md:using-the-sdk">Using the SDK</a></h2><p>Install:</p>
@@ -46,7 +46,6 @@ Please <em>do not</em> use this SDK if you&#39;re building, e.g., a Safe App.</p
 <pre><code class="language-shell"><span class="hl-0">yarn</span><span class="hl-1"> </span><span class="hl-2">test</span>
 </code><button>Copy</button></pre>
 <p>N.B.: the e2e tests make actual API calls on staging.</p>
-<a id="md:gateway-api-docs" class="tsd-anchor"></a><h2><a href="#md:gateway-api-docs">Gateway API docs</a></h2><p>The TypeScript types in this SDK are based on <a href="https://safe-global.github.io/safe-client-gateway/docs/routes/index.html">Rust types</a> from the Gateway API.</p>
 </div></div>
 <div class="col-sidebar">
 <div class="page-menu">
@@ -76,8 +75,7 @@ Please <em>do not</em> use this SDK if you&#39;re building, e.g., a Safe App.</p
 <li><a href="#md:using-the-sdk"><span>Using the SDK</span></a></li>
 <li><a href="#md:adding-an-endpoint"><span>Adding an endpoint</span></a></li>
 <li><a href="#md:eslint-amp-prettier"><span>Eslint &amp; prettier</span></a></li>
-<li><a href="#md:tests"><span>Tests</span></a></li>
-<li><a href="#md:gateway-api-docs"><span>Gateway API docs</span></a></li></ul></li></ul></li></ul></div></details></div>
+<li><a href="#md:tests"><span>Tests</span></a></li></ul></li></ul></li></ul></div></details></div>
 <div class="site-menu">
 <nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)"></path></g></svg><span>@safe-<wbr/>global/safe-<wbr/>gateway-<wbr/>typescript-<wbr/>sdk</span></a>
 <ul class="tsd-small-nested-navigation">
@@ -102,100 +100,100 @@ Please <em>do not</em> use this SDK if you&#39;re building, e.g., a Safe App.</p
 <li><a href="enums/TransactionStatus.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-8"></use></svg><span>Transaction<wbr/>Status</span></a></li>
 <li><a href="enums/TransactionTokenType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-8"></use></svg><span>Transaction<wbr/>Token<wbr/>Type</span></a></li>
 <li><a href="enums/TransferDirection.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-8"></use></svg><span>Transfer<wbr/>Direction</span></a></li>
-<li><a href="types/AddOwner.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-4194304"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Add<wbr/>Owner</span></a></li>
-<li><a href="types/AddressEx.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Address<wbr/>Ex</span></a></li>
-<li><a href="types/BlockExplorerUriTemplate.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Block<wbr/>Explorer<wbr/>Uri<wbr/>Template</span></a></li>
-<li><a href="types/Cancellation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Cancellation</span></a></li>
-<li><a href="types/ChainInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Chain<wbr/>Info</span></a></li>
-<li><a href="types/ChainListResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Chain<wbr/>List<wbr/>Response</span></a></li>
-<li><a href="types/ChangeImplementation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Change<wbr/>Implementation</span></a></li>
-<li><a href="types/ChangeThreshold.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Change<wbr/>Threshold</span></a></li>
-<li><a href="types/ConfirmSafeMessageRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Confirm<wbr/>Safe<wbr/>Message<wbr/>Request</span></a></li>
-<li><a href="types/ConflictHeader.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Conflict<wbr/>Header</span></a></li>
-<li><a href="types/Creation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Creation</span></a></li>
-<li><a href="types/Custom.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Custom</span></a></li>
-<li><a href="types/DataDecoded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Data<wbr/>Decoded</span></a></li>
-<li><a href="types/DateLabel.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Date<wbr/>Label</span></a></li>
-<li><a href="types/DecodedDataBasicParameter.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Decoded<wbr/>Data<wbr/>Basic<wbr/>Parameter</span></a></li>
-<li><a href="types/DecodedDataParameter.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Decoded<wbr/>Data<wbr/>Parameter</span></a></li>
-<li><a href="types/DecodedDataParameterValue.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Decoded<wbr/>Data<wbr/>Parameter<wbr/>Value</span></a></li>
-<li><a href="types/DecodedDataRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Decoded<wbr/>Data<wbr/>Request</span></a></li>
-<li><a href="types/DecodedDataResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Decoded<wbr/>Data<wbr/>Response</span></a></li>
-<li><a href="types/DeleteGuard.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Delete<wbr/>Guard</span></a></li>
-<li><a href="types/DetailedExecutionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Detailed<wbr/>Execution<wbr/>Info</span></a></li>
-<li><a href="types/DisableModule.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Disable<wbr/>Module</span></a></li>
-<li><a href="types/EIP712TypedData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>EIP712<wbr/>Typed<wbr/>Data</span></a></li>
-<li><a href="types/EnableModule.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Enable<wbr/>Module</span></a></li>
-<li><a href="types/Erc20Transfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Erc20<wbr/>Transfer</span></a></li>
-<li><a href="types/Erc721Transfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Erc721<wbr/>Transfer</span></a></li>
-<li><a href="types/ExecutionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Execution<wbr/>Info</span></a></li>
-<li><a href="types/FiatCurrencies.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Fiat<wbr/>Currencies</span></a></li>
-<li><a href="types/GasPrice.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Gas<wbr/>Price</span></a></li>
-<li><a href="types/GasPriceFixed.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Gas<wbr/>Price<wbr/>Fixed</span></a></li>
-<li><a href="types/GasPriceFixedEIP1559.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Gas<wbr/>Price<wbr/>FixedEIP1559</span></a></li>
-<li><a href="types/GasPriceOracle.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Gas<wbr/>Price<wbr/>Oracle</span></a></li>
-<li><a href="types/GasPriceUnknown.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Gas<wbr/>Price<wbr/>Unknown</span></a></li>
-<li><a href="types/IncomingTransfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Incoming<wbr/>Transfer</span></a></li>
-<li><a href="types/InternalTransaction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Internal<wbr/>Transaction</span></a></li>
-<li><a href="types/Label.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Label</span></a></li>
-<li><a href="types/MasterCopyReponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Master<wbr/>Copy<wbr/>Reponse</span></a></li>
-<li><a href="types/ModuleExecutionDetails.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Module<wbr/>Execution<wbr/>Details</span></a></li>
-<li><a href="types/ModuleExecutionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Module<wbr/>Execution<wbr/>Info</span></a></li>
-<li><a href="types/ModuleTransaction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Module<wbr/>Transaction</span></a></li>
-<li><a href="types/MultiSend.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Multi<wbr/>Send</span></a></li>
-<li><a href="types/MultisigConfirmation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Multisig<wbr/>Confirmation</span></a></li>
-<li><a href="types/MultisigExecutionDetails.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Multisig<wbr/>Execution<wbr/>Details</span></a></li>
-<li><a href="types/MultisigExecutionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Multisig<wbr/>Execution<wbr/>Info</span></a></li>
-<li><a href="types/MultisigTransaction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Multisig<wbr/>Transaction</span></a></li>
-<li><a href="types/MultisigTransactionRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Multisig<wbr/>Transaction<wbr/>Request</span></a></li>
-<li><a href="types/NativeCoinTransfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Native<wbr/>Coin<wbr/>Transfer</span></a></li>
-<li><a href="types/NativeCurrency.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Native<wbr/>Currency</span></a></li>
-<li><a href="types/OwnedSafes.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Owned<wbr/>Safes</span></a></li>
-<li><a href="types/Page.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Page</span></a></li>
-<li><a href="types/ParamValue.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Param<wbr/>Value</span></a></li>
-<li><a href="types/Parameter.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Parameter</span></a></li>
-<li><a href="types/ProposeSafeMessageRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Propose<wbr/>Safe<wbr/>Message<wbr/>Request</span></a></li>
-<li><a href="types/RegisterNotificationsRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Register<wbr/>Notifications<wbr/>Request</span></a></li>
-<li><a href="types/RemoveOwner.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Remove<wbr/>Owner</span></a></li>
-<li><a href="types/RpcUri.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Rpc<wbr/>Uri</span></a></li>
-<li><a href="types/SafeAppData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>App<wbr/>Data</span></a></li>
-<li><a href="types/SafeAppDomainAllowlistPolicy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>App<wbr/>Domain<wbr/>Allowlist<wbr/>Policy</span></a></li>
-<li><a href="types/SafeAppInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>App<wbr/>Info</span></a></li>
-<li><a href="types/SafeAppNoRestrictionsPolicy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>App<wbr/>No<wbr/>Restrictions<wbr/>Policy</span></a></li>
-<li><a href="types/SafeAppProvider.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>App<wbr/>Provider</span></a></li>
-<li><a href="types/SafeAppSocialProfile.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>App<wbr/>Social<wbr/>Profile</span></a></li>
-<li><a href="types/SafeAppsAccessControlPolicies.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Apps<wbr/>Access<wbr/>Control<wbr/>Policies</span></a></li>
-<li><a href="types/SafeAppsResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Apps<wbr/>Response</span></a></li>
-<li><a href="types/SafeBalanceResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Balance<wbr/>Response</span></a></li>
-<li><a href="types/SafeCollectibleResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Collectible<wbr/>Response</span></a></li>
-<li><a href="types/SafeCollectiblesPage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Collectibles<wbr/>Page</span></a></li>
-<li><a href="types/SafeIncomingTransfersResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Incoming<wbr/>Transfers<wbr/>Response</span></a></li>
-<li><a href="types/SafeInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Info</span></a></li>
-<li><a href="types/SafeMessage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Message</span></a></li>
-<li><a href="types/SafeMessageDateLabel.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Message<wbr/>Date<wbr/>Label</span></a></li>
-<li><a href="types/SafeMessageListItem.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Message<wbr/>List<wbr/>Item</span></a></li>
-<li><a href="types/SafeMessageListPage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Message<wbr/>List<wbr/>Page</span></a></li>
-<li><a href="types/SafeModuleTransactionsResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Module<wbr/>Transactions<wbr/>Response</span></a></li>
-<li><a href="types/SafeMultisigTransactionsResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Multisig<wbr/>Transactions<wbr/>Response</span></a></li>
-<li><a href="types/SafeTransactionEstimation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Transaction<wbr/>Estimation</span></a></li>
-<li><a href="types/SafeTransactionEstimationRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Safe<wbr/>Transaction<wbr/>Estimation<wbr/>Request</span></a></li>
-<li><a href="types/SetFallbackHandler.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Set<wbr/>Fallback<wbr/>Handler</span></a></li>
-<li><a href="types/SetGuard.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Set<wbr/>Guard</span></a></li>
-<li><a href="types/SettingsChange.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Settings<wbr/>Change</span></a></li>
-<li><a href="types/SettingsInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Settings<wbr/>Info</span></a></li>
-<li><a href="types/SwapOwner.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Swap<wbr/>Owner</span></a></li>
-<li><a href="types/Theme.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Theme</span></a></li>
-<li><a href="types/TokenInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Token<wbr/>Info</span></a></li>
-<li><a href="types/Transaction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transaction</span></a></li>
-<li><a href="types/TransactionData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transaction<wbr/>Data</span></a></li>
-<li><a href="types/TransactionDetails.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transaction<wbr/>Details</span></a></li>
-<li><a href="types/TransactionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transaction<wbr/>Info</span></a></li>
-<li><a href="types/TransactionListItem.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transaction<wbr/>List<wbr/>Item</span></a></li>
-<li><a href="types/TransactionListPage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transaction<wbr/>List<wbr/>Page</span></a></li>
-<li><a href="types/TransactionSummary.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transaction<wbr/>Summary</span></a></li>
-<li><a href="types/Transfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transfer</span></a></li>
-<li><a href="types/TransferInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Transfer<wbr/>Info</span></a></li>
-<li><a href="types/ValueDecodedType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-4194304"></use></svg><span>Value<wbr/>Decoded<wbr/>Type</span></a></li>
+<li><a href="types/AddOwner.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-2097152"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)"></path></g></svg><span>Add<wbr/>Owner</span></a></li>
+<li><a href="types/AddressEx.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Address<wbr/>Ex</span></a></li>
+<li><a href="types/BlockExplorerUriTemplate.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Block<wbr/>Explorer<wbr/>Uri<wbr/>Template</span></a></li>
+<li><a href="types/Cancellation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Cancellation</span></a></li>
+<li><a href="types/ChainInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Chain<wbr/>Info</span></a></li>
+<li><a href="types/ChainListResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Chain<wbr/>List<wbr/>Response</span></a></li>
+<li><a href="types/ChangeImplementation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Change<wbr/>Implementation</span></a></li>
+<li><a href="types/ChangeThreshold.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Change<wbr/>Threshold</span></a></li>
+<li><a href="types/ConfirmSafeMessageRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Confirm<wbr/>Safe<wbr/>Message<wbr/>Request</span></a></li>
+<li><a href="types/ConflictHeader.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Conflict<wbr/>Header</span></a></li>
+<li><a href="types/Creation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Creation</span></a></li>
+<li><a href="types/Custom.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Custom</span></a></li>
+<li><a href="types/DataDecoded.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Data<wbr/>Decoded</span></a></li>
+<li><a href="types/DateLabel.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Date<wbr/>Label</span></a></li>
+<li><a href="types/DecodedDataBasicParameter.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Decoded<wbr/>Data<wbr/>Basic<wbr/>Parameter</span></a></li>
+<li><a href="types/DecodedDataParameter.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Decoded<wbr/>Data<wbr/>Parameter</span></a></li>
+<li><a href="types/DecodedDataParameterValue.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Decoded<wbr/>Data<wbr/>Parameter<wbr/>Value</span></a></li>
+<li><a href="types/DecodedDataRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Decoded<wbr/>Data<wbr/>Request</span></a></li>
+<li><a href="types/DecodedDataResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Decoded<wbr/>Data<wbr/>Response</span></a></li>
+<li><a href="types/DeleteGuard.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Delete<wbr/>Guard</span></a></li>
+<li><a href="types/DetailedExecutionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Detailed<wbr/>Execution<wbr/>Info</span></a></li>
+<li><a href="types/DisableModule.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Disable<wbr/>Module</span></a></li>
+<li><a href="types/EIP712TypedData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>EIP712<wbr/>Typed<wbr/>Data</span></a></li>
+<li><a href="types/EnableModule.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Enable<wbr/>Module</span></a></li>
+<li><a href="types/Erc20Transfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Erc20<wbr/>Transfer</span></a></li>
+<li><a href="types/Erc721Transfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Erc721<wbr/>Transfer</span></a></li>
+<li><a href="types/ExecutionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Execution<wbr/>Info</span></a></li>
+<li><a href="types/FiatCurrencies.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Fiat<wbr/>Currencies</span></a></li>
+<li><a href="types/GasPrice.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Gas<wbr/>Price</span></a></li>
+<li><a href="types/GasPriceFixed.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Gas<wbr/>Price<wbr/>Fixed</span></a></li>
+<li><a href="types/GasPriceFixedEIP1559.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Gas<wbr/>Price<wbr/>FixedEIP1559</span></a></li>
+<li><a href="types/GasPriceOracle.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Gas<wbr/>Price<wbr/>Oracle</span></a></li>
+<li><a href="types/GasPriceUnknown.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Gas<wbr/>Price<wbr/>Unknown</span></a></li>
+<li><a href="types/IncomingTransfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Incoming<wbr/>Transfer</span></a></li>
+<li><a href="types/InternalTransaction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Internal<wbr/>Transaction</span></a></li>
+<li><a href="types/Label.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Label</span></a></li>
+<li><a href="types/MasterCopyReponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Master<wbr/>Copy<wbr/>Reponse</span></a></li>
+<li><a href="types/ModuleExecutionDetails.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Module<wbr/>Execution<wbr/>Details</span></a></li>
+<li><a href="types/ModuleExecutionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Module<wbr/>Execution<wbr/>Info</span></a></li>
+<li><a href="types/ModuleTransaction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Module<wbr/>Transaction</span></a></li>
+<li><a href="types/MultiSend.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Multi<wbr/>Send</span></a></li>
+<li><a href="types/MultisigConfirmation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Multisig<wbr/>Confirmation</span></a></li>
+<li><a href="types/MultisigExecutionDetails.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Multisig<wbr/>Execution<wbr/>Details</span></a></li>
+<li><a href="types/MultisigExecutionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Multisig<wbr/>Execution<wbr/>Info</span></a></li>
+<li><a href="types/MultisigTransaction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Multisig<wbr/>Transaction</span></a></li>
+<li><a href="types/MultisigTransactionRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Multisig<wbr/>Transaction<wbr/>Request</span></a></li>
+<li><a href="types/NativeCoinTransfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Native<wbr/>Coin<wbr/>Transfer</span></a></li>
+<li><a href="types/NativeCurrency.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Native<wbr/>Currency</span></a></li>
+<li><a href="types/OwnedSafes.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Owned<wbr/>Safes</span></a></li>
+<li><a href="types/Page.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Page</span></a></li>
+<li><a href="types/ParamValue.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Param<wbr/>Value</span></a></li>
+<li><a href="types/Parameter.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Parameter</span></a></li>
+<li><a href="types/ProposeSafeMessageRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Propose<wbr/>Safe<wbr/>Message<wbr/>Request</span></a></li>
+<li><a href="types/RegisterNotificationsRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Register<wbr/>Notifications<wbr/>Request</span></a></li>
+<li><a href="types/RemoveOwner.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Remove<wbr/>Owner</span></a></li>
+<li><a href="types/RpcUri.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Rpc<wbr/>Uri</span></a></li>
+<li><a href="types/SafeAppData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>App<wbr/>Data</span></a></li>
+<li><a href="types/SafeAppDomainAllowlistPolicy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>App<wbr/>Domain<wbr/>Allowlist<wbr/>Policy</span></a></li>
+<li><a href="types/SafeAppInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>App<wbr/>Info</span></a></li>
+<li><a href="types/SafeAppNoRestrictionsPolicy.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>App<wbr/>No<wbr/>Restrictions<wbr/>Policy</span></a></li>
+<li><a href="types/SafeAppProvider.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>App<wbr/>Provider</span></a></li>
+<li><a href="types/SafeAppSocialProfile.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>App<wbr/>Social<wbr/>Profile</span></a></li>
+<li><a href="types/SafeAppsAccessControlPolicies.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Apps<wbr/>Access<wbr/>Control<wbr/>Policies</span></a></li>
+<li><a href="types/SafeAppsResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Apps<wbr/>Response</span></a></li>
+<li><a href="types/SafeBalanceResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Balance<wbr/>Response</span></a></li>
+<li><a href="types/SafeCollectibleResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Collectible<wbr/>Response</span></a></li>
+<li><a href="types/SafeCollectiblesPage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Collectibles<wbr/>Page</span></a></li>
+<li><a href="types/SafeIncomingTransfersResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Incoming<wbr/>Transfers<wbr/>Response</span></a></li>
+<li><a href="types/SafeInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Info</span></a></li>
+<li><a href="types/SafeMessage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Message</span></a></li>
+<li><a href="types/SafeMessageDateLabel.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Message<wbr/>Date<wbr/>Label</span></a></li>
+<li><a href="types/SafeMessageListItem.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Message<wbr/>List<wbr/>Item</span></a></li>
+<li><a href="types/SafeMessageListPage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Message<wbr/>List<wbr/>Page</span></a></li>
+<li><a href="types/SafeModuleTransactionsResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Module<wbr/>Transactions<wbr/>Response</span></a></li>
+<li><a href="types/SafeMultisigTransactionsResponse.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Multisig<wbr/>Transactions<wbr/>Response</span></a></li>
+<li><a href="types/SafeTransactionEstimation.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Transaction<wbr/>Estimation</span></a></li>
+<li><a href="types/SafeTransactionEstimationRequest.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Safe<wbr/>Transaction<wbr/>Estimation<wbr/>Request</span></a></li>
+<li><a href="types/SetFallbackHandler.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Set<wbr/>Fallback<wbr/>Handler</span></a></li>
+<li><a href="types/SetGuard.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Set<wbr/>Guard</span></a></li>
+<li><a href="types/SettingsChange.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Settings<wbr/>Change</span></a></li>
+<li><a href="types/SettingsInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Settings<wbr/>Info</span></a></li>
+<li><a href="types/SwapOwner.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Swap<wbr/>Owner</span></a></li>
+<li><a href="types/Theme.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Theme</span></a></li>
+<li><a href="types/TokenInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Token<wbr/>Info</span></a></li>
+<li><a href="types/Transaction.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transaction</span></a></li>
+<li><a href="types/TransactionData.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transaction<wbr/>Data</span></a></li>
+<li><a href="types/TransactionDetails.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transaction<wbr/>Details</span></a></li>
+<li><a href="types/TransactionInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transaction<wbr/>Info</span></a></li>
+<li><a href="types/TransactionListItem.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transaction<wbr/>List<wbr/>Item</span></a></li>
+<li><a href="types/TransactionListPage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transaction<wbr/>List<wbr/>Page</span></a></li>
+<li><a href="types/TransactionSummary.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transaction<wbr/>Summary</span></a></li>
+<li><a href="types/Transfer.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transfer</span></a></li>
+<li><a href="types/TransferInfo.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Transfer<wbr/>Info</span></a></li>
+<li><a href="types/ValueDecodedType.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-2097152"></use></svg><span>Value<wbr/>Decoded<wbr/>Type</span></a></li>
 <li><a href="functions/confirmSafeMessage.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><g id="icon-64"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)"></path></g></svg><span>confirm<wbr/>Safe<wbr/>Message</span></a></li>
 <li><a href="functions/getBalances.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Balances</span></a></li>
 <li><a href="functions/getChainConfig.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>get<wbr/>Chain<wbr/>Config</span></a></li>
@@ -225,5 +223,5 @@ Please <em>do not</em> use this SDK if you&#39;re building, e.g., a Safe App.</p
 <li><a href="functions/unregisterDevice.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unregister<wbr/>Device</span></a></li>
 <li><a href="functions/unregisterSafe.html"><svg class="tsd-kind-icon" viewBox="0 0 24 24"><use href="#icon-64"></use></svg><span>unregister<wbr/>Safe</span></a></li></ul></nav></div></div></div>
 <div class="tsd-generator">
-<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p></div>
+<p>Generated using <a href="https://typedoc.org/" rel="noopener" target="_blank">TypeDoc</a></p></div>
 <div class="overlay"></div></body></html>

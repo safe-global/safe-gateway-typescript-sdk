@@ -43,7 +43,6 @@ export enum TransferDirection {
   UNKNOWN = 'UNKNOWN',
 }
 
-// https://safe.global/safe-client-gateway/docs/routes/transactions/models/enum.TransferInfo.html
 export enum TransactionTokenType {
   ERC20 = 'ERC20',
   ERC721 = 'ERC721',
@@ -63,7 +62,6 @@ export enum SettingsInfoType {
   DELETE_GUARD = 'DELETE_GUARD',
 }
 
-// https://safe.global/safe-client-gateway/docs/routes/transactions/models/enum.TransactionInfo.html
 export enum TransactionInfoType {
   TRANSFER = 'Transfer',
   SETTINGS_CHANGE = 'SettingsChange',
@@ -71,14 +69,12 @@ export enum TransactionInfoType {
   CREATION = 'Creation',
 }
 
-// https://safe.global/safe-client-gateway/docs/routes/transactions/models/summary/enum.ConflictType.html
 export enum ConflictType {
   NONE = 'None',
   HAS_NEXT = 'HasNext',
   END = 'End',
 }
 
-// https://safe.global/safe-client-gateway/docs/routes/transactions/models/summary/enum.TransactionListItem.html
 export enum TransactionListItemType {
   TRANSACTION = 'TRANSACTION',
   LABEL = 'LABEL',
@@ -86,7 +82,6 @@ export enum TransactionListItemType {
   DATE_LABEL = 'DATE_LABEL',
 }
 
-// https://safe.global/safe-client-gateway/docs/routes/transactions/models/details/enum.DetailedExecutionInfo.html
 export enum DetailedExecutionInfoType {
   MULTISIG = 'MULTISIG',
   MODULE = 'MODULE',
@@ -265,8 +260,6 @@ export type Transaction = {
   type: TransactionListItemType.TRANSACTION
 }
 
-// WIP types:
-
 export type IncomingTransfer = Omit<Transaction, 'transaction'> & {
   transaction: Omit<TransactionSummary, 'txInfo' | 'executionInfo'> & {
     txInfo: Omit<Transfer, 'direction'> & { direction: TransferDirection.INCOMING }
@@ -292,9 +285,6 @@ export type DateLabel = {
   type: TransactionListItemType.DATE_LABEL
 }
 
-/**
- * @see https://gnosis.github.io/safe-client-gateway/docs/routes/transactions/models/summary/enum.Label.html
- */
 export enum LabelValue {
   Queued = 'Queued',
   Next = 'Next',

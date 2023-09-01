@@ -4,7 +4,7 @@
 
 A TypeScript SDK for the [Safe Client Gateway](https://github.com/safe-global/safe-client-gateway)
 
-📖 [API reference](https://safe-global.github.io/safe-gateway-typescript-sdk/modules.html)
+📖 [Type reference](https://safe-global.github.io/safe-gateway-typescript-sdk/modules.html)   |   <img src="https://github.com/safe-global/safe-gateway-typescript-sdk/assets/381895/ebfa2525-ff65-4597-af2a-17a440ccfb33" height="20" alt="Swagger" valign="text-top" /> [CGW Swagger](https://safe-client.safe.global)
 
 ## Usage policy
 
@@ -72,7 +72,3 @@ yarn test
 ```
 
 N.B.: the e2e tests make actual API calls on staging.
-
-## Gateway API docs
-
-The TypeScript types in this SDK are based on [Rust types](https://safe-global.github.io/safe-client-gateway/docs/routes/index.html) from the Gateway API.

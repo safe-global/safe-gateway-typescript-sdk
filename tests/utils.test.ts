@@ -1,9 +1,6 @@
-import fetch from 'cross-fetch'
 import { fetchData, insertParams, stringifyQuery } from '../src/utils'
 
-jest.mock('cross-fetch')
-
-const fetchMock = fetch as typeof fetch & jest.Mock
+const fetchMock = jest.spyOn(global, 'fetch') as typeof fetch & jest.Mock
 
 describe('utils', () => {
   describe('insertParams', () => {

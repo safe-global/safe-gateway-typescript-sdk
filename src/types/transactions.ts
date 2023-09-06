@@ -1,4 +1,5 @@
 import type { AddressEx, Page, TokenInfo } from './common'
+import type { RichDecodedInfo } from './human-description'
 
 export type ParamValue = string | ParamValue[]
 
@@ -120,6 +121,7 @@ export type Transfer = {
   direction: TransferDirection
   transferInfo: TransferInfo
   humanDescription?: string
+  richDecodedInfo?: RichDecodedInfo
 }
 
 export type SetFallbackHandler = {
@@ -191,6 +193,7 @@ export type SettingsChange = {
   dataDecoded: DataDecoded
   settingsInfo?: SettingsInfo
   humanDescription?: string
+  richDecodedInfo?: RichDecodedInfo
 }
 
 export type Custom = {
@@ -202,6 +205,7 @@ export type Custom = {
   actionCount?: number
   isCancellation: boolean
   humanDescription?: string
+  richDecodedInfo?: RichDecodedInfo
 }
 
 export type MultiSend = {
@@ -213,6 +217,7 @@ export type MultiSend = {
   actionCount: number
   isCancellation: boolean
   humanDescription?: string
+  richDecodedInfo?: RichDecodedInfo
 }
 
 export type Cancellation = Custom & {
@@ -226,6 +231,7 @@ export type Creation = {
   implementation?: AddressEx
   factory?: AddressEx
   humanDescription?: string
+  richDecodedInfo?: RichDecodedInfo
 }
 
 export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation

@@ -4,15 +4,24 @@ export enum RichFragmentType {
   Address = 'address',
 }
 
-export interface RichDecodedInfoFragment {
-  type: RichFragmentType
+export type RichTokenValueFragment = {
+  type: RichFragmentType.TokenValue
   value: string
-}
-
-export interface RichTokenValueFragment extends RichDecodedInfoFragment {
   symbol: string | null
   logoUri: string | null
 }
+
+export type RichTextFragment = {
+  type: RichFragmentType.Text
+  value: string
+}
+
+export type RichAddressFragment = {
+  type: RichFragmentType.Address
+  value: string
+}
+
+export type RichDecodedInfoFragment = RichTokenValueFragment | RichTextFragment | RichAddressFragment
 
 export type RichDecodedInfo = {
   fragments: Array<RichDecodedInfoFragment>

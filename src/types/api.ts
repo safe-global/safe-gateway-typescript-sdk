@@ -14,6 +14,7 @@ import type {
   SafeIncomingTransfersResponse,
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
+  RecommendedNonceResponse,
 } from './transactions'
 import type { SafeInfo } from './safe-info'
 import type { ChainListResponse, ChainInfo } from './chains'
@@ -778,7 +779,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: number
+        schema: RecommendedNonceResponse
       }
     }
   }

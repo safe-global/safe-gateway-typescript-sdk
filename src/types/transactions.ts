@@ -406,6 +406,10 @@ export type SafeTransactionEstimation = {
   safeTxGas: string
 }
 
+export type RecommendedNonceResponse = {
+  nonce: number
+}
+
 /* Transaction estimation types end */
 
 export type SafeIncomingTransfersResponse = Page<IncomingTransfer>

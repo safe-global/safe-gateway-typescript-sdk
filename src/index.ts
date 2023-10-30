@@ -229,6 +229,12 @@ export function postSafeGasEstimation(
   })
 }
 
+export function getRecommendedNonce(chainId: string, address: string): Promise<number> {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/recommended-nonce', {
+    path: { chainId, safe_address: address },
+  })
+}
+
 /**
  * Propose a new transaction for other owners to sign/execute
  */

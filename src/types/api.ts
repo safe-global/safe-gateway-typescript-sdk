@@ -304,6 +304,15 @@ export interface paths extends PathRegistry {
       }
     }
   }
+  '/v1/chains/{chainId}/safes/{safe_address}/recommended-nonce': {
+    get: operations['get_recommended_nonce']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+    }
+  }
 }
 
 export interface operations {
@@ -757,6 +766,19 @@ export interface operations {
     responses: {
       200: {
         schema: void
+      }
+    }
+  }
+  get_recommended_nonce: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+    }
+    responses: {
+      200: {
+        schema: number
       }
     }
   }

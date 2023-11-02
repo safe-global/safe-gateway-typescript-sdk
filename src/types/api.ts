@@ -14,7 +14,7 @@ import type {
   SafeIncomingTransfersResponse,
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
-  RecommendedNonceResponse,
+  NoncesResponse,
 } from './transactions'
 import type { SafeInfo } from './safe-info'
 import type { ChainListResponse, ChainInfo } from './chains'
@@ -305,8 +305,8 @@ export interface paths extends PathRegistry {
       }
     }
   }
-  '/v1/chains/{chainId}/safes/{safe_address}/recommended-nonce': {
-    get: operations['get_recommended_nonce']
+  '/v1/chains/{chainId}/safes/{safe_address}/nonces': {
+    get: operations['get_nonces']
     parameters: {
       path: {
         chainId: string
@@ -770,7 +770,7 @@ export interface operations {
       }
     }
   }
-  get_recommended_nonce: {
+  get_nonces: {
     parameters: {
       path: {
         chainId: string
@@ -779,7 +779,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: RecommendedNonceResponse
+        schema: NoncesResponse
       }
     }
   }

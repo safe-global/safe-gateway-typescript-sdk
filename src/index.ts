@@ -7,7 +7,7 @@ import type {
   SafeIncomingTransfersResponse,
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
-  RecommendedNonceResponse,
+  NoncesResponse,
 } from './types/transactions'
 import type {
   FiatCurrencies,
@@ -230,8 +230,8 @@ export function postSafeGasEstimation(
   })
 }
 
-export function getRecommendedNonce(chainId: string, address: string): Promise<RecommendedNonceResponse> {
-  return getEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/recommended-nonce', {
+export function getNonces(chainId: string, address: string): Promise<NoncesResponse> {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/nonces', {
     path: { chainId, safe_address: address },
   })
 }

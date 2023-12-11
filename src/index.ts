@@ -181,11 +181,12 @@ export function getTransactionHistory(
   chainId: string,
   address: string,
   pageUrl?: string,
+  trusted?: boolean,
 ): Promise<TransactionListPage> {
   return getEndpoint(
     baseUrl,
     '/v1/chains/{chainId}/safes/{safe_address}/transactions/history',
-    { path: { chainId, safe_address: address }, query: {} },
+    { path: { chainId, safe_address: address }, query: { trusted } },
     pageUrl,
   )
 }

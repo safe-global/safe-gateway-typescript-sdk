@@ -96,6 +96,7 @@ export type Erc20Transfer = {
   logoUri?: string
   decimals?: number
   value: string
+  trusted: boolean | null
 }
 
 export type Erc721Transfer = {

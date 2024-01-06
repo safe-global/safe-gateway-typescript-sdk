@@ -180,13 +180,13 @@ export function getCollectiblesPage(
 export function getTransactionHistory(
   chainId: string,
   address: string,
+  query: operations['history_transactions']['parameters']['query'] = {},
   pageUrl?: string,
-  trusted?: boolean,
 ): Promise<TransactionListPage> {
   return getEndpoint(
     baseUrl,
     '/v1/chains/{chainId}/safes/{safe_address}/transactions/history',
-    { path: { chainId, safe_address: address }, query: { trusted } },
+    { path: { chainId, safe_address: address }, query },
     pageUrl,
   )
 }
@@ -197,13 +197,13 @@ export function getTransactionHistory(
 export function getTransactionQueue(
   chainId: string,
   address: string,
+  query: operations['queued_transactions']['parameters']['query'] = {},
   pageUrl?: string,
-  trusted?: boolean,
 ): Promise<TransactionListPage> {
   return getEndpoint(
     baseUrl,
     '/v1/chains/{chainId}/safes/{safe_address}/transactions/queued',
-    { path: { chainId, safe_address: address }, query: { trusted } },
+    { path: { chainId, safe_address: address }, query },
     pageUrl,
   )
 }

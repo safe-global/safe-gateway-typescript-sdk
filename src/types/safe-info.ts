@@ -18,8 +18,8 @@ export type SafeInfo = {
   guard: AddressEx | null
   fallbackHandler: AddressEx | null
   version: string | null
-  collectiblesTag: string
-  txQueuedTag: string
-  txHistoryTag: string
-  messagesTag: string
+  collectiblesTag: string | null
+  txQueuedTag: string | null
+  txHistoryTag: string | null
+  messagesTag: string | null
 }

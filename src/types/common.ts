@@ -8,6 +8,8 @@ export type FiatCurrencies = string[]
 
 export type OwnedSafes = { safes: string[] }
 
+export type AllOwnedSafes = Record<string, string[]>
+
 export enum TokenType {
   ERC20 = 'ERC20',
   ERC721 = 'ERC721',

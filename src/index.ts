@@ -10,6 +10,7 @@ import type {
   NoncesResponse,
 } from './types/transactions'
 import type {
+  AllOwnedSafes,
   FiatCurrencies,
   OwnedSafes,
   SafeBalanceResponse,
@@ -141,6 +142,13 @@ export function getFiatCurrencies(): Promise<FiatCurrencies> {
  */
 export function getOwnedSafes(chainId: string, address: string): Promise<OwnedSafes> {
   return getEndpoint(baseUrl, '/v1/chains/{chainId}/owners/{address}/safes', { path: { chainId, address } })
+}
+
+/**
+ * Get the addresses of all Safes belonging to an owner on all chains
+ */
+export function getAllOwnedSafes(address: string): Promise<AllOwnedSafes> {
+  return getEndpoint(baseUrl, '/v1/owners/{address}/safes', { path: { address } })
 }
 
 /**

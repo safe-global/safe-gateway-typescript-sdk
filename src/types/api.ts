@@ -1,4 +1,5 @@
 import type {
+  AllOwnedSafes,
   FiatCurrencies,
   OwnedSafes,
   SafeBalanceResponse,
@@ -205,6 +206,14 @@ export interface paths extends PathRegistry {
     parameters: {
       path: {
         chainId: string
+        address: string
+      }
+    }
+  }
+  '/v1/owners/{address}/safes': {
+    get: operations['get_all_owned_safes']
+    parameters: {
+      path: {
         address: string
       }
     }
@@ -591,6 +600,18 @@ export interface operations {
     responses: {
       200: {
         schema: OwnedSafes
+      }
+    }
+  }
+  get_all_owned_safes: {
+    parameters: {
+      path: {
+        address: string
+      }
+    }
+    responses: {
+      200: {
+        schema: AllOwnedSafes
       }
     }
   }

@@ -183,6 +183,15 @@ export interface paths extends PathRegistry {
       }
     }
   }
+  '/v1/chains/{chainId}/transactions/{safeTxHash}': {
+    delete: operations['delete_transaction']
+    parameters: {
+      path: {
+        chainId: string
+        safeTxHash: string
+      }
+    }
+  }
   '/v2/chains/{chainId}/safes/{safe_address}/multisig-transactions/estimations': {
     post: operations['post_safe_gas_estimation']
     parameters: {
@@ -551,6 +560,20 @@ export interface operations {
     responses: {
       200: {
         schema: TransactionDetails
+      }
+    }
+  }
+  delete_transaction: {
+    parameters: {
+      path: {
+        chainId: string
+        safeTxHash: string
+      }
+      body: { signature: string }
+    }
+    responses: {
+      200: {
+        schema: void
       }
     }
   }

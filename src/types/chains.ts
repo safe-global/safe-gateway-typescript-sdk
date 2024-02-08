@@ -78,6 +78,7 @@ export type ChainInfo = {
   chainName: string
   shortName: string
   l2: boolean
+  isTestnet: boolean
   description: string
   rpcUri: RpcUri
   safeAppsRpcUri: RpcUri

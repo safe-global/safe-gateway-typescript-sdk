@@ -226,6 +226,20 @@ export function getTransactionDetails(chainId: string, transactionId: string): P
 }
 
 /**
+ * Delete a transaction by its safeTxHash
+ */
+export function deleteTransaction(
+  chainId: string,
+  safeTxHash: string,
+  signature: operations['delete_transaction']['parameters']['body']['signature'],
+): Promise<void> {
+  return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/transactions/{safeTxHash}', {
+    path: { chainId, safeTxHash },
+    body: { signature },
+  })
+}
+
+/**
  * Request a gas estimate & recommmended tx nonce for a created transaction
  */
 export function postSafeGasEstimation(

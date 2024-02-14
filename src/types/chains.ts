@@ -80,6 +80,7 @@ export type ChainInfo = {
   l2: boolean
   isTestnet: boolean
   description: string
+  chainLogoUri: string | null
   rpcUri: RpcUri
   safeAppsRpcUri: RpcUri
   publicRpcUri: RpcUri

@@ -51,12 +51,54 @@ describe('utils', () => {
         })
       })
 
-      await expect(fetchData('/test/safe', '123')).resolves.toEqual({ success: true })
+      await expect(fetchData('/test/safe', 'POST', '123')).resolves.toEqual({ success: true })
 
       expect(fetch).toHaveBeenCalledWith('/test/safe', {
         method: 'POST',
         body: '123',
         headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+    })
+
+    it('should forward headers', async () => {
+      fetchMock.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve('{"success": "true"}'),
+          json: () => Promise.resolve({ success: true }),
+        })
+      })
+
+      await expect(fetchData('/test/safe', 'POST', '123', { TestHeader: '123456' })).resolves.toEqual({ success: true })
+
+      expect(fetch).toHaveBeenCalledWith('/test/safe', {
+        method: 'POST',
+        body: '123',
+        headers: {
+          TestHeader: '123456',
+          'Content-Type': 'application/json',
+        },
+      })
+    })
+
+    it('should use PUT if specified', async () => {
+      fetchMock.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve('{"success": "true"}'),
+          json: () => Promise.resolve({ success: true }),
+        })
+      })
+
+      await expect(fetchData('/test/safe', 'PUT', '123', { TestHeader: '123456' })).resolves.toEqual({ success: true })
+
+      expect(fetch).toHaveBeenCalledWith('/test/safe', {
+        method: 'PUT',
+        body: '123',
+        headers: {
+          TestHeader: '123456',
           'Content-Type': 'application/json',
         },
       })

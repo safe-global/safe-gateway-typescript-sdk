@@ -56,7 +56,7 @@ async function parseResponse<T>(resp: Response): Promise<T> {
   return json
 }
 
-export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
+export async function fetchData<T>(url: string, body?: unknown, headers?: Record<string, string>): Promise<T> {
   let options:
     | {
         method: 'POST'
@@ -65,10 +65,12 @@ export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
       }
     | undefined
   if (body != null) {
+    const requestHeaders: Record<string, string> = headers ?? {}
+    requestHeaders['Content-Type'] = 'application/json'
     options = {
       method: 'POST',
       body: typeof body === 'string' ? body : JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' },
+      headers: requestHeaders,
     }
   }
 

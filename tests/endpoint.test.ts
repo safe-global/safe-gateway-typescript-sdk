@@ -148,7 +148,7 @@ describe('getEndpoint', () => {
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test//v1/chains/4/safes/0x123/emails/0x456',
+      'https://test.test/v1/chains/4/safes/0x123/emails/0x456',
       'PUT',
       body,
       headers,

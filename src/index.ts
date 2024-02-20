@@ -25,6 +25,7 @@ import type { DecodedDataResponse } from './types/decoded-data'
 import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
 import type { DelegateResponse, DelegatesRequest } from './types/delegates'
+import type { GetEmailResponse } from './types/emails'
 
 export * from './types/safe-info'
 export * from './types/safe-apps'
@@ -495,6 +496,27 @@ export function verifyEmail(
   return putEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}/verify', {
     path: { chainId, safe_address: safeAddress, signer: signerAddress },
     body,
+  })
+}
+
+/**
+ * Gets the registered email address of the signer
+ *
+ * @param chainId
+ * @param safeAddress
+ * @param signerAddress address of the owner of the Safe
+ *
+ * @returns email address and verified flag
+ */
+export function getRegisteredEmail(
+  chainId: string,
+  safeAddress: string,
+  signerAddress: string,
+  headers: operations['get_email']['parameters']['headers'],
+): Promise<GetEmailResponse> {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}', {
+    path: { chainId, safe_address: safeAddress, signer: signerAddress },
+    headers,
   })
 }
 

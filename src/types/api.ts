@@ -32,8 +32,9 @@ import type { DelegateResponse, DelegatesRequest } from './delegates'
 import type { RegisterNotificationsRequest } from './notifications'
 import type {
   ChangeEmailRequestBody,
+  GetEmailResponse,
   RegisterEmailRequestBody,
-  RegisterEmailRequestHeader,
+  AuthorizationEmailRequestHeader,
   VerifyEmailRequestBody,
 } from './emails'
 
@@ -92,7 +93,7 @@ export interface DeleteEndpoint extends Endpoint {
 }
 
 interface PathRegistry {
-  [key: string]: GetEndpoint | PostEndpoint | PutEndpoint | (GetEndpoint & PostEndpoint) | DeleteEndpoint
+  [key: string]: GetEndpoint | PostEndpoint | PutEndpoint | DeleteEndpoint
 }
 
 export interface paths extends PathRegistry {
@@ -357,6 +358,7 @@ export interface paths extends PathRegistry {
   }
   '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}': {
     put: operations['change_email']
+    get: operations['get_email']
     parameters: {
       path: {
         chainId: string
@@ -893,7 +895,7 @@ export interface operations {
         safe_address: string
       }
       body: RegisterEmailRequestBody
-      headers: RegisterEmailRequestHeader
+      headers: AuthorizationEmailRequestHeader
     }
     responses: {
       200: {
@@ -909,7 +911,7 @@ export interface operations {
         signer: string
       }
       body: ChangeEmailRequestBody
-      headers: RegisterEmailRequestHeader
+      headers: AuthorizationEmailRequestHeader
     }
     responses: {
       200: {
@@ -917,6 +919,21 @@ export interface operations {
       }
       202: {
         schema: void
+      }
+    }
+  }
+  get_email: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+      headers: AuthorizationEmailRequestHeader
+    }
+    responses: {
+      200: {
+        schema: GetEmailResponse
       }
     }
   }

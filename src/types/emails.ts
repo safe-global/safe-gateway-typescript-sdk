@@ -7,11 +7,16 @@ export type ChangeEmailRequestBody = {
   emailAddress: string
 }
 
-export type RegisterEmailRequestHeader = {
+export type AuthorizationEmailRequestHeader = {
   ['Safe-Wallet-Signature']: string
   ['Safe-Wallet-Signature-Timestamp']: string
 }
 
 export type VerifyEmailRequestBody = {
   code: string
+}
+
+export type GetEmailResponse = {
+  email: string
+  verified: boolean
 }

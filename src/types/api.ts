@@ -902,6 +902,9 @@ export interface operations {
       200: {
         schema: void
       }
+      201: {
+        schema: void
+      }
     }
   }
   change_email: {
@@ -954,8 +957,6 @@ export interface operations {
       200: {
         schema: void
       }
-      429: unknown
-      409: unknown
     }
   }
   verify_email: {

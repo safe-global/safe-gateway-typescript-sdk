@@ -447,6 +447,7 @@ export function registerEmail(
  *
  * @param chainId
  * @param safeAddress
+ * @param signerAddress
  * @param body New email address
  * @param headers Signature and Signature timestamp
  * @returns 202 if signature matches the data
@@ -502,6 +503,9 @@ export function verifyEmail(
 /**
  * Gets the registered email address of the signer
  *
+ * The signer wallet will have to sign a message of format: `email-retrieval-{chainId}-{safe}-{signer}-{timestamp}`
+ * The signature is valid for 5 minutes.
+ *
  * @param chainId
  * @param safeAddress
  * @param signerAddress address of the owner of the Safe
@@ -522,6 +526,9 @@ export function getRegisteredEmail(
 
 /**
  * Delete a registered email address for the signer
+ *
+ * The signer wallet will have to sign a message of format: `email-delete-{chainId}-{safe}-{signer}-{timestamp}`
+ * The signature is valid for 5 minutes.
  *
  * @param chainId
  * @param safeAddress

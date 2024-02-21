@@ -359,6 +359,7 @@ export interface paths extends PathRegistry {
   '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}': {
     put: operations['change_email']
     get: operations['get_email']
+    delete: operations['delete_email']
     parameters: {
       path: {
         chainId: string
@@ -975,6 +976,26 @@ export interface operations {
         schema: void
       }
       400: unknown
+    }
+  }
+  delete_email: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+      headers: AuthorizationEmailRequestHeader
+    }
+
+    responses: {
+      204: {
+        schema: void
+      }
+      200: {
+        schema: void
+      }
+      403: unknown
     }
   }
 }

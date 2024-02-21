@@ -520,4 +520,24 @@ export function getRegisteredEmail(
   })
 }
 
+/**
+ * Delete a registered email address for the signer
+ *
+ * @param chainId
+ * @param safeAddress
+ * @param signerAddress
+ * @param headers
+ */
+export function deleteRegisteredEmail(
+  chainId: string,
+  safeAddress: string,
+  signerAddress: string,
+  headers: operations['delete_email']['parameters']['headers'],
+): Promise<void> {
+  return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}', {
+    path: { chainId, safe_address: safeAddress, signer: signerAddress },
+    headers,
+  })
+}
+
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

@@ -1,4 +1,5 @@
-import { fetchData, insertParams, stringifyQuery } from '../src/utils'
+/// <reference lib="dom" />
+import { fetchData, getData, deleteData, insertParams, stringifyQuery } from '../src/utils'
 
 const fetchMock = jest.spyOn(global, 'fetch') as typeof fetch & jest.Mock
 
@@ -28,7 +29,7 @@ describe('utils', () => {
     })
   })
 
-  describe('fetchData', () => {
+  describe('getData', () => {
     it('should fetch a simple url', async () => {
       fetchMock.mockImplementation(() => {
         return Promise.resolve({
@@ -38,10 +39,60 @@ describe('utils', () => {
         })
       })
 
-      await expect(fetchData('/test/safe?q=123')).resolves.toEqual({ success: true })
-      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
+      await expect(getData('/test/safe?q=123')).resolves.toEqual({ success: true })
+      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', { method: 'GET' })
     })
 
+    it('should forward headers with a GET request', async () => {
+      fetchMock.mockImplementation(() => {
+        return Promise.resolve({
+          ok: true,
+          text: () => Promise.resolve('{"success": "true"}'),
+          json: () => Promise.resolve({ success: true }),
+        })
+      })
+
+      await expect(getData('/test/safe', { TestHeader: '123456' })).resolves.toEqual({
+        success: true,
+      })
+
+      expect(fetch).toHaveBeenCalledWith('/test/safe', {
+        method: 'GET',
+        headers: {
+          TestHeader: '123456',
+          'Content-Type': 'application/json',
+        },
+      })
+    })
+
+    it('should throw if response is not OK', async () => {
+      fetchMock.mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: 'Failed',
+          json: () => ({ code: 1337, message: 'something went wrong' }),
+        })
+      })
+
+      await expect(getData('/test/safe?q=123')).rejects.toThrow('1337: something went wrong')
+      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', { method: 'GET' })
+    })
+
+    it('should throw the response text for 50x errors', async () => {
+      fetchMock.mockImplementation(() => {
+        return Promise.resolve({
+          ok: false,
+          statusText: 'Failed',
+          json: () => null,
+        })
+      })
+
+      await expect(getData('/test/safe?q=123')).rejects.toThrow('Failed')
+      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', { method: 'GET' })
+    })
+  })
+
+  describe('fetchData', () => {
     it('should make a post request', async () => {
       fetchMock.mockImplementation(() => {
         return Promise.resolve({
@@ -62,7 +113,7 @@ describe('utils', () => {
       })
     })
 
-    it('should forward headers', async () => {
+    it('should forward headers with a POST request', async () => {
       fetchMock.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
@@ -103,31 +154,43 @@ describe('utils', () => {
         },
       })
     })
+  })
 
-    it('should throw if response is not OK', async () => {
+  describe('deleteData', () => {
+    it('should make a DELETE request', async () => {
       fetchMock.mockImplementation(() => {
         return Promise.resolve({
-          ok: false,
-          statusText: 'Failed',
-          json: () => ({ code: 1337, message: 'something went wrong' }),
+          ok: true,
+          text: () => Promise.resolve('{"success": "true"}'),
+          json: () => Promise.resolve({ success: true }),
         })
       })
 
-      await expect(fetchData('/test/safe?q=123')).rejects.toThrow('1337: something went wrong')
-      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
+      await expect(deleteData('/test/safe')).resolves.toEqual({ success: true })
+
+      expect(fetch).toHaveBeenCalledWith('/test/safe', {
+        method: 'DELETE',
+      })
     })
 
-    it('should throw the response text for 50x errors', async () => {
+    it('should make a DELETE request and pass headers', async () => {
       fetchMock.mockImplementation(() => {
         return Promise.resolve({
-          ok: false,
-          statusText: 'Failed',
-          json: () => null,
+          ok: true,
+          text: () => Promise.resolve('{"success": "true"}'),
+          json: () => Promise.resolve({ success: true }),
         })
       })
 
-      await expect(fetchData('/test/safe?q=123')).rejects.toThrow('Failed')
-      expect(fetch).toHaveBeenCalledWith('/test/safe?q=123', undefined)
+      await expect(deleteData('/test/safe', { TestHeader: '123456' })).resolves.toEqual({ success: true })
+
+      expect(fetch).toHaveBeenCalledWith('/test/safe', {
+        method: 'DELETE',
+        headers: {
+          TestHeader: '123456',
+          'Content-Type': 'application/json',
+        },
+      })
     })
   })
 })

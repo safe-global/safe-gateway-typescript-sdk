@@ -1,4 +1,4 @@
-import { fetchData } from '../src/utils'
+import { getData, fetchData } from '../src/utils'
 import { getEndpoint, postEndpoint, putEndpoint } from '../src/endpoint'
 
 jest.mock('../src/utils', () => {
@@ -8,6 +8,7 @@ jest.mock('../src/utils', () => {
     __esModule: true,
     ...originalModule,
     fetchData: jest.fn(() => Promise.resolve({ success: true })),
+    getData: jest.fn(() => Promise.resolve({ success: true })),
   }
 })
 
@@ -17,12 +18,7 @@ describe('getEndpoint', () => {
       success: true,
     })
 
-    expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test/v1/balances/supported-fiat-codes',
-      undefined,
-      undefined,
-      undefined,
-    )
+    expect(getData).toHaveBeenCalledWith('https://test.test/v1/balances/supported-fiat-codes', undefined)
   })
 
   it('should accept a path param', async () => {
@@ -32,7 +28,7 @@ describe('getEndpoint', () => {
       }),
     ).resolves.toEqual({ success: true })
 
-    expect(fetchData).toHaveBeenCalledWith('https://test.test/v1/chains/4/safes/0x123', undefined, undefined, undefined)
+    expect(getData).toHaveBeenCalledWith('https://test.test/v1/chains/4/safes/0x123', undefined)
   })
 
   it('should accept several path params', async () => {
@@ -43,12 +39,7 @@ describe('getEndpoint', () => {
       }),
     ).resolves.toEqual({ success: true })
 
-    expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test/v1/chains/4/safes/0x123/balances/usd',
-      undefined,
-      undefined,
-      undefined,
-    )
+    expect(getData).toHaveBeenCalledWith('https://test.test/v1/chains/4/safes/0x123/balances/usd', undefined)
   })
 
   it('should accept query params', async () => {
@@ -59,10 +50,8 @@ describe('getEndpoint', () => {
       }),
     ).resolves.toEqual({ success: true })
 
-    expect(fetchData).toHaveBeenCalledWith(
+    expect(getData).toHaveBeenCalledWith(
       'https://test.test/v1/chains/4/safes/0x123/balances/usd?exclude_spam=true',
-      undefined,
-      undefined,
       undefined,
     )
   })
@@ -110,7 +99,7 @@ describe('getEndpoint', () => {
       ),
     ).resolves.toEqual({ success: true })
 
-    expect(fetchData).toHaveBeenCalledWith('/test-url?raw=true')
+    expect(getData).toHaveBeenCalledWith('/test-url?raw=true')
   })
 
   it('should call a data decoder POST endpoint', async () => {

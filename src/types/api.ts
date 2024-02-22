@@ -30,11 +30,19 @@ import type {
 } from './safe-messages'
 import type { DelegateResponse, DelegatesRequest } from './delegates'
 import type { RegisterNotificationsRequest } from './notifications'
+import type {
+  ChangeEmailRequestBody,
+  GetEmailResponse,
+  RegisterEmailRequestBody,
+  AuthorizationEmailRequestHeader,
+  VerifyEmailRequestBody,
+} from './emails'
 
 export type Primitive = string | number | boolean | null
 
 interface Params {
   path?: { [key: string]: Primitive }
+  headers?: Record<string, string>
 }
 
 interface GetParams extends Params {
@@ -70,6 +78,13 @@ export interface PostEndpoint extends Endpoint {
   }
 }
 
+export interface PutEndpoint extends Endpoint {
+  put: {
+    parameters: PostParams | null
+    responses: Responses
+  }
+}
+
 export interface DeleteEndpoint extends Endpoint {
   delete: {
     parameters: Params | null
@@ -78,7 +93,7 @@ export interface DeleteEndpoint extends Endpoint {
 }
 
 interface PathRegistry {
-  [key: string]: GetEndpoint | PostEndpoint | (GetEndpoint & PostEndpoint) | DeleteEndpoint
+  [key: string]: GetEndpoint | PostEndpoint | PutEndpoint | DeleteEndpoint
 }
 
 export interface paths extends PathRegistry {
@@ -329,6 +344,47 @@ export interface paths extends PathRegistry {
       path: {
         chainId: string
         safe_address: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{safe_address}/emails': {
+    post: operations['register_email']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}': {
+    put: operations['change_email']
+    get: operations['get_email']
+    delete: operations['delete_email']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}/verify-resend': {
+    post: operations['verify_resend']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}/verify': {
+    put: operations['verify_email']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
       }
     }
   }
@@ -831,6 +887,116 @@ export interface operations {
       200: {
         schema: NoncesResponse
       }
+    }
+  }
+  register_email: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+      body: RegisterEmailRequestBody
+      headers: AuthorizationEmailRequestHeader
+    }
+    responses: {
+      200: {
+        schema: void
+      }
+      201: {
+        schema: void
+      }
+    }
+  }
+  change_email: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+      body: ChangeEmailRequestBody
+      headers: AuthorizationEmailRequestHeader
+    }
+    responses: {
+      200: {
+        schema: void
+      }
+      202: {
+        schema: void
+      }
+    }
+  }
+  get_email: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+      headers: AuthorizationEmailRequestHeader
+    }
+    responses: {
+      200: {
+        schema: GetEmailResponse
+      }
+    }
+  }
+  verify_resend: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+      body: ''
+    }
+    responses: {
+      202: {
+        schema: void
+      }
+      200: {
+        schema: void
+      }
+    }
+  }
+  verify_email: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+      body: VerifyEmailRequestBody
+    }
+
+    responses: {
+      204: {
+        schema: void
+      }
+      200: {
+        schema: void
+      }
+      400: unknown
+    }
+  }
+  delete_email: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+        signer: string
+      }
+      headers: AuthorizationEmailRequestHeader
+    }
+
+    responses: {
+      204: {
+        schema: void
+      }
+      200: {
+        schema: void
+      }
+      403: unknown
     }
   }
 }

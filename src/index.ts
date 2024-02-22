@@ -1,4 +1,4 @@
-import { deleteEndpoint, getEndpoint, postEndpoint } from './endpoint'
+import { deleteEndpoint, getEndpoint, postEndpoint, putEndpoint } from './endpoint'
 import type { operations } from './types/api'
 import type {
   SafeTransactionEstimation,
@@ -25,6 +25,7 @@ import type { DecodedDataResponse } from './types/decoded-data'
 import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
 import type { DelegateResponse, DelegatesRequest } from './types/delegates'
+import type { GetEmailResponse } from './types/emails'
 
 export * from './types/safe-info'
 export * from './types/safe-apps'
@@ -410,6 +411,139 @@ export function unregisterSafe(chainId: string, address: string, uuid: string): 
 export function unregisterDevice(chainId: string, uuid: string): Promise<void> {
   return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/notifications/devices/{uuid}', {
     path: { chainId, uuid },
+  })
+}
+
+/**
+ * Registers a email address for a safe signer.
+ *
+ * The signer wallet has to sign a message of format: `email-register-{chainId}-{safeAddress}-{emailAddress}-{signer}-{timestamp}`
+ * The signature is valid for 5 minutes.
+ *
+ * @param chainId
+ * @param safeAddress
+ * @param body Signer address and email address
+ * @param headers Signature and Signature timestamp
+ * @returns 200 if signature matches the data
+ */
+export function registerEmail(
+  chainId: string,
+  safeAddress: string,
+  body: operations['register_email']['parameters']['body'],
+  headers: operations['register_email']['parameters']['headers'],
+): Promise<void> {
+  return postEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails', {
+    path: { chainId, safe_address: safeAddress },
+    body,
+    headers,
+  })
+}
+
+/**
+ * Changes an already registered email address for a safe signer. The new email address still needs to be verified.
+ *
+ * The signer wallet has to sign a message of format: `email-edit-{chainId}-{safeAddress}-{emailAddress}-{signer}-{timestamp}`
+ * The signature is valid for 5 minutes.
+ *
+ * @param chainId
+ * @param safeAddress
+ * @param signerAddress
+ * @param body New email address
+ * @param headers Signature and Signature timestamp
+ * @returns 202 if signature matches the data
+ */
+export function changeEmail(
+  chainId: string,
+  safeAddress: string,
+  signerAddress: string,
+  body: operations['change_email']['parameters']['body'],
+  headers: operations['change_email']['parameters']['headers'],
+): Promise<void> {
+  return putEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}', {
+    path: { chainId, safe_address: safeAddress, signer: signerAddress },
+    body,
+    headers,
+  })
+}
+
+/**
+ * Resends an email verification code.
+ */
+export function resendEmailVerificationCode(
+  chainId: string,
+  safeAddress: string,
+  signerAddress: string,
+): Promise<void> {
+  return postEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}/verify-resend', {
+    path: { chainId, safe_address: safeAddress, signer: signerAddress },
+    body: '',
+  })
+}
+
+/**
+ * Verifies a pending email address registration.
+ *
+ * @param chainId
+ * @param safeAddress
+ * @param signerAddress address who signed the email registration
+ * @param body Verification code
+ */
+export function verifyEmail(
+  chainId: string,
+  safeAddress: string,
+  signerAddress: string,
+  body: operations['verify_email']['parameters']['body'],
+): Promise<void> {
+  return putEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}/verify', {
+    path: { chainId, safe_address: safeAddress, signer: signerAddress },
+    body,
+  })
+}
+
+/**
+ * Gets the registered email address of the signer
+ *
+ * The signer wallet will have to sign a message of format: `email-retrieval-{chainId}-{safe}-{signer}-{timestamp}`
+ * The signature is valid for 5 minutes.
+ *
+ * @param chainId
+ * @param safeAddress
+ * @param signerAddress address of the owner of the Safe
+ *
+ * @returns email address and verified flag
+ */
+export function getRegisteredEmail(
+  chainId: string,
+  safeAddress: string,
+  signerAddress: string,
+  headers: operations['get_email']['parameters']['headers'],
+): Promise<GetEmailResponse> {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}', {
+    path: { chainId, safe_address: safeAddress, signer: signerAddress },
+    headers,
+  })
+}
+
+/**
+ * Delete a registered email address for the signer
+ *
+ * The signer wallet will have to sign a message of format: `email-delete-{chainId}-{safe}-{signer}-{timestamp}`
+ * The signature is valid for 5 minutes.
+ *
+ * @param chainId
+ * @param safeAddress
+ * @param signerAddress
+ * @param headers
+ */
+export function deleteRegisteredEmail(
+  chainId: string,
+  safeAddress: string,
+  signerAddress: string,
+  headers: operations['delete_email']['parameters']['headers'],
+): Promise<void> {
+  return deleteEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/emails/{signer}', {
+    path: { chainId, safe_address: safeAddress, signer: signerAddress },
+    headers,
   })
 }
 

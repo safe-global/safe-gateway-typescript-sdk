@@ -56,19 +56,26 @@ async function parseResponse<T>(resp: Response): Promise<T> {
   return json
 }
 
-export async function fetchData<T>(url: string, body?: unknown): Promise<T> {
+export async function fetchData<T>(
+  url: string,
+  method?: 'POST' | 'PUT',
+  body?: unknown,
+  headers?: Record<string, string>,
+): Promise<T> {
   let options:
     | {
-        method: 'POST'
+        method: 'POST' | 'PUT'
         headers: Record<string, string>
         body: string
       }
     | undefined
   if (body != null) {
+    const requestHeaders: Record<string, string> = headers ?? {}
+    requestHeaders['Content-Type'] = 'application/json'
     options = {
-      method: 'POST',
+      method: method ?? 'POST',
       body: typeof body === 'string' ? body : JSON.stringify(body),
-      headers: { 'Content-Type': 'application/json' },
+      headers: requestHeaders,
     }
   }
 

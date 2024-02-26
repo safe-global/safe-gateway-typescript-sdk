@@ -34,7 +34,7 @@ import type {
   ChangeEmailRequestBody,
   GetEmailResponse,
   RegisterEmailRequestBody,
-  AuthorizationEmailRequestHeader,
+  AuthorizationEmailRequestHeaders,
   VerifyEmailRequestBody,
 } from './emails'
 
@@ -43,14 +43,11 @@ export type Primitive = string | number | boolean | null
 interface Params {
   path?: { [key: string]: Primitive }
   headers?: Record<string, string>
-}
-
-interface GetParams extends Params {
   query?: { [key: string]: Primitive }
 }
 
-interface PostParams extends GetParams {
-  body: string | Record<string, unknown>
+interface BodyParams extends Params {
+  body?: string | Record<string, unknown>
 }
 
 interface Responses {
@@ -64,32 +61,28 @@ interface Endpoint {
   } | null
 }
 
+interface WriteMethod {
+  parameters: BodyParams | null
+  responses: Responses
+}
+
 export interface GetEndpoint extends Endpoint {
   get: {
-    parameters: GetParams | null
+    parameters: Params | null
     responses: Responses
   }
 }
 
 export interface PostEndpoint extends Endpoint {
-  post: {
-    parameters: PostParams | null
-    responses: Responses
-  }
+  post: WriteMethod
 }
 
 export interface PutEndpoint extends Endpoint {
-  put: {
-    parameters: PostParams | null
-    responses: Responses
-  }
+  put: WriteMethod
 }
 
 export interface DeleteEndpoint extends Endpoint {
-  delete: {
-    parameters: Params | null
-    responses: Responses
-  }
+  delete: WriteMethod
 }
 
 interface PathRegistry {
@@ -896,7 +889,7 @@ export interface operations {
         safe_address: string
       }
       body: RegisterEmailRequestBody
-      headers: AuthorizationEmailRequestHeader
+      headers: AuthorizationEmailRequestHeaders
     }
     responses: {
       200: {
@@ -915,7 +908,7 @@ export interface operations {
         signer: string
       }
       body: ChangeEmailRequestBody
-      headers: AuthorizationEmailRequestHeader
+      headers: AuthorizationEmailRequestHeaders
     }
     responses: {
       200: {
@@ -933,7 +926,7 @@ export interface operations {
         safe_address: string
         signer: string
       }
-      headers: AuthorizationEmailRequestHeader
+      headers: AuthorizationEmailRequestHeaders
     }
     responses: {
       200: {
@@ -986,7 +979,7 @@ export interface operations {
         safe_address: string
         signer: string
       }
-      headers: AuthorizationEmailRequestHeader
+      headers: AuthorizationEmailRequestHeaders
     }
 
     responses: {

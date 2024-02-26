@@ -58,20 +58,22 @@ async function parseResponse<T>(resp: Response): Promise<T> {
 
 export async function fetchData<T>(
   url: string,
-  method: 'POST' | 'PUT',
+  method: 'POST' | 'PUT' | 'DELETE',
   body?: unknown,
   headers?: Record<string, string>,
 ): Promise<T> {
-  let options: RequestInit | undefined
+  const requestHeaders: Record<string, string> = {
+    'Content-Type': 'application/json',
+    ...headers,
+  }
+
+  const options: RequestInit = {
+    method: method ?? 'POST',
+    headers: requestHeaders,
+  }
 
   if (body != null) {
-    const requestHeaders: Record<string, string> = headers ?? {}
-    requestHeaders['Content-Type'] = 'application/json'
-    options = {
-      method: method ?? 'POST',
-      body: typeof body === 'string' ? body : JSON.stringify(body),
-      headers: requestHeaders,
-    }
+    options.body = typeof body === 'string' ? body : JSON.stringify(body)
   }
 
   const resp = await fetch(url, options)
@@ -82,23 +84,6 @@ export async function fetchData<T>(
 export async function getData<T>(url: string, headers?: Record<string, string>): Promise<T> {
   const options: RequestInit = {
     method: 'GET',
-  }
-
-  if (headers) {
-    options['headers'] = {
-      ...headers,
-      'Content-Type': 'application/json',
-    }
-  }
-
-  const resp = await fetch(url, options)
-
-  return parseResponse<T>(resp)
-}
-
-export async function deleteData<T>(url: string, headers?: Record<string, string>): Promise<T> {
-  const options: RequestInit = {
-    method: 'DELETE',
   }
 
   if (headers) {

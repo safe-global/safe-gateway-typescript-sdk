@@ -1,5 +1,5 @@
 import { getData, fetchData } from '../src/utils'
-import { getEndpoint, postEndpoint, putEndpoint } from '../src/endpoint'
+import { deleteEndpoint, getEndpoint, postEndpoint, putEndpoint } from '../src/endpoint'
 
 jest.mock('../src/utils', () => {
   const originalModule = jest.requireActual('../src/utils')
@@ -141,6 +141,26 @@ describe('getEndpoint', () => {
       'PUT',
       body,
       headers,
+    )
+  })
+
+  it('should send a DELETE request with body', async () => {
+    const body = {
+      signature: '0x123',
+    }
+
+    await expect(
+      deleteEndpoint('https://test.test', '/v1/chains/{chainId}/transactions/{safeTxHash}', {
+        path: { chainId: '4', safeTxHash: '0x456' },
+        body,
+      }),
+    ).resolves.toEqual({ success: true })
+
+    expect(fetchData).toHaveBeenCalledWith(
+      'https://test.test/v1/chains/4/transactions/0x456',
+      'DELETE',
+      body,
+      undefined,
     )
   })
 })

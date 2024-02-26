@@ -1,5 +1,5 @@
 /// <reference lib="dom" />
-import { fetchData, getData, deleteData, insertParams, stringifyQuery } from '../src/utils'
+import { fetchData, getData, insertParams, stringifyQuery } from '../src/utils'
 
 const fetchMock = jest.spyOn(global, 'fetch') as typeof fetch & jest.Mock
 
@@ -156,7 +156,7 @@ describe('utils', () => {
     })
   })
 
-  describe('deleteData', () => {
+  describe('fetchData DELETE', () => {
     it('should make a DELETE request', async () => {
       fetchMock.mockImplementation(() => {
         return Promise.resolve({
@@ -166,10 +166,13 @@ describe('utils', () => {
         })
       })
 
-      await expect(deleteData('/test/safe')).resolves.toEqual({ success: true })
+      await expect(fetchData('/test/safe', 'DELETE')).resolves.toEqual({ success: true })
 
       expect(fetch).toHaveBeenCalledWith('/test/safe', {
         method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
       })
     })
 
@@ -182,7 +185,9 @@ describe('utils', () => {
         })
       })
 
-      await expect(deleteData('/test/safe', { TestHeader: '123456' })).resolves.toEqual({ success: true })
+      await expect(fetchData('/test/safe', 'DELETE', undefined, { TestHeader: '123456' })).resolves.toEqual({
+        success: true,
+      })
 
       expect(fetch).toHaveBeenCalledWith('/test/safe', {
         method: 'DELETE',

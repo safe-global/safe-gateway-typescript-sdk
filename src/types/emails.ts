@@ -7,7 +7,7 @@ export type ChangeEmailRequestBody = {
   emailAddress: string
 }
 
-export type AuthorizationEmailRequestHeader = {
+export type AuthorizationEmailRequestHeaders = {
   ['Safe-Wallet-Signature']: string
   ['Safe-Wallet-Signature-Timestamp']: string
 }

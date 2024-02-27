@@ -56,7 +56,8 @@ export const setBaseUrl = (url: string): void => {
  */
 export function relayTransaction(
   chainId: string,
-  body: operations['relay_transaction']['parameters']['body']): Promise<RelayTransactionResponse> {
+  body: operations['relay_transaction']['parameters']['body'],
+): Promise<RelayTransactionResponse> {
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/relay', { path: { chainId }, body })
 }
 

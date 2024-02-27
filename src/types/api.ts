@@ -97,9 +97,8 @@ export interface paths extends PathRegistry {
       path: {
         chainId: string
       }
-      
     }
-  },
+  }
   '/v1/chains/{chainId}/relay/{address}': {
     get: operations['relay_count']
     parameters: {
@@ -108,7 +107,7 @@ export interface paths extends PathRegistry {
         address: string
       }
     }
-  },
+  }
   '/v1/chains/{chainId}/safes/{address}': {
     /** Get status of the safe */
     get: operations['safes_read']

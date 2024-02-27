@@ -37,6 +37,7 @@ import type {
   AuthorizationEmailRequestHeaders,
   VerifyEmailRequestBody,
 } from './emails'
+import type { RelayCountResponse, RelayTransactionRequest, RelayTransactionResponse } from './relay'
 
 export type Primitive = string | number | boolean | null
 
@@ -90,6 +91,23 @@ interface PathRegistry {
 }
 
 export interface paths extends PathRegistry {
+  '/v1/chains/{chainId}/relay': {
+    post: operations['relay_transaction']
+    parameters: {
+      path: {
+        chainId: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/relay/{address}': {
+    get: operations['relay_count']
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+      }
+    }
+  }
   '/v1/chains/{chainId}/safes/{address}': {
     /** Get status of the safe */
     get: operations['safes_read']
@@ -384,6 +402,34 @@ export interface paths extends PathRegistry {
 }
 
 export interface operations {
+  /** Relay a transaction */
+  relay_transaction: {
+    parameters: {
+      path: {
+        chainId: string
+      }
+      body: RelayTransactionRequest
+    }
+    responses: {
+      200: {
+        schema: RelayTransactionResponse
+      }
+    }
+  }
+  /** Get the limit and current number of relays */
+  relay_count: {
+    parameters: {
+      path: {
+        chainId: string
+        address: string
+      }
+    }
+    responses: {
+      200: {
+        schema: RelayCountResponse
+      }
+    }
+  }
   /** Get status of the safe */
   safes_read: {
     parameters: {

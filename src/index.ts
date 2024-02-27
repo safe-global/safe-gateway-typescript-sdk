@@ -26,6 +26,7 @@ import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
 import type { DelegateResponse, DelegatesRequest } from './types/delegates'
 import type { GetEmailResponse } from './types/emails'
+import type { RelayCountResponse, RelayTransactionResponse } from './types/relay'
 
 export * from './types/safe-info'
 export * from './types/safe-apps'
@@ -36,6 +37,7 @@ export * from './types/master-copies'
 export * from './types/decoded-data'
 export * from './types/safe-messages'
 export * from './types/notifications'
+export * from './types/relay'
 
 // Can be set externally to a different CGW host
 let baseUrl: string = DEFAULT_BASE_URL
@@ -48,6 +50,22 @@ export const setBaseUrl = (url: string): void => {
 }
 
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+
+/**
+ * Relay a transaction from a Safe
+ */
+export function relayTransaction(
+  chainId: string,
+  body: operations['relay_transaction']['parameters']['body']): Promise<RelayTransactionResponse> {
+  return postEndpoint(baseUrl, '/v1/chains/{chainId}/relay', { path: { chainId }, body })
+}
+
+/**
+ * Get the relay limit and number of remaining relays remaining
+ */
+export function getRelayCount(chainId: string, address: string): Promise<RelayCountResponse> {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/relay/{address}', { path: { chainId, address } })
+}
 
 /**
  * Get basic information about a Safe. E.g. owners, modules, version etc

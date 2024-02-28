@@ -41,7 +41,7 @@ async function parseResponse<T>(resp: Response): Promise<T> {
   let json
 
   try {
-    json = await resp.json()
+    json = resp.status === 204 ? {} : await resp.json()
   } catch {
     if (resp.headers && resp.headers.get('content-length') !== '0') {
       throw new Error(`Invalid response content: ${resp.statusText}`)

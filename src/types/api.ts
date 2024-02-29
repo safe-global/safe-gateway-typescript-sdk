@@ -38,6 +38,7 @@ import type {
   VerifyEmailRequestBody,
 } from './emails'
 import type { RelayCountResponse, RelayTransactionRequest, RelayTransactionResponse } from './relay'
+import type { RegisterRecoveryModuleRequestBody } from './recovery'
 
 export type Primitive = string | number | boolean | null
 
@@ -396,6 +397,15 @@ export interface paths extends PathRegistry {
         chainId: string
         safe_address: string
         signer: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{safe_address}/recovery': {
+    post: operations['register_recovery_module']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
       }
     }
   }
@@ -1038,6 +1048,21 @@ export interface operations {
         schema: void
       }
       403: unknown
+    }
+  }
+  register_recovery_module: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+      body: RegisterRecoveryModuleRequestBody
+    }
+
+    responses: {
+      200: {
+        schema: void
+      }
     }
   }
 }

@@ -484,6 +484,8 @@ export interface operations {
         address: string
       }
       query?: {
+        /** If `True` just trusted tokens will be returned */
+        trusted?: boolean
         execution_date__gte?: string
         execution_date__lte?: string
         to?: string

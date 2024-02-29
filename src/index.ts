@@ -566,4 +566,21 @@ export function deleteRegisteredEmail(
   })
 }
 
+/**
+ * Register a recovery module for receiving alerts
+ * @param chainId
+ * @param safeAddress
+ * @param body - { moduleAddress: string }
+ */
+export function registerRecoveryModule(
+  chainId: string,
+  safeAddress: string,
+  body: operations['register_recovery_module']['parameters']['body'],
+): Promise<void> {
+  return postEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/recovery', {
+    path: { chainId, safe_address: safeAddress },
+    body,
+  })
+}
+
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

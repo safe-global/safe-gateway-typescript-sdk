@@ -248,6 +248,7 @@ export type MultisigExecutionInfo = {
   confirmationsRequired: number
   confirmationsSubmitted: number
   missingSigners?: AddressEx[]
+  proposer: AddressEx | null
 }
 
 export type ExecutionInfo = ModuleExecutionInfo | MultisigExecutionInfo

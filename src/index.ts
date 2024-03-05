@@ -583,4 +583,20 @@ export function registerRecoveryModule(
   })
 }
 
+/**
+ * Delete email subscription for a single category
+ * @param query
+ */
+export function unsubscribeSingle(query: operations['unsubscribe_single']['parameters']['query']) {
+  return deleteEndpoint(baseUrl, '/v1/subscriptions', { query })
+}
+
+/**
+ * Delete email subscription for all categories
+ * @param query
+ */
+export function unsubscribeAll(query: operations['unsubscribe_all']['parameters']['query']) {
+  return deleteEndpoint(baseUrl, '/v1/subscriptions/all', { query })
+}
+
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

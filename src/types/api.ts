@@ -59,7 +59,7 @@ interface Responses {
 
 interface Endpoint {
   parameters: {
-    path: Record<string, Primitive>
+    path: Record<string, Primitive> | null
   } | null
 }
 
@@ -406,6 +406,25 @@ export interface paths extends PathRegistry {
       path: {
         chainId: string
         safe_address: string
+      }
+    }
+  }
+  '/v1/subscriptions': {
+    delete: operations['unsubscribe_single']
+    parameters: {
+      path: null
+      query: {
+        category: string
+        token: string
+      }
+    }
+  }
+  '/v1/subscriptions/all': {
+    delete: operations['unsubscribe_all']
+    parameters: {
+      path: null
+      query: {
+        token: string
       }
     }
   }
@@ -1057,6 +1076,33 @@ export interface operations {
         safe_address: string
       }
       body: RegisterRecoveryModuleRequestBody
+    }
+
+    responses: {
+      200: {
+        schema: void
+      }
+    }
+  }
+  unsubscribe_single: {
+    parameters: {
+      query: {
+        category: string
+        token: string
+      }
+    }
+
+    responses: {
+      200: {
+        schema: void
+      }
+    }
+  }
+  unsubscribe_all: {
+    parameters: {
+      query: {
+        token: string
+      }
     }
 
     responses: {

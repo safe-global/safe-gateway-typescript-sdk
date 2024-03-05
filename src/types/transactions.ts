@@ -248,7 +248,6 @@ export type MultisigExecutionInfo = {
   confirmationsRequired: number
   confirmationsSubmitted: number
   missingSigners?: AddressEx[]
-  proposer: AddressEx | null
 }
 
 export type ExecutionInfo = ModuleExecutionInfo | MultisigExecutionInfo
@@ -374,6 +373,7 @@ export type MultisigExecutionDetails = {
   rejectors?: AddressEx[]
   gasTokenInfo?: TokenInfo
   trusted: boolean
+  proposer: AddressEx | null
 }
 
 export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDetails

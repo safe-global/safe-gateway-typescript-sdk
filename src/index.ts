@@ -26,7 +26,7 @@ import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
 import type { DelegateResponse, DelegatesRequest } from './types/delegates'
 import type { GetEmailResponse } from './types/emails'
-import type { RelayCountResponse, RelayTransactionResponse } from './types/relay'
+import type { RelayCountResponse, RelayTransactionRequest, RelayTransactionResponse } from './types/relay'
 
 export * from './types/safe-info'
 export * from './types/safe-apps'
@@ -56,9 +56,10 @@ export const setBaseUrl = (url: string): void => {
  */
 export function relayTransaction(
   chainId: string,
-  body: operations['relay_transaction']['parameters']['body'],
+  tx: Omit<RelayTransactionRequest, 'version'>,
 ): Promise<RelayTransactionResponse> {
-  return postEndpoint(baseUrl, '/v1/chains/{chainId}/relay', { path: { chainId }, body })
+  const VERSION = '1'
+  return postEndpoint(baseUrl, '/v1/chains/{chainId}/relay', { path: { chainId }, body: { ...tx, version: VERSION } })
 }
 
 /**

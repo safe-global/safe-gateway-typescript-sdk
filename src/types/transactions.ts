@@ -68,6 +68,7 @@ export enum TransactionInfoType {
   SETTINGS_CHANGE = 'SettingsChange',
   CUSTOM = 'Custom',
   CREATION = 'Creation',
+  SWAP_ORDER = 'SwapOrder',
 }
 
 export enum ConflictType {
@@ -235,7 +236,37 @@ export type Creation = {
   richDecodedInfo?: RichDecodedInfo
 }
 
-export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation
+export type OrderStatuses = 'presignaturePending' | 'open' | 'fulfilled' | 'cancelled' | 'expired'
+export type OrderKind = 'sell' | 'buy'
+export type OrderToken = {
+  logo?: string | null
+  symbol: string
+  amount: string
+}
+export type SwapOrder = {
+  type: TransactionInfoType.SWAP_ORDER
+  humanDescription?: string | null
+  richDecodedInfo?: null | RichDecodedInfo
+  orderUid: string
+  status: OrderStatuses
+  orderKind: OrderKind
+  sellToken: OrderToken
+  buyToken: OrderToken
+  expiresTimestamp: number
+  filledPercentage: string
+  explorerUrl: string
+  surplusLabel?: string
+  executionPriceLabel?: string
+  limitPriceLabel?: string
+}
+
+export type FulfilledSwapOrder = SwapOrder & {
+  status: 'fulfilled'
+  surplusLabel: string
+  executionPriceLabel: string
+}
+
+export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation | SwapOrder
 
 export type ModuleExecutionInfo = {
   type: DetailedExecutionInfoType.MODULE

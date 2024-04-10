@@ -31,5 +31,5 @@ export type SafeOverview = {
   owners: AddressEx[]
   fiatTotal: string
   queued: number
-  awaitingConfirmation: number
+  awaitingConfirmation: number | null
 }

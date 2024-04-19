@@ -239,31 +239,44 @@ export type Creation = {
 export type OrderStatuses = 'presignaturePending' | 'open' | 'fulfilled' | 'cancelled' | 'expired'
 export type OrderKind = 'sell' | 'buy'
 export type OrderToken = {
-  logo?: string | null
+  /** @description The token address */
+  address: string
+  /** @description The token decimals */
+  decimals: number
+  /** @description The logo URI for the token */
+  logoUri?: string | null
+  /** @description The token name */
+  name: string
+  /** @description The token symbol */
   symbol: string
-  amount: string
+  /** @description The token trusted status */
+  trusted: boolean
 }
+export type OrderClass = 'limit' | 'market' | 'liquidity'
 export type SwapOrder = {
   type: TransactionInfoType.SWAP_ORDER
   humanDescription?: string | null
   richDecodedInfo?: null | RichDecodedInfo
-  orderUid: string
+  uid: string
   status: OrderStatuses
-  orderKind: OrderKind
+  kind: OrderKind
+  class: OrderClass
+  /** @description The timestamp when the order expires */
+  validUntil: number
+  /** @description The sell token raw amount (no decimals) */
+  sellAmount: string
+  /** @description The buy token raw amount (no decimals) */
+  buyAmount: string
+  /** @description The executed sell token raw amount (no decimals) */
+  executedSellAmount: string
+  /** @description The executed buy token raw amount (no decimals) */
+  executedBuyAmount: string
   sellToken: OrderToken
   buyToken: OrderToken
-  expiresTimestamp: number
-  filledPercentage: string
+  /** @description The URL to the explorer page of the order */
   explorerUrl: string
-  surplusLabel?: string
-  executionPriceLabel?: string
-  limitPriceLabel?: string
-}
-
-export type FulfilledSwapOrder = SwapOrder & {
-  status: 'fulfilled'
-  surplusLabel: string
-  executionPriceLabel: string
+  /** @description The amount of fees paid for this order. */
+  executedSurplusFee?: string | null
 }
 
 export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation | SwapOrder

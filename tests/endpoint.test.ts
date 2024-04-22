@@ -118,6 +118,22 @@ describe('getEndpoint', () => {
     )
   })
 
+  it('should call a data decoder confirmation view POST endpoint', async () => {
+    await expect(
+      postEndpoint('https://test.test', '/v1/chains/{chainId}/safes/{safe_address}/views/transaction-confirmation', {
+        path: { chainId: '4', safe_address: '0x123' },
+        body: { data: '0x456' },
+      }),
+    ).resolves.toEqual({ success: true })
+
+    expect(fetchData).toHaveBeenCalledWith(
+      'https://test.test/v1/chains/4/safes/0x123/views/transaction-confirmation',
+      'POST',
+      { data: '0x456' },
+      undefined,
+    )
+  })
+
   it('should accept PUT request with body', async () => {
     const body = {
       emailAddress: 'test@test.com',

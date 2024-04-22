@@ -1,3 +1,5 @@
+import type { SwapOrder } from './transactions'
+
 export type DecodedDataRequest = {
   data: string
   to?: string
@@ -30,3 +32,10 @@ export type DecodedDataResponse = {
   method: string
   parameters: DecodedDataParameter[]
 }
+
+export type BaselineConfirmationView = {
+  type: 'GENERIC'
+} & DecodedDataResponse
+
+export type CowSwapConfirmationView = { type: 'COW_SWAP_ORDER' } & DecodedDataResponse &
+  Omit<SwapOrder, 'type' | 'humanDescription' | 'richDecodedInfo'>

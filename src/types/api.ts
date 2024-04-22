@@ -20,7 +20,12 @@ import type {
 import type { SafeInfo, SafeOverview } from './safe-info'
 import type { ChainListResponse, ChainInfo } from './chains'
 import type { SafeAppsResponse } from './safe-apps'
-import type { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
+import type {
+  BaselineConfirmationView,
+  CowSwapConfirmationView,
+  DecodedDataRequest,
+  DecodedDataResponse,
+} from './decoded-data'
 import type { MasterCopyReponse } from './master-copies'
 import type {
   ConfirmSafeMessageRequest,
@@ -54,6 +59,7 @@ interface BodyParams extends Params {
 
 interface Responses {
   200: { schema: unknown }
+
   [key: number]: { schema: unknown } | unknown
 }
 
@@ -230,6 +236,15 @@ export interface paths extends PathRegistry {
   }
   '/v1/chains/{chainId}/transactions/{safe_address}/propose': {
     post: operations['propose_transaction']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/safes/{safe_address}/views/transaction-confirmation': {
+    post: operations['get_transaction_confirmation_view']
     parameters: {
       path: {
         chainId: string
@@ -736,6 +751,21 @@ export interface operations {
       404: unknown
       /** Safe address checksum not valid */
       422: unknown
+    }
+  }
+  get_transaction_confirmation_view: {
+    parameters: {
+      path: {
+        /** A unique value identifying this chain. */
+        chainId: string
+        safe_address: string
+      }
+      body: DecodedDataRequest
+    }
+    responses: {
+      200: {
+        schema: BaselineConfirmationView | CowSwapConfirmationView
+      }
     }
   }
   get_owned_safes: {

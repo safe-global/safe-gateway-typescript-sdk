@@ -295,6 +295,21 @@ export function proposeTransaction(
 }
 
 /**
+ * Returns decoded data
+ */
+export function getConfirmationView(
+  chainId: string,
+  safeAddress: string,
+  encodedData: operations['data_decoder']['parameters']['body']['data'],
+  to?: operations['data_decoder']['parameters']['body']['to'],
+): Promise<DecodedDataResponse> {
+  return postEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/views/transaction-confirmation', {
+    path: { chainId: chainId, safe_address: safeAddress },
+    body: { data: encodedData, to },
+  })
+}
+
+/**
  * Returns all defined chain configs
  */
 export function getChainsConfig(query?: operations['chains_list']['parameters']['query']): Promise<ChainListResponse> {

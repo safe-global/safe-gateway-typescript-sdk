@@ -260,7 +260,7 @@ export type SwapOrder = {
   uid: string
   status: OrderStatuses
   kind: OrderKind
-  class: OrderClass
+  orderClass: OrderClass
   /** @description The timestamp when the order expires */
   validUntil: number
   /** @description The sell token raw amount (no decimals) */

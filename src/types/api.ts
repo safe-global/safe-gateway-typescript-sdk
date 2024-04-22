@@ -1117,7 +1117,7 @@ export interface operations {
         safes: string
         trusted: boolean
         exclude_spam: boolean
-        walletAddress: string
+        walletAddress?: string
       }
     }
     responses: {

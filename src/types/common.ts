@@ -58,3 +58,5 @@ export type SafeCollectibleResponse = {
 }
 
 export type SafeCollectiblesPage = Page<SafeCollectibleResponse>
+
+export type EthereumAddress = `0x${string}`

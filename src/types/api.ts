@@ -17,7 +17,7 @@ import type {
   SafeMultisigTransactionsResponse,
   NoncesResponse,
 } from './transactions'
-import type { SafeInfo } from './safe-info'
+import type { SafeInfo, SafeOverview } from './safe-info'
 import type { ChainListResponse, ChainInfo } from './chains'
 import type { SafeAppsResponse } from './safe-apps'
 import type { DecodedDataRequest, DecodedDataResponse } from './decoded-data'
@@ -413,19 +413,18 @@ export interface paths extends PathRegistry {
     delete: operations['unsubscribe_single']
     parameters: {
       path: null
-      query: {
-        category: string
-        token: string
-      }
     }
   }
   '/v1/subscriptions/all': {
     delete: operations['unsubscribe_all']
     parameters: {
       path: null
-      query: {
-        token: string
-      }
+    }
+  }
+  '/v1/safes': {
+    get: operations['SafesController_getSafeOverview']
+    parameters: {
+      path: null
     }
   }
 }
@@ -1108,6 +1107,22 @@ export interface operations {
     responses: {
       200: {
         schema: void
+      }
+    }
+  }
+  SafesController_getSafeOverview: {
+    parameters: {
+      query: {
+        currency: string
+        safes: string
+        trusted: boolean
+        exclude_spam: boolean
+        walletAddress?: string
+      }
+    }
+    responses: {
+      200: {
+        schema: SafeOverview[]
       }
     }
   }

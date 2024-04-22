@@ -10,6 +10,7 @@ import type {
   NoncesResponse,
 } from './types/transactions'
 import type {
+  EthereumAddress,
   AllOwnedSafes,
   FiatCurrencies,
   OwnedSafes,
@@ -17,7 +18,7 @@ import type {
   SafeCollectibleResponse,
   SafeCollectiblesPage,
 } from './types/common'
-import type { SafeInfo } from './types/safe-info'
+import type { SafeInfo, SafeOverview } from './types/safe-info'
 import type { ChainListResponse, ChainInfo } from './types/chains'
 import type { SafeAppsResponse } from './types/safe-apps'
 import type { MasterCopyReponse } from './types/master-copies'
@@ -597,6 +598,21 @@ export function unsubscribeSingle(query: operations['unsubscribe_single']['param
  */
 export function unsubscribeAll(query: operations['unsubscribe_all']['parameters']['query']) {
   return deleteEndpoint(baseUrl, '/v1/subscriptions/all', { query })
+}
+
+/**
+ * Get Safe overviews per address
+ */
+export function getSafeOverviews(
+  safes: `${number}:${EthereumAddress}`[],
+  query: Omit<operations['SafesController_getSafeOverview']['parameters']['query'], 'safes'>,
+): Promise<SafeOverview[]> {
+  return getEndpoint(baseUrl, '/v1/safes', {
+    query: {
+      ...query,
+      safes: safes.join(','),
+    },
+  })
 }
 
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

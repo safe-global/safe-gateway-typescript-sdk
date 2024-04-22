@@ -23,3 +23,13 @@ export type SafeInfo = {
   txHistoryTag: string | null
   messagesTag: string | null
 }
+
+export type SafeOverview = {
+  address: AddressEx
+  chainId: string
+  threshold: number
+  owners: AddressEx[]
+  fiatTotal: string
+  queued: number
+  awaitingConfirmation: number | null
+}

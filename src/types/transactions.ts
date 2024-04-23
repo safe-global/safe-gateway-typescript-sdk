@@ -277,6 +277,8 @@ export type SwapOrder = {
   explorerUrl: string
   /** @description The amount of fees paid for this order. */
   executedSurplusFee?: string | null
+  /** @description The App Data for this order */
+  fullAppData?: Record<string, unknown> | null
 }
 
 export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation | SwapOrder

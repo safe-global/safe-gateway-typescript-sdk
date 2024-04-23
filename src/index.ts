@@ -22,7 +22,7 @@ import type { SafeInfo, SafeOverview } from './types/safe-info'
 import type { ChainListResponse, ChainInfo } from './types/chains'
 import type { SafeAppsResponse } from './types/safe-apps'
 import type { MasterCopyReponse } from './types/master-copies'
-import type { DecodedDataResponse } from './types/decoded-data'
+import type { BaselineConfirmationView, CowSwapConfirmationView, DecodedDataResponse } from './types/decoded-data'
 import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
 import type { DelegateResponse, DelegatesRequest } from './types/delegates'
@@ -302,7 +302,7 @@ export function getConfirmationView(
   safeAddress: string,
   encodedData: operations['data_decoder']['parameters']['body']['data'],
   to?: operations['data_decoder']['parameters']['body']['to'],
-): Promise<DecodedDataResponse> {
+): Promise<BaselineConfirmationView | CowSwapConfirmationView> {
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/views/transaction-confirmation', {
     path: { chainId: chainId, safe_address: safeAddress },
     body: { data: encodedData, to },

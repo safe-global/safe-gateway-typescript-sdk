@@ -28,6 +28,7 @@ import { DEFAULT_BASE_URL } from './config'
 import type { DelegateResponse, DelegatesRequest } from './types/delegates'
 import type { GetEmailResponse } from './types/emails'
 import type { RelayCountResponse, RelayTransactionResponse } from './types/relay'
+import type { Contract } from './types/contracts'
 
 export * from './types/safe-info'
 export * from './types/safe-apps'
@@ -626,6 +627,15 @@ export function getSafeOverviews(
     query: {
       ...query,
       safes: safes.join(','),
+    },
+  })
+}
+
+export function getContract(chainId: string, contractAddress: string): Promise<Contract> {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/contracts/{contractAddress}', {
+    path: {
+      chainId: chainId,
+      contractAddress: contractAddress,
     },
   })
 }

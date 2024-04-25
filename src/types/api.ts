@@ -44,6 +44,7 @@ import type {
 } from './emails'
 import type { RelayCountResponse, RelayTransactionRequest, RelayTransactionResponse } from './relay'
 import type { RegisterRecoveryModuleRequestBody } from './recovery'
+import type { Contract } from './contracts'
 
 export type Primitive = string | number | boolean | null
 
@@ -440,6 +441,15 @@ export interface paths extends PathRegistry {
     get: operations['SafesController_getSafeOverview']
     parameters: {
       path: null
+    }
+  }
+  '/v1/chains/{chainId}/contracts/{contractAddress}': {
+    get: operations['get_contract']
+    parameters: {
+      path: {
+        chainId: string
+        contractAddress: string
+      }
     }
   }
 }
@@ -1153,6 +1163,19 @@ export interface operations {
     responses: {
       200: {
         schema: SafeOverview[]
+      }
+    }
+  }
+  get_contract: {
+    parameters: {
+      path: {
+        chainId: string
+        contractAddress: string
+      }
+    }
+    responses: {
+      200: {
+        schema: Contract
       }
     }
   }

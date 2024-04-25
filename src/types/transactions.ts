@@ -279,6 +279,7 @@ export type SwapOrder = {
   executedSurplusFee?: string | null
   /** @description The (optional) address to receive the proceeds of the trade */
   receiver?: string | null
+  owner: string
   /** @description The App Data for this order */
   fullAppData?: Record<string, unknown> | null
 }

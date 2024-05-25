@@ -87,7 +87,7 @@ export type ChainInfo = {
   blockExplorerUriTemplate: BlockExplorerUriTemplate
   nativeCurrency: NativeCurrency
   theme: Theme
-  ensRegistryAddress?: string
+  ensRegistryAddress?: string | null
   gasPrice: GasPrice
   disabledWallets: string[]
   features: FEATURES[]

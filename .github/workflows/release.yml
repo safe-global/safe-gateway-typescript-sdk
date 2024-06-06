@@ -25,17 +25,16 @@ jobs:
             git log "$OLD_VERSION"..HEAD --pretty=format:"* %s" > CHANGELOG.md
           else
             echo "Version $OLD_VERSION hasn't changed, skipping the release"
-            exit 1
           fi
 
       - name: Create a git tag
-        if: success()
+        if: steps.version.outputs.version
         run: git tag $NEW_VERSION && git push --tags
         env:
           NEW_VERSION: ${{ steps.version.outputs.version }}
 
       - name: GitHub release
-        if: success()
+        if: steps.version.outputs.version
         uses: actions/create-release@v1
         id: create_release
         with:

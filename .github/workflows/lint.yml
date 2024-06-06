@@ -1,4 +1,4 @@
-name: Lint
+name: 'Lint'
 on: [pull_request]
 
 concurrency:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run: npm install
+      - run: yarn install
 
       - uses: Maggi64/eslint-plus-action@master
         with:

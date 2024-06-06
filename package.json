@@ -29,6 +29,7 @@
   "scripts": {
     "lint": "tsc && eslint \"./src/**/*\"",
     "lint:fix": "yarn lint --fix",
+    "lint:report": "yarn lint --output-file eslint_report.json --format json",
     "build": "rm -rf dist && tsc",
     "prepublishOnly": "yarn lint && yarn test:check && yarn build",
     "prettier": "prettier -w './**/*.ts'",

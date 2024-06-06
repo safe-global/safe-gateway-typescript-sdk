@@ -306,6 +306,7 @@ export type TransactionSummary = {
   timestamp: number
   txStatus: TransactionStatus
   txInfo: TransactionInfo
+  txHash: string | null
   executionInfo?: ExecutionInfo
   safeAppInfo?: SafeAppInfo
 }

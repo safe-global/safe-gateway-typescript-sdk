@@ -9,9 +9,9 @@ jobs:
   eslint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
-      - run: npm install
+      - run: yarn install
 
       - uses: Maggi64/eslint-plus-action@master
         with:

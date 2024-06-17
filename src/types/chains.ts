@@ -91,6 +91,10 @@ export type ChainInfo = {
   gasPrice: GasPrice
   disabledWallets: string[]
   features: FEATURES[]
+  balancesProvider: {
+    chainName: string | null
+    enabled: boolean
+  }
 }
 
 export type ChainListResponse = Page<ChainInfo>

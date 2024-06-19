@@ -98,6 +98,7 @@ export type Erc20Transfer = {
   decimals?: number
   value: string
   trusted: boolean | null
+  imitation: boolean
 }
 
 export type Erc721Transfer = {

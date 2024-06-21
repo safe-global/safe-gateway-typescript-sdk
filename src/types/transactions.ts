@@ -288,21 +288,19 @@ export type BaseOrder = {
 
 export enum DurationType {
   Auto,
-  LimitDuration
+  LimitDuration,
 }
 
 export enum StartTimeValue {
   AtMiningTime,
-  AtEpoch
+  AtEpoch,
 }
 
 type DurationOfPart =
   | { durationType: DurationType.Auto }
-  | { durationType: DurationType.LimitDuration, duration: number };
+  | { durationType: DurationType.LimitDuration; duration: number }
 
-type StartTime =
-  | { startType: StartTimeValue.AtMiningTime }
-  | { startType: StartTimeValue.AtEpoch, epoch: number };
+type StartTime = { startType: StartTimeValue.AtMiningTime } | { startType: StartTimeValue.AtEpoch; epoch: number }
 
 // Specific type for SwapOrder
 export type SwapOrder = BaseOrder & {

@@ -69,6 +69,7 @@ export enum TransactionInfoType {
   CUSTOM = 'Custom',
   CREATION = 'Creation',
   SWAP_ORDER = 'SwapOrder',
+  TWAP_ORDER = 'TwapOrder',
 }
 
 export enum ConflictType {
@@ -254,11 +255,11 @@ export type OrderToken = {
   trusted: boolean
 }
 export type OrderClass = 'limit' | 'market' | 'liquidity'
-export type SwapOrder = {
-  type: TransactionInfoType.SWAP_ORDER
+
+// Base type for common fields
+export type BaseOrder = {
   humanDescription?: string | null
   richDecodedInfo?: null | RichDecodedInfo
-  uid: string
   status: OrderStatuses
   kind: OrderKind
   orderClass: OrderClass
@@ -285,7 +286,48 @@ export type SwapOrder = {
   fullAppData?: Record<string, unknown> | null
 }
 
-export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation | SwapOrder
+export enum DurationType {
+  Auto,
+  LimitDuration,
+}
+
+export enum StartTimeValue {
+  AtMiningTime,
+  AtEpoch,
+}
+
+type DurationOfPart =
+  | { durationType: DurationType.Auto }
+  | { durationType: DurationType.LimitDuration; duration: number }
+
+type StartTime = { startType: StartTimeValue.AtMiningTime } | { startType: StartTimeValue.AtEpoch; epoch: number }
+
+// Specific type for SwapOrder
+export type SwapOrder = BaseOrder & {
+  type: TransactionInfoType.SWAP_ORDER
+  uid: string
+}
+
+// Specific type for TwapOrder
+export type TwapOrder = BaseOrder & {
+  type: TransactionInfoType.TWAP_ORDER
+  numberOfParts: number
+  /** @description The amount of sellToken to sell in each part */
+  partSellAmount: string
+  /** @description The amount of buyToken that must be bought in each part */
+  minPartLimit: string
+  /** @description The duration of the TWAP interval */
+  timeBetweenParts: string
+  /** @description Whether the TWAP is valid for the entire interval or not */
+  durationOfPart: DurationOfPart
+  /** @description The start time of the TWAP */
+  startTime: StartTime
+}
+
+// Discriminated union type
+export type Order = SwapOrder | TwapOrder
+
+export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation | Order
 
 export type ModuleExecutionInfo = {
   type: DetailedExecutionInfoType.MODULE

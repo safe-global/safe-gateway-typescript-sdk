@@ -18,7 +18,7 @@ describe('getEndpoint', () => {
       success: true,
     })
 
-    expect(getData).toHaveBeenCalledWith('https://test.test/v1/balances/supported-fiat-codes', undefined)
+    expect(getData).toHaveBeenCalledWith('https://test.test/v1/balances/supported-fiat-codes', undefined, undefined)
   })
 
   it('should accept a path param', async () => {
@@ -28,7 +28,7 @@ describe('getEndpoint', () => {
       }),
     ).resolves.toEqual({ success: true })
 
-    expect(getData).toHaveBeenCalledWith('https://test.test/v1/chains/4/safes/0x123', undefined)
+    expect(getData).toHaveBeenCalledWith('https://test.test/v1/chains/4/safes/0x123', undefined, undefined)
   })
 
   it('should accept several path params', async () => {
@@ -39,7 +39,7 @@ describe('getEndpoint', () => {
       }),
     ).resolves.toEqual({ success: true })
 
-    expect(getData).toHaveBeenCalledWith('https://test.test/v1/chains/4/safes/0x123/balances/usd', undefined)
+    expect(getData).toHaveBeenCalledWith('https://test.test/v1/chains/4/safes/0x123/balances/usd', undefined, undefined)
   })
 
   it('should accept query params', async () => {
@@ -52,6 +52,7 @@ describe('getEndpoint', () => {
 
     expect(getData).toHaveBeenCalledWith(
       'https://test.test/v1/chains/4/safes/0x123/balances/usd?exclude_spam=true',
+      undefined,
       undefined,
     )
   })
@@ -86,6 +87,7 @@ describe('getEndpoint', () => {
       'POST',
       body,
       undefined,
+      undefined,
     )
   })
 
@@ -99,7 +101,7 @@ describe('getEndpoint', () => {
       ),
     ).resolves.toEqual({ success: true })
 
-    expect(getData).toHaveBeenCalledWith('/test-url?raw=true')
+    expect(getData).toHaveBeenCalledWith('/test-url?raw=true', undefined, undefined)
   })
 
   it('should call a data decoder POST endpoint', async () => {
@@ -114,6 +116,7 @@ describe('getEndpoint', () => {
       'https://test.test/v1/chains/4/data-decoder',
       'POST',
       { data: '0x123' },
+      undefined,
       undefined,
     )
   })
@@ -130,6 +133,7 @@ describe('getEndpoint', () => {
       'https://test.test/v1/chains/4/safes/0x123/views/transaction-confirmation',
       'POST',
       { data: '0x456' },
+      undefined,
       undefined,
     )
   })
@@ -157,6 +161,7 @@ describe('getEndpoint', () => {
       'PUT',
       body,
       headers,
+      undefined,
     )
   })
 
@@ -176,6 +181,7 @@ describe('getEndpoint', () => {
       'https://test.test/v1/chains/4/transactions/0x456',
       'DELETE',
       body,
+      undefined,
       undefined,
     )
   })

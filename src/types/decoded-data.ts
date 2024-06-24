@@ -1,4 +1,9 @@
-import type { SwapOrder } from './transactions'
+import type { SwapOrder, TwapOrder } from './transactions'
+
+export enum ConfirmationViewTypes {
+  COW_SWAP_ORDER = 'COW_SWAP_ORDER',
+  COW_SWAP_TWAP_ORDER = 'COW_SWAP_TWAP_ORDER',
+}
 
 export type DecodedDataRequest = {
   data: string
@@ -37,5 +42,14 @@ export type BaselineConfirmationView = {
   type: 'GENERIC'
 } & DecodedDataResponse
 
-export type CowSwapConfirmationView = { type: 'COW_SWAP_ORDER' } & DecodedDataResponse &
+export type SwapConfirmationView = {
+  type: ConfirmationViewTypes.COW_SWAP_ORDER
+} & DecodedDataResponse &
   Omit<SwapOrder, 'type' | 'humanDescription' | 'richDecodedInfo'>
+
+export type TwapConfirmationView = {
+  type: ConfirmationViewTypes.COW_SWAP_TWAP_ORDER
+} & DecodedDataResponse &
+  Omit<TwapOrder, 'type' | 'humanDescription' | 'richDecodedInfo'>
+
+export type CowConfirmationView = SwapConfirmationView | TwapConfirmationView

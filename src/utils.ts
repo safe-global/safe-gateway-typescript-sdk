@@ -62,6 +62,7 @@ export async function fetchData<T>(
   method: 'POST' | 'PUT' | 'DELETE',
   body?: unknown,
   headers?: Record<string, string>,
+  includeCredentials?: boolean,
 ): Promise<T> {
   const requestHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -73,6 +74,10 @@ export async function fetchData<T>(
     headers: requestHeaders,
   }
 
+  if (includeCredentials) {
+    options['credentials'] = 'include'
+  }
+
   if (body != null) {
     options.body = typeof body === 'string' ? body : JSON.stringify(body)
   }
@@ -82,7 +87,11 @@ export async function fetchData<T>(
   return parseResponse<T>(resp)
 }
 
-export async function getData<T>(url: string, headers?: Record<string, string>): Promise<T> {
+export async function getData<T>(
+  url: string,
+  headers?: Record<string, string>,
+  includeCredentials?: boolean,
+): Promise<T> {
   const options: RequestInit = {
     method: 'GET',
   }
@@ -92,6 +101,10 @@ export async function getData<T>(url: string, headers?: Record<string, string>):
       ...headers,
       'Content-Type': 'application/json',
     }
+  }
+
+  if (includeCredentials) {
+    options['credentials'] = 'include'
   }
 
   const resp = await fetch(url, options)

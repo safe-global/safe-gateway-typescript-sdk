@@ -45,6 +45,7 @@ import type {
 import type { RelayCountResponse, RelayTransactionRequest, RelayTransactionResponse } from './relay'
 import type { RegisterRecoveryModuleRequestBody } from './recovery'
 import type { Contract } from './contracts'
+import type { AuthNonce } from './auth'
 
 export type Primitive = string | number | boolean | null
 
@@ -449,6 +450,22 @@ export interface paths extends PathRegistry {
       path: {
         chainId: string
         contractAddress: string
+      }
+    }
+  }
+  '/v1/auth/nonce': {
+    get: operations['get_auth_nonce']
+    parameters: {
+      path: null
+    }
+  }
+  '/v1/auth/verify': {
+    post: operations['verify_auth']
+    parameters: {
+      path: null
+      body: {
+        message: string
+        signature: string
       }
     }
   }
@@ -1176,6 +1193,27 @@ export interface operations {
     responses: {
       200: {
         schema: Contract
+      }
+    }
+  }
+  get_auth_nonce: {
+    parameters: null
+    responses: {
+      200: {
+        schema: AuthNonce
+      }
+    }
+  }
+  verify_auth: {
+    parameters: {
+      body: {
+        message: string
+        signature: string
+      }
+    }
+    responses: {
+      200: {
+        schema: void
       }
     }
   }

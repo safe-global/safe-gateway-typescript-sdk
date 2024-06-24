@@ -311,13 +311,13 @@ export type SwapOrder = BaseOrder & {
 // Specific type for TwapOrder
 export type TwapOrder = BaseOrder & {
   type: TransactionInfoType.TWAP_ORDER
-  numberOfParts: number
+  numberOfParts: string
   /** @description The amount of sellToken to sell in each part */
   partSellAmount: string
   /** @description The amount of buyToken that must be bought in each part */
   minPartLimit: string
   /** @description The duration of the TWAP interval */
-  timeBetweenParts: string
+  timeBetweenParts: number
   /** @description Whether the TWAP is valid for the entire interval or not */
   durationOfPart: DurationOfPart
   /** @description The start time of the TWAP */

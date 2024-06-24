@@ -18,11 +18,12 @@ jobs:
         id: version
         run: |
           OLD_VERSION=$(git describe --tags --abbrev=0)
-          NEW_VERSION=v$(node -p 'require("./package.json").version')
+          NEW_VERSION_NUMBER_ONLY=$(node -p 'require("./package.json").version')
+          NEW_VERSION=v${NEW_VERSION_NUMBER_ONLY}
           if [ $NEW_VERSION != $OLD_VERSION ]; then
             echo "New version $NEW_VERSION detected"
             echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
-            git log "$OLD_VERSION"..HEAD --pretty=format:"* %s" > CHANGELOG.md
+            git log "$OLD_VERSION"..HEAD --pretty=format:"* %s" --invert-grep --grep="$NEW_VERSION_NUMBER_ONLY" > CHANGELOG.md
           else
             echo "Version $OLD_VERSION hasn't changed, skipping the release"
           fi

@@ -458,14 +458,14 @@ export interface paths extends PathRegistry {
     get: operations['get_auth_nonce']
     parameters: {
       path: null
-      credentials: RequestCredentials
+      credentials: 'include'
     }
   }
   '/v1/auth/verify': {
     post: operations['verify_auth']
     parameters: {
       path: null
-      credentials: RequestCredentials
+      credentials: 'include'
       body: {
         message: string
         signature: string
@@ -1201,7 +1201,7 @@ export interface operations {
   }
   get_auth_nonce: {
     parameters: {
-      credentials: RequestCredentials
+      credentials: 'include'
     }
     responses: {
       200: {
@@ -1215,7 +1215,7 @@ export interface operations {
         message: string
         signature: string
       }
-      credentials: RequestCredentials
+      credentials: 'include'
     }
     responses: {
       200: {

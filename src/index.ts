@@ -29,6 +29,7 @@ import type { DelegateResponse, DelegatesRequest } from './types/delegates'
 import type { GetEmailResponse } from './types/emails'
 import type { RelayCountResponse, RelayTransactionResponse } from './types/relay'
 import type { Contract } from './types/contracts'
+import type { AuthNonce } from './types/auth'
 
 export * from './types/safe-info'
 export * from './types/safe-apps'
@@ -637,6 +638,17 @@ export function getContract(chainId: string, contractAddress: string): Promise<C
       chainId: chainId,
       contractAddress: contractAddress,
     },
+  })
+}
+
+export function getAuthNonce(): Promise<AuthNonce> {
+  return getEndpoint(baseUrl, '/v1/auth/nonce', { credentials: 'include' })
+}
+
+export function verifyAuth(body: operations['verify_auth']['parameters']['body']) {
+  return postEndpoint(baseUrl, '/v1/auth/verify', {
+    body,
+    credentials: 'include',
   })
 }
 

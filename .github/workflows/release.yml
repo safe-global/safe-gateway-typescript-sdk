@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  publish-npm:
+  publish-github:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,7 +20,9 @@ jobs:
           OLD_VERSION=$(git describe --tags --abbrev=0)
           NEW_VERSION_NUMBER_ONLY=$(node -p 'require("./package.json").version')
           NEW_VERSION=v${NEW_VERSION_NUMBER_ONLY}
-          if [ $NEW_VERSION != $OLD_VERSION ]; then
+          echo "OLD_VERSION=$OLD_VERSION" >> $GITHUB_ENV
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+          if [ "$NEW_VERSION" != "$OLD_VERSION" ]; then
             echo "New version $NEW_VERSION detected"
             echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
             git log "$OLD_VERSION"..HEAD --pretty=format:"* %s" --invert-grep --grep="$NEW_VERSION_NUMBER_ONLY" > CHANGELOG.md
@@ -29,20 +31,18 @@ jobs:
           fi
 
       - name: Create a git tag
-        if: steps.version.outputs.version
+        if: env.NEW_VERSION != env.OLD_VERSION
         run: git tag $NEW_VERSION && git push --tags
-        env:
-          NEW_VERSION: ${{ steps.version.outputs.version }}
 
       - name: GitHub release
-        if: steps.version.outputs.version
+        if: env.NEW_VERSION != env.OLD_VERSION
         uses: actions/create-release@v1
         id: create_release
         with:
           draft: false
           prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ steps.version.outputs.version }}
+          release_name: ${{ env.NEW_VERSION }}
+          tag_name: ${{ env.NEW_VERSION }}
           body_path: CHANGELOG.md
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

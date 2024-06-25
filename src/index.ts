@@ -642,18 +642,14 @@ export function getContract(chainId: string, contractAddress: string): Promise<C
 }
 
 export function getAuthNonce(): Promise<AuthNonce> {
-  return getEndpoint(baseUrl, '/v1/auth/nonce', undefined, undefined, true)
+  return getEndpoint(baseUrl, '/v1/auth/nonce', { credentials: 'include' })
 }
 
 export function verifyAuth(body: operations['verify_auth']['parameters']['body']) {
-  return postEndpoint(
-    baseUrl,
-    '/v1/auth/verify',
-    {
-      body,
-    },
-    true,
-  )
+  return postEndpoint(baseUrl, '/v1/auth/verify', {
+    body,
+    credentials: 'include',
+  })
 }
 
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

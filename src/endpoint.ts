@@ -16,30 +16,27 @@ export function postEndpoint<T extends keyof paths>(
   baseUrl: string,
   path: T,
   params?: paths[T] extends PostEndpoint ? paths[T]['post']['parameters'] : never,
-  includeCredentials?: boolean,
 ): Promise<paths[T] extends PostEndpoint ? paths[T]['post']['responses'][200]['schema'] : never> {
   const url = makeUrl(baseUrl, path as string, params?.path, params?.query)
-  return fetchData(url, 'POST', params?.body, params?.headers, includeCredentials)
+  return fetchData(url, 'POST', params?.body, params?.headers, params?.credentials)
 }
 
 export function putEndpoint<T extends keyof paths>(
   baseUrl: string,
   path: T,
   params?: paths[T] extends PutEndpoint ? paths[T]['put']['parameters'] : never,
-  includeCredentials?: boolean,
 ): Promise<paths[T] extends PutEndpoint ? paths[T]['put']['responses'][200]['schema'] : never> {
   const url = makeUrl(baseUrl, path as string, params?.path, params?.query)
-  return fetchData(url, 'PUT', params?.body, params?.headers, includeCredentials)
+  return fetchData(url, 'PUT', params?.body, params?.headers, params?.credentials)
 }
 
 export function deleteEndpoint<T extends keyof paths>(
   baseUrl: string,
   path: T,
   params?: paths[T] extends DeleteEndpoint ? paths[T]['delete']['parameters'] : never,
-  includeCredentials?: boolean,
 ): Promise<paths[T] extends DeleteEndpoint ? paths[T]['delete']['responses'][200]['schema'] : never> {
   const url = makeUrl(baseUrl, path as string, params?.path, params?.query)
-  return fetchData(url, 'DELETE', params?.body, params?.headers, includeCredentials)
+  return fetchData(url, 'DELETE', params?.body, params?.headers, params?.credentials)
 }
 
 export function getEndpoint<T extends keyof paths>(
@@ -47,11 +44,10 @@ export function getEndpoint<T extends keyof paths>(
   path: T,
   params?: paths[T] extends GetEndpoint ? paths[T]['get']['parameters'] : never,
   rawUrl?: string,
-  includeCredentials?: boolean,
 ): Promise<paths[T] extends GetEndpoint ? paths[T]['get']['responses'][200]['schema'] : never> {
   if (rawUrl) {
-    return getData(rawUrl, undefined, includeCredentials)
+    return getData(rawUrl, undefined, params?.credentials)
   }
   const url = makeUrl(baseUrl, path as string, params?.path, params?.query)
-  return getData(url, params?.headers, includeCredentials)
+  return getData(url, params?.headers, params?.credentials)
 }

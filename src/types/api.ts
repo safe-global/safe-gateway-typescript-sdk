@@ -53,6 +53,7 @@ interface Params {
   path?: { [key: string]: Primitive }
   headers?: Record<string, string>
   query?: { [key: string]: Primitive }
+  credentials?: RequestCredentials
 }
 
 interface BodyParams extends Params {
@@ -457,12 +458,14 @@ export interface paths extends PathRegistry {
     get: operations['get_auth_nonce']
     parameters: {
       path: null
+      credentials: RequestCredentials
     }
   }
   '/v1/auth/verify': {
     post: operations['verify_auth']
     parameters: {
       path: null
+      credentials: RequestCredentials
       body: {
         message: string
         signature: string
@@ -1197,7 +1200,9 @@ export interface operations {
     }
   }
   get_auth_nonce: {
-    parameters: null
+    parameters: {
+      credentials: RequestCredentials
+    }
     responses: {
       200: {
         schema: AuthNonce
@@ -1210,6 +1215,7 @@ export interface operations {
         message: string
         signature: string
       }
+      credentials: RequestCredentials
     }
     responses: {
       200: {

@@ -62,7 +62,7 @@ export async function fetchData<T>(
   method: 'POST' | 'PUT' | 'DELETE',
   body?: unknown,
   headers?: Record<string, string>,
-  includeCredentials?: boolean,
+  credentials?: RequestCredentials,
 ): Promise<T> {
   const requestHeaders: Record<string, string> = {
     'Content-Type': 'application/json',
@@ -74,8 +74,8 @@ export async function fetchData<T>(
     headers: requestHeaders,
   }
 
-  if (includeCredentials) {
-    options['credentials'] = 'include'
+  if (credentials) {
+    options['credentials'] = credentials
   }
 
   if (body != null) {
@@ -90,7 +90,7 @@ export async function fetchData<T>(
 export async function getData<T>(
   url: string,
   headers?: Record<string, string>,
-  includeCredentials?: boolean,
+  credentials?: RequestCredentials,
 ): Promise<T> {
   const options: RequestInit = {
     method: 'GET',
@@ -103,8 +103,8 @@ export async function getData<T>(
     }
   }
 
-  if (includeCredentials) {
-    options['credentials'] = 'include'
+  if (credentials) {
+    options['credentials'] = credentials
   }
 
   const resp = await fetch(url, options)

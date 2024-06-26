@@ -287,20 +287,20 @@ export type BaseOrder = {
 }
 
 export enum DurationType {
-  Auto,
-  LimitDuration,
+  AUTO = 'AUTO',
+  LIMIT_DURATION = 'LIMIT_DURATION',
 }
 
 export enum StartTimeValue {
-  AtMiningTime,
-  AtEpoch,
+  AT_MINING_TIME = 'AT_MINING_TIME',
+  AT_EPOCH = 'AT_EPOCH',
 }
 
 type DurationOfPart =
-  | { durationType: DurationType.Auto }
-  | { durationType: DurationType.LimitDuration; duration: number }
+  | { durationType: DurationType.AUTO }
+  | { durationType: DurationType.LIMIT_DURATION; duration: number }
 
-type StartTime = { startType: StartTimeValue.AtMiningTime } | { startType: StartTimeValue.AtEpoch; epoch: number }
+type StartTime = { startType: StartTimeValue.AT_MINING_TIME } | { startType: StartTimeValue.AT_EPOCH; epoch: number }
 
 // Specific type for SwapOrder
 export type SwapOrder = BaseOrder & {

@@ -22,7 +22,7 @@ import type { ChainListResponse, ChainInfo } from './chains'
 import type { SafeAppsResponse } from './safe-apps'
 import type {
   BaselineConfirmationView,
-  CowConfirmationView,
+  OrderConfirmationView,
   DecodedDataRequest,
   DecodedDataResponse,
 } from './decoded-data'
@@ -794,7 +794,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: BaselineConfirmationView | CowConfirmationView
+        schema: BaselineConfirmationView | OrderConfirmationView
       }
     }
   }

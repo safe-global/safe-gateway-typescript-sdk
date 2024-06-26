@@ -42,14 +42,14 @@ export type BaselineConfirmationView = {
   type: 'GENERIC'
 } & DecodedDataResponse
 
-export type SwapConfirmationView = {
+export type SwapOrderConfirmationView = {
   type: ConfirmationViewTypes.COW_SWAP_ORDER
 } & DecodedDataResponse &
   Omit<SwapOrder, 'type' | 'humanDescription' | 'richDecodedInfo'>
 
-export type TwapConfirmationView = {
+export type TwapOrderConfirmationView = {
   type: ConfirmationViewTypes.COW_SWAP_TWAP_ORDER
 } & DecodedDataResponse &
   Omit<TwapOrder, 'type' | 'humanDescription' | 'richDecodedInfo'>
 
-export type CowConfirmationView = SwapConfirmationView | TwapConfirmationView
+export type OrderConfirmationView = SwapOrderConfirmationView | TwapOrderConfirmationView

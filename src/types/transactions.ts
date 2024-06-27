@@ -70,6 +70,7 @@ export enum TransactionInfoType {
   CREATION = 'Creation',
   SWAP_ORDER = 'SwapOrder',
   TWAP_ORDER = 'TwapOrder',
+  SWAP_TRANSFER = 'SwapTransfer',
 }
 
 export enum ConflictType {
@@ -307,6 +308,11 @@ export type SwapOrder = BaseOrder & {
   type: TransactionInfoType.SWAP_ORDER
   uid: string
 }
+export type SwapTransferOrder = Omit<Transfer, 'type'> &
+  BaseOrder & {
+    type: TransactionInfoType.SWAP_TRANSFER
+    uid: string
+  }
 
 // Specific type for TwapOrder
 export type TwapOrder = BaseOrder & {
@@ -325,7 +331,7 @@ export type TwapOrder = BaseOrder & {
 }
 
 // Discriminated union type
-export type Order = SwapOrder | TwapOrder
+export type Order = SwapOrder | SwapTransferOrder | TwapOrder
 
 export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation | Order
 

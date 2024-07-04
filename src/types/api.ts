@@ -692,6 +692,7 @@ export interface operations {
         /** Taken from the Page['next'] or Page['previous'] */
         page_url?: string
         trusted?: boolean
+        imitation?: boolean
         timezone_offset?: number
       }
     }

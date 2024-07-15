@@ -96,15 +96,15 @@ export type ChainInfo = {
     enabled: boolean
   }
   contractAddresses: {
-    safeSingletonAddress: `0x${string}`
-    safeProxyFactoryAddress: `0x${string}`
-    multiSendAddress: `0x${string}`
-    multiSendCallOnlyAddress: `0x${string}`
-    fallbackHandlerAddress: `0x${string}`
-    signMessageLibAddress: `0x${string}`
-    createCallAddress: `0x${string}`
-    simulateTxAccessorAddress: `0x${string}`
-    safeWebAuthnSignerFactoryAddress: `0x${string}`
+    safeSingletonAddress: `0x${string}` | null
+    safeProxyFactoryAddress: `0x${string}` | null
+    multiSendAddress: `0x${string}` | null
+    multiSendCallOnlyAddress: `0x${string}` | null
+    fallbackHandlerAddress: `0x${string}` | null
+    signMessageLibAddress: `0x${string}` | null
+    createCallAddress: `0x${string}` | null
+    simulateTxAccessorAddress: `0x${string}` | null
+    safeWebAuthnSignerFactoryAddress: `0x${string}` | null
   }
 }
 

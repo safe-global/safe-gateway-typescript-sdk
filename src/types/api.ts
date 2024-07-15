@@ -588,6 +588,7 @@ export interface operations {
         module?: string
         to?: string
         timezone_offset?: number
+        transaction_hash?: string
       }
     }
     responses: {

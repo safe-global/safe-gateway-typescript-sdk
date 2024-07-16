@@ -95,6 +95,17 @@ export type ChainInfo = {
     chainName: string | null
     enabled: boolean
   }
+  contractAddresses: {
+    safeSingletonAddress: `0x${string}` | null
+    safeProxyFactoryAddress: `0x${string}` | null
+    multiSendAddress: `0x${string}` | null
+    multiSendCallOnlyAddress: `0x${string}` | null
+    fallbackHandlerAddress: `0x${string}` | null
+    signMessageLibAddress: `0x${string}` | null
+    createCallAddress: `0x${string}` | null
+    simulateTxAccessorAddress: `0x${string}` | null
+    safeWebAuthnSignerFactoryAddress: `0x${string}` | null
+  }
 }
 
 export type ChainListResponse = Page<ChainInfo>

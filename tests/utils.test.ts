@@ -198,18 +198,19 @@ describe('utils', () => {
       })
     })
 
-    it('should not throw for a 204 response', async () => {
-      const jsonMock = jest.fn()
+    it('should not throw for an non-JSON response', async () => {
+      const jsonMock = jest.fn().mockRejectedValue('error')
+
       fetchMock.mockImplementation(() => {
         return Promise.resolve({
           ok: true,
           status: 204,
+          statusText: 'No Content',
           json: jsonMock,
         })
       })
 
       await expect(fetchData('/test/safe', 'DELETE')).resolves.toEqual({})
-      expect(jsonMock).not.toHaveBeenCalled()
 
       expect(fetch).toHaveBeenCalledWith('/test/safe', {
         method: 'DELETE',

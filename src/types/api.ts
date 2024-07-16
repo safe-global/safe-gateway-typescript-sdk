@@ -46,6 +46,13 @@ import type { RelayCountResponse, RelayTransactionRequest, RelayTransactionRespo
 import type { RegisterRecoveryModuleRequestBody } from './recovery'
 import type { Contract } from './contracts'
 import type { AuthNonce } from './auth'
+import {
+  Account,
+  AccountDataSetting,
+  AccountDataType,
+  CreateAccountDto,
+  UpsertAccountDataSettingsDto,
+} from './accounts'
 
 export type Primitive = string | number | boolean | null
 
@@ -470,6 +477,39 @@ export interface paths extends PathRegistry {
         message: string
         signature: string
       }
+    }
+  }
+  '/v1/accounts': {
+    post: operations['create_account']
+    parameters: {
+      path: null
+      credentials: 'include'
+    }
+  }
+  '/v1/accounts/{address}': {
+    get: operations['get_account']
+    delete: operations['delete_account']
+    parameters: {
+      path: {
+        address: string
+      }
+      credentials: 'include'
+    }
+  }
+  '/v1/accounts/data-types': {
+    get: operations['get_account_data_types']
+    parameters: {
+      path: null
+    }
+  }
+  '/v1/accounts/{address}/data-settings': {
+    get: operations['get_account_data_settings']
+    put: operations['put_account_data_settings']
+    parameters: {
+      path: {
+        address: string
+      }
+      credentials: 'include'
     }
   }
 }
@@ -1223,6 +1263,84 @@ export interface operations {
       200: {
         schema: void
       }
+    }
+  }
+  create_account: {
+    parameters: {
+      body: CreateAccountDto
+      credentials: 'include'
+    }
+    responses: {
+      200: {
+        schema: Account
+      }
+      403: unknown
+      422: unknown
+    }
+  }
+  get_account_data_types: {
+    parameters: null
+    responses: {
+      200: {
+        schema: AccountDataType[]
+      }
+    }
+  }
+  get_account_data_settings: {
+    parameters: {
+      path: {
+        address: string
+      }
+      credentials: 'include'
+    }
+    responses: {
+      200: {
+        schema: AccountDataSetting[]
+      }
+      403: unknown
+    }
+  }
+  put_account_data_settings: {
+    parameters: {
+      path: {
+        address: string
+      }
+      credentials: 'include'
+      body: UpsertAccountDataSettingsDto
+    }
+    responses: {
+      200: {
+        schema: AccountDataSetting[]
+      }
+      403: unknown
+    }
+  }
+  get_account: {
+    parameters: {
+      path: {
+        address: string
+      }
+      credentials: 'include'
+    }
+    responses: {
+      200: {
+        schema: Account
+      }
+      403: unknown
+    }
+  }
+  delete_account: {
+    parameters: {
+      path: {
+        address: string
+      }
+      credentials: 'include'
+    }
+    responses: {
+      204: {
+        schema: void
+      }
+      403: unknown
     }
   }
 }

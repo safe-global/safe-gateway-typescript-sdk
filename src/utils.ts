@@ -41,16 +41,15 @@ async function parseResponse<T>(resp: Response): Promise<T> {
   let json
 
   try {
-    // An HTTP 204 - No Content response doesn't contain a body so trying to call .json() on it would throw
-    json = resp.status === 204 ? {} : await resp.json()
+    json = await resp.json()
   } catch {
-    if (resp.headers && resp.headers.get('content-length') !== '0') {
-      throw new Error(`Invalid response content: ${resp.statusText}`)
-    }
+    json = {}
   }
 
   if (!resp.ok) {
-    const errTxt = isErrorResponse(json) ? `${json.code}: ${json.message}` : resp.statusText
+    const errTxt = isErrorResponse(json)
+      ? `CGW error - ${json.code}: ${json.message}`
+      : `CGW error - status ${resp.statusText}`
     throw new Error(errTxt)
   }
 

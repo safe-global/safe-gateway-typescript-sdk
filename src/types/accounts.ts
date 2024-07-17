@@ -1,5 +1,5 @@
 export type Account = {
-  accountId: string
+  id: string
   groupId: string | null
   address: `0x${string}`
 }
@@ -12,18 +12,14 @@ export type AccountDataType = {
 }
 
 export type AccountDataSetting = {
-  name: string
-  description: string | null
+  dataTypeId: string
   enabled: boolean
 }
 
-export type CreateAccountDto = {
+export type CreateAccountRequest = {
   address: `0x${string}`
 }
 
-export type UpsertAccountDataSettingsDto = {
-  accountDataSettings: {
-    id: string
-    enabled: boolean
-  }[]
+export type UpsertAccountDataSettingsRequest = {
+  accountDataSettings: AccountDataSetting[]
 }

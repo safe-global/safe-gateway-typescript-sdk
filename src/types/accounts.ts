@@ -1,7 +1,7 @@
 export type Account = {
   accountId: string
   groupId: string | null
-  address: string
+  address: `0x${string}`
 }
 
 export type AccountDataType = {
@@ -18,7 +18,7 @@ export type AccountDataSetting = {
 }
 
 export type CreateAccountDto = {
-  address: string
+  address: `0x${string}`
 }
 
 export type UpsertAccountDataSettingsDto = {

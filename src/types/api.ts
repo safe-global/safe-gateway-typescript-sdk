@@ -46,12 +46,12 @@ import type { RelayCountResponse, RelayTransactionRequest, RelayTransactionRespo
 import type { RegisterRecoveryModuleRequestBody } from './recovery'
 import type { Contract } from './contracts'
 import type { AuthNonce } from './auth'
-import {
+import type {
   Account,
   AccountDataSetting,
   AccountDataType,
-  CreateAccountDto,
-  UpsertAccountDataSettingsDto,
+  CreateAccountRequest,
+  UpsertAccountDataSettingsRequest,
 } from './accounts'
 
 export type Primitive = string | number | boolean | null

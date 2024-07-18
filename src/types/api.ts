@@ -1340,6 +1340,9 @@ export interface operations {
       204: {
         schema: void
       }
+      200: {
+        schema: void
+      }
       403: unknown
     }
   }

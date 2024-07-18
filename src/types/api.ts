@@ -1267,7 +1267,7 @@ export interface operations {
   }
   create_account: {
     parameters: {
-      body: CreateAccountDto
+      body: CreateAccountRequest
       credentials: 'include'
     }
     responses: {

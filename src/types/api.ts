@@ -1306,7 +1306,7 @@ export interface operations {
         address: string
       }
       credentials: 'include'
-      body: UpsertAccountDataSettingsDto
+      body: UpsertAccountDataSettingsRequest
     }
     responses: {
       200: {

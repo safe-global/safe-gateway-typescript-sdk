@@ -652,4 +652,47 @@ export function verifyAuth(body: operations['verify_auth']['parameters']['body']
   })
 }
 
+export function createAccount(body: operations['create_account']['parameters']['body']) {
+  return postEndpoint(baseUrl, '/v1/accounts', {
+    body,
+    credentials: 'include',
+  })
+}
+
+export function getAccount(address: string) {
+  return getEndpoint(baseUrl, '/v1/accounts/{address}', {
+    path: { address },
+    credentials: 'include',
+  })
+}
+
+export function deleteAccount(address: string) {
+  return deleteEndpoint(baseUrl, '/v1/accounts/{address}', {
+    path: { address },
+    credentials: 'include',
+  })
+}
+
+export function getAccountDataTypes() {
+  return getEndpoint(baseUrl, '/v1/accounts/data-types')
+}
+
+export function getAccountDataSettings(address: string) {
+  return getEndpoint(baseUrl, '/v1/accounts/{address}/data-settings', {
+    path: { address },
+    credentials: 'include',
+  })
+}
+
+export function putAccountDataSettings(
+  address: string,
+  body: operations['put_account_data_settings']['parameters']['body'],
+) {
+  return putEndpoint(baseUrl, '/v1/accounts/{address}/data-settings', {
+    path: { address },
+    body,
+    credentials: 'include',
+  })
+}
+
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

@@ -315,8 +315,13 @@ export type SwapTransferOrder = Omit<Transfer, 'type'> &
   }
 
 // Specific type for TwapOrder
-export type TwapOrder = BaseOrder & {
+export type TwapOrder = Omit<BaseOrder, 'executedBuyAmount' | 'executedSellAmount'> & {
   type: TransactionInfoType.TWAP_ORDER
+  /** @description The executed sell token raw amount (no decimals) */
+  executedSellAmount: null | string
+  /** @description The executed buy token raw amount (no decimals) */
+  executedBuyAmount: null | string
+  /** @description The number of parts the order is split into */
   numberOfParts: string
   /** @description The amount of sellToken to sell in each part */
   partSellAmount: string

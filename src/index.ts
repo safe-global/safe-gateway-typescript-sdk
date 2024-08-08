@@ -418,7 +418,7 @@ export function confirmSafeMessage(
  * Returns a list of delegates
  */
 export function getDelegates(chainId: string, query: DelegatesRequest = {}): Promise<DelegateResponse> {
-  return getEndpoint(baseUrl, '/v1/chains/{chainId}/delegates', {
+  return getEndpoint(baseUrl, '/v2/chains/{chainId}/delegates', {
     path: { chainId },
     query,
   })

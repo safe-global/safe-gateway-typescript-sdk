@@ -343,7 +343,7 @@ export interface paths extends PathRegistry {
       }
     }
   }
-  '/v1/chains/{chainId}/delegates': {
+  '/v2/chains/{chainId}/delegates': {
     get: operations['get_delegates']
     parameters: {
       path: {

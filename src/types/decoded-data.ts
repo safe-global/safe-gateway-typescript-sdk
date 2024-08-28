@@ -1,6 +1,8 @@
+import type { TokenInfo } from './common'
 import type { SwapOrder, TwapOrder } from './transactions'
 
 export enum ConfirmationViewTypes {
+  GENERIC = 'GENERIC',
   COW_SWAP_ORDER = 'COW_SWAP_ORDER',
   COW_SWAP_TWAP_ORDER = 'COW_SWAP_TWAP_ORDER',
   KILN_NATIVE_STAKING_DEPOSIT = 'KILN_NATIVE_STAKING_DEPOSIT',
@@ -9,6 +11,7 @@ export enum ConfirmationViewTypes {
 export type DecodedDataRequest = {
   data: string
   to?: string
+  value?: string
 }
 
 type ParamValue = string | ParamValue[]
@@ -40,7 +43,7 @@ export type DecodedDataResponse = {
 }
 
 export type BaselineConfirmationView = {
-  type: 'GENERIC'
+  type: ConfirmationViewTypes.GENERIC
 } & DecodedDataResponse
 
 /* Swaps */
@@ -54,6 +57,8 @@ export type TwapOrderConfirmationView = {
 } & DecodedDataResponse &
   Omit<TwapOrder, 'type' | 'humanDescription' | 'richDecodedInfo'>
 
+export type AnySwapOrderConfirmationView = SwapOrderConfirmationView | TwapOrderConfirmationView
+
 /* Staking */
 export type NativeStakingDepositConfirmationView = {
   type: ConfirmationViewTypes.KILN_NATIVE_STAKING_DEPOSIT
@@ -64,10 +69,17 @@ export type NativeStakingDepositConfirmationView = {
   fee: number
   monthlyNrr: number
   annualNrr: number
+  tokenInfo: TokenInfo
+  value: string
+  expectedAnnualReward: string
+  expectedMonthlyReward: string
+  expectedFiatAnnualReward: number
+  expectedFiatMonthlyReward: number
 } & DecodedDataResponse
 
 /* Union */
-export type OrderConfirmationView =
+export type AnyConfirmationView =
+  | BaselineConfirmationView
   | SwapOrderConfirmationView
   | TwapOrderConfirmationView
   | NativeStakingDepositConfirmationView

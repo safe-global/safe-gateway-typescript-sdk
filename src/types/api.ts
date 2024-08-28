@@ -20,12 +20,7 @@ import type {
 import type { SafeInfo, SafeOverview } from './safe-info'
 import type { ChainListResponse, ChainInfo } from './chains'
 import type { SafeAppsResponse } from './safe-apps'
-import type {
-  BaselineConfirmationView,
-  OrderConfirmationView,
-  DecodedDataRequest,
-  DecodedDataResponse,
-} from './decoded-data'
+import type { AnyConfirmationView, DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import type { MasterCopyReponse } from './master-copies'
 import type {
   ConfirmSafeMessageRequest,
@@ -836,7 +831,7 @@ export interface operations {
     }
     responses: {
       200: {
-        schema: BaselineConfirmationView | OrderConfirmationView
+        schema: AnyConfirmationView
       }
     }
   }

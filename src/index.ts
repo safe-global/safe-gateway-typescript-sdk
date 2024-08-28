@@ -22,7 +22,7 @@ import type { SafeInfo, SafeOverview } from './types/safe-info'
 import type { ChainListResponse, ChainInfo } from './types/chains'
 import type { SafeAppsResponse } from './types/safe-apps'
 import type { MasterCopyReponse } from './types/master-copies'
-import type { BaselineConfirmationView, OrderConfirmationView, DecodedDataResponse } from './types/decoded-data'
+import type { AnyConfirmationView, DecodedDataResponse } from './types/decoded-data'
 import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
 import type { DelegateResponse, DelegatesRequest } from './types/delegates'
@@ -302,12 +302,13 @@ export function proposeTransaction(
 export function getConfirmationView(
   chainId: string,
   safeAddress: string,
-  encodedData: operations['data_decoder']['parameters']['body']['data'],
+  data: operations['data_decoder']['parameters']['body']['data'],
   to?: operations['data_decoder']['parameters']['body']['to'],
-): Promise<BaselineConfirmationView | OrderConfirmationView> {
+  value?: operations['data_decoder']['parameters']['body']['value'],
+): Promise<AnyConfirmationView> {
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/views/transaction-confirmation', {
-    path: { chainId: chainId, safe_address: safeAddress },
-    body: { data: encodedData, to },
+    path: { chainId, safe_address: safeAddress },
+    body: { data, to, value },
   })
 }
 

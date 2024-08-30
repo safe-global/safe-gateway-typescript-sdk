@@ -1,13 +1,17 @@
+import type { TokenInfo } from './common'
 import type { SwapOrder, TwapOrder } from './transactions'
 
 export enum ConfirmationViewTypes {
+  GENERIC = 'GENERIC',
   COW_SWAP_ORDER = 'COW_SWAP_ORDER',
   COW_SWAP_TWAP_ORDER = 'COW_SWAP_TWAP_ORDER',
+  KILN_NATIVE_STAKING_DEPOSIT = 'KILN_NATIVE_STAKING_DEPOSIT',
 }
 
 export type DecodedDataRequest = {
   data: string
   to?: string
+  value?: string
 }
 
 type ParamValue = string | ParamValue[]
@@ -39,9 +43,10 @@ export type DecodedDataResponse = {
 }
 
 export type BaselineConfirmationView = {
-  type: 'GENERIC'
+  type: ConfirmationViewTypes.GENERIC
 } & DecodedDataResponse
 
+/* Swaps */
 export type SwapOrderConfirmationView = {
   type: ConfirmationViewTypes.COW_SWAP_ORDER
 } & DecodedDataResponse &
@@ -52,4 +57,40 @@ export type TwapOrderConfirmationView = {
 } & DecodedDataResponse &
   Omit<TwapOrder, 'type' | 'humanDescription' | 'richDecodedInfo'>
 
-export type OrderConfirmationView = SwapOrderConfirmationView | TwapOrderConfirmationView
+export type AnySwapOrderConfirmationView = SwapOrderConfirmationView | TwapOrderConfirmationView
+
+export enum NativeStakingStatus {
+  AWAITING_ENTRY = 'AWAITING_ENTRY',
+  REQUESTED_EXIT = 'REQUESTED_EXIT',
+  SIGNATURE_NEEDED = 'SIGNATURE_NEEDED',
+  AWAITING_EXECUTION = 'AWAITING_EXECUTION',
+  VALIDATION_STARTED = 'VALIDATION_STARTED',
+  WITHDRAWN = 'WITHDRAWN',
+  UNKNOWN = 'UNKNOWN',
+}
+
+/* Staking */
+export type NativeStakingDepositConfirmationView = {
+  type: ConfirmationViewTypes.KILN_NATIVE_STAKING_DEPOSIT
+  status: NativeStakingStatus
+  estimatedEntryTime: number
+  estimatedExitTime: number
+  estimatedWithdrawalTime: number
+  fee: number
+  monthlyNrr: number
+  annualNrr: number
+  tokenInfo: TokenInfo
+  value: string
+  expectedAnnualReward: string
+  expectedMonthlyReward: string
+  expectedFiatAnnualReward: number
+  expectedFiatMonthlyReward: number
+  numValidators: number
+} & DecodedDataResponse
+
+/* Union */
+export type AnyConfirmationView =
+  | BaselineConfirmationView
+  | SwapOrderConfirmationView
+  | TwapOrderConfirmationView
+  | NativeStakingDepositConfirmationView

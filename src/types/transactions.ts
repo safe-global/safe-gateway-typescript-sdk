@@ -1,4 +1,5 @@
 import type { AddressEx, Page, TokenInfo } from './common'
+import type { NativeStakingDepositConfirmationView } from './decoded-data'
 import type { RichDecodedInfo } from './human-description'
 
 export type ParamValue = string | ParamValue[]
@@ -71,6 +72,7 @@ export enum TransactionInfoType {
   SWAP_ORDER = 'SwapOrder',
   TWAP_ORDER = 'TwapOrder',
   SWAP_TRANSFER = 'SwapTransfer',
+  NATIVE_STAKING_DEPOSIT = 'NativeStakingDeposit',
 }
 
 export enum ConflictType {
@@ -338,7 +340,20 @@ export type TwapOrder = Omit<BaseOrder, 'executedBuyAmount' | 'executedSellAmoun
 // Discriminated union type
 export type Order = SwapOrder | SwapTransferOrder | TwapOrder
 
-export type TransactionInfo = Transfer | SettingsChange | Custom | MultiSend | Cancellation | Creation | Order
+export type StakingTxInfo = {
+  type: TransactionInfoType.NATIVE_STAKING_DEPOSIT
+  humanDescription?: string
+} & Omit<NativeStakingDepositConfirmationView, 'type'>
+
+export type TransactionInfo =
+  | Transfer
+  | SettingsChange
+  | Custom
+  | MultiSend
+  | Cancellation
+  | Creation
+  | Order
+  | StakingTxInfo
 
 export type ModuleExecutionInfo = {
   type: DetailedExecutionInfoType.MODULE

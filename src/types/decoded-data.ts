@@ -59,10 +59,19 @@ export type TwapOrderConfirmationView = {
 
 export type AnySwapOrderConfirmationView = SwapOrderConfirmationView | TwapOrderConfirmationView
 
+export enum NativeStakingStatus {
+  AWAITING_ENTRY = 'AWAITING_ENTRY',
+  REQUESTED_EXIT = 'REQUESTED_EXIT',
+  SIGNATURE_NEEDED = 'SIGNATURE_NEEDED',
+  VALIDATING = 'VALIDATING',
+  WITHDRAWN = 'WITHDRAWN',
+  UNKNOWN = 'UNKNOWN',
+}
+
 /* Staking */
 export type NativeStakingDepositConfirmationView = {
   type: ConfirmationViewTypes.KILN_NATIVE_STAKING_DEPOSIT
-  status: 'unknown'
+  status: NativeStakingStatus
   estimatedEntryTime: number
   estimatedExitTime: number
   estimatedWithdrawalTime: number
@@ -75,6 +84,7 @@ export type NativeStakingDepositConfirmationView = {
   expectedMonthlyReward: string
   expectedFiatAnnualReward: number
   expectedFiatMonthlyReward: number
+  numValidators: number
 } & DecodedDataResponse
 
 /* Union */

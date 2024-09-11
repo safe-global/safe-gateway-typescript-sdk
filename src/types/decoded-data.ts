@@ -6,6 +6,7 @@ export enum ConfirmationViewTypes {
   COW_SWAP_ORDER = 'COW_SWAP_ORDER',
   COW_SWAP_TWAP_ORDER = 'COW_SWAP_TWAP_ORDER',
   KILN_NATIVE_STAKING_DEPOSIT = 'KILN_NATIVE_STAKING_DEPOSIT',
+  KILN_NATIVE_STAKING_VALIDATORS_EXIT = 'KILN_NATIVE_STAKING_VALIDATORS_EXIT',
 }
 
 export type DecodedDataRequest = {
@@ -69,6 +70,13 @@ export enum NativeStakingStatus {
   UNKNOWN = 'UNKNOWN',
 }
 
+export enum NativeStakingExitStatus {
+  AWAITING_EXECUTION = 'AWAITING_EXECUTION',
+  READY_TO_WITHDRAW = 'READY_TO_WITHDRAW',
+  REQUEST_PENDING = 'REQUEST_PENDING',
+  SIGNATURE_NEEDED = 'SIGNATURE_NEEDED',
+}
+
 /* Staking */
 export type NativeStakingDepositConfirmationView = {
   type: ConfirmationViewTypes.KILN_NATIVE_STAKING_DEPOSIT
@@ -88,9 +96,24 @@ export type NativeStakingDepositConfirmationView = {
   numValidators: number
 } & DecodedDataResponse
 
+export type NativeStakingValidatorsExitConfirmationView = {
+  type: ConfirmationViewTypes.KILN_NATIVE_STAKING_VALIDATORS_EXIT
+  status: NativeStakingExitStatus
+  estimatedExitTime: number
+  estimatedWithdrawalTime: number
+  value: string
+  numValidators: number
+  tokenInfo: TokenInfo
+} & DecodedDataResponse
+
+export type AnyStakingConfirmationView =
+  | NativeStakingDepositConfirmationView
+  | NativeStakingValidatorsExitConfirmationView
+
 /* Union */
 export type AnyConfirmationView =
   | BaselineConfirmationView
   | SwapOrderConfirmationView
   | TwapOrderConfirmationView
   | NativeStakingDepositConfirmationView
+  | NativeStakingValidatorsExitConfirmationView

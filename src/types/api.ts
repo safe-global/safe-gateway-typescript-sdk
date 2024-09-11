@@ -599,7 +599,7 @@ export interface operations {
         to?: string
         token_address?: string
         value?: string
-        timezone_offset?: number
+        timezone?: string
       }
     }
     responses: {
@@ -622,7 +622,7 @@ export interface operations {
       query?: {
         module?: string
         to?: string
-        timezone_offset?: number
+        timezone?: string
         transaction_hash?: string
       }
     }
@@ -650,7 +650,7 @@ export interface operations {
         value?: string
         nonce?: string
         executed?: string
-        timezone_offset?: number
+        timezone?: string
       }
     }
     responses: {
@@ -729,7 +729,7 @@ export interface operations {
         page_url?: string
         trusted?: boolean
         imitation?: boolean
-        timezone_offset?: number
+        timezone?: string
       }
     }
     responses: {
@@ -748,7 +748,7 @@ export interface operations {
         /** Taken from the Page['next'] or Page['previous'] */
         page_url?: string
         trusted?: boolean
-        timezone_offset?: number
+        timezone?: string
       }
     }
     responses: {

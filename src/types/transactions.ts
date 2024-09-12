@@ -1,5 +1,9 @@
 import type { AddressEx, Page, TokenInfo } from './common'
-import type { NativeStakingDepositConfirmationView, NativeStakingValidatorsExitConfirmationView } from './decoded-data'
+import type {
+  NativeStakingDepositConfirmationView,
+  NativeStakingValidatorsExitConfirmationView,
+  NativeStakingWithdrawConfirmationView,
+} from './decoded-data'
 import type { RichDecodedInfo } from './human-description'
 
 export type ParamValue = string | ParamValue[]
@@ -74,6 +78,7 @@ export enum TransactionInfoType {
   SWAP_TRANSFER = 'SwapTransfer',
   NATIVE_STAKING_DEPOSIT = 'NativeStakingDeposit',
   NATIVE_STAKING_VALIDATORS_EXIT = 'NativeStakingValidatorsExit',
+  NATIVE_STAKING_WITHDRAW = 'NativeStakingWithdraw',
 }
 
 export enum ConflictType {
@@ -351,7 +356,12 @@ export type StakingTxExitInfo = {
   humanDescription?: string
 } & Omit<NativeStakingValidatorsExitConfirmationView, 'type'>
 
-export type StakingTxInfo = StakingTxDepositInfo | StakingTxExitInfo
+export type StakingTxWithdrawInfo = {
+  type: TransactionInfoType.NATIVE_STAKING_WITHDRAW
+  humanDescription?: string
+} & Omit<NativeStakingWithdrawConfirmationView, 'type'>
+
+export type StakingTxInfo = StakingTxDepositInfo | StakingTxExitInfo | StakingTxWithdrawInfo
 
 export type TransactionInfo =
   | Transfer

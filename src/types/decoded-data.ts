@@ -7,6 +7,7 @@ export enum ConfirmationViewTypes {
   COW_SWAP_TWAP_ORDER = 'COW_SWAP_TWAP_ORDER',
   KILN_NATIVE_STAKING_DEPOSIT = 'KILN_NATIVE_STAKING_DEPOSIT',
   KILN_NATIVE_STAKING_VALIDATORS_EXIT = 'KILN_NATIVE_STAKING_VALIDATORS_EXIT',
+  KILN_NATIVE_STAKING_WITHDRAW = 'KILN_NATIVE_STAKING_WITHDRAW',
 }
 
 export type DecodedDataRequest = {
@@ -106,9 +107,18 @@ export type NativeStakingValidatorsExitConfirmationView = {
   tokenInfo: TokenInfo
 } & DecodedDataResponse
 
+export type NativeStakingWithdrawConfirmationView = {
+  /** @enum {string} */
+  type: ConfirmationViewTypes.KILN_NATIVE_STAKING_WITHDRAW
+  value: string
+  rewards: string
+  tokenInfo: TokenInfo
+} & DecodedDataResponse
+
 export type AnyStakingConfirmationView =
   | NativeStakingDepositConfirmationView
   | NativeStakingValidatorsExitConfirmationView
+  | NativeStakingWithdrawConfirmationView
 
 /* Union */
 export type AnyConfirmationView =
@@ -117,3 +127,4 @@ export type AnyConfirmationView =
   | TwapOrderConfirmationView
   | NativeStakingDepositConfirmationView
   | NativeStakingValidatorsExitConfirmationView
+  | NativeStakingWithdrawConfirmationView

@@ -111,7 +111,6 @@ export type NativeStakingWithdrawConfirmationView = {
   /** @enum {string} */
   type: ConfirmationViewTypes.KILN_NATIVE_STAKING_WITHDRAW
   value: string
-  rewards: string
   tokenInfo: TokenInfo
 } & DecodedDataResponse
 

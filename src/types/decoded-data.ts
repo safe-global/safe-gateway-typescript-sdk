@@ -62,20 +62,14 @@ export type TwapOrderConfirmationView = {
 export type AnySwapOrderConfirmationView = SwapOrderConfirmationView | TwapOrderConfirmationView
 
 export enum NativeStakingStatus {
-  AWAITING_ENTRY = 'AWAITING_ENTRY',
-  REQUESTED_EXIT = 'REQUESTED_EXIT',
-  SIGNATURE_NEEDED = 'SIGNATURE_NEEDED',
-  AWAITING_EXECUTION = 'AWAITING_EXECUTION',
-  VALIDATION_STARTED = 'VALIDATION_STARTED',
-  WITHDRAWN = 'WITHDRAWN',
-  UNKNOWN = 'UNKNOWN',
-}
-
-export enum NativeStakingExitStatus {
-  AWAITING_EXECUTION = 'AWAITING_EXECUTION',
-  READY_TO_WITHDRAW = 'READY_TO_WITHDRAW',
-  REQUEST_PENDING = 'REQUEST_PENDING',
-  SIGNATURE_NEEDED = 'SIGNATURE_NEEDED',
+  NOT_STAKED = 'NOT_STAKED',
+  ACTIVATING = 'ACTIVATING',
+  DEPOSIT_IN_PROGRESS = 'DEPOSIT_IN_PROGRESS',
+  ACTIVE = 'ACTIVE',
+  EXIT_REQUESTED = 'EXIT_REQUESTED',
+  EXITING = 'EXITING',
+  EXITED = 'EXITED',
+  SLASHED = 'SLASHED',
 }
 
 /* Staking */
@@ -99,7 +93,7 @@ export type NativeStakingDepositConfirmationView = {
 
 export type NativeStakingValidatorsExitConfirmationView = {
   type: ConfirmationViewTypes.KILN_NATIVE_STAKING_VALIDATORS_EXIT
-  status: NativeStakingExitStatus
+  status: NativeStakingStatus
   estimatedExitTime: number
   estimatedWithdrawalTime: number
   value: string

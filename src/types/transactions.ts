@@ -354,7 +354,7 @@ export type StakingTxDepositInfo = {
 export type StakingTxExitInfo = {
   type: TransactionInfoType.NATIVE_STAKING_VALIDATORS_EXIT
   humanDescription?: string
-} & Omit<NativeStakingValidatorsExitConfirmationView, 'type'>
+} & Omit<NativeStakingValidatorsExitConfirmationView, 'type' | 'value'>
 
 export type StakingTxWithdrawInfo = {
   type: TransactionInfoType.NATIVE_STAKING_WITHDRAW

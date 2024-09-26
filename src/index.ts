@@ -696,4 +696,10 @@ export function putAccountDataSettings(
   })
 }
 
+export function getIndexingStatus(chainId: string) {
+  return getEndpoint(baseUrl, '/v1/chains/{chainId}/about/indexing', {
+    path: { chainId },
+  })
+}
+
 /* eslint-enable @typescript-eslint/explicit-module-boundary-types */

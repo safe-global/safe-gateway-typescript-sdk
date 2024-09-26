@@ -99,6 +99,7 @@ export type NativeStakingValidatorsExitConfirmationView = {
   value: string
   numValidators: number
   tokenInfo: TokenInfo
+  validators: string[]
 } & DecodedDataResponse
 
 export type NativeStakingWithdrawConfirmationView = {

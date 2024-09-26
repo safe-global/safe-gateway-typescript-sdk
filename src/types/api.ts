@@ -18,7 +18,7 @@ import type {
   NoncesResponse,
 } from './transactions'
 import type { SafeInfo, SafeOverview } from './safe-info'
-import type { ChainListResponse, ChainInfo } from './chains'
+import type { ChainListResponse, ChainInfo, ChainIndexingStatus } from './chains'
 import type { SafeAppsResponse } from './safe-apps'
 import type { AnyConfirmationView, DecodedDataRequest, DecodedDataResponse } from './decoded-data'
 import type { MasterCopyReponse } from './master-copies'
@@ -426,6 +426,14 @@ export interface paths extends PathRegistry {
       path: {
         chainId: string
         safe_address: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/about/indexing': {
+    get: operations['get_indexing']
+    parameters: {
+      path: {
+        chainId: string
       }
     }
   }
@@ -1177,6 +1185,19 @@ export interface operations {
     responses: {
       200: {
         schema: void
+      }
+    }
+  }
+  get_indexing: {
+    parameters: {
+      path: {
+        chainId: string
+      }
+    }
+
+    responses: {
+      200: {
+        schema: ChainIndexingStatus
       }
     }
   }

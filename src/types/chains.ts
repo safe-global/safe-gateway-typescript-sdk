@@ -109,3 +109,8 @@ export type ChainInfo = {
 }
 
 export type ChainListResponse = Page<ChainInfo>
+
+export type ChainIndexingStatus = {
+  lastSync: number
+  synced: boolean
+}

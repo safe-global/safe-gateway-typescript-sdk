@@ -21,7 +21,7 @@ import type {
 import type { SafeInfo, SafeOverview } from './types/safe-info'
 import type { ChainListResponse, ChainInfo } from './types/chains'
 import type { SafeAppsResponse } from './types/safe-apps'
-import type { MasterCopyReponse } from './types/master-copies'
+import type { MasterCopyResponse } from './types/master-copies'
 import type { AnyConfirmationView, DecodedDataResponse } from './types/decoded-data'
 import type { SafeMessage, SafeMessageListPage } from './types/safe-messages'
 import { DEFAULT_BASE_URL } from './config'
@@ -346,7 +346,7 @@ export function getSafeApps(
 /**
  * Returns list of Master Copies
  */
-export function getMasterCopies(chainId: string): Promise<MasterCopyReponse> {
+export function getMasterCopies(chainId: string): Promise<MasterCopyResponse> {
   return getEndpoint(baseUrl, '/v1/chains/{chainId}/about/master-copies', {
     path: { chainId: chainId },
   })

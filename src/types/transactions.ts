@@ -529,6 +529,11 @@ export type TransactionDetails = {
 
 /* Transaction details types end */
 
+export type TransactionPreview = {
+  txInfo: TransactionInfo
+  txData: TransactionData
+}
+
 /* Transaction estimation types */
 
 export type SafeTransactionEstimationRequest = {

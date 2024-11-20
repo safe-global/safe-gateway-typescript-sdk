@@ -8,6 +8,7 @@ import type {
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
   NoncesResponse,
+  TransactionPreview,
 } from './types/transactions'
 import type {
   EthereumAddress,
@@ -307,6 +308,22 @@ export function getConfirmationView(
   value?: operations['data_decoder']['parameters']['body']['value'],
 ): Promise<AnyConfirmationView> {
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/views/transaction-confirmation', {
+    path: { chainId, safe_address: safeAddress },
+    body: { data, to, value },
+  })
+}
+
+/**
+ * Get a tx preview
+ */
+export function getTxPreview(
+  chainId: string,
+  safeAddress: string,
+  data: operations['data_decoder']['parameters']['body']['data'],
+  to?: operations['data_decoder']['parameters']['body']['to'],
+  value?: operations['data_decoder']['parameters']['body']['value'],
+): Promise<TransactionPreview> {
+  return postEndpoint(baseUrl, '/v1/chains/{chainId}/transactions/{safe_address}/preview', {
     path: { chainId, safe_address: safeAddress },
     body: { data, to, value },
   })

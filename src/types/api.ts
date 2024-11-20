@@ -16,6 +16,7 @@ import type {
   SafeModuleTransactionsResponse,
   SafeMultisigTransactionsResponse,
   NoncesResponse,
+  TransactionPreview,
 } from './transactions'
 import type { SafeInfo, SafeOverview } from './safe-info'
 import type { ChainListResponse, ChainInfo, ChainIndexingStatus } from './chains'
@@ -241,6 +242,15 @@ export interface paths extends PathRegistry {
   }
   '/v1/chains/{chainId}/transactions/{safe_address}/propose': {
     post: operations['propose_transaction']
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+    }
+  }
+  '/v1/chains/{chainId}/transactions/{safe_address}/preview': {
+    post: operations['preview_transaction']
     parameters: {
       path: {
         chainId: string
@@ -821,6 +831,24 @@ export interface operations {
     responses: {
       200: {
         schema: TransactionDetails
+      }
+      /** Safe not found */
+      404: unknown
+      /** Safe address checksum not valid */
+      422: unknown
+    }
+  }
+  preview_transaction: {
+    parameters: {
+      path: {
+        chainId: string
+        safe_address: string
+      }
+      body: DecodedDataRequest
+    }
+    responses: {
+      200: {
+        schema: TransactionPreview
       }
       /** Safe not found */
       404: unknown

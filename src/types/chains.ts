@@ -106,6 +106,7 @@ export type ChainInfo = {
     simulateTxAccessorAddress: `0x${string}` | null
     safeWebAuthnSignerFactoryAddress: `0x${string}` | null
   }
+  recommendedMasterCopyVersion: string | null
 }
 
 export type ChainListResponse = Page<ChainInfo>

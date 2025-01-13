@@ -27,6 +27,7 @@ export enum SafeAppSocialPlatforms {
   TWITTER = 'TWITTER',
   GITHUB = 'GITHUB',
   DISCORD = 'DISCORD',
+  TELEGRAM = 'TELEGRAM',
 }
 
 export type SafeAppSocialProfile = {

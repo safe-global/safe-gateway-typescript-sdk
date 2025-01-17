@@ -518,13 +518,13 @@ export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDe
 export type TransactionDetails = {
   safeAddress: string
   txId: string
-  executedAt?: number | null
+  executedAt?: number
   txStatus: TransactionStatus
-  txInfo: TransactionInfo | null
-  txData?: TransactionData | null
-  detailedExecutionInfo?: DetailedExecutionInfo | null
-  txHash?: string | null
-  safeAppInfo?: SafeAppInfo | null
+  txInfo: TransactionInfo
+  txData?: TransactionData
+  detailedExecutionInfo?: DetailedExecutionInfo
+  txHash?: string
+  safeAppInfo?: SafeAppInfo
   note?: string | null
 }
 

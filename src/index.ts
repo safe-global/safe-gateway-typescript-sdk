@@ -303,13 +303,14 @@ export function proposeTransaction(
 export function getConfirmationView(
   chainId: string,
   safeAddress: string,
+  operation: operations['data_decoder']['parameters']['body']['operation'],
   data: operations['data_decoder']['parameters']['body']['data'],
   to?: operations['data_decoder']['parameters']['body']['to'],
   value?: operations['data_decoder']['parameters']['body']['value'],
 ): Promise<AnyConfirmationView> {
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/safes/{safe_address}/views/transaction-confirmation', {
     path: { chainId, safe_address: safeAddress },
-    body: { data, to, value },
+    body: { operation, data, to, value },
   })
 }
 
@@ -319,13 +320,14 @@ export function getConfirmationView(
 export function getTxPreview(
   chainId: string,
   safeAddress: string,
+  operation: operations['data_decoder']['parameters']['body']['operation'],
   data: operations['data_decoder']['parameters']['body']['data'],
   to?: operations['data_decoder']['parameters']['body']['to'],
   value?: operations['data_decoder']['parameters']['body']['value'],
 ): Promise<TransactionPreview> {
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/transactions/{safe_address}/preview', {
     path: { chainId, safe_address: safeAddress },
-    body: { data, to, value },
+    body: { operation, data, to, value },
   })
 }
 
@@ -374,12 +376,13 @@ export function getMasterCopies(chainId: string): Promise<MasterCopyReponse> {
  */
 export function getDecodedData(
   chainId: string,
+  operation: operations['data_decoder']['parameters']['body']['operation'],
   encodedData: operations['data_decoder']['parameters']['body']['data'],
   to?: operations['data_decoder']['parameters']['body']['to'],
 ): Promise<DecodedDataResponse> {
   return postEndpoint(baseUrl, '/v1/chains/{chainId}/data-decoder', {
     path: { chainId: chainId },
-    body: { data: encodedData, to },
+    body: { operation, data: encodedData, to },
   })
 }
 

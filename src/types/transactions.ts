@@ -286,8 +286,15 @@ export type BaseOrder = {
   buyToken: OrderToken
   /** @description The URL to the explorer page of the order */
   explorerUrl: string
-  /** @description The amount of fees paid for this order. */
-  executedSurplusFee?: string | null
+  /** 
+   * @deprecated Use `executedFee` instead
+   * @description The amount of fees paid for this order.
+   */
+  executedSurplusFee: string | null
+  /** @description The amount of fees paid for this order */
+  executedFee: string | null
+  /** @description The token in which the fee was paid, expressed by SURPLUS tokens (BUY tokens for SELL orders and SELL tokens for BUY orders). */
+  executedFeeToken: OrderToken
   /** @description The (optional) address to receive the proceeds of the trade */
   receiver?: string | null
   owner: string

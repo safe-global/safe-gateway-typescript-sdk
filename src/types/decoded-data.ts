@@ -11,6 +11,7 @@ export enum ConfirmationViewTypes {
 }
 
 export type DecodedDataRequest = {
+  operation: 0 | 1
   data: string
   to?: string
   value?: string

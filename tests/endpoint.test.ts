@@ -104,35 +104,18 @@ describe('getEndpoint', () => {
     expect(getData).toHaveBeenCalledWith('/test-url?raw=true', undefined, undefined)
   })
 
-  it('should call a data decoder POST endpoint', async () => {
+  it('should call a tx preview POST endpoint', async () => {
     await expect(
-      postEndpoint('https://test.test', '/v1/chains/{chainId}/data-decoder', {
-        path: { chainId: '4' },
-        body: { data: '0x123' },
-      }),
-    ).resolves.toEqual({ success: true })
-
-    expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test/v1/chains/4/data-decoder',
-      'POST',
-      { data: '0x123' },
-      undefined,
-      undefined,
-    )
-  })
-
-  it('should call a data decoder confirmation view POST endpoint', async () => {
-    await expect(
-      postEndpoint('https://test.test', '/v1/chains/{chainId}/safes/{safe_address}/views/transaction-confirmation', {
+      postEndpoint('https://test.test', '/v1/chains/{chainId}/transactions/{safe_address}/preview', {
         path: { chainId: '4', safe_address: '0x123' },
-        body: { data: '0x456' },
+        body: { data: '0x456', operation: 0 },
       }),
     ).resolves.toEqual({ success: true })
 
     expect(fetchData).toHaveBeenCalledWith(
-      'https://test.test/v1/chains/4/safes/0x123/views/transaction-confirmation',
+      'https://test.test/v1/chains/4/transactions/0x123/preview',
       'POST',
-      { data: '0x456' },
+      { data: '0x456', operation: 0 },
       undefined,
       undefined,
     )

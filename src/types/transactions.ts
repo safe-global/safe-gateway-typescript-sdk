@@ -532,6 +532,7 @@ export type TransactionDetails = {
   detailedExecutionInfo?: DetailedExecutionInfo
   txHash?: string
   safeAppInfo?: SafeAppInfo
+  note?: string | null
 }
 
 /* Transaction details types end */

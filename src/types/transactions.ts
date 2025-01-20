@@ -286,7 +286,7 @@ export type BaseOrder = {
   buyToken: OrderToken
   /** @description The URL to the explorer page of the order */
   explorerUrl: string
-  /** 
+  /**
    * @deprecated Use `executedFee` instead
    * @description The amount of fees paid for this order.
    */

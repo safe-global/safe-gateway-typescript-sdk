@@ -1,6 +1,6 @@
 {
   "name": "@safe-global/safe-gateway-typescript-sdk",
-  "version": "3.22.7-beta.2",
+  "version": "3.22.7",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [

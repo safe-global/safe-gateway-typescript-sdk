@@ -23,7 +23,7 @@ export enum TokenType {
 export type TokenInfo = {
   type: TokenType | 'ERC20' | 'ERC721' | 'NATIVE_TOKEN' | 'UNKNOWN'
   address: string
-  decimals: number
+  decimals?: number | null
   symbol: string
   name: string
   logoUri: string

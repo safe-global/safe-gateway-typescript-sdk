@@ -1,6 +1,7 @@
 export type AddressEx = {
   value: string
   name?: string
+  displayName?: string
   logoUri?: string
 }
 

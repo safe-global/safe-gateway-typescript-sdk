@@ -1,13 +1,20 @@
 export type Params = Record<string, string | number | boolean | null>
 
-export type ErrorResponse = {
-  code: number
-  message: string
-}
+export type ErrorResponse =
+  | {
+      code: number
+      statusCode?: never
+      message: string
+    }
+  | {
+      code?: never
+      statusCode: number
+      message: string
+    }
 
 const isErrorResponse = (data: unknown): data is ErrorResponse => {
   const isObject = typeof data === 'object' && data !== null
-  return isObject && 'code' in data && 'message' in data
+  return isObject && ('code' in data || 'statusCode' in data) && 'message' in data
 }
 
 function replaceParam(str: string, key: string, value: string): string {
@@ -48,7 +55,7 @@ async function parseResponse<T>(resp: Response): Promise<T> {
 
   if (!resp.ok) {
     const errTxt = isErrorResponse(json)
-      ? `CGW error - ${json.code}: ${json.message}`
+      ? `CGW error - ${json.code ?? json.statusCode}: ${json.message}`
       : `CGW error - status ${resp.statusText}`
     throw new Error(errTxt)
   }

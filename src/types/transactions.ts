@@ -518,6 +518,7 @@ export type MultisigExecutionDetails = {
   gasTokenInfo?: TokenInfo
   trusted: boolean
   proposer: AddressEx | null
+  proposedByDelegate: boolean | null
 }
 
 export type DetailedExecutionInfo = ModuleExecutionDetails | MultisigExecutionDetails

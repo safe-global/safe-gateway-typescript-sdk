@@ -14,9 +14,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v2
 
-      - run: npm install
-
-      - run: npm install typescript typedoc
+      - run: yarn install --immutable
 
       - name: Create the docs directory locally in CI
         run: ./node_modules/.bin/typedoc --githubPages src

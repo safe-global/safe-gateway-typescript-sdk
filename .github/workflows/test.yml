@@ -5,16 +5,21 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  checks: write
+  contents: read
+  pull-requests: write
+
 jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
 
       - run: yarn install --immutable
 
       - name: Run tests
-        uses: mattallty/jest-github-action@v1
+        uses: mattallty/jest-github-action@40eafe1b6e3924992dd7e3b0a07e70dfdff1d52f # v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
